@@ -11,26 +11,21 @@ const Header = ({
   showNav: boolean;
   setShowNav: any;
 }) => {
-  
   const { data: sessionData } = useSession();
 
   return (
-    <div className="sticky top-0 items-center bg-pink-200 z-50  ">
-
-      <div className="bg-primary">
+    <div className="sticky top-0 z-50 items-center bg-pink-200 grid grid-cols-2">
         <div className="flex justify-start ">
           <div className="pl-4 md:pl-0">
-          <Bars3CenterLeftIcon
-              className="h-8 w-8 cursor-pointer text-gray-700 dark:text-white"
+            <Bars3CenterLeftIcon
+              className="h-8 w-8 cursor-pointer ml-6 text-gray-700 dark:text-white"
               onClick={() => setShowNav(!showNav)}
             />
-
           </div>
-
           <Image
             className="pl-4"
             src={(sessionData && sessionData.user?.image) || ""}
-            alt=''
+            alt=""
           />
           <div className="ml-4 flex items-center pr-4 text-gray-800 dark:text-white">
             {sessionData && <span>{sessionData.user?.name}</span>}
@@ -40,8 +35,6 @@ const Header = ({
           <ThemeManager />
           <AuthShowcase />
         </div>
-      </div>
-
     </div>
   );
 };
@@ -59,14 +52,9 @@ const AuthShowcase: React.FC = () => {
         {sessionData ? "Sign out" : "Sign in"}
       </button>
 
-      <Link 
-      className={sessionData ? "hidden" : "visible"}
-
-      href={"/register"}>
-            Register
-       </Link>
-
-
+      <Link className={sessionData ? "hidden" : "visible mr-6"} href={"/register"}>
+        Register
+      </Link>
     </div>
   );
 };
