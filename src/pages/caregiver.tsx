@@ -10,7 +10,7 @@ import ScheduledSessionTab from "@/components/caregiverDashboard/scheduledSessio
 import HistoryTab from "@/components/caregiverDashboard/historyTab";
 import Link from "next/link";
 
-const Dashboard: NextPage = () => {
+const CaregiverDashboard: NextPage = () => {
   const { data: session } = useSession();
   const [openTab, setOpenTab] = useState(1);
 
@@ -143,4 +143,4 @@ const Dashboard: NextPage = () => {
   );
 };
 
-export default Dashboard;
+export default CaregiverDashboard;
