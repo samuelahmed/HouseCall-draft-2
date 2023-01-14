@@ -7,7 +7,6 @@ import { getServerAuthSession } from "@/server/common/get-server-auth-session";
 import Layout from "@/components/layout/Layout";
 import NavLayout from "@/components/layout/navLayout";
 
-
 const Dashboard: NextPage = () => {
   const session = useSession();
   const secret = trpc.protected.getSecretMessage.useQuery();
@@ -22,14 +21,20 @@ const Dashboard: NextPage = () => {
       <NavLayout />
 
       <Layout>
-
-
-      <div className="dark:bg-gray-800 grid justify-items-center min-h-screen">
-        {/* < TabsEngine /> */}
-        <div> meow </div>
-      </div>
-
-
+        <div className="grid min-h-screen justify-items-center dark:bg-gray-800">
+          {/* < TabsEngine /> */}
+          <div className="radius flex flex-col items-center gap-2 border p-4">
+            <h1 className="text-lg">Dashboard - Protected</h1>
+            <p>{JSON.stringify(session)}</p>
+            <p>{secret.data ? secret.data : "Loading tRPC query..."}</p>
+            <button
+              onClick={() => signOut()}
+              className="rounded border py-1 px-4"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
       </Layout>
     </>
   );
