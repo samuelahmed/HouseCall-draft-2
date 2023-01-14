@@ -20,9 +20,7 @@ const Home: NextPage = () => {
       </Head>
       <NavLayout />
 
-
       <Layout>
-
         <div className="radius flex flex-col items-center gap-2 border p-4">
           <h1 className="text-lg">Home - Not protected</h1>
           <p>
