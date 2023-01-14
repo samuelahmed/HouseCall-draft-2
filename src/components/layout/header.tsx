@@ -1,6 +1,8 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import ThemeManager from "./themeManager";
 import Link from "next/link";
+import Image from "next/image";
+import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
 
 const Header = ({
   showNav,
@@ -13,18 +15,22 @@ const Header = ({
   const { data: sessionData } = useSession();
 
   return (
-    <div className="sticky top-0 items-center">
+    <div className="sticky top-0 items-center bg-pink-200 z-50  ">
+
       <div className="bg-primary">
         <div className="flex justify-start ">
           <div className="pl-4 md:pl-0">
-            <div
+          <Bars3CenterLeftIcon
               className="h-8 w-8 cursor-pointer text-gray-700 dark:text-white"
               onClick={() => setShowNav(!showNav)}
             />
+
           </div>
-          <img
+
+          <Image
             className="pl-4"
             src={(sessionData && sessionData.user?.image) || ""}
+            alt=''
           />
           <div className="ml-4 flex items-center pr-4 text-gray-800 dark:text-white">
             {sessionData && <span>{sessionData.user?.name}</span>}
@@ -32,10 +38,10 @@ const Header = ({
         </div>
         <div className="flex justify-end">
           <ThemeManager />
-
           <AuthShowcase />
         </div>
       </div>
+
     </div>
   );
 };

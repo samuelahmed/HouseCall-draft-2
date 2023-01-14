@@ -43,12 +43,15 @@ const LoginSuccess: NextPage = () => {
                 <Link href={"/caregiver"} className="rounded border py-1 px-4">
                   Caregiver Dashboard
                 </Link>
-                <button
+                <Link href={"/account"} className="rounded border py-1 px-4">
+                  Account
+                </Link>
+                {/* <button
                   onClick={() => signOut()}
                   className="rounded border py-1 px-4"
                 >
                   Logout
-                </button>
+                </button> */}
               </div>
             </div>
           </main>

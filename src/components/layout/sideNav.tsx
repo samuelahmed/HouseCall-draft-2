@@ -4,6 +4,18 @@
 const SideNav = () => {
   return (
     <div className="fixed z-30 w-64 shadow-sm">
+      <div>
+        meow
+      </div>
+      <div>
+        meow
+      </div>      <div>
+        meow
+      </div>      <div>
+        meow
+      </div>      <div>
+        meow
+      </div>
 
     </div>
   );
