@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { trpc } from "@/utils/trpc";
 import Layout from "@/components/layout/Layout";
 import NavLayout from "@/components/layout/navLayout";
@@ -20,8 +20,6 @@ const LoginSuccess: NextPage = () => {
       <NavLayout />
 
       <Layout>
-        {/* <h1 className="text-lg">Welcome to HouseCall</h1>
-          <p>{session ? "You are logged in" : "You are not logged in"}</p> */}
         {session && (
           <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
@@ -37,24 +35,18 @@ const LoginSuccess: NextPage = () => {
               </h1>
 
               <div className="flex flex-row gap-2">
-                {/* <Link href={"/dashboard"} className="rounded border py-1 px-4">
-                  Dashboard
-                </Link> */}
                 <Link href={"/caregiver"} className="rounded border py-1 px-4">
                   Caregiver Dashboard
                 </Link>
                 <Link href={"/patient"} className="rounded border py-1 px-4">
                   Patient Dashboard
                 </Link>
+                <Link href={"/messages"} className="rounded border py-1 px-4">
+                  Messages
+                </Link>
                 <Link href={"/account"} className="rounded border py-1 px-4">
                   Account
                 </Link>
-                {/* <button
-                  onClick={() => signOut()}
-                  className="rounded border py-1 px-4"
-                >
-                  Logout
-                </button> */}
               </div>
             </div>
           </main>
