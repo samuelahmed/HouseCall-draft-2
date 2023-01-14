@@ -18,7 +18,6 @@ const LoginSuccess: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavLayout />
-
       <Layout>
         {session && (
           <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
@@ -33,7 +32,6 @@ const LoginSuccess: NextPage = () => {
                     ) || <span className="text-red-600">Meow! No Name</span>}
                 </span>
               </h1>
-
               <div className="flex flex-row gap-2">
                 <Link href={"/caregiver"} className="rounded border py-1 px-4">
                   Caregiver Dashboard
@@ -51,7 +49,6 @@ const LoginSuccess: NextPage = () => {
             </div>
           </main>
         )}
-
         {!session && (
           <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">

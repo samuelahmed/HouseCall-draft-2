@@ -12,9 +12,6 @@ const Account: NextPage = () => {
   const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
   const { data: session } = useSession();
 
-  //Any issue with wrapping all return in a big if{}else{}?
-  //Note: Putting else if (sessionData) causes error with Account: function.
-
   return (
     <>
       <Head>
@@ -33,7 +30,6 @@ const Account: NextPage = () => {
                   width={200}
                   height={200}
                 />
-                {/* NOTE: DO I WANT TO USE SESSIONDATA AND DBTEST OR ONLY ONE OF THEM? */}
                 <div className="grid grid-cols-6 gap-6 py-10">
                   <div className="col-span-4 col-start-2">
                     Name:
@@ -47,18 +43,6 @@ const Account: NextPage = () => {
                       (data && data?.email) ||
                       "Meow, something went very wrong"}
                   </div>
-                  {/* <div className="col-span-4 col-start-2">
-                    Address:
-                    {isLoading || (data && data?.address) || (
-                      <span className="text-red-600">Meow! No Address</span>
-                    )}
-                  </div> */}
-                  {/* <div className="col-span-4 col-start-2">
-                    Role:
-                    {isLoading || (data && data?.role) || (
-                      <span className="text-red-600">Meow! No Role</span>
-                    )}
-                  </div> */}
                 </div>
                 <div className="flex justify-center">
                   <AccountEditModal />
