@@ -2,14 +2,13 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-
 import { trpc } from "@/utils/trpc";
 import Layout from "@/components/layout/Layout";
 import NavLayout from "@/components/layout/navLayout";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
-  const hello = trpc.example.hello.useQuery({ text: "from tRPC" });
+  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
 
   return (
     <>
@@ -21,37 +20,39 @@ const Home: NextPage = () => {
       <NavLayout />
 
       <Layout>
-        <div className="radius flex flex-col items-center gap-2 border p-4">
-          <h1 className="text-lg">Home - Not protected</h1>
-          <p>
-            {session ? "You are authenticated" : "You are not authenticated"}
-          </p>
-          {session && (
-            <div className="flex flex-row gap-2">
-              <Link href={"/dashboard"} className="rounded border py-1 px-4">
-                Dashboard
-              </Link>
-              <button
-                onClick={() => signOut()}
-                className="rounded border py-1 px-4"
-              >
-                Logout
-              </button>
-            </div>
-          )}
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+            House <span className="text-[hsl(280,100%,70%)]">Call</span>
+          </h1>
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-3xl text-white">
+              Care in the comfort of your home
+            </p>
+          </div>
 
-          {!session && (
-            <div className="flex flex-row gap-2">
-              <Link href={"/login"} className="rounded border py-1 px-4">
-                Login
-              </Link>
-              <Link href={"/register"} className="rounded border py-1 px-4">
-                Register
-              </Link>
-            </div>
-          )}
-          <p>{hello.data ? hello.data.greeting : "Loading tRPC query..."}</p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
+            <Link
+              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+              href="/caregiver"
+            >
+              <h3 className="text-2xl font-bold">Caregivers →</h3>
+              <div className="text-lg">
+                You are passionate to help those in need.
+              </div>
+            </Link>
+            <Link
+              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
+              href="/caregiver"
+            >
+              <h3 className="text-2xl font-bold">Patients →</h3>
+              <div className="text-lg">
+                You or someone you care about needs assistance.
+              </div>
+            </Link>
+          </div>
         </div>
+      </main>
       </Layout>
     </>
   );
