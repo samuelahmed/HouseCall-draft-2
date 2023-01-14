@@ -16,7 +16,7 @@ const LoginForm = () => {
   } = useForm<ILogin>();
 
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
-    await signIn("credentials", { ...data, callbackUrl: "/loginSuccess" });
+    await signIn("credentials", { ...data, callbackUrl: "/" });
   };
 
   return (
