@@ -16,14 +16,12 @@ export const updateAccountRouter = router({
     .input(
       z.object({
         username: z.string(),
-        role: z.string(),
         email: z.string().email(),
-        address: z.string(),
         password: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { username, role, email, address, password } = input;
+      const { username, email, password } = input;
       const card = await ctx.prisma.user.upsert({
         create: {
           username,
