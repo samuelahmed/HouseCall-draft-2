@@ -25,12 +25,17 @@
  ┃ ┣ 📂form
  ┃ ┃ ┣ 📜LoginForm.tsx
  ┃ ┃ ┗ 📜RegisterForm.tsx
- ┃ ┗ 📂layout
+ ┃ ┣ 📂layout
  ┃ ┃ ┣ 📜Layout.tsx
  ┃ ┃ ┣ 📜header.tsx
  ┃ ┃ ┣ 📜navLayout.tsx
  ┃ ┃ ┣ 📜sideNav.tsx
  ┃ ┃ ┗ 📜themeManager.tsx
+ ┃ ┗ 📂messagesPage
+ ┃ ┃ ┣ 📜demoConversation.tsx
+ ┃ ┃ ┣ 📜demoConversationTwo.tsx
+ ┃ ┃ ┣ 📜messageDashboardConnectionCard.tsx
+ ┃ ┃ ┗ 📜messagesPageEngine.tsx
 
  ┣ 📂env
  ┃ ┣ 📜client.mjs
@@ -52,6 +57,7 @@
  ┃ ┣ 📜index.tsx
  ┃ ┣ 📜login.tsx
  ┃ ┣ 📜loginSuccess.tsx
+ ┃ ┣ 📜messages.tsx
  ┃ ┣ 📜patient.tsx
  ┃ ┗ 📜register.tsx
 
@@ -69,16 +75,13 @@
  ┃ ┃ ┃ ┗ 📜updateAccount.ts
  ┃ ┃ ┣ 📜context.ts
  ┃ ┃ ┗ 📜trpc.ts
-
+ 
  ┣ 📂styles
  ┃ ┗ 📜globals.css
-
  ┣ 📂types
  ┃ ┗ 📜next-auth.d.ts
-
  ┣ 📂utils
  ┃ ┗ 📜trpc.ts
- 
  ┗ 📂validation
  ┃ ┗ 📜auth.ts
 
