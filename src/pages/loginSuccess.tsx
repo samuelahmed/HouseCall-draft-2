@@ -6,7 +6,7 @@ import { trpc } from "@/utils/trpc";
 import Layout from "@/components/layout/Layout";
 import NavLayout from "@/components/layout/navLayout";
 
-const Home: NextPage = () => {
+const LoginSuccess: NextPage = () => {
   const { data: session } = useSession();
   const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
 
@@ -77,4 +77,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default LoginSuccess;
