@@ -45,6 +45,9 @@ const LoginSuccess: NextPage = () => {
                 <Link href={"/account"} className="rounded border py-1 px-4">
                   Account
                 </Link>
+                <Link href={"/help"} className="rounded border py-1 px-4">
+                  Help
+                </Link>
               </div>
             </div>
           </main>
