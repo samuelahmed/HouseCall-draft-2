@@ -8,6 +8,9 @@ const SideNav = () => {
       <Link href={"/caregiver"} className="rounded border py-1 px-4">
         Caregiver Dashboard
       </Link>
+      <Link href={"/patient"} className="rounded border py-1 px-4">
+        Patient Dashboard
+      </Link>
       <Link href={"/account"} className="rounded border py-1 px-4">
         Account
       </Link>
