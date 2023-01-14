@@ -55,7 +55,6 @@ const LoginSuccess: NextPage = () => {
               <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
                 House <span className="text-[hsl(280,100%,70%)]">Call</span>
               </h1>
-
               <div className="flex flex-row gap-2">
                 <Link href={"/login"} className="rounded border py-1 px-4">
                   Login

@@ -1,7 +1,6 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
-
 import { env } from "../../../env/server.mjs";
 import { prisma } from "../../../server/db/client";
 import { loginSchema } from "@/validation/auth";
@@ -13,14 +12,12 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.email = user.email;
       }
-
       return token;
     },
     session({ session, token }) {
       if (token && session.user) {
         session.user.id = token.id as string;
       }
-
       return session;
     },
   },

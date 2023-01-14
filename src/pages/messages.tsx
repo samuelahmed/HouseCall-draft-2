@@ -11,7 +11,6 @@ import DemoConversationTwo from "@/components/messagesPage/demoConversationTwo";
 
 const Messages: NextPage = () => {
   const { data: session } = useSession();
-  // const [openTab, setOpenTab] = useState(1);
   const [openChat, setOpenChat] = useState(1);
 
   return (
