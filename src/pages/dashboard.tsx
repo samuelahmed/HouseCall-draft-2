@@ -10,6 +10,7 @@ import NavLayout from "@/components/layout/navLayout";
 const Dashboard: NextPage = () => {
   const session = useSession();
   const secret = trpc.protected.getSecretMessage.useQuery();
+  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
 
   return (
     <>
@@ -25,6 +26,12 @@ const Dashboard: NextPage = () => {
           {/* < TabsEngine /> */}
           <div className="radius flex flex-col items-center gap-2 border p-4">
             <h1 className="text-lg">Dashboard - Protected</h1>
+            <div className="col-span-4 col-start-2">
+                Name:
+                {isLoading || (data && data?.username) || (
+                  <span className="text-red-600">Meow! No Name</span>
+                )}
+              </div>
             <p>{JSON.stringify(session)}</p>
             <p>{secret.data ? secret.data : "Loading tRPC query..."}</p>
             <button
