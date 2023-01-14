@@ -1,15 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
 import { trpc } from "@/utils/trpc";
 import Layout from "@/components/layout/Layout";
 import NavLayout from "@/components/layout/navLayout";
 
 const Home: NextPage = () => {
-  const { data: session } = useSession();
-  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
-
   return (
     <>
       <Head>
@@ -43,7 +39,7 @@ const Home: NextPage = () => {
             </Link>
             <Link
               className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="/caregiver"
+              href="/patient"
             >
               <h3 className="text-2xl font-bold">Patients →</h3>
               <div className="text-lg">

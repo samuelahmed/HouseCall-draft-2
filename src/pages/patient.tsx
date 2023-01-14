@@ -1,12 +1,14 @@
+import type { NextPage } from "next";
 import Head from "next/head";
+import { useSession } from "next-auth/react";
 import Layout from "@/components/layout/Layout";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import SearchEngine from "@/components/caregiverDashboard/searchEngine";
-import type { GetServerSideProps, NextPage } from "next";
-import { getServerAuthSession } from "@/server/common/get-server-auth-session";
+import Link from "next/link";
 
 const PatientDashboard: NextPage = () => {
+  const { data: session } = useSession();
   const [openTab, setOpenTab] = useState(1);
 
   return (
@@ -16,8 +18,8 @@ const PatientDashboard: NextPage = () => {
       </Head>
       <NavLayout />
       <Layout>
-        <div>
-          <div className="grid min-h-screen justify-items-center dark:bg-gray-800">
+        {session && (
+          <main className="grid min-h-screen justify-items-center dark:bg-gray-800">
             <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-gray-900">
               <div className="items grid w-full grid-cols-3 justify-items-start gap-0 text-center">
                 <a
@@ -105,29 +107,29 @@ const PatientDashboard: NextPage = () => {
               }
               id="link3"
             ></div>
-          </div>
-        </div>
+          </main>
+        )}
+        {!session && (
+          <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+            <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+              <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+                Patient{" "}
+                <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
+              </h1>
+              <div className="flex flex-row gap-2">
+                <Link href={"/login"} className="rounded border py-1 px-4">
+                  Login
+                </Link>
+                <Link href={"/register"} className="rounded border py-1 px-4">
+                  Register
+                </Link>
+              </div>
+            </div>
+          </main>
+        )}
       </Layout>
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getServerAuthSession({
-    req: context.req,
-    res: context.res,
-  });
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return { props: {} };
 };
 
 export default PatientDashboard;
