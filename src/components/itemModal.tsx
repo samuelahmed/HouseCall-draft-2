@@ -39,7 +39,7 @@ const ItemModal: FC<ItemModalProps> = ({ setModalOpen, setItems }) => {
   };
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-black/75 z-50">
+    <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/75">
       <div className="space-y-4 bg-white p-3">
         <h3 className="text-xl font-semibold">Request Session</h3>
         Title
@@ -102,21 +102,6 @@ const ItemModal: FC<ItemModalProps> = ({ setModalOpen, setItems }) => {
           }
           className="w-full rounded-md border-gray-300 bg-gray-200 shadow-sm focus:border-violet-300 focus:ring focus:ring-violet-200 focus:ring-opacity-50"
         />
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div className="grid grid-cols-2 gap-8">
           <button
             type="button"
