@@ -21,7 +21,7 @@ const Test: NextPage = () => {
   const [checkedItems, setCheckedItems] = useState<ShoppingItem[]>([]);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-  const { data, isLoading } = trpc.newItemRoute.getAllItems.useQuery();
+  const { data, isLoading } = trpc.sessionAPIs.getAllSessions.useQuery();
 
   // const { mutate: deleteItem } = trpc.useMutation(['items.deleteItem'], {
   //   onSuccess(shoppingItem) {
