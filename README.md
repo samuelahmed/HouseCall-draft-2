@@ -25,17 +25,21 @@
  ┃ ┣ 📂form
  ┃ ┃ ┣ 📜LoginForm.tsx
  ┃ ┃ ┗ 📜RegisterForm.tsx
+ ┃ ┣ 📂helpPage
+ ┃ ┃ ┣ 📜contactUs.tsx
+ ┃ ┃ ┗ 📜supportDocumentation.tsx
  ┃ ┣ 📂layout
  ┃ ┃ ┣ 📜Layout.tsx
  ┃ ┃ ┣ 📜header.tsx
  ┃ ┃ ┣ 📜navLayout.tsx
  ┃ ┃ ┣ 📜sideNav.tsx
  ┃ ┃ ┗ 📜themeManager.tsx
- ┃ ┗ 📂messagesPage
+ ┃ ┣ 📂messagesPage
  ┃ ┃ ┣ 📜demoConversation.tsx
  ┃ ┃ ┣ 📜demoConversationTwo.tsx
  ┃ ┃ ┣ 📜messageDashboardConnectionCard.tsx
  ┃ ┃ ┗ 📜messagesPageEngine.tsx
+ ┃ ┗ 📜itemModal.tsx
 
  ┣ 📂env
  ┃ ┣ 📜client.mjs
@@ -50,16 +54,17 @@
  ┃ ┃ ┃ ┗ 📜[trpc].ts
  ┃ ┃ ┣ 📜examples.ts
  ┃ ┃ ┗ 📜restricted.ts
- ┃ ┣ 📂loginPages
  ┃ ┣ 📜_app.tsx
  ┃ ┣ 📜account.tsx
  ┃ ┣ 📜caregiver.tsx
+ ┃ ┣ 📜help.tsx
  ┃ ┣ 📜index.tsx
  ┃ ┣ 📜login.tsx
  ┃ ┣ 📜loginSuccess.tsx
  ┃ ┣ 📜messages.tsx
  ┃ ┣ 📜patient.tsx
- ┃ ┗ 📜register.tsx
+ ┃ ┣ 📜register.tsx
+ ┃ ┗ 📜test.tsx
 
  ┣ 📂server
  ┃ ┣ 📂common
@@ -72,17 +77,20 @@
  ┃ ┃ ┃ ┣ 📜auth.ts
  ┃ ┃ ┃ ┣ 📜example.ts
  ┃ ┃ ┃ ┣ 📜protected.ts
+ ┃ ┃ ┃ ┣ 📜sessionRouter.ts
  ┃ ┃ ┃ ┗ 📜updateAccount.ts
  ┃ ┃ ┣ 📜context.ts
  ┃ ┃ ┗ 📜trpc.ts
- 
+
  ┣ 📂styles
  ┃ ┗ 📜globals.css
+
  ┣ 📂types
  ┃ ┗ 📜next-auth.d.ts
+
  ┣ 📂utils
  ┃ ┗ 📜trpc.ts
+ 
  ┗ 📂validation
  ┃ ┗ 📜auth.ts
-
 ```
