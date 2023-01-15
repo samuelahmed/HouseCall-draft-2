@@ -30,7 +30,6 @@ const Test: NextPage = () => {
         {modalOpen && (
           <ItemModal setModalOpen={setModalOpen} setItems={setItems} />
         )}
-
         <div>
           {session && (
             <div className="grid min-h-screen justify-items-center dark:bg-gray-800">

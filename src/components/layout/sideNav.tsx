@@ -20,6 +20,9 @@ const SideNav = () => {
       <Link href={"/help"} className="rounded border py-1 px-4">
         Help
       </Link>
+      <Link href={"/test"} className="rounded border py-1 px-4">
+        Test
+      </Link>
       </div>
     </div>
   );
