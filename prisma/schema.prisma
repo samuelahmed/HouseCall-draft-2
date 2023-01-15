@@ -25,13 +25,11 @@ model User {
   updatedAt     DateTime  @updatedAt
 }
 
-model Session {
+model CareSession {
   id           String   @id @default(cuid())
-  name         String
+  name         String?
+  title        String?
   address      String?
-  age          Int?
-  hourlyPay    Int
-  date         DateTime
   medicalNotes String?
   overview     String?
   checked      Boolean  @default(false)

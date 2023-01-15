@@ -6,13 +6,21 @@ export const sessionRouter = router({
     .input(
       z.object({
         name: z.string(),
+        address: z.string(),
+        medicalNotes: z.string(),
+        overview: z.string(),
+        title: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
-      const { name } = input;
-      const item = await ctx.prisma.shoppingItem.create({
+      const { name, address, medicalNotes, overview, title } = input;
+      const item = await ctx.prisma.careSession.create({
         data: {
           name,
+          address,
+          medicalNotes,
+          overview,
+          title,
         },
       });
 
@@ -20,7 +28,7 @@ export const sessionRouter = router({
     }),
 
   getAllSessions: publicProcedure.query(({ ctx }) => {
-    const items = ctx.prisma.shoppingItem.findMany();
+    const items = ctx.prisma.careSession.findMany();
     return items;
   }),
 });

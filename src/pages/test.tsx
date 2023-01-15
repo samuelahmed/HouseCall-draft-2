@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import Layout from "@/components/layout/Layout";
 import Link from "next/link";
 import { useState } from "react";
-import { ShoppingItem } from "@prisma/client";
+import { CareSession } from "@prisma/client";
 import ItemModal from "@/components/itemModal";
 
 //   ***********************************************************
@@ -15,34 +15,10 @@ import ItemModal from "@/components/itemModal";
 //   ***********************************************************
 
 const Test: NextPage = () => {
-  // const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
   const { data: session } = useSession();
-  const [items, setItems] = useState<ShoppingItem[]>([]);
-  const [checkedItems, setCheckedItems] = useState<ShoppingItem[]>([]);
+  const [items, setItems] = useState<CareSession[]>([]);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-
   const { data, isLoading } = trpc.sessionAPIs.getAllSessions.useQuery();
-
-  // const { mutate: deleteItem } = trpc.useMutation(['items.deleteItem'], {
-  //   onSuccess(shoppingItem) {
-  //     setItems((prev) => prev.filter((item) => item.id !== shoppingItem.id))
-  //   },
-  // })
-
-  // const { mutate: toggleChecked } = trpc.useMutation(['items.toggleChecked'], {
-  //   onSuccess(shoppingItem) {
-  //     // check if this item is already checked
-  //     if (checkedItems.some((item) => item.id === shoppingItem.id)) {
-  //       // remove it from the checked items
-  //       setCheckedItems((prev) => prev.filter((item) => item.id !== shoppingItem.id))
-  //     } else {
-  //       // add it to the checked items
-  //       setCheckedItems((prev) => [...prev, shoppingItem])
-  //     }
-  //   },
-  // })
-
-  // if (!itemsData || isLoading) return <p>Loading...</p>
 
   return (
     <>
@@ -61,43 +37,73 @@ const Test: NextPage = () => {
               <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-gray-900">
                 <main className="mx-auto my-12 max-w-3xl">
                   <div className="flex justify-between">
-                    <h2 className="text-2xl font-semibold">Add item endpoint</h2>
+                    <h2 className="text-2xl font-semibold">
+                      Available Sessions
+                    </h2>
                     <button
                       type="button"
                       onClick={() => setModalOpen(true)}
                       className="rounded-md bg-violet-500 p-2 text-sm text-white transition hover:bg-violet-600"
                     >
-                      Add item
+                      Create Session
                     </button>
                   </div>
                   <ul className="mt-4">
                     {data?.map((data) => {
-                      const { id, name } = data;
-
+                      const {
+                        id,
+                        title,
+                        name,
+                        address,
+                        medicalNotes,
+                        overview,
+                      } = data;
                       return (
                         <li
                           key={id}
                           className="flex w-full items-center justify-between"
                         >
-                          <div className="relative">
-                            <div className="pointer-events-none absolute inset-0 flex origin-left items-center justify-center"></div>
-                            <span
-                              onClick={() => {
-                                console.log("clicked", id);
-                                // toggleChecked({
-                                //   id,
-                                //   checked: checkedItems.some(
-                                //     (item) => item.id === id
-                                //   )
-                                //     ? false
-                                //     : true,
-                                // });
-                              }}
-                            >
-                              {name}
-                            </span>
+                          <div className="mx-2 my-2 w-1/2 border-2">
+                            <div className="mb-4 mr-4 ml-4">
+                              <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-white">
+                                {title}
+                              </div>
+                              <div className="text-sm">
+                                <p className="text-gray-900 dark:text-white">
+                                  <span className="font-semibold text-gray-900 dark:text-white">
+                                    Name:&nbsp;
+                                  </span>
+                                  {name}
+                                </p>
+                                <p className="text-gray-900  dark:text-white">
+                                  <span className="font-semibold text-gray-900 dark:text-white">
+                                    Address:&nbsp;
+                                  </span>
+                                  {address}
+                                </p>
+                                <p className="text-gray-900  dark:text-white">
+                                  <span className="font-semibold text-gray-900 dark:text-white">
+                                    Medical Notes:&nbsp;
+                                  </span>
+                                  {medicalNotes}
+                                </p>
+                                <p className="text-gray-900  dark:text-white">
+                                  <span className="font-semibold text-gray-900 dark:text-white">
+                                    Overview:&nbsp;
+                                  </span>
+                                  {overview}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="mb-4 mt-4 flex justify-around">
+                              <button className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white">
+                                Schedule Session
+                              </button>
+                              <button className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white">
+                                Report Post
+                              </button>
+                            </div>
                           </div>
-                          {/* <button onClick={() => deleteItem({ id })} className='cursor-pointer text-lg text-red-500' /> */}
                         </li>
                       );
                     })}
