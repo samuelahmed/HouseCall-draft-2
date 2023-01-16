@@ -1,24 +1,78 @@
+import { useRouter } from "next/router";
+import { trpc } from "@/utils/trpc";
+import { useSession } from "next-auth/react";
+
+
+
+
 const DemoSessionOverviewOne = () => {
+  const { data: session } = useSession();
+  const { data, isLoading } = trpc.sessionAPIs.getAllSessions.useQuery();
+  const router = useRouter();
+
   return (
     <>
-      <div className="flex items-center justify-around text-sm">
-        <p className=" text-gray-900 dark:text-white">San Jose</p>
-        <p className="text-gray-900 dark:text-white">
-          Saturday January 7, 2023
-        </p>
-        <p className="text-gray-900 dark:text-white">11:00am - 5:00pm</p>
-        <p className="text-gray-900 dark:text-white">$25 / hour</p>
-      </div>
-      <div className="mb-8">
-        <div className="mb-2 p-4 text-center text-xl text-gray-800 dark:text-white">
-          Companion Care
-        </div>
-        <p className="text-base text-gray-700 dark:text-white">
-          Overview: Hi, I am stephanie, it would help a lot to have someone
-          visit and talk a few times a week. My grandchildren moved away and I
-          spend a lot of time alone now.
-        </p>
-      </div>
+    
+    {data
+                  ?.map((data) => {
+                    const { id, title, name, address, medicalNotes, overview } =
+                      data;
+                    return (
+                      <li
+                        key={id}
+                        className="flex w-full items-center justify-between"
+                      >
+
+                        <div className="mx-6 my-2 w-1/2 border-2 border-gray-900">
+                          <div className="mb-4 mr-4 ml-4">
+                            <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-white">
+                              {title}
+                            </div>
+                            <div className="text-sm">
+                              <p className="text-gray-900 dark:text-white">
+                                <span className="font-semibold text-gray-900 dark:text-white">
+                                  Name:&nbsp;
+                                </span>
+                                {name}
+                              </p>
+                              <p className="text-gray-900  dark:text-white">
+                                <span className="font-semibold text-gray-900 dark:text-white">
+                                  Address:&nbsp;
+                                </span>
+                                {address}
+                              </p>
+                              <p className="text-gray-900  dark:text-white">
+                                <span className="font-semibold text-gray-900 dark:text-white">
+                                  Medical Notes:&nbsp;
+                                </span>
+                                {medicalNotes}
+                              </p>
+                              <p className="text-gray-900  dark:text-white">
+                                <span className="font-semibold text-gray-900 dark:text-white">
+                                  Overview:&nbsp;
+                                </span>
+                                {overview}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="mb-4 mt-4 flex justify-around">
+                            <button
+                              onClick={() =>
+                                router.push(`/session/${data.slug}`)
+                              }
+                              className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                            >
+                              Learn More
+                            </button>
+                            <button className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white">
+                              Report Post
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })
+                  .reverse()}
     </>
   );
 };

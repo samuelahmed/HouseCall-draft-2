@@ -126,15 +126,8 @@ const PatientDashboard: NextPage = () => {
               }
               id="link1"
             >
-              <button
-                type="button"
-                onClick={() => true}
-                className="rounded-md bg-violet-500 p-2 text-sm text-white transition hover:bg-violet-600"
-              >
-                Create Session
-              </button>
-              <h3 className="text-xl font-semibold">Request Session</h3>
-              Title
+            
+              <h3 className="text-xl font-semibold">Create new Session</h3>
               <input
                 type="text"
                 value={inputs.title}

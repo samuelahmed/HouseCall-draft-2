@@ -5,6 +5,7 @@ import DemoSessionDetailsThree from "./demoComponents/demoSessionDetailsThree";
 import { useSession } from "next-auth/react";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
+import DemoSessionOverviewOne from "./demoComponents/demoSessionOverviewOne";
 
 const FindPatientTab = () => {
   const [rightCard, setRightCard] = useState(1);
@@ -30,6 +31,8 @@ const FindPatientTab = () => {
                         key={id}
                         className="flex w-full items-center justify-between"
                       >
+
+                        < DemoSessionOverviewOne />
                         <div className="mx-6 my-2 w-1/2 border-2 border-gray-900">
                           <div className="mb-4 mr-4 ml-4">
                             <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-white">
