@@ -3,6 +3,8 @@
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
+import Head from "next/head";
+import NavLayout from "@/components/layout/navLayout";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 
@@ -14,6 +16,11 @@ const Slug: NextPage = () => {
 
   const { data: card } = trpc.sessionAPIs.getOneSession.useQuery({ slug });
   return (
+    <>
+    <Head>
+    <title>Session: {card?.sessionId}</title>
+  </Head>
+  <NavLayout />
     <div className="flex h-screen items-center justify-center">
       <div className="mx-2 my-2 w-1/2 border-2">
         <div className="mb-4 mr-4 ml-4">
@@ -57,6 +64,7 @@ const Slug: NextPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
