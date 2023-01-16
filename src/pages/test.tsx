@@ -99,7 +99,7 @@ const Test: NextPage = () => {
                             <div className="mb-4 mt-4 flex justify-around">
                               <button 
                               onClick={() => 
-                                router.push(`/c/${data.slug}`)
+                                router.push(`/session/${data.slug}`)
                               }
                               className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white">
                                 Learn More
