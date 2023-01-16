@@ -26,11 +26,13 @@ model User {
 }
 
 model CareSession {
-  id           String   @id @default(cuid())
+  id           String  @id @default(cuid())
+  sessionId   String?
   name         String?
   title        String?
   address      String?
-  medicalNotes String?
+  medicalNotes String? 
   overview     String?
-  checked      Boolean  @default(false)
+  slug         String
+  @@unique([slug])
 }

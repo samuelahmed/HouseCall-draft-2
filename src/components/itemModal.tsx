@@ -3,6 +3,7 @@ import type { Dispatch, FC, SetStateAction } from "react";
 import { useState } from "react";
 import { trpc } from "../utils/trpc";
 import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 interface ItemModalProps {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -10,6 +11,9 @@ interface ItemModalProps {
 }
 
 const ItemModal: FC<ItemModalProps> = ({ setModalOpen, setItems }) => {
+
+  const router = useRouter();
+
   const [inputs, setInputs] = useState({
     name: "",
     address: "",
@@ -31,6 +35,7 @@ const ItemModal: FC<ItemModalProps> = ({ setModalOpen, setItems }) => {
   const { mutate } = trpc.sessionAPIs.createOneSession.useMutation({
     onSuccess(newSession) {
       setItems((prev) => [...prev, newSession]);
+      router.push(`/c/${newSession.slug}`)
     },
   });
 

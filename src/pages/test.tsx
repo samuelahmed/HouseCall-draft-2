@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { CareSession } from "@prisma/client";
 import ItemModal from "@/components/itemModal";
+import { useRouter } from "next/router";
 
 //   ***********************************************************
 //   * This component is only for test purposes.               *
@@ -19,6 +20,7 @@ const Test: NextPage = () => {
   const [items, setItems] = useState<CareSession[]>([]);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const { data, isLoading } = trpc.sessionAPIs.getAllSessions.useQuery();
+  const router = useRouter();
 
   return (
     <>
@@ -95,8 +97,12 @@ const Test: NextPage = () => {
                               </div>
                             </div>
                             <div className="mb-4 mt-4 flex justify-around">
-                              <button className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white">
-                                Schedule Session
+                              <button 
+                              onClick={() => 
+                                router.push(`/c/${data.slug}`)
+                              }
+                              className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white">
+                                Learn More
                               </button>
                               <button className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white">
                                 Report Post
