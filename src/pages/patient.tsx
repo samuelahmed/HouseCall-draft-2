@@ -6,10 +6,45 @@ import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import SearchEngine from "@/components/caregiverDashboard/searchEngine";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { trpc } from "@/utils/trpc";
+import { useEffect } from "react";
+import { CareSession } from "@prisma/client";
 
 const PatientDashboard: NextPage = () => {
   const { data: session } = useSession();
   const [openTab, setOpenTab] = useState(1);
+  const router = useRouter();
+  const [items, setItems] = useState<CareSession[]>([]);
+
+  const [inputs, setInputs] = useState({
+    name: "",
+    address: "",
+    medicalNotes: "",
+    overview: "",
+    title: "",
+  });
+
+  useEffect(() => {
+    setInputs({
+      name: "",
+      address: "",
+      medicalNotes: "",
+      overview: "",
+      title: "",
+    });
+  }, []);
+
+  const { mutate } = trpc.sessionAPIs.createOneSession.useMutation({
+    onSuccess(newSession) {
+      setItems((prev) => [...prev, newSession]);
+      router.push(`/session/${newSession.slug}`);
+    },
+  });
+
+  const publish = () => {
+    mutate(inputs);
+  };
 
   return (
     <>
@@ -90,7 +125,97 @@ const PatientDashboard: NextPage = () => {
                   : "hidden"
               }
               id="link1"
-            ></div>
+            >
+              <button
+                type="button"
+                onClick={() => true}
+                className="rounded-md bg-violet-500 p-2 text-sm text-white transition hover:bg-violet-600"
+              >
+                Create Session
+              </button>
+              <h3 className="text-xl font-semibold">Request Session</h3>
+              Title
+              <input
+                type="text"
+                value={inputs.title}
+                onChange={(e) =>
+                  setInputs((prev) => ({
+                    ...prev,
+                    title: e.target.value,
+                  }))
+                }
+                className="w-full rounded-md border-gray-300 bg-gray-200 shadow-sm focus:border-violet-300 focus:ring focus:ring-violet-200 focus:ring-opacity-50"
+              />
+              Name
+              <input
+                type="text"
+                value={inputs.name}
+                onChange={(e) =>
+                  setInputs((prev) => ({
+                    ...prev,
+                    name: e.target.value,
+                  }))
+                }
+                className="w-full rounded-md border-gray-300 bg-gray-200 shadow-sm focus:border-violet-300 focus:ring focus:ring-violet-200 focus:ring-opacity-50"
+              />
+              Address
+              <input
+                type="text"
+                value={inputs.address}
+                onChange={(e) =>
+                  setInputs((prev) => ({
+                    ...prev,
+                    address: e.target.value,
+                  }))
+                }
+                className="w-full rounded-md border-gray-300 bg-gray-200 shadow-sm focus:border-violet-300 focus:ring focus:ring-violet-200 focus:ring-opacity-50"
+              />
+              Medical Notes
+              <input
+                type="text"
+                value={inputs.medicalNotes}
+                onChange={(e) =>
+                  setInputs((prev) => ({
+                    ...prev,
+                    medicalNotes: e.target.value,
+                  }))
+                }
+                className="w-full rounded-md border-gray-300 bg-gray-200 shadow-sm focus:border-violet-300 focus:ring focus:ring-violet-200 focus:ring-opacity-50"
+              />
+              Overview
+              <input
+                type="text"
+                value={inputs.overview}
+                onChange={(e) =>
+                  setInputs((prev) => ({
+                    ...prev,
+                    overview: e.target.value,
+                  }))
+                }
+                className="w-full rounded-md border-gray-300 bg-gray-200 shadow-sm focus:border-violet-300 focus:ring focus:ring-violet-200 focus:ring-opacity-50"
+              />
+              <div className="grid grid-cols-2 gap-8">
+                <button
+                  type="button"
+                  onClick={() => {
+                    console.log("meow");
+                  }}
+                  className="rounded-md bg-gray-500 p-1 text-xs text-white transition hover:bg-gray-600"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    publish();
+                    // setModalOpen(false);
+                  }}
+                  className="rounded-md bg-violet-500 p-1 text-xs text-white transition hover:bg-violet-600"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
             <div
               className={
                 openTab === 2
