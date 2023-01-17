@@ -46,4 +46,15 @@ export const sessionRouter = router({
     return card
   }),
 
+  getOneSessionTwo: privateProcedure.input(z.object({ id: z.string() })).query(async ({ ctx, input }) => {
+    const { id } = input
+    const returnedSession = ctx.prisma.careSession.findUnique({
+      where: {
+        id
+      },
+    })
+    return returnedSession
+  }),
+
 });
+

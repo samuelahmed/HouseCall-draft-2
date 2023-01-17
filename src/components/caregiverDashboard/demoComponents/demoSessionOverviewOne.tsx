@@ -2,10 +2,12 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import { useSession } from "next-auth/react";
 
-const DemoSessionOverviewOne = () => {
+const DemoSessionOverviewOne = (props: any) => {
   const { data: session } = useSession();
   const { data, isLoading } = trpc.sessionAPIs.getAllSessions.useQuery();
   const router = useRouter();
+
+  props.func(data);
 
   return (
     <ul>
@@ -17,7 +19,7 @@ const DemoSessionOverviewOne = () => {
               key={id}
               className="mb-2 cursor-pointer items-center justify-around rounded border-2 border-gray-300 bg-white px-2 hover:bg-gray-100 dark:border-gray-400 dark:bg-sky-900"
             >
-              <div className="mb-8">
+              <div onClick={() => console.log(id)} className="mb-8">
                 <div className="mb-2 p-4 text-center text-xl text-gray-800 dark:text-white">
                   {title}
                 </div>

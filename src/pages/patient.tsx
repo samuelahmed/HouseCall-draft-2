@@ -62,7 +62,7 @@ const PatientDashboard: NextPage = () => {
                   role="tablist"
                 >
                   <div className="text-md pb-4 pt-4 md:text-xl">
-                    <h1>Scheduled Sessions</h1>
+                    <h1>Created Sessions</h1>
                   </div>
                 </a>
                 <a
@@ -106,7 +106,12 @@ const PatientDashboard: NextPage = () => {
                   : "hidden"
               }
               id="link2"
-            ></div>
+            >
+            Render Session that were created by the session user ID
+
+
+
+            </div>
             <div
               className={
                 openTab === 3
