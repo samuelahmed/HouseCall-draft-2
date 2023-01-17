@@ -14,6 +14,7 @@ const CaregiverDashboard: NextPage = () => {
   const { data: session } = useSession();
   const [openTab, setOpenTab] = useState(1);
 
+
   return (
     <>
       <Head>
@@ -94,7 +95,7 @@ const CaregiverDashboard: NextPage = () => {
               }
               id="link1"
             >
-              <FindPatientTab />
+              <FindPatientTab  />
             </div>
             <div
               className={
