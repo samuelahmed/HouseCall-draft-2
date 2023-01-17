@@ -71,15 +71,16 @@ const FindPatientTab = () => {
                               {overview}
                             </p>
                           </div>
-                          <button
-                            onClick={() => router.push(`/session/${data.slug}`)}
-                            className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white  md:hidden lg:hidden"
-                          >
-                            Schedule Session
-                          </button>
-                          <button className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white md:hidden lg:hidden">
-                            Report Post
-                          </button>
+                          <div className="mb-4 flex flex-col items-center justify-center">
+                            <button
+                              onClick={() =>
+                                router.push(`/session/${data.slug}`)
+                              }
+                              className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white  md:hidden lg:hidden"
+                            >
+                              Schedule Session
+                            </button>
+                          </div>
                         </li>
                       );
                     })
