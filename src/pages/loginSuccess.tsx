@@ -20,9 +20,9 @@ const LoginSuccess: NextPage = () => {
       <NavLayout />
       <Layout>
         {session && (
-          <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+          <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-              <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+              <h1 className="text-5xl font-extrabold tracking-tight text-black dark:text-white sm:text-[5rem]">
                 Hello{" "}
                 <span className="text-[hsl(280,100%,70%)]">
                   {isLoading || (
@@ -32,23 +32,6 @@ const LoginSuccess: NextPage = () => {
                     ) || <span className="text-red-600">Meow! No Name</span>}
                 </span>
               </h1>
-              <div className="flex flex-row gap-2">
-                <Link href={"/caregiver"} className="rounded border py-1 px-4">
-                  Caregiver Dashboard
-                </Link>
-                <Link href={"/patient"} className="rounded border py-1 px-4">
-                  Patient Dashboard
-                </Link>
-                <Link href={"/messages"} className="rounded border py-1 px-4">
-                  Messages
-                </Link>
-                <Link href={"/account"} className="rounded border py-1 px-4">
-                  Account
-                </Link>
-                <Link href={"/help"} className="rounded border py-1 px-4">
-                  Help
-                </Link>
-              </div>
             </div>
           </main>
         )}
