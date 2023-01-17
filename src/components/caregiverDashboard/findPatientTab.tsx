@@ -100,7 +100,7 @@ const FindPatientTab = () => {
             <div className="grid h-full justify-items-center gap-4 rounded bg-gray-200 pt-6 pb-6 dark:bg-slate-900">
               <div className="flex  h-128 w-11/12  flex-col  justify-between rounded-xl border border-gray-400 bg-white p-2 leading-normal dark:bg-sky-900">
                 <div className={rightCard === 1 ? "" : "hidden"}>
-                  <div className="mb-4 mr-4 ml-4">
+                  <div className="mb-4 mr-4 ml-4  justify-center ">
                     <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-white">
                       {dataTwo?.data?.title || isLoading}
                     </div>
@@ -130,15 +130,16 @@ const FindPatientTab = () => {
                         </span>
                         {dataTwo?.data?.overview || isLoading}
                       </p>
-
-                      <button
-                        onClick={() =>
-                          router.push(`/session/${dataTwo.data?.slug}`)
-                        }
-                        className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:border-white dark:text-white"
-                      >
-                        Schedule
-                      </button>
+                      <div className="flex flex-col items-center justify-center">
+                        <button
+                          onClick={() =>
+                            router.push(`/session/${dataTwo.data?.slug}`)
+                          }
+                          className="mt-6 h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:border-white dark:text-white"
+                        >
+                          Schedule
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
