@@ -3,9 +3,12 @@ import SearchEngine from "./searchEngine";
 import FindPatientTab from "./findPatientTab";
 import ScheduledSessionTab from "./scheduledSessionsTab";
 import HistoryTab from "./historyTab";
+import { render } from "react-dom";
 
 const TabsEngine = () => {
   const [openTab, setOpenTab] = useState(1);
+
+
   return (
     <>
       <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-gray-900">
@@ -71,6 +74,7 @@ const TabsEngine = () => {
       </div>
       {/* NOTE: SHOULD STRUCTURE BE REBUILT SO SEARCH ENGINE IS NOT EMBEDDED HERE?  */}
       <SearchEngine />
+
       <div
         className={
           openTab === 1

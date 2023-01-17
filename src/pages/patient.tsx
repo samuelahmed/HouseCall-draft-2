@@ -15,6 +15,12 @@ import CreateSession from "@/components/patientDashboard/createSession";
 const PatientDashboard: NextPage = () => {
   const { data: session } = useSession();
   const [openTab, setOpenTab] = useState(1);
+  let search;
+  if (openTab !== 1) {
+    search = <SearchEngine />;
+  } else {
+    search = <></>;
+  }
 
   return (
     <>
@@ -86,8 +92,7 @@ const PatientDashboard: NextPage = () => {
                 </a>
               </div>
             </div>
-            {/* NOTE: SHOULD STRUCTURE BE REBUILT SO SEARCH ENGINE IS NOT EMBEDDED HERE?  */}
-            <SearchEngine />
+            {search}
             <div
               className={
                 openTab === 1
@@ -107,10 +112,7 @@ const PatientDashboard: NextPage = () => {
               }
               id="link2"
             >
-            Render Session that were created by the session user ID
-
-
-
+              Render Session that were created by the session user ID
             </div>
             <div
               className={
