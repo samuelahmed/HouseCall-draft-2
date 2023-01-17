@@ -101,7 +101,7 @@ const Messages: NextPage = () => {
                     <div className="h-screen ">
                       <DemoConversation />
                     </div>
-                    <div className="flex justify-items-center">
+                    <div className="inset-x-0 bottom-0">
                       <div className="w-9/12 ">
                         <input className="w-full rounded border-0   bg-white px-3 py-4 text-base text-slate-600 placeholder-slate-300 shadow outline-none focus:outline-none focus:ring " />
                       </div>
