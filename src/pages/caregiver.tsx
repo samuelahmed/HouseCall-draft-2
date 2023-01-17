@@ -30,7 +30,7 @@ const CaregiverDashboard: NextPage = () => {
                     "h-16 w-full " +
                     (openTab === 1
                       ? "bg- text-white" + "-600"
-                      : "text-" + "" + "-600 bg-white dark:bg-gray-800")
+                      : "text-" + "" + "-600 bg-white dark:bg-gray-700")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -49,7 +49,7 @@ const CaregiverDashboard: NextPage = () => {
                     "h-16 w-full " +
                     (openTab === 2
                       ? "bg- text-white" + "-600"
-                      : "text-" + "-600 bg-white dark:bg-gray-800")
+                      : "text-" + "-600 bg-white dark:bg-gray-700")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -68,7 +68,7 @@ const CaregiverDashboard: NextPage = () => {
                     "h-16 w-full " +
                     (openTab === 3
                       ? "bg- text-white" + "-600"
-                      : "text-" + "-600 bg-white dark:bg-gray-800")
+                      : "text-" + "-600 bg-white dark:bg-gray-700")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -89,7 +89,7 @@ const CaregiverDashboard: NextPage = () => {
             <div
               className={
                 openTab === 1
-                  ? "block min-h-screen w-11/12 rounded  bg-gray-100  dark:bg-gray-900"
+                  ? "block min-h-screen w-11/12 rounded  bg-gray-100  dark:bg-gray-700"
                   : "hidden"
               }
               id="link1"
@@ -99,7 +99,7 @@ const CaregiverDashboard: NextPage = () => {
             <div
               className={
                 openTab === 2
-                  ? "block min-h-full w-11/12 rounded bg-gray-100  dark:bg-gray-900"
+                  ? "block min-h-full w-11/12 rounded bg-gray-100  dark:bg-gray-700"
                   : "hidden"
               }
               id="link2"
@@ -109,7 +109,7 @@ const CaregiverDashboard: NextPage = () => {
             <div
               className={
                 openTab === 3
-                  ? "block min-h-full w-11/12 rounded bg-gray-100  dark:bg-gray-900"
+                  ? "block min-h-full w-11/12 rounded bg-gray-100  dark:bg-gray-700"
                   : "hidden"
               }
               id="link3"
