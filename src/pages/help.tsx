@@ -93,22 +93,22 @@ const Help: NextPage = () => {
             </div>
           )}
           {!session && (
-            <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-              <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-                <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-                  Help &{" "}
-                  <span className="text-[hsl(280,100%,70%)]">Support</span>
-                </h1>
-                <div className="flex flex-row gap-2">
-                  <Link href={"/login"} className="rounded border py-1 px-4">
-                    Login
-                  </Link>
-                  <Link href={"/register"} className="rounded border py-1 px-4">
-                    Register
-                  </Link>
-                </div>
-              </div>
-            </main>
+          <main className="flex min-h-screen flex-col items-center justify-top md:justify-center lg:justify-center">
+          <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+            <h1 className="text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem] text-center border-gray-900">
+              Help &{" "}
+              <span className="text-[hsl(280,100%,70%)]">Support</span>
+            </h1>
+            <div className="flex flex-row gap-2">
+              <Link href={"/login"} className="rounded border py-1 px-4">
+                Sign in
+              </Link>
+              <Link href={"/register"} className="rounded border py-1 px-4">
+                Register
+              </Link>
+            </div>
+          </div>
+        </main>
           )}
         </div>
       </Layout>
