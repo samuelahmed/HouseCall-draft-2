@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 
 const FindPatientTab = () => {
   const [rightCard, setRightCard] = useState(1);
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const { data, isLoading } = trpc.sessionAPIs.getAllSessions.useQuery();
   const router = useRouter();
 
@@ -25,9 +25,9 @@ const FindPatientTab = () => {
     <>
       {/* MAIN SECTION */}
       <div className="grid grid-rows-1  rounded-b  bg-gray-100  px-4 dark:bg-gray-900">
-        <div className="grid grid-cols-1 pt-2 pb-2 md:grid-cols-2">
+        <div className="grid grid-cols-1 pt-2 pb-2 md:grid-cols-2 bg-gray-200">
           {/* POTENTIAL SESSION CARDS */}
-          <div className="h-full overflow-scroll pr-2 md:max-h-screen lg:max-h-screen ">
+          <div className="h-screen md:h-128 lg:h-screen overflow-scroll">
             <div className="grid justify-items-center gap-4 rounded bg-gray-200 pt-6 pb-6 dark:bg-slate-900">
               <div
                 className=""
