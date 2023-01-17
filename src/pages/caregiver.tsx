@@ -121,7 +121,7 @@ const CaregiverDashboard: NextPage = () => {
         {!session && (
           <main className="flex min-h-screen flex-col items-center justify-top md:justify-center lg:justify-center">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-              <h1 className="text-5xl font-extrabold tracking-tight text-black dark:text-white sm:text-[5rem] text-center">
+              <h1 className="text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem] text-center border-gray-900">
                 Caregiver{" "}
                 <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
               </h1>

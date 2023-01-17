@@ -95,30 +95,30 @@ const FindPatientTab = () => {
               <div className="flex  h-128 w-11/12  flex-col  justify-between rounded-xl border border-gray-400 bg-gray-200 p-2 leading-normal dark:bg-gray-800">
                 <div className={rightCard === 1 ? "" : "hidden"}>
                   <div className="mb-4 mr-4 ml-4  justify-center  ">
-                    <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-white">
+                    <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-gray-300">
                       {selectedSession?.data?.title || isLoading}
                     </div>
                     <div className="text-sm ">
-                      <p className="text-gray-900 dark:text-white">
-                        <span className="font-semibold text-gray-900 dark:text-white">
+                      <p className="text-gray-900 dark:text-gray-300">
+                        <span className="font-semibold text-gray-800 dark:text-gray-300">
                           Name:&nbsp;
                         </span>
                         {selectedSession?.data?.name || isLoading}
                       </p>
-                      <p className="text-gray-900 dark:text-white">
-                        <span className="font-semibold text-gray-900 dark:text-white">
+                      <p className="text-gray-900 dark:text-gray-300">
+                        <span className="font-semibold text-gray-800 dark:text-gray-300">
                           Address:&nbsp;
                         </span>
                         {selectedSession?.data?.address || isLoading}
                       </p>
-                      <p className="text-gray-900 dark:text-white">
-                        <span className="font-semibold text-gray-900 dark:text-white">
+                      <p className="text-gray-900 dark:text-gray-300">
+                        <span className="font-semibold text-gray-800 dark:text-gray-300">
                           Medical Notes:&nbsp;
                         </span>
                         {selectedSession?.data?.medicalNotes || isLoading}
                       </p>
-                      <p className="text-gray-900 dark:text-white">
-                        <span className="font-semibold text-gray-900 dark:text-white">
+                      <p className="text-gray-900 dark:text-gray-300">
+                        <span className="font-semibold text-gray-800 dark:text-gray-300">
                           Overview:&nbsp;
                         </span>
                         {selectedSession?.data?.overview || isLoading}
