@@ -1,12 +1,9 @@
 import { useState } from "react";
-
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
-import { useSession } from "next-auth/react";
 
 const FindPatientTab = () => {
   const [rightCard, setRightCard] = useState(1);
-  // const { data: session } = useSession();
   const { data, isLoading } = trpc.sessionAPIs.getAllSessions.useQuery();
   const router = useRouter();
 
@@ -23,11 +20,9 @@ const FindPatientTab = () => {
   console.log(dataTwo?.data?.title);
   return (
     <>
-      {/* MAIN SECTION */}
       <div className="grid grid-rows-1  rounded-b  bg-gray-100  px-4 dark:bg-gray-900">
-        <div className="grid grid-cols-1 pt-2 pb-2 md:grid-cols-2 bg-gray-200">
-          {/* POTENTIAL SESSION CARDS */}
-          <div className="h-screen md:h-128 lg:h-screen overflow-scroll">
+        <div className="grid grid-cols-1 bg-gray-200 pt-2 pb-2 md:grid-cols-2">
+          <div className="h-screen overflow-scroll md:h-128 lg:h-screen">
             <div className="grid justify-items-center gap-4 rounded bg-gray-200 pt-6 pb-6 dark:bg-slate-900">
               <div
                 className=""
@@ -77,7 +72,6 @@ const FindPatientTab = () => {
                               {overview}
                             </p>
                           </div>
-
                           <button
                             onClick={() => router.push(`/session/${data.slug}`)}
                             className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white  md:hidden lg:hidden"
@@ -95,7 +89,7 @@ const FindPatientTab = () => {
               </div>
             </div>
           </div>
-          {/* Job Details Cards */}
+          {/* Job Details Card */}
           <div className="hidden h-full overflow-scroll pr-2 md:block md:h-full lg:block">
             <div className="grid h-full justify-items-center gap-4 rounded bg-gray-200 pt-6 pb-6 dark:bg-slate-900">
               <div className="flex  h-128 w-11/12  flex-col  justify-between rounded-xl border border-gray-400 bg-white p-2 leading-normal dark:bg-sky-900">
@@ -104,7 +98,6 @@ const FindPatientTab = () => {
                     <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-white">
                       {dataTwo?.data?.title || isLoading}
                     </div>
-
                     <div className="text-sm ">
                       <p className="text-gray-900 dark:text-white">
                         <span className="font-semibold text-gray-900 dark:text-white">
