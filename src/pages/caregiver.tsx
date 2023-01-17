@@ -29,8 +29,8 @@ const CaregiverDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 1
-                      ? 'dark:bg-gray-700'
-                      : "dark:bg-slate-800")
+                      ? 'dark:bg-gray-700 bg-gray-100'
+                      : "dark:bg-slate-800 bg-white")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -48,8 +48,8 @@ const CaregiverDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 2
-                      ? 'dark:bg-gray-700'
-                      : "dark:bg-slate-800")
+                      ? 'dark:bg-gray-700 bg-gray-100'
+                      : "dark:bg-slate-800 bg-white")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -67,8 +67,8 @@ const CaregiverDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 3
-                      ? 'dark:bg-gray-700'
-                      : "dark:bg-slate-800")
+                      ? 'dark:bg-gray-700 bg-gray-100'
+                      : "dark:bg-slate-800 bg-white")
                   }
                   onClick={(e) => {
                     e.preventDefault();

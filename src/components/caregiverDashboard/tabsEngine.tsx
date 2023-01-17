@@ -3,11 +3,9 @@ import SearchEngine from "./searchEngine";
 import FindPatientTab from "./findPatientTab";
 import ScheduledSessionTab from "./scheduledSessionsTab";
 import HistoryTab from "./historyTab";
-import { render } from "react-dom";
 
 const TabsEngine = () => {
   const [openTab, setOpenTab] = useState(1);
-
 
   return (
     <>
