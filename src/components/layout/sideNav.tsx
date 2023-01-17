@@ -3,24 +3,24 @@ import Link from "next/link";
 
 const SideNav = () => {
   return (
-    <div className="fixed z-30 w-64 shadow-sm">
-      <div className="z-50 fixed grid grid-rows-1 bg-slate-600">
-      <Link href={"/caregiver"} className="rounded border py-1 px-4">
-        Caregiver Dashboard
-      </Link>
-      <Link href={"/patient"} className="rounded border py-1 px-4">
-        Patient Dashboard
-      </Link>
-      <Link href={"/messages"} className="rounded border py-1 px-4">
-        Messages
-      </Link>
-      <Link href={"/account"} className="rounded border py-1 px-4">
-        Account
-      </Link>
-      <Link href={"/help"} className="rounded border py-1 px-4">
-        Help
-      </Link>
-      {/* <Link href={"/test"} className="rounded border py-1 px-4">
+    <div className="ml-0.5 fixed z-30 w-64 shadow-sm">
+      <div className="fixed z-50 grid grid-rows-1 bg-gray-100 dark:bg-gray-700">
+        <Link href={"/caregiver"} className=" border py-1 px-4  border-gray-200 dark:border-gray-800">
+          Caregiver Dashboard
+        </Link>
+        <Link href={"/patient"} className=" border py-1 px-4  border-gray-200 dark:border-gray-800">
+          Patient Dashboard
+        </Link>
+        <Link href={"/messages"} className=" border py-1 px-4  border-gray-200 dark:border-gray-800">
+          Messages
+        </Link>
+        <Link href={"/account"} className=" border py-1 px-4  border-gray-200 dark:border-gray-800">
+          Account
+        </Link>
+        <Link href={"/help"} className=" border py-1 px-4  border-gray-200 dark:border-gray-800">
+          Help
+        </Link>
+        {/* <Link href={"/test"} className="rounded border py-1 px-4">
         Test
       </Link> */}
       </div>
