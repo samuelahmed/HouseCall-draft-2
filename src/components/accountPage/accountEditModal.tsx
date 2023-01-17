@@ -13,7 +13,7 @@ const AccountEditModal = () => {
     email: "",
     password: "",
     role: "",
-    address: ""
+    address: "",
   });
 
   const [selectedRole, setSelectedRole] = useState(inputs.role);
