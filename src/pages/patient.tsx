@@ -68,7 +68,7 @@ const PatientDashboard: NextPage = () => {
                   role="tablist"
                 >
                   <div className="text-md pb-4 pt-4 md:text-xl">
-                    <h1>Created Sessions</h1>
+                    <h1>Active Sessions</h1>
                   </div>
                 </a>
                 <a
