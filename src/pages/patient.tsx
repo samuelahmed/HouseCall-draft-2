@@ -6,10 +6,6 @@ import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import SearchEngine from "@/components/caregiverDashboard/searchEngine";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { trpc } from "@/utils/trpc";
-import { useEffect } from "react";
-import { CareSession } from "@prisma/client";
 import CreateSession from "@/components/patientDashboard/createSession";
 
 const PatientDashboard: NextPage = () => {
