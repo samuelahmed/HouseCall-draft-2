@@ -22,15 +22,15 @@ const CaregiverDashboard: NextPage = () => {
       <NavLayout />
       <Layout>
         {session && (
-          <main className="grid min-h-screen justify-items-center dark:bg-gray-800">
-            <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-gray-900">
+          <main className="grid min-h-screen justify-items-center dark:bg-slate-800">
+            <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-slate-900">
               <div className="items grid w-full grid-cols-3 justify-items-start gap-0 text-center">
                 <a
                   className={
                     "h-16 w-full " +
                     (openTab === 1
-                      ? "bg- text-white" + "-600"
-                      : "text-" + "" + "-600 bg-white dark:bg-gray-700")
+                      ? 'dark:bg-gray-800'
+                      : "dark:bg-gray-700")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -48,8 +48,8 @@ const CaregiverDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 2
-                      ? "bg- text-white" + "-600"
-                      : "text-" + "-600 bg-white dark:bg-gray-700")
+                      ? 'dark:bg-gray-800'
+                      : "dark:bg-gray-700")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -67,8 +67,8 @@ const CaregiverDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 3
-                      ? "bg- text-white" + "-600"
-                      : "text-" + "-600 bg-white dark:bg-gray-700")
+                      ? 'dark:bg-gray-800'
+                      : "dark:bg-gray-700")
                   }
                   onClick={(e) => {
                     e.preventDefault();
