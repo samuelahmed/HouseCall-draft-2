@@ -1,12 +1,8 @@
-// make functional component
-
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "@/components/layout/navLayout";
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 
 const Slug: NextPage = () => {
   const router = useRouter();
