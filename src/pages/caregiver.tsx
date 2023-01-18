@@ -25,8 +25,8 @@ const CaregiverDashboard: NextPage = () => {
           <main className="grid min-h-screen justify-items-center dark:bg-slate-800">
             <div className="w-full rounded border-2 border-gray-200">
               <div className="mx-1 my-1 rounded border-2 border-gray-900">
-                <div className=" grid-rows-1 rounded  bg-gray-100 dark:bg-slate-900 ">
-                  <div className="items grid w-full grid-cols-3 justify-items-start gap-0 text-center px-1">
+                <div className=" grid-rows-1 rounded  bg-gray-100 dark:bg-gray-800">
+                  <div className="items grid w-full grid-cols-3 justify-items-start gap-0 px-1 text-center">
                     <a
                       className={
                         "h-16 w-full " +
@@ -92,7 +92,7 @@ const CaregiverDashboard: NextPage = () => {
                 <div
                   className={
                     openTab === 1
-                      ? "block min-h-screen w-full rounded  bg-gray-100  dark:bg-gray-700"
+                      ? "block min-h-screen w-full rounded  bg-gray-100  dark:bg-gray-800"
                       : "hidden"
                   }
                   id="link1"
@@ -102,7 +102,7 @@ const CaregiverDashboard: NextPage = () => {
                 <div
                   className={
                     openTab === 2
-                      ? "block min-h-full w-full rounded bg-gray-100  dark:bg-gray-700"
+                      ? "block min-h-full w-full rounded bg-gray-100  dark:bg-gray-800 "
                       : "hidden"
                   }
                   id="link2"
@@ -112,7 +112,7 @@ const CaregiverDashboard: NextPage = () => {
                 <div
                   className={
                     openTab === 3
-                      ? "block min-h-full w-full rounded bg-gray-100  dark:bg-gray-700"
+                      ? "block min-h-full w-full rounded bg-gray-100  dark:bg-gray-800"
                       : "hidden"
                   }
                   id="link3"

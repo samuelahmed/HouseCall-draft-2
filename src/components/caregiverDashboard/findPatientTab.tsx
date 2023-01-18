@@ -19,7 +19,7 @@ const FindPatientTab = () => {
 
   return (
     <>
-      <div className="rounded pr-1 pl-1 pb-1 dark:bg-gray-700">
+      <div className="rounded pr-1 pl-1 pb-1 dark:bg-gray-800">
         <div className="grid grid-rows-1 rounded bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700">
           <div className="mb-4 grid grid-cols-1 rounded-xl bg-[hsl(0,0%,88%)] pt-2 pb-2 dark:bg-gray-700 md:grid-cols-2">
             <div className="h-screen overflow-scroll md:h-128 lg:h-screen">
