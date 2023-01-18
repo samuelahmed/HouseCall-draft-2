@@ -78,7 +78,8 @@ const ScheduledSessionModal = () => {
                           <span className="font-semibold text-gray-900 dark:text-white">
                             Location Notes:&nbsp;
                           </span>
-                          Gate code is 3820 you can call if you have any issues getting inside.
+                          Gate code is 3820 you can call if you have any issues
+                          getting inside.
                         </p>
                         <p className="text-gray-900 dark:text-white">
                           <span className="font-semibold text-gray-900 dark:text-white">

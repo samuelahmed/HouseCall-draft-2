@@ -120,7 +120,7 @@ const CreateSession = () => {
             onClick={() => {
               publish();
             }}
-            className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-800 hover:border-hsl(0,0%,6%) hover:bg-[hsl(154,47%,66%)] hover:text-hsl(0,0%,6%) dark:hover:text-gray-800 dark:text-gray-100"
+            className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-800 hover:bg-[hsl(154,47%,66%)] dark:text-gray-100 dark:hover:text-gray-800"
           >
             Create
           </button>

@@ -19,7 +19,8 @@ const FindPatientTab = () => {
 
   return (
     <>
-      <div className="grid grid-rows-1  rounded-b  bg-[hsl(0,0%,88%)]  px-4 dark:bg-gray-700">
+    <div className="border-2 border-gray-200 border-t-0 pr-1 pl-1 pb-1 rounded">
+      <div className="grid grid-rows-1  border-t-0  Íbg-[hsl(0,0%,88%)]  px-4 dark:bg-gray-700 border-2 border-black rounded">
         <div className="mb-4 grid grid-cols-1 rounded-xl bg-[hsl(0,0%,88%)] pt-2 pb-2 dark:bg-gray-700 md:grid-cols-2">
           <div className="h-screen overflow-scroll md:h-128 lg:h-screen">
             <div className="grid justify-items-center gap-4 rounded bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
@@ -138,6 +139,8 @@ const FindPatientTab = () => {
                     </div>
                   </div>
                 </div>
+                </div>
+
               </div>
             </div>
           </div>
