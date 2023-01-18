@@ -16,8 +16,7 @@ const ScheduledSessionTab = () => {
 
   return (
     <>
-      <div className="rounded border-2 border-t-0 border-gray-200 pr-1 pl-1 pb-1">
-        <div className="grid grid-rows-1  rounded-b  border-2 border-t-0 border-black bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700">
+        <div className="grid grid-rows-1  rounded  bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700 mx-1">
           <div className="grid grid-cols-1 pt-2 pb-2 md:grid-cols-1">
             <div className="h-full overflow-scroll pr-2 md:max-h-screen lg:max-h-screen ">
               <div className="grid justify-items-center gap-4 rounded bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
@@ -26,7 +25,6 @@ const ScheduledSessionTab = () => {
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 };
