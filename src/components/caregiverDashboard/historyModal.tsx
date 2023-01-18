@@ -17,7 +17,7 @@ const HistoryModal = () => {
           <div className="fixed inset-0 z-50 grid h-screen place-items-center backdrop-brightness-50">
             <div className="w-11/12 justify-items-center rounded border-2 border-gray-300 outline-none focus:outline-none ">
               <div className="relative mx-auto">
-                <div className=" relative flex flex-col bg-white shadow-lg outline-none focus:outline-none dark:bg-sky-900">
+                <div className=" relative flex flex-col bg-white shadow-lg outline-none focus:outline-none dark:bg-gray-800">
                   <div className="h-128 rounded-t border-gray-300 ">
                     <div className="mx-4 mt-4 flex items-center justify-around text-sm">
                       <p className="px-2 text-gray-900 dark:text-white">
