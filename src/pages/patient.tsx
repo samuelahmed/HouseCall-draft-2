@@ -28,7 +28,7 @@ const PatientDashboard: NextPage = () => {
         {session && (
           <main className="grid min-h-screen justify-items-center dark:bg-slate-800">
             <div className="w-full rounded border-2 border-gray-200">
-              <div className="mx-1 my-1 rounded border-2 border-gray-900">
+              <div className="mx-1 my-1 rounded border-2 border-gray-900 pt-1">
                 <div className="grid-rows-1 rounded bg-gray-100 pr-1 pl-1 pb-1 dark:bg-slate-800">
                   <div className="items grid w-full grid-cols-3 justify-items-start gap-0 text-center">
                     <a
@@ -90,12 +90,11 @@ const PatientDashboard: NextPage = () => {
                     </a>
                   </div>
                 </div>
-
                 {search}
                 <div
                   className={
                     openTab === 1
-                      ? "block min-h-screen rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                      ? "block min-h-screen rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700 mx-1 mb-1"
                       : "hidden"
                   }
                   id="link1"
