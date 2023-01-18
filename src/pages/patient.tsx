@@ -33,8 +33,8 @@ const PatientDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 1
-                      ? "bg- text-white" + "-600"
-                      : "text-" + "" + "-600 bg-white dark:bg-gray-800")
+                      ? 'dark:bg-gray-700 bg-[hsl(0,0%,88%)]'
+                      : "dark:bg-slate-800 bg-[hsl(0,0%,96%)]")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -52,8 +52,8 @@ const PatientDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 2
-                      ? "bg- text-white" + "-600"
-                      : "text-" + "-600 bg-white dark:bg-gray-800")
+                      ? 'dark:bg-gray-700 bg-[hsl(0,0%,88%)]'
+                      : "dark:bg-slate-800 bg-[hsl(0,0%,96%)]")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -71,8 +71,8 @@ const PatientDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 3
-                      ? "bg- text-white" + "-600"
-                      : "text-" + "-600 bg-white dark:bg-gray-800")
+                      ? 'dark:bg-gray-700 bg-[hsl(0,0%,88%)]'
+                      : "dark:bg-slate-800 bg-[hsl(0,0%,96%)]")
                   }
                   onClick={(e) => {
                     e.preventDefault();
