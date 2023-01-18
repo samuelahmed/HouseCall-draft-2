@@ -45,7 +45,7 @@ const AuthShowcase: React.FC = () => {
   return (
     <div className="flex items-center">
       <button
-        className="mr-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-900 hover:bg-white focus:outline-none dark:text-gray-100 dark:hover:bg-gray-600 lg:py-2.5 marker:lg:px-5"
+        className="mr-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-[hsl(0,0%,96%)] focus:outline-none dark:text-gray-100 dark:hover:bg-gray-600 lg:py-2.5 marker:lg:px-5"
         onClick={sessionData ? () => signOut() : () => signIn()}
       >
         {sessionData ? "Sign out" : "Sign in"}
@@ -55,7 +55,7 @@ const AuthShowcase: React.FC = () => {
         className={
           sessionData
             ? "hidden"
-            : "visible mr-6 rounded-lg px-4 py-2 text-sm text-gray-900 hover:bg-white dark:text-gray-100 dark:hover:bg-gray-600"
+            : "visible mr-6 rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-[hsl(0,0%,96%)] dark:text-gray-100 dark:hover:bg-gray-600"
         }
         href={"/register"}
       >
