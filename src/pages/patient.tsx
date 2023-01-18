@@ -26,8 +26,8 @@ const PatientDashboard: NextPage = () => {
       <NavLayout />
       <Layout>
         {session && (
-          <main className="grid min-h-screen justify-items-center dark:bg-gray-800">
-            <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-gray-900">
+          <main className="grid min-h-screen justify-items-center dark:bg-slate-800">
+            <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-slate-800">
               <div className="items grid w-full grid-cols-3 justify-items-start gap-0 text-center">
                 <a
                   className={
@@ -92,7 +92,7 @@ const PatientDashboard: NextPage = () => {
             <div
               className={
                 openTab === 1
-                  ? "block min-h-screen w-11/12 rounded  bg-gray-100  dark:bg-gray-900"
+                  ? "block min-h-screen w-11/12 rounded  bg-[hsl(0,0%,88%)]  dark:bg-gray-700"
                   : "hidden"
               }
               id="link1"
@@ -103,7 +103,7 @@ const PatientDashboard: NextPage = () => {
             <div
               className={
                 openTab === 2
-                  ? "block min-h-screen w-11/12 rounded bg-gray-100  dark:bg-gray-900"
+                  ? "block min-h-screen w-11/12 rounded bg-gray-100  dark:bg-gray-700"
                   : "hidden"
               }
               id="link2"
@@ -113,7 +113,7 @@ const PatientDashboard: NextPage = () => {
             <div
               className={
                 openTab === 3
-                  ? "block min-h-screen w-11/12 rounded bg-gray-100  dark:bg-gray-900"
+                  ? "block min-h-screen w-11/12 rounded bg-gray-100  dark:bg-gray-700"
                   : "hidden"
               }
               id="link3"
