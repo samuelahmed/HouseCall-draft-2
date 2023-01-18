@@ -23,7 +23,8 @@ const CaregiverDashboard: NextPage = () => {
       <Layout>
         {session && (
           <main className="grid min-h-screen justify-items-center dark:bg-slate-800">
-            <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-slate-900">
+            <div className="w-11/12 border-b-0 border-2 rounded border-gray-200 pt-1 pr-1 pl-1">
+            <div className=" grid-rows-1 border-b-0 rounded bg-gray-100 dark:bg-slate-900 border-2 border-black ">
               <div className="items grid w-full grid-cols-3 justify-items-start gap-0 text-center">
                 <a
                   className={
@@ -84,6 +85,8 @@ const CaregiverDashboard: NextPage = () => {
                 </a>
               </div>
             </div>
+            </div>
+
             {/* NOTE: SHOULD STRUCTURE BE REBUILT SO SEARCH ENGINE IS NOT EMBEDDED HERE?  */}
             <SearchEngine />
             <div
