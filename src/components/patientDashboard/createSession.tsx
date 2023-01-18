@@ -72,7 +72,6 @@ const CreateSession = () => {
         </div>
         <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
           <p className="mr-2 w-28 text-lg"> Address </p>
-
           <input
             type="text"
             value={inputs.address}
@@ -113,7 +112,6 @@ const CreateSession = () => {
             className="block w-full appearance-none rounded border border-gray-200 bg-[hsl(0,0%,96%)] py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-white"
           />
         </div>
-
         <div className="mt-4 grid grid-cols-1 justify-items-center gap-8">
           <button
             type="button"
