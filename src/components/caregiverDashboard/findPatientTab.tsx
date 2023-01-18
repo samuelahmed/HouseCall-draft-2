@@ -19,10 +19,10 @@ const FindPatientTab = () => {
 
   return (
     <>
-      <div className="grid grid-rows-1  rounded-b  bg-gray-100  px-4 dark:bg-gray-700">
-        <div className="mb-4 grid grid-cols-1 rounded-xl bg-gray-100 pt-2 pb-2 dark:bg-gray-700 md:grid-cols-2">
+      <div className="grid grid-rows-1  rounded-b  bg-[hsl(0,0%,88%)]  px-4 dark:bg-gray-700">
+        <div className="mb-4 grid grid-cols-1 rounded-xl bg-[hsl(0,0%,88%)] pt-2 pb-2 dark:bg-gray-700 md:grid-cols-2">
           <div className="h-screen overflow-scroll md:h-128 lg:h-screen">
-            <div className="grid justify-items-center gap-4 rounded bg-gray-100 pt-6 pb-6 dark:bg-gray-700">
+            <div className="grid justify-items-center gap-4 rounded bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
               <div
                 className=""
                 onClick={(e) => {
@@ -37,7 +37,7 @@ const FindPatientTab = () => {
                       return (
                         <li
                           key={id}
-                          className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-gray-200 px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
+                          className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
                         >
                           <div
                             onClick={() => {
@@ -91,8 +91,8 @@ const FindPatientTab = () => {
           </div>
           {/* Job Details Card */}
           <div className="hidden h-full overflow-scroll pr-2 md:block md:h-full lg:block">
-            <div className="grid h-full justify-items-center gap-4 rounded bg-gray-100 pt-6 pb-6 dark:bg-gray-700">
-              <div className="flex  h-128 w-11/12  flex-col  justify-between rounded-xl border border-gray-400 bg-gray-200 p-2 leading-normal dark:bg-gray-800">
+            <div className="grid h-full justify-items-center gap-4 rounded bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
+              <div className="flex  h-128 w-11/12  flex-col  justify-between rounded-xl border border-gray-400 bg-white p-2 leading-normal dark:bg-gray-800">
                 <div className={rightCard === 1 ? "" : "hidden"}>
                   <div className="mb-4 mr-4 ml-4  justify-center  ">
                     <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-gray-300">

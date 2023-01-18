@@ -1,11 +1,11 @@
 const SearchEngine = () => {
   return (
     <>
-      <div className="flex w-11/12 justify-center rounded  bg-gray-100 pr-2 pl-1 pt-4 dark:bg-gray-700 ">
+      <div className="flex w-11/12 justify-center rounded  bg-[hsl(0,0%,88%)] pr-2 pl-1 pt-4 dark:bg-gray-700 ">
         <div className="hidden w-full px-3 md:mb-0 md:block md:w-1/3 lg:block">
           <div className="relative">
             <select
-              className="block w-full appearance-none rounded border border-gray-200 bg-gray-200 py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-gray-200"
+              className="block w-full appearance-none rounded border border-gray-200 bg-[hsl(0,0%,96%)] py-3 px-4 pr-8 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-gray-200"
               id="grid-state"
             >
               <option>All Care Types</option>
@@ -20,7 +20,7 @@ const SearchEngine = () => {
         </div>
         <div className="hidden justify-items-center  px-3 md:mb-0 md:block md:w-1/3 lg:block">
           <input
-            className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-gray-200"
+            className="block w-full appearance-none rounded border border-gray-200 bg-[hsl(0,0%,96%)]  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-gray-200"
             id="grid-city"
             type="text"
             placeholder="City"
@@ -28,7 +28,7 @@ const SearchEngine = () => {
         </div>
         <div className="justify-items-center px-3 md:mb-0 md:w-1/3">
           <input
-            className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-gray-200"
+            className="block w-full appearance-none rounded border border-gray-200 bg-[hsl(0,0%,96%)]  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-gray-200"
             id="grid-city"
             type="text"
             placeholder="Search"
