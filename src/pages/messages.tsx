@@ -5,9 +5,9 @@ import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import Link from "next/link";
-import MessageDashboardConnectionCard from "@/components/messagesPage/messageDashboardConnectionCard";
-import DemoConversation from "@/components/messagesPage/demoConversation";
-import DemoConversationTwo from "@/components/messagesPage/demoConversationTwo";
+import MessageDashboardConnectionCard from "@/components/messages/messageDashboardConnectionCard";
+import DemoConversation from "@/components/messages/demoConversation";
+import DemoConversationTwo from "@/components/messages/demoConversationTwo";
 
 const Messages: NextPage = () => {
   const { data: session } = useSession();
