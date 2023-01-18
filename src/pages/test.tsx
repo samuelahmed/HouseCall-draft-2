@@ -7,7 +7,6 @@ import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import Link from "next/link";
 import { useState } from "react";
 import { CareSession } from "@prisma/client";
-import ItemModal from "@/components/itemModal";
 import { useRouter } from "next/router";
 
 //   ***********************************************************
@@ -29,9 +28,6 @@ const Test: NextPage = () => {
       </Head>
       <NavLayout />
       <ResponsiveLayout>
-        {modalOpen && (
-          <ItemModal setModalOpen={setModalOpen} setItems={setItems} />
-        )}
         <div>
           {session && (
             <div className="grid min-h-screen justify-items-center dark:bg-gray-800">

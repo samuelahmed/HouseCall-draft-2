@@ -4,9 +4,9 @@ import { useSession } from "next-auth/react";
 import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
-import SearchEngine from "@/components/caregiverDashboard/engines/searchEngine";
+import SearchEngine from "@/components/caregiver/engines/searchEngine";
 import Link from "next/link";
-import CreateSession from "@/components/patientDashboard/createSession";
+import CreateSession from "@/components/patient/createSession";
 
 const PatientDashboard: NextPage = () => {
   const { data: session } = useSession();

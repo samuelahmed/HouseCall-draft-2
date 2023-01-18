@@ -4,10 +4,10 @@ import { useSession } from "next-auth/react";
 import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
-import SearchEngine from "@/components/caregiverDashboard/engines/searchEngine";
-import HistoryTab from "@/components/caregiverDashboard/tabs/historyTab";
-import ActiveTab from "@/components/caregiverDashboard/tabs/activeTab";
-import FindTab from "@/components/caregiverDashboard/tabs/findTab";
+import SearchEngine from "@/components/caregiver/engines/searchEngine";
+import HistoryTab from "@/components/caregiver/tabs/historyTab";
+import ActiveTab from "@/components/caregiver/tabs/activeTab";
+import FindTab from "@/components/caregiver/tabs/findTab";
 import Link from "next/link";
 
 const CaregiverDashboard: NextPage = () => {

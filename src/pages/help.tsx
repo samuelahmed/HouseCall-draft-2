@@ -4,12 +4,12 @@ import NavLayout from "../components/layout/navLayout";
 import { trpc } from "../utils/trpc";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import AccountEditModal from "../components/accountPage/accountEditModal";
+import AccountEditModal from "../components/account/accountEditModal";
 import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import Link from "next/link";
 import { useState } from "react";
-import SupportDocumentation from "@/components/helpPage/supportDocumentation";
-import ContactUs from "@/components/helpPage/contactUs";
+import SupportDocumentation from "@/components/help/supportDocumentation";
+import ContactUs from "@/components/help/contactUs";
 
 
 const Help: NextPage = () => {
