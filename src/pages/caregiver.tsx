@@ -43,7 +43,7 @@ const CaregiverDashboard: NextPage = () => {
                       role="tablist"
                     >
                       <div className="text-md pb-4 pt-4 md:text-xl">
-                        <h1>Find Patient</h1>
+                        <h1>Find Session</h1>
                       </div>
                     </a>
                     <a
