@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import Layout from "@/components/layout/Layout";
+import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import NavLayout from "@/components/layout/navLayout";
 
 const Home: NextPage = () => {
@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavLayout />
-      <Layout>
+      <ResponsiveLayout>
         <main className="flex min-h-screen flex-col items-center justify-center">
           <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
             <h1 className="text-5xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100 sm:text-[5rem]">
@@ -46,7 +46,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </main>
-      </Layout>
+      </ResponsiveLayout>
     </>
   );
 };

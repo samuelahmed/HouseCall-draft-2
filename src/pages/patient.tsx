@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import Layout from "@/components/layout/Layout";
+import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import SearchEngine from "@/components/caregiverDashboard/engines/searchEngine";
@@ -24,7 +24,7 @@ const PatientDashboard: NextPage = () => {
         <title>Dashboard</title>
       </Head>
       <NavLayout />
-      <Layout>
+      <ResponsiveLayout>
         {session && (
           <main className="grid min-h-screen justify-items-center dark:bg-slate-800">
             <div className="w-full rounded border-2 border-gray-200">
@@ -141,7 +141,7 @@ const PatientDashboard: NextPage = () => {
             </div>
           </main>
         )}
-      </Layout>
+      </ResponsiveLayout>
     </>
   );
 };

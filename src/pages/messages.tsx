@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import Layout from "@/components/layout/Layout";
+import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import Link from "next/link";
@@ -19,7 +19,7 @@ const Messages: NextPage = () => {
         <title>Dashboard</title>
       </Head>
       <NavLayout />
-      <Layout>
+      <ResponsiveLayout>
         {session && (
           <main className="grid min-h-screen justify-items-center dark:bg-gray-800">
             <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-gray-900">
@@ -169,7 +169,7 @@ const Messages: NextPage = () => {
           </div>
         </main>
         )}
-      </Layout>
+      </ResponsiveLayout>
     </>
   );
 };

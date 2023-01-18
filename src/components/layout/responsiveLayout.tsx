@@ -4,7 +4,7 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-const AuthLayout = ({ children }: LayoutProps) => {
+const ResponsiveLayout = ({ children }: LayoutProps) => {
   return (
     <div className="min-h-screen dark:bg-slate-800 bg-[hsl(0,0%,96%)]">
       {/* Managing high-level responsiveness */}
@@ -15,4 +15,4 @@ const AuthLayout = ({ children }: LayoutProps) => {
   );
 };
 
-export default AuthLayout;
+export default ResponsiveLayout;

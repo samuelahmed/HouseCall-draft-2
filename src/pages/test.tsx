@@ -3,7 +3,7 @@ import Head from "next/head";
 import NavLayout from "../components/layout/navLayout";
 import { trpc } from "../utils/trpc";
 import { useSession } from "next-auth/react";
-import Layout from "@/components/layout/Layout";
+import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import Link from "next/link";
 import { useState } from "react";
 import { CareSession } from "@prisma/client";
@@ -28,7 +28,7 @@ const Test: NextPage = () => {
         <title>Test</title>
       </Head>
       <NavLayout />
-      <Layout>
+      <ResponsiveLayout>
         {modalOpen && (
           <ItemModal setModalOpen={setModalOpen} setItems={setItems} />
         )}
@@ -135,7 +135,7 @@ const Test: NextPage = () => {
             </main>
           )}
         </div>
-      </Layout>
+      </ResponsiveLayout>
     </>
   );
 };

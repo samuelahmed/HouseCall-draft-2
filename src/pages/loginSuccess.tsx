@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { trpc } from "@/utils/trpc";
-import Layout from "@/components/layout/Layout";
+import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import NavLayout from "@/components/layout/navLayout";
 
 const LoginSuccess: NextPage = () => {
@@ -18,7 +18,7 @@ const LoginSuccess: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavLayout />
-      <Layout>
+      <ResponsiveLayout>
         {session && (
           <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
@@ -53,7 +53,7 @@ const LoginSuccess: NextPage = () => {
           </div>
         </main>
         )}
-      </Layout>
+      </ResponsiveLayout>
     </>
   );
 };

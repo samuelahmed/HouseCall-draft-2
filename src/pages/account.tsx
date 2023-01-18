@@ -5,7 +5,7 @@ import { trpc } from "../utils/trpc";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import AccountEditModal from "../components/accountPage/accountEditModal";
-import Layout from "@/components/layout/Layout";
+import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import Link from "next/link";
 
 const Account: NextPage = () => {
@@ -18,7 +18,7 @@ const Account: NextPage = () => {
         <title>Account</title>
       </Head>
       <NavLayout />
-      <Layout>
+      <ResponsiveLayout>
         <div>
           {session && (
             <div className="grid min-h-screen justify-items-center dark:bg-gray-800">
@@ -69,7 +69,7 @@ const Account: NextPage = () => {
         </main>
           )}
         </div>
-      </Layout>
+      </ResponsiveLayout>
     </>
   );
 };
