@@ -1,45 +1,43 @@
 ```
 📦src
 
- ┣ 📂components
- ┃ ┣ 📂accountPage
+┣ 📂components
+ ┃ ┣ 📂account
  ┃ ┃ ┗ 📜accountEditModal.tsx
- ┃ ┣ 📂caregiverDashboard
- ┃ ┃ ┣ 📂demoComponents
- ┃ ┃ ┃ ┣ 📜demoSessionDetailsOne.tsx
- ┃ ┃ ┃ ┣ 📜demoSessionDetailsThree.tsx
- ┃ ┃ ┃ ┣ 📜demoSessionDetailsTwo.tsx
- ┃ ┃ ┃ ┣ 📜demoSessionOverviewOne.tsx
- ┃ ┃ ┃ ┣ 📜demoSessionOverviewThree.tsx
- ┃ ┃ ┃ ┣ 📜demoSessionOverviewTwo.tsx
- ┃ ┃ ┃ ┣ 📜historyOverview.tsx
- ┃ ┃ ┃ ┗ 📜scheduledSessionOverviewOne.tsx
- ┃ ┃ ┣ 📜findPatientTab.tsx
- ┃ ┃ ┣ 📜historyModal.tsx
- ┃ ┃ ┣ 📜historyTab.tsx
- ┃ ┃ ┣ 📜mobileFindSessionModal.tsx
- ┃ ┃ ┣ 📜scheduledSessionModal.tsx
- ┃ ┃ ┣ 📜scheduledSessionsTab.tsx
- ┃ ┃ ┣ 📜searchEngine.tsx
- ┃ ┃ ┗ 📜tabsEngine.tsx
- ┃ ┣ 📂form
- ┃ ┃ ┣ 📜LoginForm.tsx
- ┃ ┃ ┗ 📜RegisterForm.tsx
- ┃ ┣ 📂helpPage
+ ┃ ┣ 📂caregiver
+ ┃ ┃ ┣ 📂engines
+ ┃ ┃ ┃ ┣ 📜searchEngine.tsx
+ ┃ ┃ ┃ ┗ 📜tabsEngine.tsx
+ ┃ ┃ ┣ 📂modals
+ ┃ ┃ ┃ ┣ 📜historyModal.tsx
+ ┃ ┃ ┃ ┣ 📜mobileFindSessionModal.tsx
+ ┃ ┃ ┃ ┗ 📜scheduledSessionModal.tsx
+ ┃ ┃ ┣ 📂sessions
+ ┃ ┃ ┃ ┣ 📜active.tsx
+ ┃ ┃ ┃ ┗ 📜history.tsx
+ ┃ ┃ ┗ 📂tabs
+ ┃ ┃ ┃ ┣ 📜activeTab.tsx
+ ┃ ┃ ┃ ┣ 📜findTab.tsx
+ ┃ ┃ ┃ ┗ 📜historyTab.tsx
+ ┃ ┣ 📂forms
+ ┃ ┃ ┣ 📜loginForm.tsx
+ ┃ ┃ ┗ 📜registerForm.tsx
+ ┃ ┣ 📂help
  ┃ ┃ ┣ 📜contactUs.tsx
  ┃ ┃ ┗ 📜supportDocumentation.tsx
  ┃ ┣ 📂layout
- ┃ ┃ ┣ 📜Layout.tsx
  ┃ ┃ ┣ 📜header.tsx
  ┃ ┃ ┣ 📜navLayout.tsx
+ ┃ ┃ ┣ 📜responsiveLayout.tsx
  ┃ ┃ ┣ 📜sideNav.tsx
  ┃ ┃ ┗ 📜themeManager.tsx
- ┃ ┣ 📂messagesPage
+ ┃ ┣ 📂messages
  ┃ ┃ ┣ 📜demoConversation.tsx
  ┃ ┃ ┣ 📜demoConversationTwo.tsx
  ┃ ┃ ┣ 📜messageDashboardConnectionCard.tsx
  ┃ ┃ ┗ 📜messagesPageEngine.tsx
- ┃ ┗ 📜itemModal.tsx
+ ┃ ┗ 📂patient
+ ┃ ┃ ┗ 📜createSession.tsx
 
  ┣ 📂env
  ┃ ┣ 📜client.mjs
@@ -54,6 +52,8 @@
  ┃ ┃ ┃ ┗ 📜[trpc].ts
  ┃ ┃ ┣ 📜examples.ts
  ┃ ┃ ┗ 📜restricted.ts
+ ┃ ┣ 📂session
+ ┃ ┃ ┗ 📜[slug].tsx
  ┃ ┣ 📜_app.tsx
  ┃ ┣ 📜account.tsx
  ┃ ┣ 📜caregiver.tsx
@@ -84,13 +84,13 @@
 
  ┣ 📂styles
  ┃ ┗ 📜globals.css
-
+ 
  ┣ 📂types
  ┃ ┗ 📜next-auth.d.ts
 
  ┣ 📂utils
  ┃ ┗ 📜trpc.ts
- 
+
  ┗ 📂validation
  ┃ ┗ 📜auth.ts
 ```
