@@ -1,7 +1,6 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import ThemeManager from "./themeManager";
 import Link from "next/link";
-import Image from "next/image";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
 import { trpc } from "@/utils/trpc";
 
@@ -16,7 +15,7 @@ const Header = ({
   const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
 
   return (
-    <div className="sticky top-0 z-50 grid grid-cols-2 items-center bg-gray-100 py-1 dark:bg-gray-700">
+    <div className="sticky top-0 z-50 grid grid-cols-2 items-center bg-[hsl(0,0%,88%)] py-1 dark:bg-gray-700">
       <div className="flex justify-start ">
         <div className="pl-4 md:pl-0">
           <Bars3CenterLeftIcon
@@ -24,11 +23,6 @@ const Header = ({
             onClick={() => setShowNav(!showNav)}
           />
         </div>
-        {/* <Image
-          className="pl-4"
-          src={(sessionData && sessionData.user?.name) || ""}
-          alt=""
-        /> */}
         <div className="ml-4 flex items-center pr-4 text-gray-900 dark:text-gray-100">
           {session &&
             (isLoading || (data && data?.username) || (
