@@ -1,7 +1,7 @@
 import { trpc } from "@/utils/trpc";
 import { useEffect } from "react";
 import { useState } from "react";
-import { CareSession } from "@prisma/client";
+import type { CareSession } from "@prisma/client";
 import { useRouter } from "next/router";
 
 const CreateSession = () => {
@@ -119,21 +119,11 @@ const CreateSession = () => {
             type="button"
             onClick={() => {
               publish();
-              // setModalOpen(false);
             }}
-            className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+            className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-800 hover:border-hsl(0,0%,6%) hover:bg-[hsl(154,47%,66%)] hover:text-hsl(0,0%,6%) dark:hover:text-gray-800 dark:text-gray-100"
           >
             Create
           </button>
-          {/* <button
-            type="button"
-            onClick={() => {
-              console.log("meow");
-            }}
-            className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white"
-          >
-            Cancel
-          </button> */}
         </div>
       </div>
     </>
