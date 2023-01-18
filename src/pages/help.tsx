@@ -22,7 +22,7 @@ const Help: NextPage = () => {
         {session && (
           <main className="grid min-h-screen justify-items-center dark:bg-gray-800">
             <div className="w-full rounded border-2 border-gray-200">
-              <div className="mx-1 my-1 rounded border-2 border-gray-900">
+              <div className="h-full mx-1 my-1 rounded border-2 border-gray-900">
                 <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-gray-900">
                   <div className="items grid w-full grid-cols-2 justify-items-start gap-0 text-center">
                     <a
