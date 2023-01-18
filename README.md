@@ -6,7 +6,6 @@
  ┃ ┃ ┗ 📜accountEditModal.tsx
  ┃ ┣ 📂caregiver
  ┃ ┃ ┣ 📂engines
- ┃ ┃ ┃ ┣ 📜searchEngine.tsx
  ┃ ┃ ┃ ┗ 📜tabsEngine.tsx
  ┃ ┃ ┣ 📂modals
  ┃ ┃ ┃ ┣ 📜historyModal.tsx
@@ -84,7 +83,7 @@
 
  ┣ 📂styles
  ┃ ┗ 📜globals.css
- 
+
  ┣ 📂types
  ┃ ┗ 📜next-auth.d.ts
 
