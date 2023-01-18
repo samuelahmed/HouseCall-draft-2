@@ -104,7 +104,7 @@ const PatientDashboard: NextPage = () => {
                 <div
                   className={
                     openTab === 2
-                      ? "block min-h-screen rounded bg-[hsl(0,0%,88%)]  dark:bg-gray-700"
+                      ? "block min-h-screen rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700  mx-1 mb-1"
                       : "hidden"
                   }
                   id="link2"
@@ -114,7 +114,7 @@ const PatientDashboard: NextPage = () => {
                 <div
                   className={
                     openTab === 3
-                      ? "block min-h-screen rounded bg-[hsl(0,0%,88%)]  dark:bg-gray-700"
+                      ? "block min-h-screen rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700  mx-1 mb-1"
                       : "hidden"
                   }
                   id="link3"
