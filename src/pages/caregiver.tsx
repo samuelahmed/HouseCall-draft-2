@@ -86,8 +86,6 @@ const CaregiverDashboard: NextPage = () => {
                     </a>
                   </div>
                 </div>
-
-                {/* NOTE: SHOULD STRUCTURE BE REBUILT SO SEARCH ENGINE IS NOT EMBEDDED HERE?  */}
                 <SearchEngine />
                 <div
                   className={
