@@ -1,7 +1,7 @@
 const SearchEngine = () => {
   return (
     <>
-      <div className="w-full  rounded border-gray-200 pt-1 pb-1">
+      <div className="w-full  rounded border-gray-200 pb-1">
         <div className="flex justify-center rounded  bg-[hsl(0,0%,88%)] pr-2 pl-1 pt-2 pb-2 dark:bg-gray-700 mx-1">
           <div className="hidden w-full px-3 md:mb-0 md:block md:w-1/3 lg:block">
             <div className="relative">

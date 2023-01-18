@@ -26,7 +26,7 @@ const CaregiverDashboard: NextPage = () => {
             <div className="w-full rounded border-2 border-gray-200">
               <div className="mx-1 my-1 rounded border-2 border-gray-900">
                 <div className=" grid-rows-1 rounded  bg-gray-100 dark:bg-gray-800">
-                  <div className="items grid w-full grid-cols-3 justify-items-start gap-0 px-1 text-center">
+                  <div className="items grid w-full grid-cols-3 justify-items-start gap-0 px-1 pb-1 text-center">
                     <a
                       className={
                         "h-16 w-full " +
