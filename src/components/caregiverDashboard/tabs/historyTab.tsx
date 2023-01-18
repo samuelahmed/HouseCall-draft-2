@@ -1,5 +1,5 @@
-import HistoryOverviewCard from "./demoComponents/historyOverview";
-import HistoryModal from "./historyModal";
+import HistorySession from "../sessions/history";
+import HistoryModal from "../modals/historyModal";
 
 const HistoryTab = () => {
   const rows = [];
@@ -7,7 +7,7 @@ const HistoryTab = () => {
     rows.push(
       <div className="flex w-11/12 cursor-pointer flex-col justify-between rounded-xl border border-gray-400 bg-white p-2 leading-normal hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-600">
         <div className="items-baseline md:flex md:justify-around ">
-          <HistoryOverviewCard />
+          <HistorySession />
           <div className="flex justify-center">
             <HistoryModal />
           </div>

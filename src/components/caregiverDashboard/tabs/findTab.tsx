@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 
-const FindPatientTab = () => {
+const FindTab = () => {
   const [rightCard, setRightCard] = useState(1);
   const { data, isLoading } = trpc.sessionAPIs.getAllSessions.useQuery();
   const router = useRouter();
@@ -149,4 +149,4 @@ const FindPatientTab = () => {
   );
 };
 
-export default FindPatientTab;
+export default FindTab;

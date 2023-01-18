@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import Layout from "@/components/layout/Layout";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
-import SearchEngine from "@/components/caregiverDashboard/searchEngine";
+import SearchEngine from "@/components/caregiverDashboard/engines/searchEngine";
 import Link from "next/link";
 import CreateSession from "@/components/patientDashboard/createSession";
 

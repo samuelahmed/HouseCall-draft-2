@@ -1,4 +1,4 @@
-const ScheduledSessionOverviewOne = () => {
+const ActiveSession = () => {
   return (
     <>
       <div className="mb-8">
@@ -23,4 +23,4 @@ const ScheduledSessionOverviewOne = () => {
   );
 };
 
-export default ScheduledSessionOverviewOne;
+export default ActiveSession;

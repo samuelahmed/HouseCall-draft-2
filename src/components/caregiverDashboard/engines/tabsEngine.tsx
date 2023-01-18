@@ -1,8 +1,8 @@
 import { useState } from "react";
 import SearchEngine from "./searchEngine";
-import FindPatientTab from "./findPatientTab";
-import ScheduledSessionTab from "./scheduledSessionsTab";
-import HistoryTab from "./historyTab";
+import FindPatientTab from "../tabs/findTab";
+import ScheduledSessionTab from "../tabs/activeTab";
+import HistoryTab from "../tabs/historyTab";
 
 const TabsEngine = () => {
   const [openTab, setOpenTab] = useState(1);

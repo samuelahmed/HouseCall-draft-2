@@ -1,4 +1,4 @@
-const HistoryOverviewCard = () => {
+const HistorySession = () => {
   return (
     <>
       <div className="grid grid-cols-1">
@@ -15,4 +15,4 @@ const HistoryOverviewCard = () => {
   );
 };
 
-export default HistoryOverviewCard;
+export default HistorySession;

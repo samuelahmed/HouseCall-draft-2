@@ -4,10 +4,10 @@ import { useSession } from "next-auth/react";
 import Layout from "@/components/layout/Layout";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
-import SearchEngine from "@/components/caregiverDashboard/searchEngine";
-import FindPatientTab from "@/components/caregiverDashboard/findPatientTab";
-import ScheduledSessionTab from "@/components/caregiverDashboard/scheduledSessionsTab";
-import HistoryTab from "@/components/caregiverDashboard/historyTab";
+import SearchEngine from "@/components/caregiverDashboard/engines/searchEngine";
+import HistoryTab from "@/components/caregiverDashboard/tabs/historyTab";
+import ActiveTab from "@/components/caregiverDashboard/tabs/activeTab";
+import FindTab from "@/components/caregiverDashboard/tabs/findTab";
 import Link from "next/link";
 
 const CaregiverDashboard: NextPage = () => {
@@ -97,7 +97,7 @@ const CaregiverDashboard: NextPage = () => {
                   }
                   id="link1"
                 >
-                  <FindPatientTab />
+                  <FindTab />
                 </div>
                 <div
                   className={
@@ -107,7 +107,7 @@ const CaregiverDashboard: NextPage = () => {
                   }
                   id="link2"
                 >
-                  <ScheduledSessionTab />
+                  <ActiveTab />
                 </div>
                 <div
                   className={
