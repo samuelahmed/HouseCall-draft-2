@@ -53,7 +53,7 @@ const CreateSession = () => {
                 title: e.target.value,
               }))
             }
-            className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
+            className="block w-full appearance-none rounded border border-gray-200 bg-[hsl(0,0%,96%)] py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-white"
           />
         </div>
         <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
@@ -67,7 +67,7 @@ const CreateSession = () => {
                 name: e.target.value,
               }))
             }
-            className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
+            className="block w-full appearance-none rounded border border-gray-200 bg-[hsl(0,0%,96%)] py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-white"
           />
         </div>
         <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
@@ -82,7 +82,7 @@ const CreateSession = () => {
                 address: e.target.value,
               }))
             }
-            className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
+            className="block w-full appearance-none rounded border border-gray-200 bg-[hsl(0,0%,96%)] py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-white"
           />
         </div>
         <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
@@ -96,7 +96,7 @@ const CreateSession = () => {
                 medicalNotes: e.target.value,
               }))
             }
-            className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
+            className="block w-full appearance-none rounded border border-gray-200 bg-[hsl(0,0%,96%)] py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-white"
           />
         </div>
         <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
@@ -110,7 +110,7 @@ const CreateSession = () => {
                 overview: e.target.value,
               }))
             }
-            className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
+            className="block w-full appearance-none rounded border border-gray-200 bg-[hsl(0,0%,96%)] py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-white"
           />
         </div>
 
