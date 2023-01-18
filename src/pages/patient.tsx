@@ -27,116 +27,120 @@ const PatientDashboard: NextPage = () => {
       <Layout>
         {session && (
           <main className="grid min-h-screen justify-items-center dark:bg-slate-800">
-            <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-slate-800">
-              <div className="items grid w-full grid-cols-3 justify-items-start gap-0 text-center">
-                <a
-                  className={
-                    "h-16 w-full " +
-                    (openTab === 1
-                      ? 'dark:bg-gray-700 bg-[hsl(0,0%,88%)]'
-                      : "dark:bg-slate-800 bg-[hsl(0,0%,96%)]")
-                  }
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpenTab(1);
-                  }}
-                  data-toggle="tab"
-                  href="#link1"
-                  role="tablist"
-                >
-                  <div className="text-md pb-4 pt-4 md:text-xl">
-                    <h1>Create Session</h1>
+            <div className="w-full rounded border-2 border-gray-200">
+              <div className="mx-1 my-1 rounded border-2 border-gray-900">
+                <div className="grid-rows-1 rounded bg-gray-100 pr-1 pl-1 pb-1 dark:bg-slate-800">
+                  <div className="items grid w-full grid-cols-3 justify-items-start gap-0 text-center">
+                    <a
+                      className={
+                        "h-16 w-full " +
+                        (openTab === 1
+                          ? "bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          : "bg-[hsl(0,0%,96%)] dark:bg-slate-800")
+                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenTab(1);
+                      }}
+                      data-toggle="tab"
+                      href="#link1"
+                      role="tablist"
+                    >
+                      <div className="text-md pb-4 pt-4 md:text-xl">
+                        <h1>Create Session</h1>
+                      </div>
+                    </a>
+                    <a
+                      className={
+                        "h-16 w-full " +
+                        (openTab === 2
+                          ? "bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          : "bg-[hsl(0,0%,96%)] dark:bg-slate-800")
+                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenTab(2);
+                      }}
+                      data-toggle="tab"
+                      href="#link2"
+                      role="tablist"
+                    >
+                      <div className="text-md pb-4 pt-4 md:text-xl">
+                        <h1>Active Sessions</h1>
+                      </div>
+                    </a>
+                    <a
+                      className={
+                        "h-16 w-full " +
+                        (openTab === 3
+                          ? "bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          : "bg-[hsl(0,0%,96%)] dark:bg-slate-800")
+                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenTab(3);
+                      }}
+                      data-toggle="tab"
+                      href="#link3"
+                      role="tablist"
+                    >
+                      <div className="text-md pb-4 pt-4 md:text-xl">
+                        <h1>History</h1>
+                      </div>
+                    </a>
                   </div>
-                </a>
-                <a
+                </div>
+
+                {search}
+                <div
                   className={
-                    "h-16 w-full " +
-                    (openTab === 2
-                      ? 'dark:bg-gray-700 bg-[hsl(0,0%,88%)]'
-                      : "dark:bg-slate-800 bg-[hsl(0,0%,96%)]")
+                    openTab === 1
+                      ? "block min-h-screen rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                      : "hidden"
                   }
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpenTab(2);
-                  }}
-                  data-toggle="tab"
-                  href="#link2"
-                  role="tablist"
+                  id="link1"
                 >
-                  <div className="text-md pb-4 pt-4 md:text-xl">
-                    <h1>Active Sessions</h1>
-                  </div>
-                </a>
-                <a
+                  <CreateSession />
+                </div>
+                <div
                   className={
-                    "h-16 w-full " +
-                    (openTab === 3
-                      ? 'dark:bg-gray-700 bg-[hsl(0,0%,88%)]'
-                      : "dark:bg-slate-800 bg-[hsl(0,0%,96%)]")
+                    openTab === 2
+                      ? "block min-h-screen rounded bg-[hsl(0,0%,88%)]  dark:bg-gray-700"
+                      : "hidden"
                   }
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setOpenTab(3);
-                  }}
-                  data-toggle="tab"
-                  href="#link3"
-                  role="tablist"
+                  id="link2"
                 >
-                  <div className="text-md pb-4 pt-4 md:text-xl">
-                    <h1>History</h1>
-                  </div>
-                </a>
+                  Render Session that were created by the session user ID
+                </div>
+                <div
+                  className={
+                    openTab === 3
+                      ? "block min-h-screen rounded bg-[hsl(0,0%,88%)]  dark:bg-gray-700"
+                      : "hidden"
+                  }
+                  id="link3"
+                ></div>
               </div>
             </div>
-            {search}
-            <div
-              className={
-                openTab === 1
-                  ? "block min-h-screen w-11/12 rounded  bg-[hsl(0,0%,88%)]  dark:bg-gray-700"
-                  : "hidden"
-              }
-              id="link1"
-            >
-              <CreateSession />
-            </div>
-
-            <div
-              className={
-                openTab === 2
-                  ? "block min-h-screen w-11/12 rounded bg-[hsl(0,0%,88%)]  dark:bg-gray-700"
-                  : "hidden"
-              }
-              id="link2"
-            >
-              Render Session that were created by the session user ID
-            </div>
-            <div
-              className={
-                openTab === 3
-                  ? "block min-h-screen w-11/12 rounded bg-[hsl(0,0%,88%)]  dark:bg-gray-700"
-                  : "hidden"
-              }
-              id="link3"
-            ></div>
           </main>
         )}
         {!session && (
-          <main className="flex min-h-screen flex-col items-center justify-top md:justify-center lg:justify-center">
-          <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-            <h1 className="text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem] text-center border-gray-900">
-              Patient{" "}
-              <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
-            </h1>
-            <div className="flex flex-row gap-2">
-              <Link href={"/login"} className="rounded border py-1 px-4">
-                Login
-              </Link>
-              <Link href={"/register"} className="rounded border py-1 px-4">
-                Register
-              </Link>
+          <main className="justify-top flex min-h-screen flex-col items-center md:justify-center lg:justify-center">
+            <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+              <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
+                Patient{" "}
+                <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
+              </h1>
+              <div className="flex flex-row gap-2">
+                <Link href={"/login"} className="rounded border py-1 px-4">
+                  Login
+                </Link>
+                <Link href={"/register"} className="rounded border py-1 px-4">
+                  Register
+                </Link>
+              </div>
             </div>
-          </div>
-        </main>
+          </main>
         )}
       </Layout>
     </>

@@ -40,7 +40,7 @@ const CreateSession = () => {
 
   return (
     <>
-      <div className="mx-4  mt-6 flex h-screen flex-col items-center md:mt-12 lg:mt-24 ">
+      <div className="mx-4 flex h-screen flex-col items-center md:pt-12 lg:pt-24 ">
         <h3 className="text-xl font-semibold">Create new Session</h3>
         <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
           <p className="mr-2 w-28 text-lg"> Title </p>
