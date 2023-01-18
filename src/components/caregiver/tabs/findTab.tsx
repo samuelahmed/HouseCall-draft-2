@@ -50,23 +50,23 @@ const FindTab = () => {
                               }}
                               className="mb-8"
                             >
-                              <div className="mb-2 p-4 text-center text-xl text-gray-800 dark:text-gray-300">
+                              <div className="mb-2 p-4 text-center text-xl text-gray-800 dark:text-gray-100">
                                 {title}
                               </div>
-                              <p className="text-sm  text-gray-800 dark:text-gray-300">
-                                <span className="font-semibold text-gray-800 dark:text-gray-300">
+                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                                <span className="font-semibold text-gray-800 dark:text-gray-200">
                                   Name:&nbsp;
                                 </span>
                                 {name}
                               </p>
-                              <p className="text-sm  text-gray-800 dark:text-gray-300">
-                                <span className="font-semibold  text-gray-800 dark:text-gray-300">
+                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                                <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                   Address:&nbsp;
                                 </span>
                                 {address}
                               </p>
-                              <p className="text-sm  text-gray-800 dark:text-gray-300">
-                                <span className="font-semibold  text-gray-800 dark:text-gray-300">
+                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                                <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                   Overview:&nbsp;
                                 </span>
                                 {overview}
@@ -96,30 +96,30 @@ const FindTab = () => {
                 <div className="flex  h-128 w-11/12  flex-col  justify-between rounded-xl border border-gray-400 bg-white p-2 leading-normal dark:bg-gray-800">
                   <div className={rightCard === 1 ? "" : "hidden"}>
                     <div className="mb-4 mr-4 ml-4  justify-center  ">
-                      <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-gray-300">
+                      <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-gray-100">
                         {selectedSession?.data?.title || isLoading}
                       </div>
                       <div className="text-sm ">
-                        <p className="text-gray-900 dark:text-gray-300">
-                          <span className="font-semibold text-gray-800 dark:text-gray-300">
+                        <p className="text-gray-900 dark:text-gray-100">
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">
                             Name:&nbsp;
                           </span>
                           {selectedSession?.data?.name || isLoading}
                         </p>
-                        <p className="text-gray-900 dark:text-gray-300">
-                          <span className="font-semibold text-gray-800 dark:text-gray-300">
+                        <p className="text-gray-900 dark:text-gray-100">
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">
                             Address:&nbsp;
                           </span>
                           {selectedSession?.data?.address || isLoading}
                         </p>
-                        <p className="text-gray-900 dark:text-gray-300">
-                          <span className="font-semibold text-gray-800 dark:text-gray-300">
+                        <p className="text-gray-900 dark:text-gray-100">
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">
                             Medical Notes:&nbsp;
                           </span>
                           {selectedSession?.data?.medicalNotes || isLoading}
                         </p>
-                        <p className="text-gray-900 dark:text-gray-300">
-                          <span className="font-semibold text-gray-800 dark:text-gray-300">
+                        <p className="text-gray-900 dark:text-gray-100">
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">
                             Overview:&nbsp;
                           </span>
                           {selectedSession?.data?.overview || isLoading}
@@ -131,8 +131,8 @@ const FindTab = () => {
                                 `/session/${selectedSession.data?.slug}`
                               )
                             }
-                            className="mt-24 h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:border-white dark:text-white"
-                          >
+                            className="mt-6 hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-800 hover:bg-[hsl(154,47%,66%)] dark:text-gray-100 dark:hover:text-gray-800"
+                            >
                             Schedule
                           </button>
                         </div>

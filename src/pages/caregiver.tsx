@@ -42,7 +42,7 @@ const CaregiverDashboard: NextPage = () => {
                       href="#link1"
                       role="tablist"
                     >
-                      <div className="text-md pb-4 pt-4 md:text-xl">
+                      <div className="text-md pb-4 pt-4 md:text-xl dark:text-gray-100 text-gray-800">
                         <h1>Find Session</h1>
                       </div>
                     </a>
@@ -61,7 +61,7 @@ const CaregiverDashboard: NextPage = () => {
                       href="#link2"
                       role="tablist"
                     >
-                      <div className="text-md pb-4 pt-4 md:text-xl">
+                      <div className="text-md pb-4 pt-4 md:text-xl dark:text-gray-100 text-gray-800">
                         <h1>Scheduled Sessions</h1>
                       </div>
                     </a>
@@ -80,7 +80,7 @@ const CaregiverDashboard: NextPage = () => {
                       href="#link3"
                       role="tablist"
                     >
-                      <div className="text-md pb-4 pt-4 md:text-xl">
+                      <div className="text-md pb-4 pt-4 md:text-xl dark:text-gray-100 text-gray-800">
                         <h1>History</h1>
                       </div>
                     </a>
