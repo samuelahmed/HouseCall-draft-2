@@ -12,12 +12,7 @@ const TabsEngine = () => {
       <div className="w-11/12 grid-rows-1 rounded bg-gray-100 dark:bg-gray-900">
         <div className="items grid w-full grid-cols-3 justify-items-start gap-0 text-center">
           <a
-            className={
-              "h-16 w-full " +
-              (openTab === 1
-                ? "bg- text-white" + "-600"
-                : "text-" + "" + "-600 bg-white dark:bg-gray-800")
-            }
+            className={"h-16 w-full " + (openTab === 1 ? "" : "")}
             onClick={(e) => {
               e.preventDefault();
               setOpenTab(1);
@@ -31,12 +26,7 @@ const TabsEngine = () => {
             </div>
           </a>
           <a
-            className={
-              "h-16 w-full " +
-              (openTab === 2
-                ? "bg- text-white" + "-600"
-                : "text-" + "-600 bg-white dark:bg-gray-800")
-            }
+            className={"h-16 w-full " + (openTab === 2 ? "" : "")}
             onClick={(e) => {
               e.preventDefault();
               setOpenTab(2);
@@ -50,12 +40,7 @@ const TabsEngine = () => {
             </div>
           </a>
           <a
-            className={
-              "h-16 w-full " +
-              (openTab === 3
-                ? "bg- text-white" + "-600"
-                : "text-" + "-600 bg-white dark:bg-gray-800")
-            }
+            className={"h-16 w-full " + (openTab === 3 ? "" : "")}
             onClick={(e) => {
               e.preventDefault();
               setOpenTab(3);
@@ -75,9 +60,7 @@ const TabsEngine = () => {
 
       <div
         className={
-          openTab === 1
-            ? "block min-h-screen w-11/12 rounded  bg-gray-100  dark:bg-gray-900"
-            : "hidden"
+          openTab === 1 ? "block min-h-screen w-11/12 rounded  " : "hidden"
         }
         id="link1"
       >
@@ -85,9 +68,7 @@ const TabsEngine = () => {
       </div>
       <div
         className={
-          openTab === 2
-            ? "block min-h-full w-11/12 rounded bg-gray-100  dark:bg-gray-900"
-            : "hidden"
+          openTab === 2 ? "block min-h-full w-11/12 rounded" : "hidden"
         }
         id="link2"
       >
@@ -95,9 +76,7 @@ const TabsEngine = () => {
       </div>
       <div
         className={
-          openTab === 3
-            ? "block min-h-full w-11/12 rounded bg-gray-100  dark:bg-gray-900"
-            : "hidden"
+          openTab === 3 ? "block min-h-full w-11/12 rounded" : "hidden"
         }
         id="link3"
       >

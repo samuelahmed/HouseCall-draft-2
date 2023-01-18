@@ -29,8 +29,8 @@ const CaregiverDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 1
-                      ? 'dark:bg-gray-700 bg-gray-100'
-                      : "dark:bg-slate-800 bg-white")
+                      ? 'dark:bg-gray-700 bg-[hsl(0,0%,88%)]'
+                      : "dark:bg-slate-800 bg-[hsl(0,0%,96%)]")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -48,8 +48,8 @@ const CaregiverDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 2
-                      ? 'dark:bg-gray-700 bg-gray-100'
-                      : "dark:bg-slate-800 bg-white")
+                      ? 'dark:bg-gray-700 bg-[hsl(0,0%,88%)]'
+                      : "dark:bg-slate-800 bg-[hsl(0,0%,96%)]")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -67,8 +67,8 @@ const CaregiverDashboard: NextPage = () => {
                   className={
                     "h-16 w-full " +
                     (openTab === 3
-                      ? 'dark:bg-gray-700 bg-gray-100'
-                      : "dark:bg-slate-800 bg-white")
+                      ? 'dark:bg-gray-700 bg-[hsl(0,0%,88%)]'
+                      : "dark:bg-slate-800 bg-[hsl(0,0%,96%)]")
                   }
                   onClick={(e) => {
                     e.preventDefault();
@@ -127,7 +127,7 @@ const CaregiverDashboard: NextPage = () => {
               </h1>
               <div className="flex flex-row gap-2">
                 <Link href={"/login"} className="rounded border py-1 px-4">
-                  Sign in
+                  Sign
                 </Link>
                 <Link href={"/register"} className="rounded border py-1 px-4">
                   Register
