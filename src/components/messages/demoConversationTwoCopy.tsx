@@ -9,10 +9,6 @@ const DemoConversationTwo = () => {
           {/* THIS DIV CONTROLS THE HEIGHT OF THE CHAT */}
           <div className=" grid max-h-70vh min-h-70vh grid-cols-1 overflow-scroll rounded bg-white py-2 dark:bg-gray-500">
             <div className="max-h-128 grid grid-cols-3 gap-4 ">
-
-
-
-
               <div className="col-start-2 col-end-4 mr-2 rounded rounded-l border border-blue-300 bg-blue-200 dark:border-blue-900 dark:bg-blue-600">
                 <div className="px-2 py-2 text-left">
                   Hi, I just had a few questions about the nutrition care

@@ -2,10 +2,10 @@ import Image from "next/image";
 const MessageDashboardConnectionCard = () => {
   return (
     <>
-      <div className="flex h-16 w-full items-center justify-around md:h-16 lg:h-16">
-        <div className="flex justify-start">
+      <div className="grid h-16 w-full grid-cols-1 md:grid-cols-3 items-center justify-around px-4 md:h-16 lg:h-16 content-center">
+        <div className="flex justify-start ">
           <Image
-            className="hidden rounded md:inline lg:inline"
+            className="col-span-1 hidden rounded pr-2 md:inline lg:inline"
             alt=""
             width={50}
             height={50}
@@ -14,12 +14,12 @@ const MessageDashboardConnectionCard = () => {
             }
           />
         </div>
-        <div className="flex justify-end ">
-          <div className="grid grid-rows-1 md:grid-rows-2 lg:grid-rows-2 ">
-            <div className="">Samuel Duval</div>
-            <div className="hidden text-sm md:inline lg:inline">
-              preview of last message sent in conver...
-            </div>
+        <div className="col-span-2   grid grid-rows-1 md:grid-rows-2 lg:grid-rows-2 ">
+          <div className="flex-center flex items-center justify-center text-sm text-center">
+            Samuel Duval
+          </div>
+          <div className="max-w-16 mt-2 hidden max-h-4 overflow-hidden text-xs md:inline lg:inline">
+            preview of last message and overflow
           </div>
         </div>
       </div>

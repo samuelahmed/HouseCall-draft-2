@@ -51,7 +51,7 @@ const Messages: NextPage = () => {
                               e.preventDefault();
                               setOpenChat(1);
                             }}
-                            className="my-2 mx-1 grid h-16 cursor-pointer grid-rows-1 content-center overflow-hidden rounded-xl border border-gray-900 bg-[hsl(0,0%,96%)] px-1 py-1 hover:bg-white dark:bg-gray-600 dark:hover:bg-gray-300 dark:hover:text-gray-800 md:grid-rows-2 lg:grid-rows-2"
+                            className="my-2 mx-1 grid h-16 cursor-pointer grid-rows-1 overflow-hidden rounded-xl border border-gray-900 bg-[hsl(0,0%,96%)]  hover:bg-white dark:bg-gray-600 dark:hover:bg-gray-300 dark:hover:text-gray-800 md:grid-rows-2 lg:grid-rows-2"
                           >
                             <MessageDashboardConnectionCard />
                           </div>
@@ -98,7 +98,7 @@ const Messages: NextPage = () => {
                     <div
                       className={
                         openChat === 1
-                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700 pr-2"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] pr-1 dark:bg-gray-700"
                           : "hidden"
                       }
                     >
@@ -125,7 +125,7 @@ const Messages: NextPage = () => {
                     <div
                       className={
                         openChat === 2
-                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] pr-1 dark:bg-gray-700"
                           : "hidden"
                       }
                     >
@@ -152,7 +152,7 @@ const Messages: NextPage = () => {
                     <div
                       className={
                         openChat === 3
-                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] pr-1 dark:bg-gray-700"
                           : "hidden"
                       }
                     >
@@ -179,7 +179,7 @@ const Messages: NextPage = () => {
                     <div
                       className={
                         openChat === 4
-                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] pr-1 dark:bg-gray-700"
                           : "hidden"
                       }
                     >
@@ -206,7 +206,7 @@ const Messages: NextPage = () => {
                     <div
                       className={
                         openChat === 5
-                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] pr-1 dark:bg-gray-700"
                           : "hidden"
                       }
                     >
@@ -230,28 +230,7 @@ const Messages: NextPage = () => {
                         </button>
                       </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
                   </div>
-
-
-                
-
-
-
-
-
-
                 </div>
               </div>
             </div>
