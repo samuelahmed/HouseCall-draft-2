@@ -33,7 +33,7 @@ const Messages: NextPage = () => {
           
 
 
-                  <div className="grid w-full grid-cols-3 gap-0 rounded">
+                  <div className="grid w-full grid-cols-3 gap-0 rounded dark:bg-gray-700">
                     <div className="flex  h-24 w-full flex-wrap items-center justify-around rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700 md:h-16 lg:h-16">
                       <div>
                         <input
@@ -128,12 +128,12 @@ const Messages: NextPage = () => {
                     <div
                       className={
                         openChat === 2
-                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] pr-1 dark:bg-gray-700"
+                          ? "min-h-90vh col-span-2 rounded bg-[hsl(0,0%,88%)] pr-1 dark:bg-gray-700"
                           : "hidden"
                       }
                     >
                       <DemoConversationTwo />
-                      <div className="flex items-center justify-between border-gray-300 p-3">
+                      <div className="flex items-center justify-between border-gray-300 p-3 relative w-full">
                         <input
                           type="text"
                           placeholder="Message"
