@@ -98,7 +98,7 @@ const Messages: NextPage = () => {
                     <div
                       className={
                         openChat === 1
-                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700 pr-2"
                           : "hidden"
                       }
                     >
