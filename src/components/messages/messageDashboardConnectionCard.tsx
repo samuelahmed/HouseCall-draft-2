@@ -14,7 +14,7 @@ const MessageDashboardConnectionCard = () => {
             }
           />
         </div>
-        <div className="col-span-2   grid grid-rows-1 md:grid-rows-2 lg:grid-rows-2 ">
+        <div className="col-span-2 grid grid-rows-1 md:grid-rows-2 lg:grid-rows-2 ">
           <div className="flex-center flex items-center justify-center text-sm text-center">
             Samuel Duval
           </div>

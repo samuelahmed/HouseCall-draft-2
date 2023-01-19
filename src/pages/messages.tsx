@@ -21,35 +21,26 @@ const Messages: NextPage = () => {
       <NavLayout />
       <ResponsiveLayout>
         {session && (
-
-
-
-// START SKELETON TOP
-          <main className="min-h-90vh grid grid-rows-5 justify-items-center dark:bg-slate-800 md:grid-rows-6">
-            <div className="min-h-90vh row-span-5 w-full rounded border-2 border-gray-200">
-              <div className="min-h-90vh mx-1 my-1 rounded border-2 border-gray-900 bg-[hsl(0,0%,88%)] dark:bg-gray-700">
+          // START SKELETON TOP
+          <main className="grid min-h-90vh grid-rows-5 justify-items-center dark:bg-slate-800 md:grid-rows-6">
+            <div className="row-span-5 min-h-90vh w-full rounded border-2 border-gray-200">
+              <div className="mx-1 my-1 min-h-90vh rounded border-2 border-gray-900 bg-[hsl(0,0%,88%)] dark:bg-gray-700">
                 <div className="w-full grid-rows-1 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700">
-{/* END SKELETON TOP */}
-          
-
+                  {/* END SKELETON TOP */}
 
                   <div className="grid w-full grid-cols-3 gap-0 rounded dark:bg-gray-700">
-                    <div className="flex  h-24 w-full flex-wrap items-center justify-around rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700 md:h-16 lg:h-16">
-                      <div>
-                        <input
-                          className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-800 dark:text-white"
-                          id="grid-city"
-                          type="text"
-                          placeholder="Search"
-                        />
+                    <div className="py-6">
+                      <div className="justify-center text-center">
+                        <div className="relative w-full">
+                          <select className="dark:bg-gray-800 dark:text-gray-100  rounded-md border bg-[hsl(0,0%,96%)] text-gray-800 shadow-sm outline-none border-gray-900">
+                            <option>Caregivers</option>
+                            <option>Patients</option>
+                          </select>
+                        </div>
+
                       </div>
-                      <div>
-                        <button className="h-10  rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-green-200 hover:text-black dark:text-gray-100">
-                          Search
-                        </button>
-                      </div>
-                      <div className="flex  w-full justify-center rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700">
-                        <div className="my-4  w-11/12 overflow-scroll rounded bg-[hsl(0,0%,96%)] dark:bg-gray-500">
+                      <div className=" py-8max-h-70vh flex min-h-70vh w-full justify-center rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700">
+                        <div className="my-4 w-11/12 overflow-scroll rounded bg-[hsl(0,0%,96%)] dark:bg-gray-500">
                           <div
                             onClick={(e) => {
                               e.preventDefault();
@@ -81,15 +72,6 @@ const Messages: NextPage = () => {
                             onClick={(e) => {
                               e.preventDefault();
                               setOpenChat(4);
-                            }}
-                            className="my-2 mx-1 grid h-16 cursor-pointer grid-rows-1 content-center overflow-hidden rounded-xl border border-gray-900 bg-[hsl(0,0%,96%)] px-1 py-1 hover:bg-white dark:bg-gray-600 dark:hover:bg-gray-300 dark:hover:text-gray-800 md:grid-rows-2 lg:grid-rows-2"
-                          >
-                            <MessageDashboardConnectionCard />
-                          </div>
-                          <div
-                            onClick={(e) => {
-                              e.preventDefault();
-                              setOpenChat(5);
                             }}
                             className="my-2 mx-1 grid h-16 cursor-pointer grid-rows-1 content-center overflow-hidden rounded-xl border border-gray-900 bg-[hsl(0,0%,96%)] px-1 py-1 hover:bg-white dark:bg-gray-600 dark:hover:bg-gray-300 dark:hover:text-gray-800 md:grid-rows-2 lg:grid-rows-2"
                           >
@@ -128,12 +110,12 @@ const Messages: NextPage = () => {
                     <div
                       className={
                         openChat === 2
-                          ? "min-h-90vh col-span-2 rounded bg-[hsl(0,0%,88%)] pr-1 dark:bg-gray-700"
+                          ? "col-span-2 min-h-90vh rounded bg-[hsl(0,0%,88%)] pr-1 dark:bg-gray-700"
                           : "hidden"
                       }
                     >
                       <DemoConversationTwo />
-                      <div className="flex items-center justify-between border-gray-300 p-3 relative w-full">
+                      <div className="relative flex w-full items-center justify-between border-gray-300 p-3">
                         <input
                           type="text"
                           placeholder="Message"
@@ -235,18 +217,12 @@ const Messages: NextPage = () => {
                     </div>
                   </div>
 
-
-
-
-
-{/* START SKELETON BOTTOM */}
+                  {/* START SKELETON BOTTOM */}
                 </div>
               </div>
             </div>
           </main>
-// END SKELETON BOTTOM
-
-
+          // END SKELETON BOTTOM
         )}
         {!session && (
           <main className="justify-top flex min-h-screen flex-col items-center md:justify-center lg:justify-center">

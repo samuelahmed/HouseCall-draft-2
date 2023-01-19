@@ -12,9 +12,11 @@ module.exports = {
       },
       maxHeight: {
         '70vh': '70vh',
+        '90vh': '90vh'
       },
       minHeight: {
         '90vh': '90vh',
+        '70vh': '70vh'
       }
     },
   },
