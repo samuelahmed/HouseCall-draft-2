@@ -2,7 +2,7 @@ import Image from "next/image";
 const MessageDashboardConnectionCard = () => {
   return (
     <>
-      <div className="flex h-16 w-full items-center justify-around md:h-16 lg:h-16 ">
+      <div className="flex h-16 w-full items-center justify-around md:h-16 lg:h-16">
         <div className="flex justify-start">
           <Image
             className="hidden rounded md:inline lg:inline"
@@ -16,8 +16,8 @@ const MessageDashboardConnectionCard = () => {
         </div>
         <div className="flex justify-end ">
           <div className="grid grid-rows-1 md:grid-rows-2 lg:grid-rows-2 ">
-            <div className="text-gray-900 dark:text-white">Samuel Duval</div>
-            <div className="hidden text-sm text-gray-500 dark:text-gray-300 md:inline lg:inline">
+            <div className="">Samuel Duval</div>
+            <div className="hidden text-sm md:inline lg:inline">
               preview of last message sent in conver...
             </div>
           </div>
