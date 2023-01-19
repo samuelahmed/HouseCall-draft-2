@@ -22,11 +22,14 @@ const CaregiverDashboard: NextPage = () => {
       <NavLayout />
       <ResponsiveLayout>
         {session && (
-          <main className="grid min-h-screen justify-items-center dark:bg-slate-800">
-            <div className="w-full rounded border-2 border-gray-200">
-              <div className="mx-1 my-1 rounded border-2 border-gray-900">
-                <div className=" grid-rows-1 rounded  bg-gray-100 dark:bg-gray-800">
-                  <div className="items grid w-full grid-cols-3 justify-items-start gap-0 px-1 pb-1 text-center">
+<>
+
+<main className="grid min-h-screen grid-rows-6 justify-items-center dark:bg-slate-800">
+<div className="row-span-5 w-full rounded border-2 border-gray-200">
+  <div className="mx-1 my-1 h-full rounded border-2 border-gray-900">
+    
+  <div className=" grid-rows-1 rounded  bg-gray-100 dark:bg-gray-800">
+                  <div className=" items grid w-full grid-cols-3 justify-items-start gap-0 px-1 pb-1 text-center">
                     <a
                       className={
                         "h-16 w-full " +
@@ -90,36 +93,46 @@ const CaregiverDashboard: NextPage = () => {
                 <div
                   className={
                     openTab === 1
-                      ? "block min-h-screen w-full rounded  bg-gray-100  dark:bg-gray-800"
+                      ? "block  w-full rounded  bg-gray-100  dark:bg-gray-800"
                       : "hidden"
                   }
                   id="link1"
                 >
-                  <FindTab />
+                  {/* <FindTab /> */}
                 </div>
                 <div
                   className={
                     openTab === 2
-                      ? "block min-h-full w-full rounded bg-gray-100  dark:bg-gray-800 "
+                      ? "block  w-full rounded bg-gray-100  dark:bg-gray-800 "
                       : "hidden"
                   }
                   id="link2"
                 >
-                  <ActiveTab />
+                  {/* <ActiveTab /> */}
                 </div>
                 <div
                   className={
                     openTab === 3
-                      ? "block min-h-full w-full rounded bg-gray-100  dark:bg-gray-800"
+                      ? "block  w-full rounded bg-gray-100  dark:bg-gray-800"
                       : "hidden"
                   }
                   id="link3"
                 >
-                  <HistoryTab />
+                  {/* <HistoryTab /> */}
                 </div>
-              </div>
-            </div>
-          </main>
+
+
+
+
+
+  </div>
+</div>
+</main>
+
+
+</>
+
+
         )}
         {!session && (
           <main className="justify-top flex min-h-screen flex-col items-center md:justify-center lg:justify-center">

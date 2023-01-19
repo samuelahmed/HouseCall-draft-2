@@ -98,18 +98,11 @@ const Messages: NextPage = () => {
                     <div
                       className={
                         openChat === 1
-                          ? "col-span-2  rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
                           : "hidden"
                       }
                     >
-                      <div className="flex h-16 w-full items-center justify-around bg-[hsl(0,0%,88%)] dark:bg-gray-700">
-                        <div className="text-center text-xl font-semibold">
-                          John Smith
-                        </div>
-                      </div>
-                      <div className="max- col-span-5  overflow-scroll">
-                        <DemoConversationTwo />
-                      </div>
+                      <DemoConversationTwoCopy />
                       <div className="flex items-center justify-between border-t border-gray-300 p-3">
                         <input
                           type="text"
@@ -129,22 +122,14 @@ const Messages: NextPage = () => {
                         </button>
                       </div>
                     </div>
-
                     <div
                       className={
                         openChat === 2
-                          ? "col-span-2  rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
                           : "hidden"
                       }
                     >
-                      <div className="flex h-16 w-full items-center justify-around bg-[hsl(0,0%,88%)] dark:bg-gray-700">
-                        <div className="text-center text-xl font-semibold">
-                          John Smith
-                        </div>
-                      </div>
-                      <div className="max- col-span-5  overflow-scroll">
-                        <DemoConversationTwoCopy />
-                      </div>
+                      <DemoConversationTwo />
                       <div className="flex items-center justify-between border-t border-gray-300 p-3">
                         <input
                           type="text"
@@ -164,22 +149,14 @@ const Messages: NextPage = () => {
                         </button>
                       </div>
                     </div>
-
                     <div
                       className={
                         openChat === 3
-                          ? "col-span-2  rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
                           : "hidden"
                       }
                     >
-                      <div className="flex h-16 w-full items-center justify-around bg-[hsl(0,0%,88%)] dark:bg-gray-700">
-                        <div className="text-center text-xl font-semibold">
-                          John Smith
-                        </div>
-                      </div>
-                      <div className="max- col-span-5  overflow-scroll">
-                        <DemoConversationTwo />
-                      </div>
+                      <DemoConversationTwoCopy />
                       <div className="flex items-center justify-between border-t border-gray-300 p-3">
                         <input
                           type="text"
@@ -199,22 +176,14 @@ const Messages: NextPage = () => {
                         </button>
                       </div>
                     </div>
-
                     <div
                       className={
                         openChat === 4
-                          ? "col-span-2  rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
                           : "hidden"
                       }
                     >
-                      <div className="flex h-16 w-full items-center justify-around bg-[hsl(0,0%,88%)] dark:bg-gray-700">
-                        <div className="text-center text-xl font-semibold">
-                          John Smith
-                        </div>
-                      </div>
-                      <div className="max- col-span-5  overflow-scroll">
-                        <DemoConversationTwo />
-                      </div>
+                      <DemoConversationTwo />
                       <div className="flex items-center justify-between border-t border-gray-300 p-3">
                         <input
                           type="text"
@@ -234,22 +203,14 @@ const Messages: NextPage = () => {
                         </button>
                       </div>
                     </div>
-
                     <div
                       className={
                         openChat === 5
-                          ? "col-span-2  rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
+                          ? "col-span-2 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700"
                           : "hidden"
                       }
                     >
-                      <div className="flex h-16 w-full items-center justify-around bg-[hsl(0,0%,88%)] dark:bg-gray-700">
-                        <div className="text-center text-xl font-semibold">
-                          John Smith
-                        </div>
-                      </div>
-                      <div className="max- col-span-5  overflow-scroll">
-                        <DemoConversationTwo />
-                      </div>
+                      <DemoConversationTwoCopy />
                       <div className="flex items-center justify-between border-t border-gray-300 p-3">
                         <input
                           type="text"
@@ -274,10 +235,23 @@ const Messages: NextPage = () => {
 
 
 
-            
 
-            
+
+
+
+
+
+
                   </div>
+
+
+                
+
+
+
+
+
+
                 </div>
               </div>
             </div>
