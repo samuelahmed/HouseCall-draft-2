@@ -1,7 +1,7 @@
 const DemoConversationTwo = () => {
   return (
       <div className="mb-2 mt-4 w-full rounded bg-gray-200 dark:bg-gray-500 overflow-scroll max-h-screen">
-        <div className=" grid grid-cols-1 rounded bg-pink-400 py-2 dark:bg-gray-500 overflow-auto">
+        <div className="mr-2 grid grid-cols-1 rounded  bg-[hsl(0,0%,96%)] py-2 dark:bg-gray-500 overflow-auto">
           <div className="grid grid-cols-3 gap-4 overflow-scroll">
             <div className="col-start-1 col-end-3 ml-2 rounded border border-gray-300 bg-gray-200 dark:border-gray-900 dark:bg-gray-600">
               <div className="px-2 py-2 text-left">
