@@ -8,7 +8,7 @@ const DemoConversationTwo = () => {
         <div className=" rounded bg-white dark:bg-gray-500">
           {/* THIS DIV CONTROLS THE HEIGHT OF THE CHAT */}
           <div className=" grid max-h-70vh min-h-70vh grid-cols-1 overflow-scroll rounded bg-white py-2 dark:bg-gray-500">
-            <div className="max-h-128 grid grid-cols-3 gap-4 overflow-scroll">
+            <div className="max-h-128 grid grid-cols-3 gap-4 ">
 
 
 
