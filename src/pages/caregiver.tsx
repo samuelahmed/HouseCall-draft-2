@@ -23,8 +23,8 @@ const CaregiverDashboard: NextPage = () => {
       <ResponsiveLayout>
         {session && (
           <>
-            <main className="grid h-screen grid-rows-6 justify-items-center dark:bg-slate-800">
-              <div className="row-span-6 w-full rounded border-2 border-gray-200 pb-2">
+            <main className="grid h-screen grid-rows-5 md:grid-rows-6 justify-items-center dark:bg-slate-800">
+              <div className="row-span-5 w-full rounded border-2 border-gray-200 pb-2">
                 <div className="mx-1 my-1 h-full rounded border-2 border-gray-900">
                   <div className=" grid-rows-1 rounded  bg-gray-100 dark:bg-gray-800">
                     <div className=" items grid w-full grid-cols-3 justify-items-start gap-0 px-1 pb-1 text-center">
