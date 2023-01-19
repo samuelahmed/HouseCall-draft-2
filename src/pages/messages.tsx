@@ -24,7 +24,7 @@ const Messages: NextPage = () => {
           //make a div that is height of screen and does not allow for scroll
 
           <main className="grid grid-rows-6 justify-items-center dark:bg-slate-800">
-            <div className="row-span-5 w-full rounded border-2 border-gray-200">
+            <div className="row-span-6 w-full rounded border-2 border-gray-200">
               <div className="mx-1 my-1 rounded border-2 border-gray-900">
                 <div className="w-full grid-rows-1 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700">
                   <div className="grid w-full grid-cols-3 gap-0 rounded">
