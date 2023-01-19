@@ -4,8 +4,8 @@ const DemoConversationTwo = () => {
       <div className="flex h-16 w-full items-center justify-around  ">
         <div className="text-center text-xl font-semibold">John Smith</div>
       </div>
-      <div className="my-4 h-screen w-11/12 overflow-scroll rounded bg-gray-200 dark:bg-gray-500">
-        <div className=" h-full rounded bg-white dark:bg-gray-500">
+      <div className="my-4 w-11/12 overflow-scroll rounded bg-gray-200 dark:bg-gray-500">
+        <div className=" rounded bg-white dark:bg-gray-500">
           <div className=" grid grid-cols-1 rounded bg-white py-2 dark:bg-gray-500">
             <div className="grid grid-cols-3 gap-4">
 
