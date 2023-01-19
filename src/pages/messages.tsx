@@ -6,7 +6,7 @@ import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import Link from "next/link";
 import MessageDashboardConnectionCard from "@/components/messages/messageDashboardConnectionCard";
-import DemoConversation from "@/components/messages/demoConversation";
+import DemoConversationTwoCopy from "@/components/messages/demoConversationTwoCopy";
 import DemoConversationTwo from "@/components/messages/demoConversationTwo";
 
 const Messages: NextPage = () => {
@@ -23,7 +23,7 @@ const Messages: NextPage = () => {
         {session && (
           <main className="grid min-h-screen justify-items-center dark:bg-gray-800">
             <div className="w-full rounded border-2 border-gray-200">
-              <div className="mx-1 my-1 rounded border-2 border-slate-800">
+              <div className="mx-1 my-1 rounded border-2 border-gray-900">
                 <div className="w-full grid-rows-1 rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700">
                   <div className="grid w-full grid-cols-3 gap-0 rounded">
                     <div className="rounded">
@@ -99,7 +99,7 @@ const Messages: NextPage = () => {
                     >
                       <div>
                         <div className="h-screen ">
-                          <DemoConversation />
+                        <DemoConversationTwo />
                         </div>
                         <div className="inset-x-0 bottom-0">
                           <div className="w-9/12 ">
@@ -117,7 +117,7 @@ const Messages: NextPage = () => {
                       }
                     >
                       <div className="h-screen ">
-                        <DemoConversationTwo />
+                        <DemoConversationTwoCopy />
                       </div>
                     </div>
                     <div
@@ -126,7 +126,7 @@ const Messages: NextPage = () => {
                       }
                     >
                       <div className="h-screen ">
-                        <DemoConversation />
+                      <DemoConversationTwo />
                       </div>
                     </div>
                     <div
@@ -135,7 +135,7 @@ const Messages: NextPage = () => {
                       }
                     >
                       <div className="h-screen ">
-                        <DemoConversationTwo />
+                      <DemoConversationTwoCopy />
                       </div>
                     </div>
                     <div
@@ -144,7 +144,7 @@ const Messages: NextPage = () => {
                       }
                     >
                       <div className="h-screen ">
-                        <DemoConversation />
+                      <DemoConversationTwo />
                       </div>
                     </div>
                   </div>
