@@ -9,6 +9,7 @@ import Footer from "@/components/layout/footer";
 const CaregiverTest: NextPage = () => {
   const { data: session } = useSession();
   const [openSide, setOpenSide] = useState(0);
+  const [openTab, setOpenTab] = useState(1);
 
   return (
     <>
@@ -29,9 +30,51 @@ const CaregiverTest: NextPage = () => {
                 }
                 id="link1"
               >
-                {/* Main content of left section */}
-
-
+                {/* controls for content displayed in middle sections */}
+                <div className="flex flex-col gap-2">
+                  <a
+                    className={"my-2 ml-4" + (openTab === 1 ? "" : "")}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpenTab(1);
+                    }}
+                    data-toggle="tab"
+                    href="#link1"
+                    role="tablist"
+                  >
+                    <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
+                      <h1>Find Session</h1>
+                    </div>
+                  </a>
+                  <a
+                    className={"my-2 ml-4" + (openTab === 2 ? "" : "")}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpenTab(2);
+                    }}
+                    data-toggle="tab"
+                    href="#link2"
+                    role="tablist"
+                  >
+                    <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
+                      <h1>Scheduled Sessions</h1>
+                    </div>
+                  </a>
+                  <a
+                    className={"my-2 ml-4" + (openTab === 3 ? "" : "")}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setOpenTab(3);
+                    }}
+                    data-toggle="tab"
+                    href="#link3"
+                    role="tablist"
+                  >
+                    <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
+                      <h1>History</h1>
+                    </div>
+                  </a>
+                </div>
               </div>
               {/***********************
                *   MIDDLE SECTION      *
@@ -56,16 +99,13 @@ const CaregiverTest: NextPage = () => {
                   Toggle Side
                 </button>
                 {/* Main content of middle section */}
-
-
-
               </div>
               {/**********************
                * EMPTY RIGHT SECTION  *
                ***********************/}
               <div className="cols-span-1 hidden w-full bg-orange-100 lg:block "></div>
             </main>
-            < Footer />
+            <Footer />
           </>
         )}
         {!session && (
