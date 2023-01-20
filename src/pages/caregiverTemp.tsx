@@ -20,7 +20,7 @@ const CaregiverTest: NextPage = () => {
       <div>
         {session && (
           <>
-            <main className="grid min-h-90vh grid-cols-3 justify-items-center dark:bg-slate-800 lg:grid-cols-6">
+            <main className="grid min-h-90vh grid-cols-3 justify-items-center bg-[hsl(0,0%,96%)] dark:bg-slate-800 text-gray-800 dark:text-gray-100 lg:grid-cols-6">
               {/***********************
                *   LEFT SECTION        *
                ***********************/}
@@ -42,7 +42,7 @@ const CaregiverTest: NextPage = () => {
                     href="#link1"
                     role="tablist"
                   >
-                    <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
+                    <div className="text-md md:text-xl text-gray-800 dark:text-gray-100">
                       <h1>Find Session</h1>
                     </div>
                   </a>
@@ -56,7 +56,7 @@ const CaregiverTest: NextPage = () => {
                     href="#link2"
                     role="tablist"
                   >
-                    <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
+                    <div className="text-md md:text-xl text-gray-800 dark:text-gray-100">
                       <h1>Scheduled Sessions</h1>
                     </div>
                   </a>
@@ -70,7 +70,7 @@ const CaregiverTest: NextPage = () => {
                     href="#link3"
                     role="tablist"
                   >
-                    <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
+                    <div className="text-md md:text-xl text-gray-800 dark:text-gray-100">
                       <h1>History</h1>
                     </div>
                   </a>
@@ -99,6 +99,11 @@ const CaregiverTest: NextPage = () => {
                   Toggle Side
                 </button>
                 {/* Main content of middle section */}
+
+
+
+
+                
               </div>
               {/**********************
                * EMPTY RIGHT SECTION  *

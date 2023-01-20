@@ -25,7 +25,7 @@ const PageTemplate: NextPage = () => {
       <div>
         {session && (
           <>
-            <main className="grid min-h-90vh grid-cols-3 justify-items-center dark:bg-slate-800 lg:grid-cols-6">
+            <main className="grid min-h-90vh grid-cols-3 justify-items-center bg-[hsl(0,0%,96%)] dark:bg-slate-800 text-gray-800 dark:text-gray-100 lg:grid-cols-6">
               {/***********************
                *   LEFT SECTION        *
                ***********************/}
