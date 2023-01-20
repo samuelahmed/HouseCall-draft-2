@@ -31,13 +31,13 @@ const Test: NextPage = () => {
       <div>
         {session && (
           <>
-            <main className="grid min-h-screen grid-cols-3 justify-items-center dark:bg-slate-800 md:grid-cols-6">
+            <main className="grid min-h-screen grid-cols-3 justify-items-center dark:bg-slate-800 lg:grid-cols-6">
               {/***********************
                *   LEFT SECTION        *
                ***********************/}
               <div
                 className={
-                  openSide === 1 ? "col-span-1 w-full" : "hidden md:block"
+                  openSide === 1 ? "col-span-1 w-full" : "hidden lg:block"
                 }
                 id="link1"
               >
@@ -51,8 +51,8 @@ const Test: NextPage = () => {
               <div
                 className={
                   openSide === 1
-                    ? "col-span-2 w-full bg-blue-100 md:col-span-4"
-                    : "col-span-3 w-full bg-blue-100 md:col-span-4"
+                    ? "col-span-2 w-full bg-blue-100 lg:col-span-4"
+                    : "col-span-3 w-full bg-blue-100 lg:col-span-4"
                 }
               >
                 <button
@@ -63,7 +63,7 @@ const Test: NextPage = () => {
                       setOpenSide(1);
                     }
                   }}
-                  className="md:hidden"
+                  className="lg:hidden"
                 >
                   Toggle Side
                 </button>
@@ -74,7 +74,7 @@ const Test: NextPage = () => {
               {/**********************
               * EMPTY RIGHT SECTION  * 
               ***********************/}
-              <div className="cols-span-1 hidden w-full bg-orange-100 md:block"></div>
+              <div className="cols-span-1 hidden w-full bg-orange-100 lg:block"></div>
             </main>
           </>
         )}
