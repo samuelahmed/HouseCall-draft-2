@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import Link from "next/link";
 import { useState } from "react";
+import Footer from "@/components/layout/footer";
 // import { CareSession } from "@prisma/client";
 // import { useRouter } from "next/router";
 
@@ -31,7 +32,7 @@ const Test: NextPage = () => {
       <div>
         {session && (
           <>
-            <main className="grid min-h-screen grid-cols-3 justify-items-center dark:bg-slate-800 lg:grid-cols-6">
+            <main className="grid min-h-90vh grid-cols-3 justify-items-center dark:bg-slate-800 lg:grid-cols-6">
               {/***********************
                *   LEFT SECTION        *
                ***********************/}
@@ -42,8 +43,6 @@ const Test: NextPage = () => {
                 id="link1"
               >
                 {/* Main content of left section */}
-        
-
               </div>
               {/***********************
                *   MIDDLE SECTION      *
@@ -68,14 +67,13 @@ const Test: NextPage = () => {
                   Toggle Side
                 </button>
                 {/* Main content of middle section */}
-
-
               </div>
               {/**********************
-              * EMPTY RIGHT SECTION  * 
-              ***********************/}
-              <div className="cols-span-1 hidden w-full bg-orange-100 lg:block"></div>
+               * EMPTY RIGHT SECTION  *
+               ***********************/}
+              <div className="cols-span-1 hidden w-full bg-orange-100 lg:block "></div>
             </main>
+            < Footer />
           </>
         )}
         {!session && (
