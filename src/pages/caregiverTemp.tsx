@@ -5,6 +5,10 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/layout/footer";
+import SearchEngine from "@/components/caregiver/engines/searchEngine";
+import FindTab from "@/components/caregiver/tabs/findTab";
+import HistoryTab from "@/components/caregiver/tabs/historyTab";
+import ActiveTab from "@/components/caregiver/tabs/activeTab";
 
 const CaregiverTest: NextPage = () => {
   const { data: session } = useSession();
@@ -99,11 +103,44 @@ const CaregiverTest: NextPage = () => {
                   Toggle Side
                 </button>
                 {/* Main content of middle section */}
+                <SearchEngine />
+                <div
+                    className={
+                      openTab === 1
+                        ? "block  w-full rounded  bg-gray-100  dark:bg-gray-800"
+                        : "hidden"
+                    }
+                    id="link1"
+                  >
+                    <FindTab />
+                  </div>
+                  <div
+                    className={
+                      openTab === 2
+                        ? "block  w-full rounded bg-gray-100  dark:bg-gray-800 "
+                        : "hidden"
+                    }
+                    id="link2"
+                  >
+                    <ActiveTab />
+                  </div>
+                  <div
+                    className={
+                      openTab === 3
+                        ? "block  w-full rounded bg-gray-100  dark:bg-gray-800"
+                        : "hidden"
+                    }
+                    id="link3"
+                  >
+                    <HistoryTab />
+                  </div>
 
 
 
 
-                
+
+
+
               </div>
               {/**********************
                * EMPTY RIGHT SECTION  *
