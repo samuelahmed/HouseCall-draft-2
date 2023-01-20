@@ -145,7 +145,7 @@ const CaregiverTest: NextPage = () => {
               {/**********************
                * EMPTY RIGHT SECTION  *
                ***********************/}
-              <div className="cols-span-1 hidden w-full bg-orange-100 lg:block "></div>
+              <div className="cols-span-1 hidden w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:block "></div>
             </main>
             <Footer />
           </>
