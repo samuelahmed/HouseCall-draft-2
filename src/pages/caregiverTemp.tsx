@@ -10,7 +10,7 @@ import FindTab from "@/components/caregiver/tabs/findTab";
 import HistoryTab from "@/components/caregiver/tabs/historyTab";
 import ActiveTab from "@/components/caregiver/tabs/activeTab";
 
-const CaregiverTest: NextPage = () => {
+const CaregiverTest: NextPage = (props) => {
   const { data: session } = useSession();
   const [openSide, setOpenSide] = useState(0);
   const [openTab, setOpenTab] = useState(1);
@@ -90,55 +90,51 @@ const CaregiverTest: NextPage = () => {
                     : "col-span-3 w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:col-span-4"
                 }
               >
- 
-
-
-                {/* Main content of middle section */}
+                {/* Container to hold toggle icon for right section and search engine */}
                 <div className="flex flex-row">
-                <button
-                  onClick={() => {
-                    if (openSide === 1) {
-                      setOpenSide(0);
-                    } else {
-                      setOpenSide(1);
-                    }
-                  }}
-                  className="lg:hidden"
-                >
-                  Menu
-                </button>
-
-                <SearchEngine />
-
+                  <button
+                    onClick={() => {
+                      if (openSide === 1) {
+                        setOpenSide(0);
+                      } else {
+                        setOpenSide(1);
+                      }
+                    }}
+                    className="lg:hidden "
+                  >
+                    <div className={"" + (openSide === 1 ? "hidden" : "")}>
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                        height="2em"
+                        width="2em"
+                        {...props}
+                      >
+                        <path d="M11 4a4 4 0 010 8H8a4.992 4.992 0 002-4 4.992 4.992 0 00-2-4h3zm-6 8a4 4 0 110-8 4 4 0 010 8zM0 8a5 5 0 005 5h6a5 5 0 000-10H5a5 5 0 00-5 5z" />
+                      </svg>
+                    </div>
+                    <div className={"" + (openSide === 1 ? "" : "hidden")}>
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 16 16"
+                        height="2em"
+                        width="2em"
+                        {...props}
+                      >
+                        <path d="M5 3a5 5 0 000 10h6a5 5 0 000-10H5zm6 9a4 4 0 110-8 4 4 0 010 8z" />
+                      </svg>
+                    </div>
+                  </button>
+                  <SearchEngine />
                 </div>
-                <div
-                  className={
-                    openTab === 1
-                      ? "block"
-                      : "hidden"
-                  }
-                  id="link1"
-                >
+                {/* Containers to hold tabs */}
+                <div className={openTab === 1 ? "block" : "hidden"} id="link1">
                   <FindTab />
                 </div>
-                <div
-                  className={
-                    openTab === 2
-                      ? "block"
-                      : "hidden"
-                  }
-                  id="link2"
-                >
+                <div className={openTab === 2 ? "block" : "hidden"} id="link2">
                   <ActiveTab />
                 </div>
-                <div
-                  className={
-                    openTab === 3
-                      ? "block"
-                      : "hidden"
-                  }
-                  id="link3"
-                >
+                <div className={openTab === 3 ? "block" : "hidden"} id="link3">
                   <HistoryTab />
                 </div>
               </div>
