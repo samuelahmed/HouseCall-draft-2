@@ -96,7 +96,7 @@ const CaregiverDashboard: NextPage = () => {
                     }
                     id="link1"
                   >
-                    {/* <FindTab /> */}
+                    <FindTab />
                   </div>
                   <div
                     className={
@@ -106,7 +106,7 @@ const CaregiverDashboard: NextPage = () => {
                     }
                     id="link2"
                   >
-                    {/* <ActiveTab /> */}
+                    <ActiveTab />
                   </div>
                   <div
                     className={
@@ -116,7 +116,7 @@ const CaregiverDashboard: NextPage = () => {
                     }
                     id="link3"
                   >
-                    {/* <HistoryTab /> */}
+                    <HistoryTab />
                   </div>
                 </div>
                 <div className="row-spawn-1 bg-pink-100 collapse">sadfasf</div>
