@@ -91,7 +91,7 @@ const Caregiver: NextPage = (props) => {
                 }
               >
                 {/* Container to toggle left-section-menu and hold search-bar */}
-                <div className="flex flex-row pl-0.5 bg-[hsl(0,0%,88%)] dark:bg-gray-700">
+                <div className="flex flex-row bg-[hsl(0,0%,88%)] pl-0.5 dark:bg-gray-700">
                   <button
                     onClick={() => {
                       if (openSide === 1) {
@@ -147,22 +147,25 @@ const Caregiver: NextPage = (props) => {
           </>
         )}
         {!session && (
-          <main className="justify-top flex min-h-screen flex-col items-center md:justify-center lg:justify-center">
-          <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-            <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
-              Caregiver{" "}
-              <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
-            </h1>
-            <div className="flex flex-row gap-2">
-              <Link href={"/login"} className="rounded border py-1 px-4">
-                Sign in
-              </Link>
-              <Link href={"/register"} className="rounded border py-1 px-4">
-                Register
-              </Link>
-            </div>
-          </div>
-        </main>
+          <>
+            <main className="justify-top flex min-h-90vh flex-col items-center md:justify-center lg:justify-center">
+              <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+                <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
+                  Caregiver{" "}
+                  <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
+                </h1>
+                <div className="flex flex-row gap-2">
+                  <Link href={"/login"} className="rounded border py-1 px-4">
+                    Sign in
+                  </Link>
+                  <Link href={"/register"} className="rounded border py-1 px-4">
+                    Register
+                  </Link>
+                </div>
+              </div>
+            </main>
+            <Footer />
+          </>
         )}
       </div>
     </>

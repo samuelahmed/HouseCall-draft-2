@@ -1,13 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import ResponsiveLayout from "@/components/layout/responsiveLayout";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import Link from "next/link";
 import MessageDashboardConnectionCard from "@/components/messages/messageDashboardConnectionCard";
 import DemoConversationTwoCopy from "@/components/messages/demoConversationTwoCopy";
 import DemoConversationTwo from "@/components/messages/demoConversationTwo";
+import Footer from "@/components/layout/footer";
 
 const Messages: NextPage = () => {
   const { data: session } = useSession();
@@ -19,9 +19,8 @@ const Messages: NextPage = () => {
         <title>Dashboard</title>
       </Head>
       <NavLayout />
-      <ResponsiveLayout>
-        {session && (
-          // START SKELETON TOP
+      {session && (
+        <>
           <main className="grid min-h-90vh grid-rows-5 justify-items-center dark:bg-slate-800 md:grid-rows-6">
             <div className="row-span-5 min-h-90vh w-full rounded border-2 border-gray-200">
               <div className="mx-1 my-1 min-h-90vh rounded border-2 border-gray-900 bg-[hsl(0,0%,88%)] dark:bg-gray-700">
@@ -32,12 +31,11 @@ const Messages: NextPage = () => {
                     <div className="py-6">
                       <div className="justify-center text-center">
                         <div className="relative w-full">
-                          <select className="dark:bg-gray-800 dark:text-gray-100  rounded-md border bg-[hsl(0,0%,96%)] text-gray-800 shadow-sm outline-none border-gray-900">
+                          <select className="rounded-md border  border-gray-900 bg-[hsl(0,0%,96%)] text-gray-800 shadow-sm outline-none dark:bg-gray-800 dark:text-gray-100">
                             <option>Caregivers</option>
                             <option>Patients</option>
                           </select>
                         </div>
-
                       </div>
                       <div className=" py-8max-h-70vh flex min-h-70vh w-full justify-center rounded bg-[hsl(0,0%,88%)] dark:bg-gray-700">
                         <div className="my-4 w-11/12 overflow-scroll rounded bg-[hsl(0,0%,96%)] dark:bg-gray-500">
@@ -222,12 +220,14 @@ const Messages: NextPage = () => {
               </div>
             </div>
           </main>
-          // END SKELETON BOTTOM
-        )}
-        {!session && (
-          <main className="justify-top flex min-h-screen flex-col items-center md:justify-center lg:justify-center">
+          <Footer />
+        </>
+      )}
+      {!session && (
+        <>
+          <main className="justify-top flex min-h-90vh flex-col items-center md:justify-center lg:justify-center">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-              <h1 className="border-slate-800 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
+              <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
                 Messages <span className="text-[hsl(280,100%,70%)]">Page</span>
               </h1>
               <div className="flex flex-row gap-2">
@@ -240,8 +240,9 @@ const Messages: NextPage = () => {
               </div>
             </div>
           </main>
-        )}
-      </ResponsiveLayout>
+          <Footer />
+        </>
+      )}
     </>
   );
 };
