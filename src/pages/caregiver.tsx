@@ -61,7 +61,7 @@ const Caregiver: NextPage = (props) => {
                     role="tablist"
                   >
                     <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
-                      <h1>Scheduled Sessions</h1>
+                      <h1>Active Sessions</h1>
                     </div>
                   </a>
                   <a
