@@ -1,12 +1,12 @@
 ```
 📦src
 
-┣ 📂components
+ ┣ 📂components
  ┃ ┣ 📂account
  ┃ ┃ ┗ 📜accountEditModal.tsx
  ┃ ┣ 📂caregiver
  ┃ ┃ ┣ 📂engines
- ┃ ┃ ┃ ┗ 📜tabsEngine.tsx
+ ┃ ┃ ┃ ┗ 📜searchEngine.tsx
  ┃ ┃ ┣ 📂modals
  ┃ ┃ ┃ ┣ 📜historyModal.tsx
  ┃ ┃ ┃ ┣ 📜mobileFindSessionModal.tsx
@@ -25,16 +25,16 @@
  ┃ ┃ ┣ 📜contactUs.tsx
  ┃ ┃ ┗ 📜supportDocumentation.tsx
  ┃ ┣ 📂layout
+ ┃ ┃ ┣ 📜footer.tsx
  ┃ ┃ ┣ 📜header.tsx
  ┃ ┃ ┣ 📜navLayout.tsx
  ┃ ┃ ┣ 📜responsiveLayout.tsx
  ┃ ┃ ┣ 📜sideNav.tsx
  ┃ ┃ ┗ 📜themeManager.tsx
  ┃ ┣ 📂messages
- ┃ ┃ ┣ 📜demoConversation.tsx
  ┃ ┃ ┣ 📜demoConversationTwo.tsx
- ┃ ┃ ┣ 📜messageDashboardConnectionCard.tsx
- ┃ ┃ ┗ 📜messagesPageEngine.tsx
+ ┃ ┃ ┣ 📜demoConversationTwoCopy.tsx
+ ┃ ┃ ┗ 📜messageDashboardConnectionCard.tsx
  ┃ ┗ 📂patient
  ┃ ┃ ┗ 📜createSession.tsx
 
@@ -80,16 +80,15 @@
  ┃ ┃ ┃ ┗ 📜updateAccount.ts
  ┃ ┃ ┣ 📜context.ts
  ┃ ┃ ┗ 📜trpc.ts
-
+ 
  ┣ 📂styles
  ┃ ┗ 📜globals.css
-
  ┣ 📂types
  ┃ ┗ 📜next-auth.d.ts
-
  ┣ 📂utils
  ┃ ┗ 📜trpc.ts
-
  ┗ 📂validation
  ┃ ┗ 📜auth.ts
-```
+ 
+ 
+ ```
