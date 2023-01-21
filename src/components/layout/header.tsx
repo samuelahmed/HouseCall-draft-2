@@ -17,9 +17,9 @@ const Header = ({
   return (
     <div className="sticky top-0 z-50 grid grid-cols-2 items-center bg-[hsl(0,0%,88%)] py-1 dark:bg-gray-700">
       <div className="flex justify-start ">
-        <div className="pl-4 md:pl-0">
+        <div className=" md:pl-0">
           <Bars3CenterLeftIcon
-            className="ml-6 h-8 w-8 cursor-pointer text-gray-900 dark:text-gray-100"
+            className=" h-8 w-8 cursor-pointer text-gray-900 dark:text-gray-100"
             onClick={() => setShowNav(!showNav)}
           />
         </div>
