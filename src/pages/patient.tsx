@@ -12,6 +12,12 @@ const Patient: NextPage = (props) => {
   const { data: session } = useSession();
   const [openSide, setOpenSide] = useState(0);
   const [openTab, setOpenTab] = useState(1);
+  let search;
+  if (openTab !== 1) {
+    search = <SearchEngine />;
+  } else {
+    search = <div className="h-14"></div>;
+  }
 
   return (
     <>
@@ -24,8 +30,8 @@ const Patient: NextPage = (props) => {
           <>
             <main className="grid min-h-90vh grid-cols-3 justify-items-center bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100 lg:grid-cols-6">
               {/***********************
-               *   LEFT SECTION        *
-               ***********************/}
+               *   LEFT SECTION       *
+               **********************/}
               <div
                 className={
                   openSide === 1 ? "col-span-1 w-full" : "hidden lg:block"
@@ -89,7 +95,7 @@ const Patient: NextPage = (props) => {
                 }
               >
                 {/* Container to toggle left-section-menu and hold search-bar */}
-                <div className="flex flex-row pl-0.5 bg-[hsl(0,0%,88%)] dark:bg-gray-700">
+                <div className="flex flex-row bg-[hsl(0,0%,88%)] pl-0.5 dark:bg-gray-700">
                   <button
                     onClick={() => {
                       if (openSide === 1) {
@@ -123,17 +129,18 @@ const Patient: NextPage = (props) => {
                       </svg>
                     </div>
                   </button>
-                  < SearchEngine />
+                  {search}
                 </div>
                 {/* Containers to hold content that get dynamically changed from left-section-menu */}
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-                <CreateSession />
+                  <CreateSession />
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                Render Session that were created by the session user ID
+                  Render Session that were created by the session user ID
                 </div>
                 <div className={openTab === 3 ? "block" : "hidden"} id="link3">
-               Render historical of sessions that were created by the session user ID
+                  Render historical of sessions that were created by the session
+                  user ID
                 </div>
               </div>
               {/************************
@@ -148,7 +155,8 @@ const Patient: NextPage = (props) => {
           <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
               <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-                Caregiver <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
+                Caregiver{" "}
+                <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
               </h1>
               <div className="flex flex-row gap-2">
                 <Link href={"/login"} className="rounded border py-1 px-4">
