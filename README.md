@@ -80,7 +80,7 @@
  ┃ ┃ ┃ ┗ 📜updateAccount.ts
  ┃ ┃ ┣ 📜context.ts
  ┃ ┃ ┗ 📜trpc.ts
- 
+
  ┣ 📂styles
  ┃ ┗ 📜globals.css
  ┣ 📂types
@@ -89,6 +89,5 @@
  ┃ ┗ 📜trpc.ts
  ┗ 📂validation
  ┃ ┗ 📜auth.ts
- 
  
  ```
