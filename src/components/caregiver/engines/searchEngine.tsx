@@ -35,11 +35,13 @@ const SearchEngine = () => {
               placeholder="Search"
             />
           </div>
-          <div className="shrink pr-4 ">
-            <button className="hover:bg-grey-200 h-10 rounded border border-gray-500 bg-transparent  px-4 pt-2 font-semibold text-gray-700 hover:border-blue-700 hover:text-blue-700 dark:border-white dark:bg-gray-800 dark:text-gray-200 dark:hover:border-blue-200 dark:hover:text-blue-200">
+          <div className="justify-items-center px-3 md:mb-0 md:w-1/3">
+
+          <button
+          className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) mt-6 h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-800 hover:bg-[hsl(154,47%,66%)] dark:text-gray-100 dark:hover:text-gray-800">
               Search
             </button>
-          </div>
+            </div>
         </div>
       </div>
     </>
