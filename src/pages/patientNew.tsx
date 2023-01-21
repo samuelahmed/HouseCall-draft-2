@@ -6,19 +6,34 @@ import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/layout/footer";
 import SearchEngine from "@/components/caregiver/engines/searchEngine";
+import CreateSession from "@/components/patient/createSession";
+
+
+
+
 import FindTab from "@/components/caregiver/tabs/findTab";
 import HistoryTab from "@/components/caregiver/tabs/historyTab";
 import ActiveTab from "@/components/caregiver/tabs/activeTab";
 
-const Caregiver: NextPage = (props) => {
+const Patient: NextPage = (props) => {
   const { data: session } = useSession();
   const [openSide, setOpenSide] = useState(0);
   const [openTab, setOpenTab] = useState(1);
 
+
+  // Removing search engine from patient dashboard because the UI is causing issue. 
+  // Also there is currently no logic to handle the search.
+  let search;
+  if (openTab !== 1) {
+    search = <SearchEngine />;
+  } else {
+    search = <></>;
+  }
+
   return (
     <>
       <Head>
-        <title>Caregiver Dashbaord</title>
+        <title>Patient Dashboard</title>
       </Head>
       <NavLayout />
       <div>
@@ -47,7 +62,7 @@ const Caregiver: NextPage = (props) => {
                     role="tablist"
                   >
                     <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
-                      <h1>Find Session</h1>
+                      <h1>Create Session</h1>
                     </div>
                   </a>
                   <a
@@ -61,7 +76,7 @@ const Caregiver: NextPage = (props) => {
                     role="tablist"
                   >
                     <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
-                      <h1>Scheduled Sessions</h1>
+                      <h1>Active Session</h1>
                     </div>
                   </a>
                   <a
@@ -125,17 +140,17 @@ const Caregiver: NextPage = (props) => {
                       </svg>
                     </div>
                   </button>
-                  <SearchEngine />
+                  {/* {search} */}
                 </div>
                 {/* Containers to hold content that get dynamically changed from left-section-menu */}
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-                  <FindTab />
+                <CreateSession />
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                  <ActiveTab />
+                Render Session that were created by the session user ID
                 </div>
                 <div className={openTab === 3 ? "block" : "hidden"} id="link3">
-                  <HistoryTab />
+               Render historical of sessions that were created by the session user ID
                 </div>
               </div>
               {/************************
@@ -168,4 +183,4 @@ const Caregiver: NextPage = (props) => {
   );
 };
 
-export default Caregiver;
+export default Patient;
