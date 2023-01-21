@@ -91,7 +91,7 @@ const CaregiverTest: NextPage = (props) => {
                 }
               >
                 {/* Container to hold toggle icon for right section and search engine */}
-                <div className="flex flex-row ml-0.5">
+                <div className="flex flex-row pl-0.5 bg-[hsl(0,0%,88%)] dark:bg-gray-700">
                   <button
                     onClick={() => {
                       if (openSide === 1) {
