@@ -91,7 +91,7 @@ const FindTab = () => {
           </div>
           {/* Job Details Card */}
           <div className="hidden overflow-scroll pr-2 md:block">
-            <div className="grid max-h-78vh justify-items-center gap-4 rounded bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
+            <div className="grid max-h-78vh min-h-78vh justify-items-center gap-4 rounded bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
               <div className="flex h-128 w-11/12  flex-col  justify-between rounded-xl border border-gray-400 bg-white p-2 leading-normal dark:bg-gray-800">
                 <div className={rightCard === 1 ? "" : "hidden"}>
                   <div className="mb-4 mr-4 ml-4  justify-center  ">
