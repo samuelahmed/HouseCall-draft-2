@@ -152,22 +152,22 @@ const Patient: NextPage = (props) => {
           </>
         )}
         {!session && (
-          <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-            <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-              <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-                Caregiver{" "}
-                <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
-              </h1>
-              <div className="flex flex-row gap-2">
-                <Link href={"/login"} className="rounded border py-1 px-4">
-                  Login
-                </Link>
-                <Link href={"/register"} className="rounded border py-1 px-4">
-                  Register
-                </Link>
-              </div>
+          <main className="justify-top flex min-h-screen flex-col items-center md:justify-center lg:justify-center">
+          <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+            <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
+              Patient{" "}
+              <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
+            </h1>
+            <div className="flex flex-row gap-2">
+              <Link href={"/login"} className="rounded border py-1 px-4">
+                Sign in
+              </Link>
+              <Link href={"/register"} className="rounded border py-1 px-4">
+                Register
+              </Link>
             </div>
-          </main>
+          </div>
+        </main>
         )}
       </div>
     </>
