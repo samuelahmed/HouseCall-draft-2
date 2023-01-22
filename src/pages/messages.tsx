@@ -274,8 +274,8 @@ const Messages: NextPage = (props) => {
             <main className="justify-top flex min-h-90vh flex-col items-center md:justify-center lg:justify-center">
               <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
                 <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
-                  Patient{" "}
-                  <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
+                  Messages{" "}
+                  <span className="text-[hsl(280,100%,70%)]">Page</span>
                 </h1>
                 <div className="flex flex-row gap-2">
                   <Link href={"/login"} className="rounded border py-1 px-4">
