@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import Link from "next/link";
-import MessageDashboardConnectionCard from "@/components/messages/messageDashboardConnectionCard";
+import MessageDashboardConnectionCard from "@/components/messages/messageDashboardConnectionCardJohn";
 import DemoConversationTwoCopy from "@/components/messages/demoConversationTwoCopy";
 import DemoConversationTwo from "@/components/messages/demoConversationTwo";
 import Footer from "@/components/layout/footer";

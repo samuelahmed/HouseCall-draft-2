@@ -7,9 +7,10 @@ import { useState } from "react";
 import Footer from "@/components/layout/footer";
 import CreateSession from "@/components/patient/createSession";
 import SearchEngine from "@/components/caregiver/engines/searchEngine";
-import MessageDashboardConnectionCard from "@/components/messages/messageDashboardConnectionCard";
 import DemoConversationTwo from "@/components/messages/demoConversationTwo";
 import DemoConversationTwoCopy from "@/components/messages/demoConversationTwoCopy";
+import MessageDashboardConnectionCard from "@/components/messages/messageDashboardConnectionCard";
+import MessageDashboardConnectionCardJohn from "@/components/messages/messageDashboardConnectionCardJohn";
 
 const Patient: NextPage = (props) => {
   const { data: session } = useSession();
@@ -61,7 +62,7 @@ const Patient: NextPage = (props) => {
                     }}
                     className="my-2 mx-1 grid h-16 cursor-pointer grid-rows-1 content-center overflow-hidden rounded-xl border border-gray-900 bg-[hsl(0,0%,96%)] px-1 py-1 hover:bg-white dark:bg-gray-600 dark:hover:bg-gray-300 dark:hover:text-gray-800 md:grid-rows-2 lg:grid-rows-2"
                   >
-                    <MessageDashboardConnectionCard />
+                    <MessageDashboardConnectionCardJohn />
                   </div>
                   <div
                     onClick={(e) => {
@@ -79,7 +80,7 @@ const Patient: NextPage = (props) => {
                     }}
                     className="my-2 mx-1 grid h-16 cursor-pointer grid-rows-1 content-center overflow-hidden rounded-xl border border-gray-900 bg-[hsl(0,0%,96%)] px-1 py-1 hover:bg-white dark:bg-gray-600 dark:hover:bg-gray-300 dark:hover:text-gray-800 md:grid-rows-2 lg:grid-rows-2"
                   >
-                    <MessageDashboardConnectionCard />
+                    <MessageDashboardConnectionCardJohn />
                   </div>
                 </div>
               </div>

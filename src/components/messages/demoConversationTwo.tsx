@@ -4,9 +4,9 @@ const DemoConversationTwo = () => {
       <div className="flex h-16 w-full items-center justify-around  ">
         <div className="text-center text-xl font-semibold">John Smith</div>
       </div>
-      <div className=" rounded bg-white dark:bg-gray-500">
+      <div className=" bg-white dark:bg-gray-500">
         {/* THIS DIV CONTROLS THE HEIGHT OF THE CHAT */}
-        <div className=" grid max-h-70vh min-h-70vh grid-cols-1 overflow-scroll rounded bg-white py-2 dark:bg-gray-500">
+        <div className=" grid max-h-75vh min-h-75vh grid-cols-1 overflow-scroll rounded bg-white py-2 dark:bg-gray-500">
           <div className="max-h-128 grid grid-cols-3 gap-4">
             <div className="col-start-1 col-end-3 ml-2 rounded border border-gray-300 bg-gray-200 dark:border-gray-900 dark:bg-gray-600">
               <div className="px-2 py-2 text-left">
