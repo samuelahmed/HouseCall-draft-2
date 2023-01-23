@@ -24,23 +24,24 @@ model User {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   CareSession   CareSession[]
-    sessions Session[]
+  sessions      Session[]
 }
 
 model CareSession {
-  sessionId           String  @id @unique @default(cuid())
-  author       User    @relation(fields: [authorId], references: [id])
-  authorId     String // relation scalar field  (used in the `@relation` attribute above)
-  name         String?
-  title        String?
-  address      String?
-  medicalNotes String?
-  overview     String?
-  sessionType String?
-  hourlyRate   Int?
-  totalHours   Int?
+  id                Int     @id @default(autoincrement())
+  sessionId         String  @unique @default(cuid())
+  author            User    @relation(fields: [authorId], references: [id])
+  authorId          String // relation scalar field  (used in the `@relation` attribute above)
+  name              String?
+  title             String?
+  address           String?
+  medicalNotes      String?
+  overview          String?
+  sessionType       String?
+  hourlyRate        Int?
+  totalHours        Int?
   totalCompensation Int?
-  slug         String
+  slug              String
 
   @@unique([slug])
   @@index([authorId])
@@ -52,5 +53,6 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId])
 }
