@@ -7,6 +7,7 @@ import { useState } from "react";
 import Footer from "@/components/layout/footer";
 import CreateSession from "@/components/patient/createSession";
 import SearchEngine from "@/components/caregiver/engines/searchEngine";
+import HistoryPatient from "@/components/patient/historyPatient";
 
 const Patient: NextPage = (props) => {
   const { data: session } = useSession();
@@ -139,8 +140,7 @@ const Patient: NextPage = (props) => {
                   Render Session that were created by the session user ID
                 </div>
                 <div className={openTab === 3 ? "block" : "hidden"} id="link3">
-                  Render historical of sessions that were created by the session
-                  user ID
+                  < HistoryPatient />
                 </div>
               </div>
               {/************************
