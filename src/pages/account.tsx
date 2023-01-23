@@ -15,6 +15,7 @@ const Account: NextPage = (props) => {
   const [openSide, setOpenSide] = useState(0);
   const [openTab, setOpenTab] = useState(1);
 
+
   return (
     <>
       <Head>
@@ -97,6 +98,7 @@ const Account: NextPage = (props) => {
                       </svg>
                     </div>
                   </button>
+                  <div className="h-14"></div>
                 </div>
                 {/* Containers to hold content that get dynamically changed from left-section-menu */}
                 <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
