@@ -102,26 +102,27 @@ const Account: NextPage = (props) => {
                 </div>
                 {/* Containers to hold content that get dynamically changed from left-section-menu */}
                 <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
-                  <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] dark:bg-gray-800">
+                  <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] dark:bg-gray-800 px-2">
                     <Image
-                      className="ml-20 mt-20 rounded"
+                      className="mt-10 rounded"
                       src={(data && data?.image) || "/cat.jpg"}
                       alt=""
                       width={200}
                       height={200}
                     />
-                    <div className="grid grid-cols-6 gap-6 py-10">
-                      <div className="col-span-4 col-start-2">
-                        Name:
+                    <div className="flex flex-col gap-2 mt-2">
+                      <div className="">
+                        Name:{" "}
                         {isLoading || (data && data?.username) || (
                           <span className="text-red-600">Meow! No Name</span>
                         )}
                       </div>
-                      <div className="col-span-4 col-start-2">
-                        Email:
+                      <div className="">
+                        Email:{" "}
                         {isLoading ||
                           (data && data?.email) ||
-                          "Meow, something went very wrong"}
+                          <span className="text-red-600">Meow! Something went very wrong.</span>
+                          }
                       </div>
                     </div>
                     <div className="flex justify-center">
