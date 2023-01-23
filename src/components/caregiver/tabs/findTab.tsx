@@ -11,6 +11,12 @@ const FindTab = () => {
     title: "",
     sessionId: "",
     name: "",
+    address: "",
+    overview: "",
+    sessionType: "",
+    hourlyRate: 0,
+    totalHours: 0,
+    totalCompensation: 0,
   });
 
   const selectedSession = trpc.sessionAPIs.getOneSessionTwo.useQuery({
@@ -33,7 +39,7 @@ const FindTab = () => {
                 <ul>
                   {data
                     ?.map((data) => {
-                      const { sessionId, title, name, address, overview, author } = data;
+                      const { sessionId, title, name, address, overview, author, sessionType, hourlyRate, totalHours, totalCompensation } = data;
                       console.log(author)
                       return (
                         <li
@@ -46,6 +52,13 @@ const FindTab = () => {
                                 sessionId: sessionId,
                                 title: title || "still loading",
                                 name: name || "still loading",
+                                address: address || "still loading",
+                                overview: overview || "still loading",
+                                sessionType: sessionType || "still loading",
+                                hourlyRate: Number(data.hourlyRate) || 0,
+                                totalHours: Number(data.totalHours) || 0,
+                                totalCompensation: Number(data.totalCompensation) || ((Number(totalHours) || 0) * (Number(hourlyRate) || 0)),
+
                               });
                             }}
                             className="mb-8"

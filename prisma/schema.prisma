@@ -36,6 +36,10 @@ model CareSession {
   address      String?
   medicalNotes String?
   overview     String?
+  sessionType String?
+  hourlyRate   Int?
+  totalHours   Int?
+  totalCompensation Int?
   slug         String
 
   @@unique([slug])
