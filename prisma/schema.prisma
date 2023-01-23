@@ -28,7 +28,7 @@ model User {
 }
 
 model CareSession {
-  sessionId           String  @id @default(cuid())
+  sessionId           String  @id @unique @default(cuid())
   author       User    @relation(fields: [authorId], references: [id])
   authorId     String // relation scalar field  (used in the `@relation` attribute above)
   name         String?

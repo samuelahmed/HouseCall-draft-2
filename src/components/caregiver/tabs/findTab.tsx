@@ -33,7 +33,8 @@ const FindTab = () => {
                 <ul>
                   {data
                     ?.map((data) => {
-                      const { sessionId, title, name, address, overview } = data;
+                      const { sessionId, title, name, address, overview, author } = data;
+                      console.log(author)
                       return (
                         <li
                           key={sessionId}

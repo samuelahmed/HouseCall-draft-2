@@ -44,7 +44,17 @@ export const sessionRouter = router({
   ),  
 
   getAllSessions: publicProcedure.query(({ ctx }) => {
-    const items = ctx.prisma.careSession.findMany();
+    const items = ctx.prisma.careSession.findMany({
+        include: {
+            author: {
+                select: {
+                    id: true,
+                    username: true,
+                    role: true,
+                }
+            }
+        }
+    });
     return items;
   }),
 

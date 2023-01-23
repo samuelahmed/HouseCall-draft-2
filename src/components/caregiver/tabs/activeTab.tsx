@@ -5,7 +5,7 @@ const ActiveTab = () => {
   const rows = [];
   for (let i = 0; i < 10; i++) {
     rows.push(
-      <div className="flex w-11/12 cursor-pointer flex-col  justify-between  rounded-xl border border-gray-400 bg-white p-2 leading-normal hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-600">
+      <div key={i} className="flex w-11/12 cursor-pointer flex-col  justify-between  rounded-xl border border-gray-400 bg-white p-2 leading-normal hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-600">
         <ActiveSession />
         <div className="flex justify-center">
           <ScheduledSessionModal />
