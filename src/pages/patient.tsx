@@ -104,7 +104,7 @@ const Patient: NextPage = (props) => {
                         setOpenSide(1);
                       }
                     }}
-                    className="lg:hidden "
+                    className="lg:hidden"
                   >
                     <div className={"" + (openSide === 1 ? "hidden" : "")}>
                       <svg
