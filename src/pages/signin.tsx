@@ -1,19 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "../components/layout/navLayout";
-import { useSession } from "next-auth/react";
-import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/layout/footer";
-import Image from "next/image";
-import AccountEditModal from "@/components/account/accountEditModal";
-import { trpc } from "@/utils/trpc";
 import LoginForm from "@/components/forms/loginForm";
 import RegisterForm from "@/components/forms/registerForm";
 
-const Account: NextPage = (props) => {
-  const { data: session } = useSession();
-  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
+const Signin: NextPage = (props) => {
   const [openSide, setOpenSide] = useState(0);
   const [openTab, setOpenTab] = useState(1);
 
@@ -142,4 +135,4 @@ const Account: NextPage = (props) => {
   );
 };
 
-export default Account;
+export default Signin;
