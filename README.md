@@ -34,9 +34,12 @@
  ┃ ┣ 📂messages
  ┃ ┃ ┣ 📜demoConversationTwo.tsx
  ┃ ┃ ┣ 📜demoConversationTwoCopy.tsx
- ┃ ┃ ┗ 📜messageDashboardConnectionCard.tsx
+ ┃ ┃ ┣ 📜messageDashboardConnectionCard.tsx
+ ┃ ┃ ┗ 📜messageDashboardConnectionCardJohn.tsx
  ┃ ┗ 📂patient
- ┃ ┃ ┗ 📜createSession.tsx
+ ┃ ┃ ┣ 📜activeSessionPatient.tsx
+ ┃ ┃ ┣ 📜createSession.tsx
+ ┃ ┃ ┗ 📜historyPatient.tsx
 
  ┣ 📂env
  ┃ ┣ 📜client.mjs
@@ -83,10 +86,13 @@
 
  ┣ 📂styles
  ┃ ┗ 📜globals.css
+
  ┣ 📂types
  ┃ ┗ 📜next-auth.d.ts
+
  ┣ 📂utils
  ┃ ┗ 📜trpc.ts
+
  ┗ 📂validation
  ┃ ┗ 📜auth.ts
  
