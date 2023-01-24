@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/layout/footer";
-import SearchEngine from "@/components/caregiver/engines/searchEngine";
+import SearchEngine from "@/components/engines/searchEngine";
 import FindTab from "@/components/caregiver/tabs/findTab";
 import HistoryTab from "@/components/caregiver/tabs/historyTab";
 import ActiveTab from "@/components/caregiver/tabs/activeTab";

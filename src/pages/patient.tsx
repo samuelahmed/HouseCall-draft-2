@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/layout/footer";
 import CreateSession from "@/components/patient/createSession";
-import SearchEngine from "@/components/caregiver/engines/searchEngine";
+import SearchEngine from "@/components/engines/searchEngine";
 import HistoryPatient from "@/components/patient/historyPatient";
 import ActiveSessionPatient from "@/components/patient/activeSessionPatient";
 
