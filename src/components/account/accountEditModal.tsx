@@ -90,10 +90,12 @@ const AccountEditModal = () => {
                           placeholder=""
                         />
                       </div>
+
+
                       {/* ADDRESS */}
                       <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
                         <p className="mr-2 w-28 text-lg"> Address </p>
-                        {/* <input
+                        <input
                           value={inputs.address}
                           onChange={(e) =>
                             setInputs((prev) => ({
@@ -105,7 +107,7 @@ const AccountEditModal = () => {
                           name="text"
                           className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
                           placeholder=""
-                        /> */}
+                        />
                       </div>
                       {/* ROLE */}
                       <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">

@@ -12,7 +12,7 @@ const CreateSession = () => {
 
   const [inputs, setInputs] = useState({
     name: data?.username || "",
-    address: "",
+    address: data?.address || "",
     medicalNotes: "",
     overview: "",
     title: "Mobility Support",
@@ -36,12 +36,17 @@ const CreateSession = () => {
     setInputs((prev) => ({
       ...prev,
       name: data?.username || "",
+      address: data?.address || "",
     }));
-  }, [data?.username]);
+  }, [data?.username, data?.address]);
+
+
 
   const publish = () => {
     mutate(inputs);
   };
+
+
 
   const { mutate } = trpc.sessionAPIs.createOneSession.useMutation({
     onSuccess(newSession) {
