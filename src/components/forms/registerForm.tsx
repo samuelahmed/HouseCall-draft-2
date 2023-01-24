@@ -27,7 +27,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="radius flex flex-col items-center gap-2 border p-4">
+    <div className="flex flex-col items-center gap-2 bg-[hsl(0,0%,96%)] dark:bg-slate-800">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         {errorMessage && (
           <p className="text-center text-red-600">{errorMessage}</p>
