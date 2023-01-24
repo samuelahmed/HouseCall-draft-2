@@ -23,9 +23,9 @@ export const authOptions: NextAuthOptions = {
   },
   secret: env.NEXTAUTH_SECRET,
   pages: {
-    signIn: "/login",
+    signIn: "/signin",
     newUser: "/register",
-    error: "/login",
+    error: "/signin",
   },
   providers: [
     Credentials({

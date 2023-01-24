@@ -162,7 +162,7 @@ const Patient: NextPage = (props) => {
                   <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
                 </h1>
                 <div className="flex flex-row gap-2">
-                  <Link href={"/login"} className="rounded border py-1 px-4">
+                  <Link href={"/signin"} className="rounded border py-1 px-4">
                     Sign in
                   </Link>
                   <Link href={"/register"} className="rounded border py-1 px-4">

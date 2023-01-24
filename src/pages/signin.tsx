@@ -113,29 +113,23 @@ const Account: NextPage = (props) => {
             </div>
             {/* Containers to hold content that get dynamically changed from left-section-menu */}
             <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-
-            <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
-              <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] px-2 dark:bg-gray-800 ">
-                <div className="mt-10">
-                  <LoginForm />
+              <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
+                <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] px-2 dark:bg-gray-800 ">
+                  <div className="mt-10">
+                    <LoginForm />
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
             <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-            <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
-              <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] px-2 dark:bg-gray-800 ">
-                <div className="mt-10">
-                <RegisterForm />
+              <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
+                <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] px-2 dark:bg-gray-800 ">
+                  <div className="mt-10">
+                    <RegisterForm />
+                  </div>
                 </div>
               </div>
             </div>
-
-
-
-
-                </div>
-
           </div>
           {/************************
            *  EMPTY RIGHT SECTION  *
