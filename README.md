@@ -28,7 +28,6 @@
  ┃ ┃ ┣ 📜footer.tsx
  ┃ ┃ ┣ 📜header.tsx
  ┃ ┃ ┣ 📜navLayout.tsx
- ┃ ┃ ┣ 📜responsiveLayout.tsx
  ┃ ┃ ┣ 📜sideNav.tsx
  ┃ ┃ ┗ 📜themeManager.tsx
  ┃ ┣ 📂messages
@@ -61,12 +60,11 @@
  ┃ ┣ 📜caregiver.tsx
  ┃ ┣ 📜help.tsx
  ┃ ┣ 📜index.tsx
- ┃ ┣ 📜login.tsx
  ┃ ┣ 📜loginSuccess.tsx
  ┃ ┣ 📜messages.tsx
  ┃ ┣ 📜patient.tsx
  ┃ ┣ 📜register.tsx
- ┃ ┗ 📜test.tsx
+ ┃ ┗ 📜signin.tsx
 
  ┣ 📂server
  ┃ ┣ 📂common
