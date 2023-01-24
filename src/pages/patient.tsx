@@ -8,6 +8,7 @@ import Footer from "@/components/layout/footer";
 import CreateSession from "@/components/patient/createSession";
 import SearchEngine from "@/components/caregiver/engines/searchEngine";
 import HistoryPatient from "@/components/patient/historyPatient";
+import ActiveSessionPatient from "@/components/patient/activeSessionPatient";
 
 const Patient: NextPage = (props) => {
   const { data: session } = useSession();
@@ -137,7 +138,8 @@ const Patient: NextPage = (props) => {
                   <CreateSession />
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                  Render Session that were created by the session user ID
+                  < ActiveSessionPatient />
+
                 </div>
                 <div className={openTab === 3 ? "block" : "hidden"} id="link3">
                   < HistoryPatient />

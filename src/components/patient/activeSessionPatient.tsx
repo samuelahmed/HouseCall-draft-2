@@ -1,6 +1,6 @@
 import { trpc } from "@/utils/trpc";
 
-const HistoryPatient = () => {
+const ActiveSessionPatient = () => {
   const { data } = trpc.sessionAPIs.getAllSessionsByUser.useQuery();
 
   return (
@@ -15,8 +15,11 @@ const HistoryPatient = () => {
                     const {
                       sessionId,
                       title,
+                      name,
+                      address,
                       overview,
                       medicalNotes,
+                      hourlyRate,
                       totalCompensation,
                       totalHours,
                     } = data;
@@ -31,6 +34,18 @@ const HistoryPatient = () => {
                         <div className="grid grid-cols-2 items-center justify-center">
                           <div className="cols-span-1">
                             <p className="text-sm  text-gray-800 dark:text-gray-100">
+                              <span className="font-semibold text-gray-800 dark:text-gray-200">
+                                Name:&nbsp;
+                              </span>
+                              {name}
+                            </p>
+                            <p className="text-sm  text-gray-800 dark:text-gray-100">
+                              <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                                Address:&nbsp;
+                              </span>
+                              {address}
+                            </p>
+                            <p className="text-sm  text-gray-800 dark:text-gray-100">
                               <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                 Overview:&nbsp;
                               </span>
@@ -44,6 +59,12 @@ const HistoryPatient = () => {
                             </p>
                           </div>
                           <div className="cols-span-1">
+                            <p className="text-sm  text-gray-800 dark:text-gray-100">
+                              <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                                Hourly Rate:&nbsp;
+                              </span>
+                              ${hourlyRate}
+                            </p>
                             <p className="text-sm  text-gray-800 dark:text-gray-100">
                               <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                 Hours:&nbsp;
@@ -71,4 +92,4 @@ const HistoryPatient = () => {
   );
 };
 
-export default HistoryPatient;
+export default ActiveSessionPatient;
