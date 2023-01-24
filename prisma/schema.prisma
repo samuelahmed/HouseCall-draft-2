@@ -12,6 +12,11 @@ datasource db {
   relationMode = "prisma"
 }
 
+// ********************************************************************************
+// * NOTE: IF USER IS QUERIED IT WILL RETURN THE HASHED PASSWORD                  *
+// * MAKE SURE TO NOT ADD MANY FIELDS HERE AND DO NOT RETURN IN QUERY OR MUTATION *
+// ********************************************************************************
+
 model User {
   id            String        @id @default(cuid())
   username      String?       @unique
