@@ -20,7 +20,7 @@ const Account: NextPage = (props) => {
   return (
     <>
       <Head>
-        <title>Sign in</title>
+        <title>Register</title>
       </Head>
       <NavLayout />
       <div>
@@ -45,7 +45,7 @@ const Account: NextPage = (props) => {
                 role="tablist"
               >
                 <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
-                  <h1>Sign in</h1>
+                  <h1>Register</h1>
                 </div>
               </a>
               <a
@@ -59,7 +59,7 @@ const Account: NextPage = (props) => {
                 role="tablist"
               >
                 <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
-                  <h1>Register</h1>
+                  <h1>Sign in</h1>
                 </div>
               </a>
             </div>
@@ -116,7 +116,8 @@ const Account: NextPage = (props) => {
               <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
                 <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] px-2 dark:bg-gray-800 ">
                   <div className="mt-10">
-                    <LoginForm />
+                  <RegisterForm />
+
                   </div>
                 </div>
               </div>
@@ -125,7 +126,7 @@ const Account: NextPage = (props) => {
               <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
                 <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] px-2 dark:bg-gray-800 ">
                   <div className="mt-10">
-                    <RegisterForm />
+                  <LoginForm />
                   </div>
                 </div>
               </div>
