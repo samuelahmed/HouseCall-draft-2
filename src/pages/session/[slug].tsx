@@ -4,12 +4,26 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "@/components/layout/navLayout";
 
+//   NOTE THERE IS STRANGE ERROR ON BRAVE:
+//   Warning: React has detected a change in the order of Hooks called by Slug.
+// This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
+//   Previous render            Next render
+//   ------------------------------------------------------
+// 1. useContext                 useContext
+// 2. undefined                  useContext
+//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+//    at Slug (webpack-internal:///./src/pages/session/[slug].tsx:18:74)
+//    Warning: Internal React error: Expected static flag was missing. Please notify the React team.
+//   FIX ASAP
+//   END WARNING
+
 const Slug: NextPage = () => {
   const router = useRouter();
   const { slug } = router.query;
   if (typeof slug !== "string") return null;
   const { data: card } = trpc.sessionAPIs.getOneSession.useQuery({ slug });
-  
+
   return (
     <>
       <Head>
@@ -46,6 +60,24 @@ const Slug: NextPage = () => {
                   Overview:&nbsp;
                 </span>
                 {card?.overview}
+              </p>
+              <p className="text-gray-900  dark:text-white">
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  Compensation Per Hour:&nbsp;
+                </span>
+                ${card?.hourlyRate}
+              </p>
+              <p className="text-gray-900  dark:text-white">
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  Hours:&nbsp;
+                </span>
+                {card?.totalHours}
+              </p>
+              <p className="text-gray-900  dark:text-white">
+                <span className="font-semibold text-gray-900 dark:text-white">
+                  Total:&nbsp;
+                </span>
+                ${card?.totalCompensation}
               </p>
             </div>
           </div>
