@@ -20,7 +20,8 @@ const FindTab = () => {
   });
 
   const selectedSession = trpc.sessionAPIs.getOneSessionTwo.useQuery({
-    sessionId: inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
+    sessionId:
+      inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
   });
 
   return (
@@ -39,8 +40,19 @@ const FindTab = () => {
                 <ul>
                   {data
                     ?.map((data) => {
-                      const { sessionId, title, name, address, overview, author, sessionType, hourlyRate, totalHours, totalCompensation } = data;
-                      console.log(author)
+                      const {
+                        sessionId,
+                        title,
+                        name,
+                        address,
+                        overview,
+                        author,
+                        sessionType,
+                        hourlyRate,
+                        totalHours,
+                        totalCompensation,
+                      } = data;
+                      console.log(author);
                       return (
                         <li
                           key={sessionId}
@@ -57,8 +69,10 @@ const FindTab = () => {
                                 sessionType: sessionType || "still loading",
                                 hourlyRate: Number(data.hourlyRate) || 0,
                                 totalHours: Number(data.totalHours) || 0,
-                                totalCompensation: Number(data.totalCompensation) || ((Number(totalHours) || 0) * (Number(hourlyRate) || 0)),
-
+                                totalCompensation:
+                                  Number(data.totalCompensation) ||
+                                  (Number(totalHours) || 0) *
+                                    (Number(hourlyRate) || 0),
                               });
                             }}
                             className="mb-8"
@@ -83,6 +97,12 @@ const FindTab = () => {
                                 Overview:&nbsp;
                               </span>
                               {overview}
+                            </p>
+                            <p className="text-sm  text-gray-800 dark:text-gray-100">
+                              <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                                Total Compensation:&nbsp;
+                              </span>
+                              ${totalCompensation}
                             </p>
                           </div>
                           <div className="mb-4 flex flex-col items-center justify-center">
@@ -136,6 +156,24 @@ const FindTab = () => {
                           Overview:&nbsp;
                         </span>
                         {selectedSession?.data?.overview || isLoading}
+                      </p>
+                      <p className="text-gray-900 dark:text-gray-100">
+                        <span className="font-semibold text-gray-800 dark:text-gray-200">
+                          Hourly Rate:&nbsp;
+                        </span>
+                        ${selectedSession?.data?.hourlyRate || isLoading}
+                      </p>
+                      <p className="text-gray-900 dark:text-gray-100">
+                        <span className="font-semibold text-gray-800 dark:text-gray-200">
+                          Hours:&nbsp;
+                        </span>
+                        {selectedSession?.data?.totalHours || isLoading}
+                      </p>
+                      <p className="text-gray-900 dark:text-gray-100">
+                        <span className="font-semibold text-gray-800 dark:text-gray-200">
+                          Total:&nbsp;
+                        </span>
+                        ${selectedSession?.data?.totalCompensation || isLoading}
                       </p>
                       <div className="flex flex-col items-center justify-center">
                         <button
