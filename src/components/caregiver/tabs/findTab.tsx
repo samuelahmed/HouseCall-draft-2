@@ -52,7 +52,6 @@ const FindTab = () => {
                         totalHours,
                         totalCompensation,
                       } = data;
-                      console.log(author);
                       return (
                         <li
                           key={sessionId}
