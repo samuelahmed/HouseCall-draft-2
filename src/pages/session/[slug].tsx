@@ -7,37 +7,46 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const Slug: NextPage = () => {
-
   const [inputs, setInputs] = useState({
-    currentUserId: '',
-    sessionId: '',
+    currentUserId: "",
+    sessionId: "",
     status: "pending",
   });
 
-  
   const router = useRouter();
   const { slug } = router.query as { slug: string };
-
-
   const { data: card } = trpc.sessionAPIs.getOneSession.useQuery({ slug });
   const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if(data && card) {
-     setInputs({
-     currentUserId: data.id,
-     sessionId: card.sessionId,
-     status: "pending",
-     });
+    if (data && card) {
+      setInputs({
+        currentUserId: data.id,
+        sessionId: card.sessionId,
+        status: "pending",
+      });
     }
-   }, [data, card]);
-
+  }, [data, card]);
 
   const publish = () => {
-    if(data && card) mutate({userId: data.id, careSessionId: card.sessionId, status: "pending"});
+    if (data && card) {
+      mutate({
+        userId: data.id,
+        careSessionId: card.sessionId,
+        status: "pending",
+      });
+    }
   };
 
-  const { mutate } = trpc.sessionAPIs.addOnePotentialCaregiver.useMutation({});
+  const { mutate } = trpc.sessionAPIs.addOnePotentialCaregiver.useMutation({
+    onError: (error) => {
+      setErrorMessage(error.message);
+    },
+    onSuccess: () => {
+      // some action on success
+    }
+  });
 
   return (
     <>
@@ -104,15 +113,22 @@ const Slug: NextPage = () => {
               className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
               onClick={() => {
                 setInputs({
-                  currentUserId: data?.id || '',
-                  sessionId: card?.sessionId || '',
+                  currentUserId: data?.id || "",
+                  sessionId: card?.sessionId || "",
                   status: "pending",
                 });
                 publish();
               }}
             >
-              Become Caregiver
+              Apply
             </button>
+            {errorMessage && (
+      <p className="text-center text-red-600">
+        Meow! Something went wrong. Please try again later.
+        {/* {errorMessage} */}
+        </p>
+    )}
+
           </div>
         </div>
       </div>
