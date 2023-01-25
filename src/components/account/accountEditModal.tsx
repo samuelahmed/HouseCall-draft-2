@@ -90,8 +90,6 @@ const AccountEditModal = () => {
                           placeholder=""
                         />
                       </div>
-
-
                       {/* ADDRESS */}
                       <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
                         <p className="mr-2 w-28 text-lg"> Address </p>
