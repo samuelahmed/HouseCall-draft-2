@@ -8,7 +8,7 @@ const CreateSession = () => {
   const [items, setItems] = useState<CareSession[]>([]);
   const router = useRouter();
   const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
-  console.log(data?.username);
+  // console.log(data?.username);
 
   const [inputs, setInputs] = useState({
     name: data?.username || "",
@@ -19,6 +19,7 @@ const CreateSession = () => {
     hourlyRate: 20,
     totalHours: 1,
     totalCompensation: 20,
+    acceptedCaregiverId: "",
   });
 
   const totalComp = inputs.totalHours * inputs.hourlyRate;

@@ -3,26 +3,41 @@ import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "@/components/layout/navLayout";
-
-//   NOTE THERE IS STRANGE ERROR ON BRAVE:
-//   Warning: React has detected a change in the order of Hooks called by Slug.
-// This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
-//   Previous render            Next render
-//   ------------------------------------------------------
-// 1. useContext                 useContext
-// 2. undefined                  useContext
-//   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-//    at Slug (webpack-internal:///./src/pages/session/[slug].tsx:18:74)
-//    Warning: Internal React error: Expected static flag was missing. Please notify the React team.
-//   FIX ASAP
-//   END WARNING
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Slug: NextPage = () => {
+
+  const [inputs, setInputs] = useState({
+    currentUserId: '',
+    sessionId: '',
+    status: "pending",
+  });
+
+  
   const router = useRouter();
-  const { slug } = router.query;
-  if (typeof slug !== "string") return null;
+  const { slug } = router.query as { slug: string };
+
+
   const { data: card } = trpc.sessionAPIs.getOneSession.useQuery({ slug });
+  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
+
+  useEffect(() => {
+    if(data && card) {
+     setInputs({
+     currentUserId: data.id,
+     sessionId: card.sessionId,
+     status: "pending",
+     });
+    }
+   }, [data, card]);
+
+
+  const publish = () => {
+    if(data && card) mutate({userId: data.id, careSessionId: card.sessionId, status: "pending"});
+  };
+
+  const { mutate } = trpc.sessionAPIs.addOnePotentialCaregiver.useMutation({});
 
   return (
     <>
@@ -84,6 +99,19 @@ const Slug: NextPage = () => {
           <div className="mt-12 mb-12 flex justify-around ">
             <button className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white">
               Schedule Session
+            </button>
+            <button
+              className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+              onClick={() => {
+                setInputs({
+                  currentUserId: data?.id || '',
+                  sessionId: card?.sessionId || '',
+                  status: "pending",
+                });
+                publish();
+              }}
+            >
+              Become Caregiver
             </button>
           </div>
         </div>

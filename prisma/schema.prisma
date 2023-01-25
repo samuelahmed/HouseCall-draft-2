@@ -48,6 +48,10 @@ model CareSession {
   totalCompensation Int?
   slug              String
 
+  // NEW
+  acceptedCaregiverId String
+  // END NEW
+
   @@unique([slug])
   @@index([authorId])
 }
@@ -61,3 +65,17 @@ model Session {
 
   @@index([userId])
 }
+
+
+
+// NEW
+model PotentialCaregiver {
+  id String @id @default(cuid())
+  careSessionId String @unique
+  userId String
+  status String // could be "pending", "accepted", "rejected"
+  appliedAt DateTime @default(now())
+  @@index([careSessionId, userId], name: "careSession_user")
+}
+  
+  // END NEW
