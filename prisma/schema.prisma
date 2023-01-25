@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
@@ -52,16 +55,19 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@index([userId])
 }
 
-model PotentialCaregiver {
-  id            String   @id @default(cuid())
-  careSessionId String   @unique
-  userId        String
-  status        String // could be "pending", "accepted", "rejected"
-  appliedAt     DateTime @default(now())
 
+
+// NEW
+model PotentialCaregiver {
+  id String @id @default(cuid())
+  careSessionId String @unique
+  userId String
+  status String // could be "pending", "accepted", "rejected"
+  appliedAt DateTime @default(now())
   @@index([careSessionId, userId], name: "careSession_user")
 }
+  
+  // END NEW

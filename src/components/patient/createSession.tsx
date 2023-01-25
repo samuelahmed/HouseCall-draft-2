@@ -20,7 +20,6 @@ const CreateSession = () => {
     totalHours: 1,
     totalCompensation: 20,
     acceptedCaregiverId: "",
-    id: 0,
   });
 
   const totalComp = inputs.totalHours * inputs.hourlyRate;
