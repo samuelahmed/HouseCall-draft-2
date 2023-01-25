@@ -1,24 +1,21 @@
 import { trpc } from "@/utils/trpc";
-import { useRouter } from "next/router";
-import { useState } from "react";
+// import { useRouter } from "next/router";
+// import { useState } from "react";
 
 const ActiveSessionCaregiver = () => {
-  // const { data } = trpc.sessionAPIs.getAllSessionsByUser.useQuery();
+  const { data } = trpc.sessionAPIs.getAllSessionsByPotentialCaregiver.useQuery();
 
-  const { data } =
-    trpc.sessionAPIs.getAllSessionsByPotentialCaregiver.useQuery();
-  const router = useRouter();
-
-  const [inputs, setInputs] = useState({
-    sessionId: "",
-  });
-
+  // ROUTE TO SESSION PAGE ON CLICK
+  // const router = useRouter();
+  // const [inputs, setInputs] = useState({
+  //   sessionId: "",
+  // });
   // const selectedSession = trpc.sessionAPIs.getOneSessionTwo.useQuery({
   //   sessionId:
   //     inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
   // });
+  // END ROUTE TO SESSION PAGE ON CLICK
 
-  // console.log(data)
   return (
     <>
       <div className="grid grid-rows-1  bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700">
