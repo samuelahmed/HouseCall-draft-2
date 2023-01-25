@@ -9,7 +9,7 @@ export const sessionRouter = router({
   createOneSession: privateProcedure
     .input(
       z.object({
-        id: z.string(),
+        id: z.number(),
         name: z.string(),
         address: z.string(),
         medicalNotes: z.string(),
@@ -104,13 +104,13 @@ export const sessionRouter = router({
       return card;
     }),
 
-  getOneSessionTwo: privateProcedure
-    .input(z.object({ id: z.string() }))
+ getOneSessionTwo: privateProcedure
+    .input(z.object({ sessionId: z.string() }))
     .query(async ({ ctx, input }) => {
-      const { id } = input;
+      const { sessionId } = input;
       const returnedSession = ctx.prisma.careSession.findUnique({
         where: {
-          id,
+          sessionId,
         },
       });
       return returnedSession;
@@ -149,65 +149,49 @@ export const sessionRouter = router({
     //     }
     //     const items = ctx.prisma.potentialCaregiver.findMany({
     //       where: { id: ctx.session.user.id },
-    //       select: { careSession
-    //         : {
-    //           select: {
-    //             id: true,
-    //             name: true,
-    //             address: true,
-    //             medicalNotes: true,
-    //             overview: true,
-    //             title: true,
-    //             hourlyRate: true,
-    //             totalHours: true,
-    //             totalCompensation: true,
-    //             acceptedCaregiverId: true,
-    //             slug: true,
-    //             authorId: true,
-    //        },
-    //       },
+        
     //     },
 
     //   });
     //   return items;
     // }),
 
-    getAllSessionsByPotentialCaregiver: privateProcedure.query(async ({ ctx }) => {
-      if (!ctx.session || !ctx.session.user) {
-        return null;
-      }
+    // getAllSessionsByPotentialCaregiver: privateProcedure.query(async ({ ctx }) => {
+    //   if (!ctx.session || !ctx.session.user) {
+    //     return null;
+    //   }
   
-      const potentialCaregiver = await ctx.prisma.potentialCaregiver.findMany({
-        where: { userId: ctx.session.user.id },
-        select: { careSessionId: true },
-      });
+    //   const potentialCaregiver = await ctx.prisma.potentialCaregiver.findMany({
+    //     where: { userId: ctx.session.user.id },
+    //     select: { careSessionId: true },
+    //   });
   
-      if (!potentialCaregiver) {
-        return null;
-      }
+    //   if (!potentialCaregiver) {
+    //     return null;
+    //   }
   
-      const careSessionIds = potentialCaregiver.map((pc) => pc.careSessionId);
+    //   const careSessionIds = potentialCaregiver.map((pc) => pc.careSessionId);
   
-      const sessions = await ctx.prisma.careSession.findMany({
-        where: { id: { in: careSessionIds } },
-        select: {
-          id: true,
-          name: true,
-          address: true,
-          medicalNotes: true,
-          overview: true,
-          title: true,
-          hourlyRate: true,
-          totalHours: true,
-          totalCompensation: true,
-          acceptedCaregiverId: true,
-          slug: true,
-          authorId: true,
-        },
-      });
+    //   const sessions = await ctx.prisma.careSession.findMany({
+    //     where: { id: { in: careSessionIds } },
+    //     select: {
+    //       id: true,
+    //       name: true,
+    //       address: true,
+    //       medicalNotes: true,
+    //       overview: true,
+    //       title: true,
+    //       hourlyRate: true,
+    //       totalHours: true,
+    //       totalCompensation: true,
+    //       acceptedCaregiverId: true,
+    //       slug: true,
+    //       authorId: true,
+    //     },
+    //   });
   
-      return sessions;
-    }),
+    //   return sessions;
+    // }),
   
 
 

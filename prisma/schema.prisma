@@ -25,23 +25,23 @@ model User {
 }
 
 model CareSession {
-  id                  String  @id @default(cuid())
-  sessionId           String  @unique @default(cuid())
-  author              User    @relation(fields: [authorId], references: [id])
-  authorId            String // relation scalar field  (used in the `@relation` attribute above)
-  name                String?
-  title               String?
-  address             String?
-  medicalNotes        String?
-  overview            String?
-  sessionType         String?
-  hourlyRate          Int?
-  totalHours          Int?
-  totalCompensation   Int?
-  // potentialCaregivers PotentialCaregiver[]
-  slug                String
+  id                Int     @id @default(autoincrement())
+  sessionId         String  @unique @default(cuid())
+  author            User    @relation(fields: [authorId], references: [id])
+  authorId          String // relation scalar field  (used in the `@relation` attribute above)
+  name              String?
+  title             String?
+  address           String?
+  medicalNotes      String?
+  overview          String?
+  sessionType       String?
+  hourlyRate        Int?
+  totalHours        Int?
+  totalCompensation Int?
+  slug              String
+  // NEW
   acceptedCaregiverId String
-
+  // END NEW
   @@unique([slug])
   @@index([authorId])
 }
