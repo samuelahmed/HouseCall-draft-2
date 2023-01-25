@@ -41,13 +41,9 @@ const CreateSession = () => {
     }));
   }, [data?.username, data?.address]);
 
-
-
   const publish = () => {
     mutate(inputs);
   };
-
-
 
   const { mutate } = trpc.sessionAPIs.createOneSession.useMutation({
     onSuccess(newSession) {

@@ -4,8 +4,6 @@ import { useState } from "react";
 
 const ActiveSessionCaregiver = () => {
   // const { data } = trpc.sessionAPIs.getAllSessionsByPotentialCaregiver.useQuery();
-
-  // ROUTE TO SESSION PAGE ON CLICK
   // const router = useRouter();
 
   const { data } = trpc.sessionAPIs.getAllSessionsByUser.useQuery();
@@ -20,7 +18,6 @@ const ActiveSessionCaregiver = () => {
   //   sessionId:
   //     inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
   // });
-  // END ROUTE TO SESSION PAGE ON CLICK
 
   return (
     <>
