@@ -3,6 +3,8 @@ import { z } from "zod";
 import slug from "slug";
 
 export const sessionRouter = router({
+
+
   createOneSession: privateProcedure
     .input(
       z.object({
@@ -15,10 +17,14 @@ export const sessionRouter = router({
         totalHours: z.number(),
         totalCompensation: z.number(),
         acceptedCaregiverId: z.string(),
+        sessionId: z.string(),
+        id : z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
+
       const {
+        id,
         acceptedCaregiverId,
         name,
         address,
@@ -36,13 +42,13 @@ export const sessionRouter = router({
           id: ctx.session.user.id,
         },
       });
-      if (!user) {
+      if (!sessionId || !slug(sessionId) || !user) {
         throw new Error("Meow! user not found.");
       }
       const userId = user.id;
       const item = await ctx.prisma.careSession.create({
         data: {
-          sessionId,
+          id,
           name,
           address,
           medicalNotes,
@@ -53,6 +59,7 @@ export const sessionRouter = router({
           totalCompensation,
           acceptedCaregiverId,
           slug: slug(sessionId),
+          sessionId : sessionId,
           authorId: userId,
         },
       });
@@ -123,19 +130,23 @@ export const sessionRouter = router({
     .input(
       z.object({
         careSessionId: z.string(),
-        userId: z.string(),
+        caregiverId: z.string(),
         status: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
-      const { careSessionId, userId, status } = input;
-      const item = await ctx.prisma.potentialCaregiver.create({
+      const { careSessionId, caregiverId, status } = input;
+      const item = await ctx.prisma.potentialCareSession.create({
         data: {
           careSessionId,
-          userId,
+          caregiverId,
           status,
         },
       });
       return item;
     }),
+
+
+
+
 });

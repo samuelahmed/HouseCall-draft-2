@@ -13,38 +13,39 @@ datasource db {
 }
 
 model User {
-  id            String        @id @default(cuid())
-  username      String?       @unique
-  email         String?       @unique
-  emailVerified DateTime?
-  password      String
-  image         String?
-  role          String?
-  address       String?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  CareSession   CareSession[]
-  sessions      Session[]
+  id                    String                 @id @default(cuid())
+  username              String?                @unique
+  email                 String?                @unique
+  emailVerified         DateTime?
+  password              String
+  image                 String?
+  role                  String?
+  address               String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  potentialCareSessions PotentialCareSession[]
+  sessions              Session[]
+  careSessions          CareSession[]
 }
 
 model CareSession {
-  id                Int     @id @default(autoincrement())
-  sessionId         String  @unique @default(cuid())
-  author            User    @relation(fields: [authorId], references: [id])
-  authorId          String // relation scalar field  (used in the `@relation` attribute above)
-  name              String?
-  title             String?
-  address           String?
-  medicalNotes      String?
-  overview          String?
-  sessionType       String?
-  hourlyRate        Int?
-  totalHours        Int?
-  totalCompensation Int?
-  slug              String
-  // NEW
+  id                  String                 @id @default(cuid())
+  sessionId           String                 @unique @default(cuid())
+  author              User                   @relation(fields: [authorId], references: [id])
+  authorId            String // relation scalar field  (used in the `@relation` attribute above)
+  name                String?
+  title               String?
+  address             String?
+  medicalNotes        String?
+  overview            String?
+  sessionType         String?
+  hourlyRate          Int?
+  totalHours          Int?
+  totalCompensation   Int?
+  slug                String
   acceptedCaregiverId String
-  // END NEW
+  potentialCaregivers PotentialCareSession[]
+
   @@unique([slug])
   @@index([authorId])
 }
@@ -55,19 +56,18 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
   @@index([userId])
 }
 
+model PotentialCareSession {
+  id            String      @id @default(cuid())
+  caregiver     User        @relation(fields: [caregiverId], references: [id])
+  caregiverId   String // relation scalar field  (used in the `@relation` attribute above)
+  careSession   CareSession @relation(fields: [careSessionId], references: [id])
+  careSessionId String      @unique // relation scalar field (used in the `@relation` attribute above)
+  status        String // could be "pending", "accepted", "rejected"
+  appliedAt     DateTime    @default(now())
 
-
-// NEW
-model PotentialCaregiver {
-  id String @id @default(cuid())
-  careSessionId String @unique
-  userId String
-  status String // could be "pending", "accepted", "rejected"
-  appliedAt DateTime @default(now())
-  @@index([careSessionId, userId], name: "careSession_user")
+  @@index([caregiverId])
 }
-  
-  // END NEW
