@@ -1,10 +1,9 @@
 import { router, publicProcedure, privateProcedure } from "../trpc";
 import { z } from "zod";
 import slug from "slug";
+import { userAgent } from "next/server";
 
 export const sessionRouter = router({
-
-
   createOneSession: privateProcedure
     .input(
       z.object({
@@ -20,7 +19,6 @@ export const sessionRouter = router({
       })
     )
     .mutation(async ({ input, ctx }) => {
-
       const {
         acceptedCaregiverId,
         name,
@@ -75,12 +73,6 @@ export const sessionRouter = router({
     });
     return items;
   }),
-
-
-
-
-
-
 
   getAllSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
@@ -147,7 +139,24 @@ export const sessionRouter = router({
       return item;
     }),
 
-
-
-
+  getAllPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      throw new Error("Meow! Not authorized.");
+    }
+    const user = await ctx.prisma.user.findUnique({
+      where: {
+        id: ctx.session.user.id,
+      },
+    });
+    if (!user) {
+      throw new Error("Meow! user not found.");
+    }
+    const userId = user.id;
+    const items = await ctx.prisma.potentialCareSession.findMany({
+      where: {
+        caregiverId: userId,
+      },
+    });
+    return items;
+  }),
 });

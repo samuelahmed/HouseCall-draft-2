@@ -3,21 +3,23 @@ import { trpc } from "@/utils/trpc";
 import { useState } from "react";
 
 const ActiveSessionCaregiver = () => {
-  // const { data } = trpc.sessionAPIs.getAllSessionsByPotentialCaregiver.useQuery();
+  const { data } = trpc.sessionAPIs.getAllPotentialSessionsByUser.useQuery();
+  console.log(data)
   // const router = useRouter();
 
-  const { data } = trpc.sessionAPIs.getAllSessionsByUser.useQuery();
+  // const { data: dataTwo } = trpc.sessionAPIs.getAllSessionsByUser.useQuery();
   const [inputs, setInputs] = useState({
     sessionId: "",
   });
 
-  const selectedSession = trpc.sessionAPIs.getOneSessionTwo.useQuery({
-    sessionId:
-      inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
-  });
+  // const selectedSession = trpc.sessionAPIs.getOneSession.useQuery({
+  //   sessionId: data.
+  // });
   //   sessionId:
   //     inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
   // });
+
+  
 
   return (
     <>
@@ -31,14 +33,14 @@ const ActiveSessionCaregiver = () => {
                     .map((item) => {
                       const {
                         id,
-                        title,
-                        name,
-                        address,
-                        overview,
-                        medicalNotes,
-                        hourlyRate,
-                        totalCompensation,
-                        totalHours,
+                        // title,
+                        // name,
+                        // address,
+                        // overview,
+                        // medicalNotes,
+                        // hourlyRate,
+                        // totalCompensation,
+                        // totalHours,
                       } = item;
                       return (
                         <li
@@ -46,7 +48,7 @@ const ActiveSessionCaregiver = () => {
                           className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
                         >
                           <div className="text-center text-xl text-gray-800 dark:text-gray-100">
-                            <p>{title}</p>
+                            {/* <p>{title}</p> */}
                           </div>
                           <div className="grid grid-cols-3 items-center justify-center">
                             <div className="cols-span-1">
@@ -54,25 +56,25 @@ const ActiveSessionCaregiver = () => {
                                 <span className="font-semibold text-gray-800 dark:text-gray-200">
                                   Name:&nbsp;
                                 </span>
-                                {name}
+                                {/* {name} */}
                               </p>
                               <p className="text-sm  text-gray-800 dark:text-gray-100">
                                 <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                   Address:&nbsp;
                                 </span>
-                                {address}
+                                {/* {address} */}
                               </p>
                               <p className="text-sm  text-gray-800 dark:text-gray-100">
                                 <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                   Overview:&nbsp;
                                 </span>
-                                {overview}
+                                {/* {overview} */}
                               </p>
                               <p className="text-sm  text-gray-800 dark:text-gray-100">
                                 <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                   Medical Notes:&nbsp;
                                 </span>
-                                {medicalNotes}
+                                {/* {medicalNotes} */}
                               </p>
                             </div>
                             <div className="cols-span-1">
@@ -80,19 +82,19 @@ const ActiveSessionCaregiver = () => {
                                 <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                   Hourly Rate:&nbsp;
                                 </span>
-                                ${hourlyRate}
+                                {/* ${hourlyRate} */}
                               </p>
                               <p className="text-sm  text-gray-800 dark:text-gray-100">
                                 <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                   Hours:&nbsp;
                                 </span>
-                                {totalHours}
+                                {/* {totalHours} */}
                               </p>
                               <p className="text-sm  text-gray-800 dark:text-gray-100">
                                 <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                   Total:&nbsp;
                                 </span>
-                                ${totalCompensation}
+                                {/* ${totalCompensation} */}
                               </p>
                             </div>
                             <div className="cols-span-1">
