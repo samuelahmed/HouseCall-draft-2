@@ -124,7 +124,7 @@ export const sessionRouter = router({
       return returnedSession;
     }),
 
-  addOnePotentialCaregiver: privateProcedure
+  createOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
         careSessionId: z.string(),

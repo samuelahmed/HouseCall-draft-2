@@ -39,7 +39,7 @@ const Slug: NextPage = () => {
     }
   };
 
-  const { mutate } = trpc.sessionAPIs.addOnePotentialCaregiver.useMutation({
+  const { mutate } = trpc.sessionAPIs.createOnePotentialCaregiver.useMutation({
     onError: (error) => {
       setErrorMessage(error.message);
     },
