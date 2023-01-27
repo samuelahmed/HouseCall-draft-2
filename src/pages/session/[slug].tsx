@@ -32,7 +32,7 @@ const Slug: NextPage = () => {
   const publish = () => {
     if (data && card) {
       mutate({
-        userId: data.id,
+        caregiverId: data.id,
         careSessionId: card.sessionId,
         status: "pending",
       });
