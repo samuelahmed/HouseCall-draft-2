@@ -1,25 +1,13 @@
 import { trpc } from "@/utils/trpc";
-// import { useRouter } from "next/router";
 import { useState } from "react";
 
 const ActiveSessionCaregiver = () => {
   const { data } = trpc.sessionAPIs.getAllPotentialSessionsByUser.useQuery();
-  console.log(data)
-  // const router = useRouter();
 
-  // const { data: dataTwo } = trpc.sessionAPIs.getAllSessionsByUser.useQuery();
   const [inputs, setInputs] = useState({
     sessionId: "",
   });
 
-  // const selectedSession = trpc.sessionAPIs.getOneSession.useQuery({
-  //   sessionId: data.
-  // });
-  //   sessionId:
-  //     inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
-  // });
-
-  
 
   return (
     <>
@@ -98,16 +86,6 @@ const ActiveSessionCaregiver = () => {
                               </p>
                             </div>
                             <div className="cols-span-1">
-                              {/* <button
-                              onClick={() =>
-                                router.push(
-                                  `/session/${selectedSession.data?.slug}`
-                                )
-                              }
-                              className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) mt-6 h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-800 hover:bg-[hsl(154,47%,66%)] dark:text-gray-100 dark:hover:text-gray-800"
-                            >
-                              Details
-                            </button> */}
                             </div>
                           </div>
                         </li>
