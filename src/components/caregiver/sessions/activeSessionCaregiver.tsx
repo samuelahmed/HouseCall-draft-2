@@ -2,7 +2,7 @@ import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 
 const ActiveSessionCaregiver = () => {
-  const { data } = trpc.sessionAPIs.getAllPotentialSessionsByUser.useQuery();
+  const { data } = trpc.sessionAPIs.readAllPotentialSessionsByUser.useQuery();
   const router = useRouter();
 
   return (
