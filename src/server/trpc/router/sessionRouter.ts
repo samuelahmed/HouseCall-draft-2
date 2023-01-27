@@ -3,7 +3,7 @@ import { z } from "zod";
 import slug from "slug";
 import { userAgent } from "next/server";
 
-//NOTE: SHOULD I RENAME EVERY ROUTE TO FOLLOW CRUD CONVENTION? 
+//NOTE: SHOULD I RENAME EVERY ROUTE TO FOLLOW CRUD CONVENTION?
 // I.E. CREATE, READ, UPDATE, DELETE
 
 export const sessionRouter = router({
@@ -156,12 +156,15 @@ export const sessionRouter = router({
       throw new Error("Meow! user not found.");
     }
     const userId = user.id;
-    const currentUserPotentialCareSessions = await ctx.prisma.potentialCareSession.findMany({
-      where: {
-        caregiverId: userId,
-      },
-    });
-    const careSessionIds = currentUserPotentialCareSessions.map((session) => session.careSessionId);
+    const currentUserPotentialCareSessions =
+      await ctx.prisma.potentialCareSession.findMany({
+        where: {
+          caregiverId: userId,
+        },
+      });
+    const careSessionIds = currentUserPotentialCareSessions.map(
+      (session) => session.careSessionId
+    );
     const careSessions = await ctx.prisma.careSession.findMany({
       where: {
         sessionId: {
@@ -185,13 +188,16 @@ export const sessionRouter = router({
       throw new Error("Meow! user not found.");
     }
     const userId = user.id;
-    const currentUserPotentialCareSessions = await ctx.prisma.potentialCareSession.findMany({
-      where: {
-        caregiverId: userId,
-        //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
-      },
-    });
-    const careSessionIds = currentUserPotentialCareSessions.map((session) => session.careSessionId);
+    const currentUserPotentialCareSessions =
+      await ctx.prisma.potentialCareSession.findMany({
+        where: {
+          caregiverId: userId,
+          //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
+        },
+      });
+    const careSessionIds = currentUserPotentialCareSessions.map(
+      (session) => session.careSessionId
+    );
     const careSessions = await ctx.prisma.careSession.findMany({
       where: {
         sessionId: {
@@ -201,12 +207,4 @@ export const sessionRouter = router({
     });
     return careSessions;
   }),
-
-
-
-
-
-
-
-
 });
