@@ -1,14 +1,77 @@
+import { trpc } from "@/utils/trpc";
+import { useState } from "react";
+
 const HistorySession = () => {
+  const { data } = trpc.sessionAPIs.readAllHistoricalSessionsByUser.useQuery();
+
+  const [inputs, setInputs] = useState({
+    sessionId: "",
+  });
+
   return (
     <>
-      <div className="grid grid-cols-1">
-        <div className="mb-2 flex flex-row flex-wrap justify-around gap-4 p-4  text-gray-800 dark:text-white">
-          <p className="text-gray-900 dark:text-white">1/21/2023</p> 
-          <p className="text-gray-900 dark:text-white">$170</p>
-          <p className="text-gray-900 dark:text-white">1:00pm - 6:00pm</p>
-          <p className="font-semibold text-gray-900 dark:text-white">
-            Companion Care
-          </p>
+      <div className="grid grid-rows-1  bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700">
+        <div className="mb-4 grid grid-cols-1 bg-[hsl(0,0%,88%)] pt-2 pb-2 dark:bg-gray-700">
+          <div className="max-h-78vh min-h-78vh overflow-scroll">
+            <div className="grid grid-cols-1 justify-items-center gap-4  bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
+              <ul>
+                {data &&
+                  data
+                    .map((item) => {
+                      const {
+                        id,
+                        title,
+                        overview,
+                        hourlyRate,
+                        totalCompensation,
+                        totalHours,
+                      } = item;
+                      return (
+                        <li
+                          key={id}
+                          className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
+                        >
+                          <div className="text-center text-xl text-gray-800 dark:text-gray-100">
+                            <p>{title}</p>
+                          </div>
+                          <div className="grid grid-cols-3 items-center justify-center">
+                            <div className="cols-span-1">
+                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                                <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                                  Overview:&nbsp;
+                                </span>
+                                {overview}
+                              </p>
+                            </div>
+                            <div className="cols-span-1">
+                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                                <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                                  Hourly Rate:&nbsp;
+                                </span>
+                                ${hourlyRate}
+                              </p>
+                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                                <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                                  Hours:&nbsp;
+                                </span>
+                                {totalHours}
+                              </p>
+                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                                <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                                  Total:&nbsp;
+                                </span>
+                                ${totalCompensation}
+                              </p>
+                            </div>
+                            <div className="cols-span-1"></div>
+                          </div>
+                        </li>
+                      );
+                    })
+                    .reverse()}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </>
