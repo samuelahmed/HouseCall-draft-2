@@ -3,6 +3,9 @@ import { z } from "zod";
 import slug from "slug";
 import { userAgent } from "next/server";
 
+//NOTE: SHOULD I RENAME EVERY ROUTE TO FOLLOW CRUD CONVENTION? 
+// I.E. CREATE, READ, UPDATE, DELETE
+
 export const sessionRouter = router({
   createOneSession: privateProcedure
     .input(
@@ -107,6 +110,7 @@ export const sessionRouter = router({
       return card;
     }),
 
+  //To do: Rename to readCurrentSessionForSlug
   getOneSessionTwo: privateProcedure
     .input(z.object({ sessionId: z.string() }))
     .query(async ({ ctx, input }) => {
