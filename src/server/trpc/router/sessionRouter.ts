@@ -17,14 +17,11 @@ export const sessionRouter = router({
         totalHours: z.number(),
         totalCompensation: z.number(),
         acceptedCaregiverId: z.string(),
-        sessionId: z.string(),
-        id : z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
 
       const {
-        id,
         acceptedCaregiverId,
         name,
         address,
@@ -42,13 +39,12 @@ export const sessionRouter = router({
           id: ctx.session.user.id,
         },
       });
-      if (!sessionId || !slug(sessionId) || !user) {
+      if (!user) {
         throw new Error("Meow! user not found.");
       }
       const userId = user.id;
       const item = await ctx.prisma.careSession.create({
         data: {
-          id,
           name,
           address,
           medicalNotes,
@@ -59,7 +55,6 @@ export const sessionRouter = router({
           totalCompensation,
           acceptedCaregiverId,
           slug: slug(sessionId),
-          sessionId : sessionId,
           authorId: userId,
         },
       });
@@ -80,6 +75,12 @@ export const sessionRouter = router({
     });
     return items;
   }),
+
+
+
+
+
+
 
   getAllSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
