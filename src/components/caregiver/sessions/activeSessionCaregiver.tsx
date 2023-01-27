@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const ActiveSessionCaregiver = () => {
   const { data } = trpc.sessionAPIs.getAllPotentialSessionsByUser.useQuery();
-  console.log(data)
+  // console.log(data)
   // const router = useRouter();
 
   // const { data: dataTwo } = trpc.sessionAPIs.getAllSessionsByUser.useQuery();
