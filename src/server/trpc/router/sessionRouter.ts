@@ -172,7 +172,7 @@ export const sessionRouter = router({
     return careSessions;
   }),
 
-  getAllHistoricalSessionsByUser: privateProcedure.query(async ({ ctx }) => {
+  readAllHistoricalSessionsByUser: privateProcedure.query(async ({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       throw new Error("Meow! Not authorized.");
     }
