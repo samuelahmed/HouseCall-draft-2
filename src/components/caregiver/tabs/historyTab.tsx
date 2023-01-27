@@ -1,9 +1,6 @@
 import HistorySession from "../sessions/history";
-import HistoryModal from "../modals/historyModal";
 
 const HistoryTab = () => {
-
-
   return (
     <>
       <div className="grid grid-rows-1  bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700 ">
