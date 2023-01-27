@@ -62,7 +62,8 @@ export const sessionRouter = router({
       return item;
     }),
 
-  getAllSessions: publicProcedure.query(({ ctx }) => {
+  
+  readAllSessions: publicProcedure.query(({ ctx }) => {
     const items = ctx.prisma.careSession.findMany({
       include: {
         author: {
@@ -77,7 +78,7 @@ export const sessionRouter = router({
     return items;
   }),
 
-  getAllSessionsByUser: privateProcedure.query(({ ctx }) => {
+  readAllSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       return null;
     }
