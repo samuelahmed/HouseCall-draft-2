@@ -19,7 +19,7 @@ const FindTab = () => {
     totalCompensation: 0,
   });
 
-  const selectedSession = trpc.sessionAPIs.getOneSessionTwo.useQuery({
+  const selectedSession = trpc.sessionAPIs.readOneSessionBySessionId.useQuery({
     sessionId:
       inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
   });

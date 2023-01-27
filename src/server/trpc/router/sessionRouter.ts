@@ -99,7 +99,7 @@ export const sessionRouter = router({
     return items;
   }),
 
-  getOneSession: privateProcedure
+  readOneSessionBySlug: privateProcedure
     .input(z.object({ slug: z.string() }))
     .query(async ({ ctx, input }) => {
       const { slug } = input;
@@ -112,7 +112,7 @@ export const sessionRouter = router({
     }),
 
   //To do: Rename to readCurrentSessionForSlug
-  getOneSessionTwo: privateProcedure
+  readOneSessionBySessionId: privateProcedure
     .input(z.object({ sessionId: z.string() }))
     .query(async ({ ctx, input }) => {
       const { sessionId } = input;
