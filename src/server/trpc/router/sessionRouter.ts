@@ -172,6 +172,41 @@ export const sessionRouter = router({
     return careSessions;
   }),
 
+  getAllHistoricalSessionsByUser: privateProcedure.query(async ({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      throw new Error("Meow! Not authorized.");
+    }
+    const user = await ctx.prisma.user.findUnique({
+      where: {
+        id: ctx.session.user.id,
+      },
+    });
+    if (!user) {
+      throw new Error("Meow! user not found.");
+    }
+    const userId = user.id;
+    const currentUserPotentialCareSessions = await ctx.prisma.potentialCareSession.findMany({
+      where: {
+        caregiverId: userId,
+        //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
+      },
+    });
+    const careSessionIds = currentUserPotentialCareSessions.map((session) => session.careSessionId);
+    const careSessions = await ctx.prisma.careSession.findMany({
+      where: {
+        sessionId: {
+          in: careSessionIds,
+        },
+      },
+    });
+    return careSessions;
+  }),
+
+
+
+
+
+
 
 
 });
