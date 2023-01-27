@@ -152,11 +152,22 @@ export const sessionRouter = router({
       throw new Error("Meow! user not found.");
     }
     const userId = user.id;
-    const items = await ctx.prisma.potentialCareSession.findMany({
+    const currentUserPotentialCareSessions = await ctx.prisma.potentialCareSession.findMany({
       where: {
         caregiverId: userId,
       },
     });
-    return items;
+    const careSessionIds = currentUserPotentialCareSessions.map((session) => session.careSessionId);
+    const careSessions = await ctx.prisma.careSession.findMany({
+      where: {
+        sessionId: {
+          in: careSessionIds,
+        },
+      },
+    });
+    return careSessions;
   }),
+
+
+
 });
