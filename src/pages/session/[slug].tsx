@@ -53,7 +53,7 @@ const Slug: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Session: {card?.sessionId}</title>
+        <title>Session: {card?.slug}</title>
       </Head>
       <NavLayout />
       <div className="flex h-screen items-center justify-center dark:bg-gray-800">
