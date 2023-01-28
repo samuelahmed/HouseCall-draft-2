@@ -15,7 +15,9 @@ const Slug: NextPage = () => {
 
   const router = useRouter();
   const { slug } = router.query as { slug: string };
-  const { data: card } = trpc.sessionAPIs.readOneSessionBySlug.useQuery({ slug });
+  const { data: card } = trpc.sessionAPIs.readOneSessionBySlug.useQuery({
+    slug,
+  });
   const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -45,7 +47,7 @@ const Slug: NextPage = () => {
     },
     onSuccess: () => {
       // some action on success
-    }
+    },
   });
 
   return (
@@ -122,13 +124,13 @@ const Slug: NextPage = () => {
             >
               Apply
             </button>
+          </div>
+          <div>
             {errorMessage && (
-      <p className="text-center text-red-600">
-        Meow! Something went wrong. Please try again later.
-        {/* {errorMessage} */}
-        </p>
-    )}
-
+              <p className="text-center text-red-600">
+                Meow! You already applied to this session.
+              </p>
+            )}
           </div>
         </div>
       </div>
