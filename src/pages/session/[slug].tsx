@@ -41,6 +41,16 @@ const Slug: NextPage = () => {
     }
   };
 
+  const removeCaregiver = () => {
+    if (data && card) {
+      mutateTwo({
+        caregiverId: data.id, //Is this necessary?
+        careSessionId: card.sessionId,
+        // status: "pending", //Why can this be disabled?
+      });
+    }
+  };
+
   const { mutate } = trpc.sessionAPIs.createOnePotentialCaregiver.useMutation({
     onError: (error) => {
       setErrorMessage(error.message);
@@ -49,6 +59,9 @@ const Slug: NextPage = () => {
       // some action on success
     },
   });
+
+  const { mutate: mutateTwo } =
+    trpc.sessionAPIs.deleteOnePotentialCaregiver.useMutation({});
 
   return (
     <>
@@ -123,6 +136,19 @@ const Slug: NextPage = () => {
               }}
             >
               Apply
+            </button>
+            <button
+              className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+              onClick={() => {
+                setInputs({
+                  currentUserId: data?.id || "", //Why is this necessary?
+                  sessionId: card?.sessionId || "",
+                  status: "pending", //Why is this necessary?
+                });
+                removeCaregiver();
+              }}
+            >
+              Delete potentialCaregiver
             </button>
           </div>
           <div>

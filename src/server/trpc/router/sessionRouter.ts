@@ -219,4 +219,21 @@ export const sessionRouter = router({
   // ************************
   // *       DELETE         *
   // ************************
+
+  deleteOnePotentialCaregiver: privateProcedure
+    .input(
+      z.object({
+        careSessionId: z.string(),
+        caregiverId: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { careSessionId } = input;
+      const item = await ctx.prisma.potentialCareSession.delete({
+        where: {
+          careSessionId: careSessionId,
+        },
+      });
+      return item;
+    }),
 });
