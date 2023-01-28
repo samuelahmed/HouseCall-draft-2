@@ -9,9 +9,6 @@
  ┃ ┃ ┃ ┣ 📜historyModal.tsx
  ┃ ┃ ┃ ┣ 📜mobileFindSessionModal.tsx
  ┃ ┃ ┃ ┗ 📜scheduledSessionModal.tsx
- ┃ ┃ ┣ 📂sessions
- ┃ ┃ ┃ ┣ 📜active.tsx
- ┃ ┃ ┃ ┗ 📜history.tsx
  ┃ ┃ ┗ 📂tabs
  ┃ ┃ ┃ ┣ 📜activeTab.tsx
  ┃ ┃ ┃ ┣ 📜findTab.tsx
@@ -90,8 +87,8 @@
 
  ┣ 📂utils
  ┃ ┗ 📜trpc.ts
- 
- ┗ 📂validation
- ┃ ┗ 📜auth.ts
- 
+
+ ┣ 📂validation
+ ┗  ┗ 📜auth.ts
+
  ```
