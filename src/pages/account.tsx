@@ -11,12 +11,12 @@ import { trpc } from "@/utils/trpc";
 
 const Account: NextPage = (props) => {
   const { data: session } = useSession();
-  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
+  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
   const [openSide, setOpenSide] = useState(0);
   const [openTab, setOpenTab] = useState(1);
 
 
-  return (
+  return (  
     <>
       <Head>
         <title>Account Settings</title>
