@@ -22,7 +22,6 @@ const Account: NextPage = (props) => {
         <title>Account Settings</title>
       </Head>
       <NavLayout />
-      <div>
         {session && (
           <>
             <main className="grid min-h-90vh grid-cols-3 justify-items-center bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100 lg:grid-cols-6">
@@ -177,7 +176,6 @@ const Account: NextPage = (props) => {
             <Footer />
           </>
         )}
-      </div>
     </>
   );
 };
