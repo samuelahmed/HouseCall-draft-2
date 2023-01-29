@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 const CreateSession = () => {
   const [items, setItems] = useState<CareSession[]>([]);
   const router = useRouter();
-  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
+  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
   // console.log(data?.username);
 
   const [inputs, setInputs] = useState({

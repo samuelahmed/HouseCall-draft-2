@@ -6,8 +6,8 @@ import { trpc } from "../../utils/trpc";
 
 const AccountEditModal = () => {
   const [showModal, setShowModal] = useState(false);
-  const dbTest = trpc.updateAccount.getOne.useQuery();
-  // const roles = ["Caregiver", "Patient", "Caregiver & Patient"];
+  const dbTest = trpc.userAPIs.readCurrentUser.useQuery();
+  const roles = ["Caregiver", "Patient", "Caregiver & Patient"];
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -17,7 +17,7 @@ const AccountEditModal = () => {
   });
 
   const [selectedRole, setSelectedRole] = useState(inputs.role);
-  const { mutate } = trpc.updateAccount.updateName.useMutation({
+  const { mutate } = trpc.updateAccount.updateCurrentUser.useMutation({
     onSuccess() {
       alert("Account information updated!");
       window.location.reload();
@@ -110,7 +110,7 @@ const AccountEditModal = () => {
                       {/* ROLE */}
                       <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
                         <p className="mr-2 w-28 text-lg"> Role </p>
-                        {/* <select
+                        <select
                           className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
                           value={inputs.role || selectedRole}
                           onChange={(e) => {
@@ -126,7 +126,7 @@ const AccountEditModal = () => {
                               {role}
                             </option>
                           ))}
-                        </select> */}
+                        </select>
                       </div>
                       <div className="grid grid-flow-col grid-rows-1 gap-4 pt-4">
                         <div className="flex justify-start">

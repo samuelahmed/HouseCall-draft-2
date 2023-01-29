@@ -12,7 +12,7 @@ const Header = ({
   setShowNav: any;
 }) => {
   const { data: session } = useSession();
-  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
+  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
 
   return (
     <div className="sticky top-0 z-50 grid grid-cols-2 items-center bg-[hsl(0,0%,88%)] py-1 dark:bg-gray-700">

@@ -131,6 +131,16 @@ const Account: NextPage = (props) => {
                           <span className="text-red-600">Meow! Something went very wrong.</span>
                           }
                       </div>
+                      <div className="">
+                        Role:{" "}
+                        {isLoading ||
+                          (data && data?.role) ||
+                          <span className="text-red-600">Meow! Something went very wrong.</span>
+                          }
+                      </div>
+
+
+
                     </div>
                     <div className="flex justify-center">
                       <AccountEditModal />

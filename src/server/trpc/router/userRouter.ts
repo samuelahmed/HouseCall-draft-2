@@ -1,15 +1,27 @@
 import { router, publicProcedure } from "../trpc";
 import { z } from "zod";
 
-export const updateAccountRouter = router({
+export const userRouter = router({
+  // ***************************
+  // *       CREATE            *
+  // * User created in auth.ts *
+  // ***************************
 
-  getOne: publicProcedure.query(({ ctx }) => {
+  // ************************
+  // *        READ          *
+  // ************************
+
+  readCurrentUser: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.user.findFirst({
       where: {
         id: ctx.session?.user?.id,
       },
     });
   }),
+
+  // ************************
+  // *       UPDATE         *
+  // ************************
 
   updateCurrentUser: publicProcedure
     .input(
@@ -45,5 +57,7 @@ export const updateAccountRouter = router({
       return updatedUser;
     }),
 
-
+  // ************************
+  // *       DELETE         *
+  // ************************
 });

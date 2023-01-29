@@ -7,7 +7,7 @@ import NavLayout from "@/components/layout/navLayout";
 
 const LoginSuccess: NextPage = () => {
   const { data: session } = useSession();
-  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
+  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
 
   return (
     <>

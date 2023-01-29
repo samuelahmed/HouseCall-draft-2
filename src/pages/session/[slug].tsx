@@ -18,7 +18,7 @@ const Slug: NextPage = () => {
   const { data: card } = trpc.sessionAPIs.readOneSessionBySlug.useQuery({
     slug,
   });
-  const { data, isLoading } = trpc.updateAccount.getOne.useQuery();
+  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {

@@ -4,6 +4,7 @@ import { exampleRouter } from "./example";
 import { authRouter } from "./auth";
 import { updateAccountRouter } from "./updateAccount";
 import { sessionRouter } from "./sessionRouter";
+import { userRouter } from "./userRouter";
 
 export const appRouter = router({
   example: exampleRouter,
@@ -11,6 +12,7 @@ export const appRouter = router({
   auth: authRouter,
   updateAccount: updateAccountRouter,
   sessionAPIs: sessionRouter,
+  userAPIs: userRouter,
 });
 
 // export type definition of API
