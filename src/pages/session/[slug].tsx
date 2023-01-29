@@ -22,23 +22,23 @@ const Slug: NextPage = () => {
   const { data: card } = trpc.careSessionAPIs.readOneSessionBySlug.useQuery({
     slug,
   });
-  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
+
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if (data && card) {
+    if (user && card) {
       setInputs({
-        currentUserId: data.id,
+        currentUserId: user.id,
         sessionId: card.sessionId,
         status: "pending",
       });
     }
-  }, [data, card]);
+  }, [user, card]);
 
   const publish = () => {
-    if (data && card) {
+    if (user && card) {
       mutate({
-        caregiverId: data.id,
+        caregiverId: user.id,
         careSessionId: card.sessionId,
         status: "pending",
       });
@@ -46,9 +46,9 @@ const Slug: NextPage = () => {
   };
 
   const removeCaregiver = () => {
-    if (data && card) {
+    if (user && card) {
       mutateTwo({
-        caregiverId: data.id, //Is this necessary?
+        caregiverId: user.id, //Is this necessary?
         careSessionId: card.sessionId,
         // status: "pending", //Why can this be disabled?
       });
@@ -74,6 +74,9 @@ const Slug: NextPage = () => {
         <title>Session: {card?.slug}</title>
       </Head>
       <NavLayout />
+      {/***********************
+       *      CAREGIVER       *
+       **********************/}
       {session && user?.role === "Caregiver" && (
         <>
           <div className="flex h-screen items-center justify-center dark:bg-gray-800">
@@ -132,7 +135,7 @@ const Slug: NextPage = () => {
                   className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                   onClick={() => {
                     setInputs({
-                      currentUserId: data?.id || "",
+                      currentUserId: user?.id || "",
                       sessionId: card?.sessionId || "",
                       status: "pending",
                     });
@@ -145,7 +148,7 @@ const Slug: NextPage = () => {
                   className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                   onClick={() => {
                     setInputs({
-                      currentUserId: data?.id || "", //Why is this necessary?
+                      currentUserId: user?.id || "", //Why is this necessary?
                       sessionId: card?.sessionId || "",
                       status: "pending", //Why is this necessary?
                     });
@@ -166,6 +169,9 @@ const Slug: NextPage = () => {
           </div>
         </>
       )}
+      {/***********************
+       *       PATIENT        *
+       **********************/}
       {session && user?.role === "Patient" && (
         <>
           <div className="flex h-screen items-center justify-center dark:bg-gray-800">
@@ -230,6 +236,9 @@ const Slug: NextPage = () => {
           </div>
         </>
       )}
+      {/***********************
+       * CAREGIVER & PATIENT  *
+       **********************/}
       {session && user?.role === "Caregiver & Patient" && (
         <>
           <div className="flex h-screen items-center justify-center dark:bg-gray-800">
@@ -288,7 +297,7 @@ const Slug: NextPage = () => {
                   className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                   onClick={() => {
                     setInputs({
-                      currentUserId: data?.id || "",
+                      currentUserId: user?.id || "",
                       sessionId: card?.sessionId || "",
                       status: "pending",
                     });
@@ -301,7 +310,7 @@ const Slug: NextPage = () => {
                   className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                   onClick={() => {
                     setInputs({
-                      currentUserId: data?.id || "", //Why is this necessary?
+                      currentUserId: user?.id || "", //Why is this necessary?
                       sessionId: card?.sessionId || "",
                       status: "pending", //Why is this necessary?
                     });
@@ -322,9 +331,10 @@ const Slug: NextPage = () => {
           </div>
         </>
       )}
-      {!session && (
-        <>{/* IF CARESESSION IS SHARED WITH A NON-USER or LOGGED OUT USER*/}</>
-      )}
+      {/***********************
+       *      NO SESSION      *
+       **********************/}
+      {!session && <></>}
     </>
   );
 };
