@@ -3,11 +3,11 @@ import { trpc } from "@/utils/trpc";
 import { useSession } from "next-auth/react";
 
 const SideNav = () => {
-  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
+  const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
   const { data: session } = useSession();
   return (
     <>
-      {(session && data?.role === 'Caregiver') && (
+      {session && user?.role === "Caregiver" && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
             <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
@@ -39,7 +39,7 @@ const SideNav = () => {
           </div>
         </>
       )}
-      {(session && data?.role === 'Patient') && (
+      {session && user?.role === "Patient" && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
             <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
@@ -71,7 +71,7 @@ const SideNav = () => {
           </div>
         </>
       )}
-      {(session && data?.role === 'Caregiver & Patient') && (
+      {session && user?.role === "Caregiver & Patient" && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
             <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
@@ -109,12 +109,9 @@ const SideNav = () => {
           </div>
         </>
       )}
-      {!session && <>
-      </>}
+      {!session && <>{/* menu disabled if not logged in */}</>}
     </>
   );
 };
 
 export default SideNav;
-
-
