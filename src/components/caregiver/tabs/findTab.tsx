@@ -4,7 +4,7 @@ import { trpc } from "@/utils/trpc";
 
 const FindTab = () => {
   const [rightCard, setRightCard] = useState(1);
-  const { data, isLoading } = trpc.sessionAPIs.readAllSessions.useQuery();
+  const { data, isLoading } = trpc.careSessionAPIs.readAllSessions.useQuery();
   const router = useRouter();
 
   const [inputs, setInputs] = useState({
@@ -19,7 +19,7 @@ const FindTab = () => {
     totalCompensation: 0,
   });
 
-  const selectedSession = trpc.sessionAPIs.readOneSessionBySessionId.useQuery({
+  const selectedSession = trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
     sessionId:
       inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
   });

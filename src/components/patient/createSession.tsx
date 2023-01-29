@@ -45,7 +45,7 @@ const CreateSession = () => {
     mutate(inputs);
   };
 
-  const { mutate } = trpc.sessionAPIs.createOneSession.useMutation({
+  const { mutate } = trpc.careSessionAPIs.createOneSession.useMutation({
     onSuccess(newSession) {
       alert("Meow! Session successfully created!");
       setItems((prev) => [...prev, newSession]);

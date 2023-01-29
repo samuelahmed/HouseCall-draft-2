@@ -5,7 +5,8 @@ import { careSessionRouter } from "./careSessionRouter";
 
 export const appRouter = router({
   auth: authRouter,
-  sessionAPIs: careSessionRouter,
+  // sessionAPIs: careSessionRouter,
+  careSessionAPIs: careSessionRouter,
   userAPIs: userRouter,
 });
 

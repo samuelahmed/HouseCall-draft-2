@@ -15,7 +15,7 @@ const Slug: NextPage = () => {
 
   const router = useRouter();
   const { slug } = router.query as { slug: string };
-  const { data: card } = trpc.sessionAPIs.readOneSessionBySlug.useQuery({
+  const { data: card } = trpc.careSessionAPIs.readOneSessionBySlug.useQuery({
     slug,
   });
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
@@ -51,7 +51,7 @@ const Slug: NextPage = () => {
     }
   };
 
-  const { mutate } = trpc.sessionAPIs.createOnePotentialCaregiver.useMutation({
+  const { mutate } = trpc.careSessionAPIs.createOnePotentialCaregiver.useMutation({
     onError: (error) => {
       setErrorMessage(error.message);
     },
@@ -61,7 +61,7 @@ const Slug: NextPage = () => {
   });
 
   const { mutate: mutateTwo } =
-    trpc.sessionAPIs.deleteOnePotentialCaregiver.useMutation({});
+    trpc.careSessionAPIs.deleteOnePotentialCaregiver.useMutation({});
 
   return (
     <>

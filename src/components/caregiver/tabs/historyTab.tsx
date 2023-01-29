@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 
 const HistoryTab = () => {
-  const { data } = trpc.sessionAPIs.readAllHistoricalSessionsByUser.useQuery();
+  const { data } = trpc.careSessionAPIs.readAllHistoricalSessionsByUser.useQuery();
   const router = useRouter();
 
   return (

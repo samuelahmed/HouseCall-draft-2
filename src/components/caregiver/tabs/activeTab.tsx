@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 
 const ActiveTab = () => {
-  const { data } = trpc.sessionAPIs.readAllPotentialSessionsByUser.useQuery();
+  const { data } = trpc.careSessionAPIs.readAllPotentialSessionsByUser.useQuery();
   const router = useRouter();
   return (
     <>
