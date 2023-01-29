@@ -1,13 +1,13 @@
 import { router } from "../trpc";
 import { protectedRouter } from "./protected";
 import { authRouter } from "./auth";
-import { sessionRouter } from "./sessionRouter";
 import { userRouter } from "./userRouter";
+import { careSessionRouter } from "./careSessionRouter";
 
 export const appRouter = router({
   protected: protectedRouter,
   auth: authRouter,
-  sessionAPIs: sessionRouter,
+  sessionAPIs: careSessionRouter,
   userAPIs: userRouter,
 });
 

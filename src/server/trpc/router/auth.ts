@@ -6,6 +6,10 @@ const SALT_ROUNDS = 10;
 
 import { router, publicProcedure } from "../trpc";
 
+//This router is for the following schemas:
+  //User
+  //Session?
+
 export const authRouter = router({
   register: publicProcedure
     .input(registerSchema)

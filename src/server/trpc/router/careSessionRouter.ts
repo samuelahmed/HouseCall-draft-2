@@ -2,7 +2,12 @@ import { router, publicProcedure, privateProcedure } from "../trpc";
 import { z } from "zod";
 import slug from "slug";
 
-export const sessionRouter = router({
+
+//This router is for the following schemas:
+  //CareSession
+  //PotentialCareSession
+
+export const careSessionRouter = router({
   // ************************
   // *       CREATE         *
   // ************************

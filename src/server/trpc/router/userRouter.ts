@@ -1,6 +1,9 @@
 import { router, publicProcedure } from "../trpc";
 import { z } from "zod";
 
+//This router is for the following schemas:
+  //User
+
 export const userRouter = router({
   // ***************************
   // *       CREATE            *
