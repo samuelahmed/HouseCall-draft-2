@@ -72,10 +72,8 @@
  ┃ ┃ ┣ 📂router
  ┃ ┃ ┃ ┣ 📜_app.ts
  ┃ ┃ ┃ ┣ 📜auth.ts
- ┃ ┃ ┃ ┣ 📜example.ts
- ┃ ┃ ┃ ┣ 📜protected.ts
- ┃ ┃ ┃ ┣ 📜sessionRouter.ts
- ┃ ┃ ┃ ┗ 📜updateAccount.ts
+ ┃ ┃ ┃ ┣ 📜careSessionRouter.ts
+ ┃ ┃ ┃ ┗ 📜userRouter.ts
  ┃ ┃ ┣ 📜context.ts
  ┃ ┃ ┗ 📜trpc.ts
 
