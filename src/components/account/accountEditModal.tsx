@@ -17,7 +17,7 @@ const AccountEditModal = () => {
   });
 
   const [selectedRole, setSelectedRole] = useState(inputs.role);
-  const { mutate } = trpc.updateAccount.updateCurrentUser.useMutation({
+  const { mutate } = trpc.userAPIs.updateCurrentUser.useMutation({
     onSuccess() {
       alert("Account information updated!");
       window.location.reload();
