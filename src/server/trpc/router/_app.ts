@@ -1,16 +1,14 @@
 import { router } from "../trpc";
 import { protectedRouter } from "./protected";
-import { exampleRouter } from "./example";
+// import { exampleRouter } from "./example";
 import { authRouter } from "./auth";
-// import { updateAccountRouter } from "./updateAccountDELETE";
 import { sessionRouter } from "./sessionRouter";
 import { userRouter } from "./userRouter";
 
 export const appRouter = router({
-  example: exampleRouter,
+  // example: exampleRouter,
   protected: protectedRouter,
   auth: authRouter,
-  // updateAccount: updateAccountRouter,
   sessionAPIs: sessionRouter,
   userAPIs: userRouter,
 });
