@@ -24,6 +24,7 @@ export const careSessionRouter = router({
         totalHours: z.number(),
         totalCompensation: z.number(),
         acceptedCaregiverId: z.string(),
+        careSessionStatus: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -37,6 +38,7 @@ export const careSessionRouter = router({
         hourlyRate,
         totalHours,
         totalCompensation,
+        careSessionStatus
       } = input;
       //Instead of generating random string here it would be better to do something else
       //This will probably collide eventually
@@ -61,6 +63,7 @@ export const careSessionRouter = router({
           totalHours,
           totalCompensation,
           acceptedCaregiverId,
+          careSessionStatus,
           slug: slug(sessionId),
           authorId: userId,
         },
