@@ -20,6 +20,8 @@ const Help: NextPage = (props) => {
       </Head>
       <NavLayout />
       <div>
+        {/* FOR MOMENT KEEP THE HELP PAGE VISIBLE 
+        WHETHER USER HAS ACTIVE SESSION OR NOT. */}
         {/* {session && ( */}
           <>
             <main className="grid min-h-90vh grid-cols-3 justify-items-center bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100 lg:grid-cols-6">
