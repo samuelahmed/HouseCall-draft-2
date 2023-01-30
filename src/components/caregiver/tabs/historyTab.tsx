@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 
 const HistoryTab = () => {
-  const { data } = trpc.careSessionAPIs.readAllHistoricalSessionsByUser.useQuery();
+  const { data } =
+    trpc.careSessionAPIs.readAllHistoricalSessionsByUser.useQuery();
   const router = useRouter();
 
   return (
@@ -22,6 +23,7 @@ const HistoryTab = () => {
                         hourlyRate,
                         totalCompensation,
                         totalHours,
+                        careSessionStatus,
                         slug,
                       } = item;
                       return (
@@ -34,6 +36,12 @@ const HistoryTab = () => {
                           </div>
                           <div className="grid grid-cols-3 items-center justify-center">
                             <div className="cols-span-1">
+                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                                <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                                  Status:&nbsp;
+                                </span>
+                                {careSessionStatus}
+                              </p>
                               <p className="text-sm  text-gray-800 dark:text-gray-100">
                                 <span className="font-semibold  text-gray-800 dark:text-gray-200">
                                   Overview:&nbsp;
