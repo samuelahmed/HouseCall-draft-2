@@ -7,7 +7,7 @@ const SideNav = () => {
   const { data: session } = useSession();
   return (
     <>
-      {session && user?.role === "Caregiver" && (
+      {session && user?.address && user?.role === "Caregiver" && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
             <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
@@ -39,7 +39,7 @@ const SideNav = () => {
           </div>
         </>
       )}
-      {session && user?.role === "Patient" && (
+      {session && user?.address && user?.role === "Patient" && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
             <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
@@ -71,7 +71,7 @@ const SideNav = () => {
           </div>
         </>
       )}
-      {session && user?.role === "Caregiver & Patient" && (
+      {session && user?.address && user?.role === "Caregiver & Patient" && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
             <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
@@ -109,7 +109,40 @@ const SideNav = () => {
           </div>
         </>
       )}
-      {!session && <>{/* menu disabled if not logged in */}</>}
+      {((session && !user?.role) || (session && !user?.address)) && (
+        <>
+          <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
+            <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
+              <Link
+                href={"/account"}
+                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+              >
+                Account
+              </Link>
+              <Link
+                href={"/help"}
+                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+              >
+                Help
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
+      {!session && (
+        <>
+          <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
+            <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
+              <Link
+                href={"/help"}
+                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+              >
+                Help
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 };

@@ -20,7 +20,7 @@ const Help: NextPage = (props) => {
       </Head>
       <NavLayout />
       <div>
-        {session && (
+        {/* {session && ( */}
           <>
             <main className="grid min-h-90vh grid-cols-3 justify-items-center bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100 lg:grid-cols-6">
               {/***********************
@@ -126,8 +126,8 @@ const Help: NextPage = (props) => {
             </main>
             <Footer />
           </>
-        )}
-        {!session && (
+        {/* )} */}
+        {/* {!session && (
           <>
             <main className="justify-top flex min-h-90vh flex-col items-center md:justify-center lg:justify-center">
               <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
@@ -147,7 +147,7 @@ const Help: NextPage = (props) => {
             </main>
             <Footer />
           </>
-        )}
+        )} */}
       </div>
     </>
   );
