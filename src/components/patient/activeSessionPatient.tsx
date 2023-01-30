@@ -33,6 +33,7 @@ const ActiveSessionPatient = () => {
                       hourlyRate,
                       totalCompensation,
                       totalHours,
+                      careSessionStatus
                     } = data;
                     return (
                       <li
@@ -44,6 +45,12 @@ const ActiveSessionPatient = () => {
                         </div>
                         <div className="grid grid-cols-3 items-center justify-center">
                           <div className="cols-span-1">
+                          <p className="text-sm  text-gray-800 dark:text-gray-100">
+                              <span className="font-semibold text-gray-800 dark:text-gray-200">
+                                Status:&nbsp;
+                              </span>
+                              {careSessionStatus}
+                            </p>
                             <p className="text-sm  text-gray-800 dark:text-gray-100">
                               <span className="font-semibold text-gray-800 dark:text-gray-200">
                                 Name:&nbsp;
