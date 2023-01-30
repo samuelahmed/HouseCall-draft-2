@@ -62,11 +62,29 @@ const Slug: NextPage = () => {
       },
       onSuccess: () => {
         // some action on success
+        //reoload page
+        alert("Meow! You have successfully applied to this care session.");
+        router.reload();
       },
     });
 
   const { mutate: mutateTwo } =
-    trpc.careSessionAPIs.deleteOnePotentialCaregiver.useMutation({});
+    trpc.careSessionAPIs.deleteOnePotentialCaregiver.useMutation({
+      onError: (error) => {
+        setErrorMessage(error.message);
+      },
+      onSuccess: () => {
+        // some action on success
+        //reoload page
+        alert("Meow! You have removed yourself from this care session.");
+        router.reload();
+      },
+    });
+
+  const { data: potentialCaregiver } =
+    trpc.careSessionAPIs.readOnePotentialCaregiver.useQuery({
+      careSessionId: card?.sessionId || "",
+    });
 
   return (
     <>
@@ -128,35 +146,45 @@ const Slug: NextPage = () => {
                     </span>
                     ${card?.totalCompensation}
                   </p>
+                  <p className="text-gray-900  dark:text-white">
+                    <span className="font-semibold text-gray-900 dark:text-white">
+                      Status:&nbsp;
+                    </span>
+                    {card?.careSessionStatus}
+                  </p>
                 </div>
               </div>
               <div className="mt-12 mb-12 flex justify-around ">
-                <button
-                  className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                  onClick={() => {
-                    setInputs({
-                      currentUserId: user?.id || "",
-                      sessionId: card?.sessionId || "",
-                      status: "pending",
-                    });
-                    publish();
-                  }}
-                >
-                  Apply
-                </button>
-                <button
-                  className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                  onClick={() => {
-                    setInputs({
-                      currentUserId: user?.id || "", //Why is this necessary?
-                      sessionId: card?.sessionId || "",
-                      status: "pending", //Why is this necessary?
-                    });
-                    removeCaregiver();
-                  }}
-                >
-                  Cancel Application
-                </button>
+                {potentialCaregiver?.caregiverId !== user.id && (
+                  <button
+                    className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                    onClick={() => {
+                      setInputs({
+                        currentUserId: user?.id || "",
+                        sessionId: card?.sessionId || "",
+                        status: "pending",
+                      });
+                      publish();
+                    }}
+                  >
+                    Apply
+                  </button>
+                )}
+                {potentialCaregiver?.caregiverId === user.id && (
+                  <button
+                    className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                    onClick={() => {
+                      setInputs({
+                        currentUserId: user?.id || "", //Why is this necessary?
+                        sessionId: card?.sessionId || "",
+                        status: "pending", //Why is this necessary?
+                      });
+                      removeCaregiver();
+                    }}
+                  >
+                    Cancel Application
+                  </button>
+                )}
               </div>
               <div>
                 {errorMessage && (
@@ -222,6 +250,12 @@ const Slug: NextPage = () => {
                       Total:&nbsp;
                     </span>
                     ${card?.totalCompensation}
+                  </p>
+                  <p className="text-gray-900  dark:text-white">
+                    <span className="font-semibold text-gray-900 dark:text-white">
+                      Status:&nbsp;
+                    </span>
+                    {card?.careSessionStatus}
                   </p>
                 </div>
               </div>
@@ -290,35 +324,45 @@ const Slug: NextPage = () => {
                     </span>
                     ${card?.totalCompensation}
                   </p>
+                  <p className="text-gray-900  dark:text-white">
+                    <span className="font-semibold text-gray-900 dark:text-white">
+                      Status:&nbsp;
+                    </span>
+                    {card?.careSessionStatus}
+                  </p>
                 </div>
               </div>
               <div className="mt-12 mb-12 flex justify-around ">
-                <button
-                  className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                  onClick={() => {
-                    setInputs({
-                      currentUserId: user?.id || "",
-                      sessionId: card?.sessionId || "",
-                      status: "pending",
-                    });
-                    publish();
-                  }}
-                >
-                  Apply
-                </button>
-                <button
-                  className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                  onClick={() => {
-                    setInputs({
-                      currentUserId: user?.id || "", //Why is this necessary?
-                      sessionId: card?.sessionId || "",
-                      status: "pending", //Why is this necessary?
-                    });
-                    removeCaregiver();
-                  }}
-                >
-                  Cancel Application
-                </button>
+              {potentialCaregiver?.caregiverId !== user.id && (
+                  <button
+                    className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                    onClick={() => {
+                      setInputs({
+                        currentUserId: user?.id || "",
+                        sessionId: card?.sessionId || "",
+                        status: "pending",
+                      });
+                      publish();
+                    }}
+                  >
+                    Apply
+                  </button>
+                )}
+                {potentialCaregiver?.caregiverId === user.id && (
+                  <button
+                    className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                    onClick={() => {
+                      setInputs({
+                        currentUserId: user?.id || "", //Why is this necessary?
+                        sessionId: card?.sessionId || "",
+                        status: "pending", //Why is this necessary?
+                      });
+                      removeCaregiver();
+                    }}
+                  >
+                    Cancel Application
+                  </button>
+                )}
               </div>
               <div>
                 {errorMessage && (

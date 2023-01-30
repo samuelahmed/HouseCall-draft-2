@@ -2,10 +2,9 @@ import { router, publicProcedure, privateProcedure } from "../trpc";
 import { z } from "zod";
 import slug from "slug";
 
-
 //This router is for the following schemas:
-  //CareSession
-  //PotentialCareSession
+//CareSession
+//PotentialCareSession
 
 export const careSessionRouter = router({
   // ************************
@@ -38,7 +37,7 @@ export const careSessionRouter = router({
         hourlyRate,
         totalHours,
         totalCompensation,
-        careSessionStatus
+        careSessionStatus,
       } = input;
       //Instead of generating random string here it would be better to do something else
       //This will probably collide eventually
@@ -94,6 +93,22 @@ export const careSessionRouter = router({
   // ************************
   // *        READ          *
   // ************************
+
+  readOnePotentialCaregiver: privateProcedure
+    .input(
+      z.object({
+        careSessionId: z.string(),
+      })
+    )
+    .query(async ({ input, ctx }) => {
+      const { careSessionId } = input;
+      const item = await ctx.prisma.potentialCareSession.findUnique({
+        where: {
+          careSessionId: careSessionId,
+        },
+      });
+      return item;
+    }),
 
   readOneSessionBySessionId: privateProcedure
     .input(z.object({ sessionId: z.string() }))
