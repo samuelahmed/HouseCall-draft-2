@@ -43,8 +43,8 @@ model CareSession {
   totalHours          Int?
   totalCompensation   Int?
   slug                String
-  acceptedCaregiverId String
-  careSessionStatus   String // could be "new", "scheduled", "completed", "canceled"
+  acceptedCaregiverId String?
+  careSessionStatus   String? // could be "new", "scheduled", "completed", "canceled"
   createdAt           DateTime               @default(now())
   potentialCaregivers PotentialCareSession[]
 

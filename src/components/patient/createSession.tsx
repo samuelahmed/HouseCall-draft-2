@@ -8,7 +8,14 @@ const CreateSession = () => {
   const [items, setItems] = useState<CareSession[]>([]);
   const router = useRouter();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
-  // console.log(data?.username);
+
+  const { mutate } = trpc.careSessionAPIs.createOneSession.useMutation({
+    onSuccess(newSession) {
+      alert("Meow! Session successfully created!");
+      setItems((prev) => [...prev, newSession]);
+      router.push(`/session/${newSession.slug}`);
+    },
+  });
 
   const [inputs, setInputs] = useState({
     name: data?.username || "",
@@ -20,7 +27,7 @@ const CreateSession = () => {
     totalHours: 1,
     totalCompensation: 20,
     acceptedCaregiverId: "",
-    careSessionStatus: "New",
+    careSessionStatus: "",
   });
 
   const totalComp = inputs.totalHours * inputs.hourlyRate;
@@ -30,6 +37,7 @@ const CreateSession = () => {
       return {
         ...prev,
         totalCompensation: prev.hourlyRate * prev.totalHours,
+        careSessionStatus: "New",
       };
     });
   }, [inputs.hourlyRate, inputs.totalHours]);
@@ -46,13 +54,6 @@ const CreateSession = () => {
     mutate(inputs);
   };
 
-  const { mutate } = trpc.careSessionAPIs.createOneSession.useMutation({
-    onSuccess(newSession) {
-      alert("Meow! Session successfully created!");
-      setItems((prev) => [...prev, newSession]);
-      router.push(`/session/${newSession.slug}`);
-    },
-  });
 
   return (
     <>
