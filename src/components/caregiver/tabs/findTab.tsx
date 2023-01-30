@@ -17,6 +17,7 @@ const FindTab = () => {
     hourlyRate: 0,
     totalHours: 0,
     totalCompensation: 0,
+    careSessionStatus: "",
   });
 
   const selectedSession = trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
@@ -50,6 +51,7 @@ const FindTab = () => {
                         hourlyRate,
                         totalHours,
                         totalCompensation,
+                        careSessionStatus,
                       } = data;
                       return (
                         <li
@@ -65,6 +67,7 @@ const FindTab = () => {
                                 address: address || "still loading",
                                 overview: overview || "still loading",
                                 sessionType: sessionType || "still loading",
+                                careSessionStatus: careSessionStatus || "still loading",
                                 hourlyRate: Number(data.hourlyRate) || 0,
                                 totalHours: Number(data.totalHours) || 0,
                                 totalCompensation:
@@ -78,6 +81,12 @@ const FindTab = () => {
                             <div className="mb-2 p-4 text-center text-xl text-gray-800 dark:text-gray-100">
                               {title}
                             </div>
+                            <p className="text-sm  text-gray-800 dark:text-gray-100">
+                              <span className="font-semibold text-gray-800 dark:text-gray-200">
+                                Status:&nbsp;
+                              </span>
+                              {careSessionStatus}
+                            </p>
                             <p className="text-sm  text-gray-800 dark:text-gray-100">
                               <span className="font-semibold text-gray-800 dark:text-gray-200">
                                 Name:&nbsp;
@@ -131,6 +140,12 @@ const FindTab = () => {
                       {selectedSession?.data?.title || isLoading}
                     </div>
                     <div className="text-sm ">
+                    <p className="text-gray-900 dark:text-gray-100">
+                        <span className="font-semibold text-gray-800 dark:text-gray-200">
+                          Status:&nbsp;
+                        </span>
+                        {selectedSession?.data?.careSessionStatus || isLoading}
+                      </p>
                       <p className="text-gray-900 dark:text-gray-100">
                         <span className="font-semibold text-gray-800 dark:text-gray-200">
                           Name:&nbsp;
