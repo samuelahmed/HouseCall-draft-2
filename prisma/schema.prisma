@@ -44,7 +44,7 @@ model CareSession {
   totalCompensation   Int?
   slug                String
   acceptedCaregiverId String
-  careSessionStatus   String // could be "pending", "accepted", "rejected"
+  careSessionStatus   String // could be "new", "scheduled", "completed", "canceled"
   createdAt           DateTime               @default(now())
   potentialCaregivers PotentialCareSession[]
 
@@ -73,5 +73,3 @@ model PotentialCareSession {
 
   @@index([caregiverId])
 }
-
-

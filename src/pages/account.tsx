@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/layout/footer";
-import Image from "next/image";
+// import Image from "next/image";
 import AccountEditModal from "@/components/account/accountEditModal";
 import { trpc } from "@/utils/trpc";
 
@@ -102,13 +102,13 @@ const Account: NextPage = (props) => {
                 {/* Containers to hold content that get dynamically changed from left-section-menu */}
                 <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
                   <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] dark:bg-gray-800 px-2">
-                    <Image
+                    {/* <Image
                       className="mt-10 rounded"
                       src={(data && data?.image) || "/cat.jpg"}
                       alt=""
                       width={200}
                       height={200}
-                    />
+                    /> */}
                     <div className="flex flex-col gap-2 mt-2">
                       <div className="">
                         Name:{" "}
