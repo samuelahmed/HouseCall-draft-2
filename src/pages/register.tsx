@@ -109,8 +109,7 @@ const Register: NextPage = (props) => {
               <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
                 <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] px-2 dark:bg-gray-800 ">
                   <div className="mt-10">
-                  <RegisterForm />
-
+                    <RegisterForm />
                   </div>
                 </div>
               </div>
@@ -119,7 +118,7 @@ const Register: NextPage = (props) => {
               <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
                 <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] px-2 dark:bg-gray-800 ">
                   <div className="mt-10">
-                  <LoginForm />
+                    <LoginForm />
                   </div>
                 </div>
               </div>

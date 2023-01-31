@@ -39,7 +39,7 @@ const LoginSuccess: NextPage = () => {
               </span>
               <Link
                 href={"/account"}
-                className="text-center hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) mt-6 h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-800 hover:bg-[hsl(154,47%,66%)] dark:text-gray-100 dark:hover:text-gray-800"
+                className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) mt-6 h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 text-center font-semibold text-gray-800 hover:bg-[hsl(154,47%,66%)] dark:text-gray-100 dark:hover:text-gray-800"
               >
                 Add address
               </Link>
@@ -47,14 +47,11 @@ const LoginSuccess: NextPage = () => {
           )}
 
           {!data?.role && (
-            <div className="flex flex-col mt-6">
-              <span className="text-red-700">
-                {" "}
-                Your account needs a role{" "}
-              </span>
+            <div className="mt-6 flex flex-col">
+              <span className="text-red-700"> Your account needs a role </span>
               <Link
                 href={"/account"}
-                className="text-center hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) mt-6 h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-800 hover:bg-[hsl(154,47%,66%)] dark:text-gray-100 dark:hover:text-gray-800"
+                className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) mt-6 h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 text-center font-semibold text-gray-800 hover:bg-[hsl(154,47%,66%)] dark:text-gray-100 dark:hover:text-gray-800"
               >
                 Add role
               </Link>

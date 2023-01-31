@@ -34,6 +34,7 @@ const Patient: NextPage = (props) => {
               {/***********************
                *   LEFT SECTION       *
                **********************/}
+              Í
               <div
                 className={
                   openSide === 1 ? "col-span-1 w-full" : "hidden lg:block"
@@ -52,7 +53,7 @@ const Patient: NextPage = (props) => {
                     href="#link1"
                     role="tablist"
                   >
-                    <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
+                    <div className="text-md text-gray-800  dark:text-gray-100 md:text-xl">
                       <h1>Create Session</h1>
                     </div>
                   </a>
@@ -138,11 +139,10 @@ const Patient: NextPage = (props) => {
                   <CreateSession />
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                  < ActiveSessionPatient />
-
+                  <ActiveSessionPatient />
                 </div>
                 <div className={openTab === 3 ? "block" : "hidden"} id="link3">
-                  < HistoryPatient />
+                  <HistoryPatient />
                 </div>
               </div>
               {/************************
