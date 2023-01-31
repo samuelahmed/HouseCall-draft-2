@@ -29,21 +29,6 @@ const Slug: NextPage = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  //generate random session ID
-  //this is a very bad way to do this
-  //but it works for now
-  //TODO: replace with a better way to generate a random ID
-  function generateRandomId() {
-    let randomId = "";
-    const possibleCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  
-    for (let i = 0; i < 9; i++) {
-      randomId += possibleCharacters.charAt(Math.floor(Math.random() * possibleCharacters.length));
-    }
-  
-    return randomId;
-  }    
-
   useEffect(() => {
     if (user && card) {
       setInputs({
@@ -58,7 +43,7 @@ const Slug: NextPage = () => {
     if (user && card) {
       mutate({
         caregiverId: user.id,
-        careSessionId: generateRandomId(),
+        careSessionId: card.sessionId,
         status: "pending",
       });
     }
@@ -83,7 +68,7 @@ const Slug: NextPage = () => {
         // some action on success
         //reoload page
         alert("Meow! You have successfully applied to this care session.");
-        router.reload();
+        // router.reload();
       },
     });
 
@@ -96,7 +81,7 @@ const Slug: NextPage = () => {
         // some action on success
         //reoload page
         alert("Meow! You have removed yourself from this care session.");
-        router.reload();
+        // router.reload();
       },
     });
 
@@ -104,6 +89,14 @@ const Slug: NextPage = () => {
     trpc.careSessionAPIs.readOnePotentialCaregiver.useQuery({
       careSessionId: card?.sessionId || "",
     });
+
+    // console.log('user' + ' ' + user?.id)
+    // console.log('card.sessionId' + ' ' + card?.sessionId)
+    // console.log('caregiverId' + ' ' + potentialCaregiver?.caregiverId)
+    // console.log('careSessionid' + ' ' + potentialCaregiver?.careSessionId)
+    // console.log('status' + ' ' + potentialCaregiver?.status)
+
+
 
   return (
     <>
@@ -391,6 +384,8 @@ const Slug: NextPage = () => {
                 </div>
               </div>
               <div className="mt-12 mb-12 flex justify-around ">
+                {/* CURRENTLY MAKES ERROR THAT USER HAS ALREADY APPLIED IF ANOTHER USER HAS APPLIED
+                TO FIX THIS THERE NEEDS TO BE LOGIC REFORM SO MULTIPLE SESSIONS CAN BE CREATED */}
               {potentialCaregiver?.caregiverId !== user.id && (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
@@ -410,11 +405,11 @@ const Slug: NextPage = () => {
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                     onClick={() => {
-                      setInputs({
-                        currentUserId: user?.id || "", //Why is this necessary?
-                        sessionId: card?.sessionId || "",
-                        status: "pending", //Why is this necessary?
-                      });
+                      // setInputs({
+                      //   currentUserId: user?.id || "", //Why is this necessary?
+                      //   sessionId: card?.sessionId || "",
+                      //   status: "pending", //Why is this necessary?
+                      // });
                       removeCaregiver();
                     }}
                   >
