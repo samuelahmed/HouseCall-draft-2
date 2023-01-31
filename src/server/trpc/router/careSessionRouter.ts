@@ -134,6 +134,21 @@ export const careSessionRouter = router({
       return card;
     }),
 
+  readAllPotentialCareSessionsByCareSessionId: privateProcedure
+    .input(z.object({ careSessionId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { careSessionId } = input;
+      const potentialCareSessions = await ctx.prisma.potentialCareSession.findMany(
+        {
+          where: {
+            careSessionId,
+          },
+        }
+      );
+      return potentialCareSessions;
+    }),
+    
+
   readAllSessions: publicProcedure.query(({ ctx }) => {
     const items = ctx.prisma.careSession.findMany({
       include: {
@@ -148,6 +163,7 @@ export const careSessionRouter = router({
     });
     return items;
   }),
+
 
   readAllSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {

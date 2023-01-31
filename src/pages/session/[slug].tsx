@@ -23,7 +23,26 @@ const Slug: NextPage = () => {
     slug,
   });
 
+  const { data: potentialCaregivers } = trpc.careSessionAPIs.readAllPotentialCareSessionsByCareSessionId.useQuery({
+    careSessionId: card?.sessionId || "",
+  });
+
   const [errorMessage, setErrorMessage] = useState("");
+
+  //generate random session ID
+  //this is a very bad way to do this
+  //but it works for now
+  //TODO: replace with a better way to generate a random ID
+  function generateRandomId() {
+    let randomId = "";
+    const possibleCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  
+    for (let i = 0; i < 9; i++) {
+      randomId += possibleCharacters.charAt(Math.floor(Math.random() * possibleCharacters.length));
+    }
+  
+    return randomId;
+  }    
 
   useEffect(() => {
     if (user && card) {
@@ -39,7 +58,7 @@ const Slug: NextPage = () => {
     if (user && card) {
       mutate({
         caregiverId: user.id,
-        careSessionId: card.sessionId,
+        careSessionId: generateRandomId(),
         status: "pending",
       });
     }
@@ -257,6 +276,45 @@ const Slug: NextPage = () => {
                     </span>
                     {card?.careSessionStatus}
                   </p>
+                </div>
+                <div>
+                  List of potentialCareSession. 
+                    {/* //map through potentialCareSession and display them */}
+                {/* <ul>
+                  {potentialCaregivers 
+                    ?.map((potentialCaregiver) => {
+                      const {
+                        id,
+                        caregiverId,
+                        status,
+
+                      } = potentialCaregiver;
+                      return (
+                        <li
+                          key={id}
+                          className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
+                        >
+
+                    <div>
+                      <p className="text-gray-900  dark:text-white">
+                        <span className="font-semibold text-gray-900 dark:text-white">
+                          Caregiver:&nbsp;
+                        </span>
+                        {potentialCaregiver?.caregiverId}
+                      </p>
+                      <p className="text-gray-900  dark:text-white">
+                        <span className="font-semibold text-gray-900 dark:text-white">
+                          Status:&nbsp;
+                        </span>
+                        {potentialCaregiver?.status}  
+                      </p>
+                    </div>
+
+
+                        </li>
+                      );
+                    })}
+                </ul> */}
                 </div>
               </div>
               <div>
