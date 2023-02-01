@@ -98,14 +98,16 @@ export const careSessionRouter = router({
   readOnePotentialCaregiver: privateProcedure
   .input(
     z.object({
+      caregiverId: z.string(),
       careSessionId: z.string(),
     })
   )
   .query(async ({ ctx, input }) => {
-    const { careSessionId } = input;
+    const { caregiverId, careSessionId } = input;
     const item = await ctx.prisma.potentialCareSession.findFirst({
       where: {
-        careSessionId,
+        caregiverId: caregiverId,
+        careSessionId: careSessionId,
       },
     });
     return item;

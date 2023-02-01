@@ -4,9 +4,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
-// import { useEffect } from "react";
 import { useSession } from "next-auth/react";
-// import Caregiver from "../caregiver";
 
 const Slug: NextPage = () => {
   //*** IMPORTS ***\\
@@ -22,13 +20,15 @@ const Slug: NextPage = () => {
       slug,
     });
 
-  const { data: potentialCaregivers } =
-    trpc.careSessionAPIs.readAllPotentialCareSessionsByCareSessionId.useQuery({
-      careSessionId: currentSession?.sessionId || "",
-    });
+  // const { data: potentialCaregivers } =
+  //   trpc.careSessionAPIs.readAllPotentialCareSessionsByCareSessionId.useQuery({
+  //     careSessionId: currentSession?.sessionId || "",
+  //   });
 
   const { data: potentialCaregiver } =
     trpc.careSessionAPIs.readOnePotentialCaregiver.useQuery({
+      // careSessionId: currentSession?.sessionId || "",
+      caregiverId: user?.id || "",
       careSessionId: currentSession?.sessionId || "",
     });
 
@@ -83,11 +83,12 @@ const Slug: NextPage = () => {
     });
 
   //*** TESTS ***\\
-  console.log(currentSession?.sessionId);
-  console.log(user?.id);
-  console.log(potentialCaregivers);
-  console.log(potentialCaregiver?.id);
+  // console.log(currentSession?.sessionId);
+  console.log('user.id' + ' ' + user?.id);
+  // console.log(potentialCaregivers);
+  console.log('potentialCaregiver?.caregiverId' + ' ' + potentialCaregiver?.caregiverId);
 
+  console.log(potentialCaregiver)
   return (
     <>
       <Head>
@@ -374,7 +375,7 @@ const Slug: NextPage = () => {
                 </div>
               </div>
               <div className="mt-12 mb-12 flex justify-around ">
-                {/* ONLY WORKS IF CURRENT USER CREATED THE SESSION */}
+                {/* BROKEN: ONLY WORKS IF CURRENT USER CREATED THE SESSION */}
                 {potentialCaregiver?.caregiverId !== user.id && (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
@@ -390,15 +391,15 @@ const Slug: NextPage = () => {
                     Apply
                   </button>
                 )}
-                {/* BROKEN DOES NOT DELETE ANYTHING AT THE MOMENT */}
+                {/* BROKEN: DOES NOT DELETE ANYTHING */}
                 {potentialCaregiver?.caregiverId === user.id && (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                     onClick={() => {
                       setInputs({
-                        currentUserId: user?.id || "", //Why is this necessary?
+                        currentUserId: user?.id || "",
                         sessionId: currentSession?.sessionId || "",
-                        status: "pending", //Why is this necessary?
+                        status: "pending", 
                       });
                       removeCaregiver();
                     }}
