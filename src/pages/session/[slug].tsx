@@ -11,49 +11,55 @@ const Slug: NextPage = () => {
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
   const { data: session } = useSession();
 
-  const [inputs, setInputs] = useState({
-    currentUserId: "",
-    sessionId: "",
-    status: "pending",
-  });
 
   const router = useRouter();
   const { slug } = router.query as { slug: string };
-  const { data: card } = trpc.careSessionAPIs.readOneSessionBySlug.useQuery({
+  const { data: currentSession } = trpc.careSessionAPIs.readOneSessionBySlug.useQuery({
     slug,
   });
 
-  const { data: potentialCaregivers } = trpc.careSessionAPIs.readAllPotentialCareSessionsByCareSessionId.useQuery({
-    careSessionId: card?.sessionId || "",
+  const { data: potentialCaregivers } = trpc.careSessionAPIs.readAllPotentialCareSessionsByCareSessionId.useQuery({  
+    careSessionId: currentSession?.sessionId || "",
   });
+
+  const [inputs, setInputs] = useState({
+    currentUserId: "",
+    sessionId: currentSession?.sessionId || "",
+    status: "pending",
+  });
+
+
+  console.log(potentialCaregivers)
+
+
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    if (user && card) {
-      setInputs({
-        currentUserId: user.id,
-        sessionId: card.sessionId,
-        status: "pending",
-      });
-    }
-  }, [user, card]);
+  // useEffect(() => {
+  //   if (user && currentSession) {
+  //     setInputs({
+  //       currentUserId: user.id,
+  //       sessionId: currentSession.sessionId,
+  //       status: "pending",
+  //     });
+  //   }
+  // }, [user, currentSession]);
 
   const publish = () => {
-    if (user && card) {
+    if (user && currentSession) {
       mutate({
         caregiverId: user.id,
-        careSessionId: card.sessionId,
+        careSessionId: currentSession.sessionId,
         status: "pending",
       });
     }
   };
 
   const removeCaregiver = () => {
-    if (user && card) {
+    if (user && currentSession) {
       mutateTwo({
         caregiverId: user.id, //Is this necessary?
-        careSessionId: card.sessionId,
+        careSessionId: currentSession.sessionId,
         // status: "pending", //Why can this be disabled?
       });
     }
@@ -87,11 +93,11 @@ const Slug: NextPage = () => {
 
   const { data: potentialCaregiver } =
     trpc.careSessionAPIs.readOnePotentialCaregiver.useQuery({
-      careSessionId: card?.sessionId || "",
+      careSessionId: currentSession?.sessionId || "",
     });
 
     // console.log('user' + ' ' + user?.id)
-    // console.log('card.sessionId' + ' ' + card?.sessionId)
+    // console.log('currentSession.sessionId' + ' ' + currentSession?.sessionId)
     // console.log('caregiverId' + ' ' + potentialCaregiver?.caregiverId)
     // console.log('careSessionid' + ' ' + potentialCaregiver?.careSessionId)
     // console.log('status' + ' ' + potentialCaregiver?.status)
@@ -103,7 +109,7 @@ const Slug: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Session: {card?.slug}</title>
+        <title>Session: {currentSession?.slug}</title>
       </Head>
       <NavLayout />
       {/***********************
@@ -115,56 +121,56 @@ const Slug: NextPage = () => {
             <div className="mx-2 my-2 h-4/6 w-1/2 rounded-lg border-2 dark:bg-sky-900">
               <div className="mb-4 mr-4 ml-4">
                 <div className="mb-2 mr-4 ml-4 mt-12 p-4 text-center  text-xl text-gray-900 dark:text-white">
-                  {card?.title}
+                  {currentSession?.title}
                 </div>
                 <div className="text-sm">
                   <p className="text-gray-900 dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Name:&nbsp;
                     </span>
-                    {card?.name}
+                    {currentSession?.name}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Address:&nbsp;
                     </span>
-                    {card?.address}
+                    {currentSession?.address}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Medical Notes:&nbsp;
                     </span>
-                    {card?.medicalNotes}
+                    {currentSession?.medicalNotes}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Overview:&nbsp;
                     </span>
-                    {card?.overview}
+                    {currentSession?.overview}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Compensation Per Hour:&nbsp;
                     </span>
-                    ${card?.hourlyRate}
+                    ${currentSession?.hourlyRate}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Hours:&nbsp;
                     </span>
-                    {card?.totalHours}
+                    {currentSession?.totalHours}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Total:&nbsp;
                     </span>
-                    ${card?.totalCompensation}
+                    ${currentSession?.totalCompensation}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Status:&nbsp;
                     </span>
-                    {card?.careSessionStatus}
+                    {currentSession?.careSessionStatus}
                   </p>
                 </div>
               </div>
@@ -175,7 +181,7 @@ const Slug: NextPage = () => {
                     onClick={() => {
                       setInputs({
                         currentUserId: user?.id || "",
-                        sessionId: card?.sessionId || "",
+                        sessionId: currentSession?.sessionId || "",
                         status: "pending",
                       });
                       publish();
@@ -190,7 +196,7 @@ const Slug: NextPage = () => {
                     onClick={() => {
                       setInputs({
                         currentUserId: user?.id || "", //Why is this necessary?
-                        sessionId: card?.sessionId || "",
+                        sessionId: currentSession?.sessionId || "",
                         status: "pending", //Why is this necessary?
                       });
                       removeCaregiver();
@@ -220,56 +226,56 @@ const Slug: NextPage = () => {
             <div className="mx-2 my-2 h-4/6 w-1/2 rounded-lg border-2 dark:bg-sky-900">
               <div className="mb-4 mr-4 ml-4">
                 <div className="mb-2 mr-4 ml-4 mt-12 p-4 text-center  text-xl text-gray-900 dark:text-white">
-                  {card?.title}
+                  {currentSession?.title}
                 </div>
                 <div className="text-sm">
                   <p className="text-gray-900 dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Name:&nbsp;
                     </span>
-                    {card?.name}
+                    {currentSession?.name}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Address:&nbsp;
                     </span>
-                    {card?.address}
+                    {currentSession?.address}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Medical Notes:&nbsp;
                     </span>
-                    {card?.medicalNotes}
+                    {currentSession?.medicalNotes}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Overview:&nbsp;
                     </span>
-                    {card?.overview}
+                    {currentSession?.overview}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Compensation Per Hour:&nbsp;
                     </span>
-                    ${card?.hourlyRate}
+                    ${currentSession?.hourlyRate}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Hours:&nbsp;
                     </span>
-                    {card?.totalHours}
+                    {currentSession?.totalHours}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Total:&nbsp;
                     </span>
-                    ${card?.totalCompensation}
+                    ${currentSession?.totalCompensation}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Status:&nbsp;
                     </span>
-                    {card?.careSessionStatus}
+                    {currentSession?.careSessionStatus}
                   </p>
                 </div>
                 <div>
@@ -332,56 +338,56 @@ const Slug: NextPage = () => {
             <div className="mx-2 my-2 h-4/6 w-1/2 rounded-lg border-2 dark:bg-sky-900">
               <div className="mb-4 mr-4 ml-4">
                 <div className="mb-2 mr-4 ml-4 mt-12 p-4 text-center  text-xl text-gray-900 dark:text-white">
-                  {card?.title}
+                  {currentSession?.title}
                 </div>
                 <div className="text-sm">
                   <p className="text-gray-900 dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Name:&nbsp;
                     </span>
-                    {card?.name}
+                    {currentSession?.name}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Address:&nbsp;
                     </span>
-                    {card?.address}
+                    {currentSession?.address}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Medical Notes:&nbsp;
                     </span>
-                    {card?.medicalNotes}
+                    {currentSession?.medicalNotes}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Overview:&nbsp;
                     </span>
-                    {card?.overview}
+                    {currentSession?.overview}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Compensation Per Hour:&nbsp;
                     </span>
-                    ${card?.hourlyRate}
+                    ${currentSession?.hourlyRate}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Hours:&nbsp;
                     </span>
-                    {card?.totalHours}
+                    {currentSession?.totalHours}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Total:&nbsp;
                     </span>
-                    ${card?.totalCompensation}
+                    ${currentSession?.totalCompensation}
                   </p>
                   <p className="text-gray-900  dark:text-white">
                     <span className="font-semibold text-gray-900 dark:text-white">
                       Status:&nbsp;
                     </span>
-                    {card?.careSessionStatus}
+                    {currentSession?.careSessionStatus}
                   </p>
                 </div>
               </div>
@@ -393,8 +399,8 @@ const Slug: NextPage = () => {
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                     onClick={() => {
                       setInputs({
-                        currentUserId: user?.id || "",
-                        sessionId: card?.sessionId || "",
+                        currentUserId: user?.id,
+                        sessionId: currentSession?.sessionId || "",
                         status: "pending",
                       });
                       publish();
@@ -409,7 +415,7 @@ const Slug: NextPage = () => {
                     onClick={() => {
                       // setInputs({
                       //   currentUserId: user?.id || "", //Why is this necessary?
-                      //   sessionId: card?.sessionId || "",
+                      //   sessionId: currentSession?.sessionId || "",
                       //   status: "pending", //Why is this necessary?
                       // });
                       removeCaregiver();

@@ -67,7 +67,7 @@ model PotentialCareSession {
   caregiver     User        @relation(fields: [caregiverId], references: [id])
   caregiverId   String // relation scalar field  (used in the `@relation` attribute above)
   careSession   CareSession @relation(fields: [careSessionId], references: [id])
-  careSessionId String      @unique // relation scalar field (used in the `@relation` attribute above)
+  careSessionId String      // relation scalar field (used in the `@relation` attribute above)
   status        String // could be "pending", "accepted", "rejected"
   appliedAt     DateTime    @default(now())
 
