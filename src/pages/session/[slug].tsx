@@ -29,8 +29,6 @@ const Slug: NextPage = () => {
   });
 
 
-  console.log(potentialCaregivers)
-
 
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -96,9 +94,15 @@ const Slug: NextPage = () => {
       careSessionId: currentSession?.sessionId || "",
     });
 
+    // potentialCaregivers?.map((potentialCaregiver) => {
+    //   console.log('potentialCaregiver' + ' ' +       potentialCaregiver.caregiverId
+    //   )
+    // })
+
+
     // console.log('user' + ' ' + user?.id)
     // console.log('currentSession.sessionId' + ' ' + currentSession?.sessionId)
-    // console.log('caregiverId' + ' ' + potentialCaregiver?.caregiverId)
+    // console.log('caregiverId' + ' ' + potentialCaregiver)
     // console.log('careSessionid' + ' ' + potentialCaregiver?.careSessionId)
     // console.log('status' + ' ' + potentialCaregiver?.status)
 
@@ -394,7 +398,7 @@ const Slug: NextPage = () => {
               <div className="mt-12 mb-12 flex justify-around ">
                 {/* CURRENTLY MAKES ERROR THAT USER HAS ALREADY APPLIED IF ANOTHER USER HAS APPLIED
                 TO FIX THIS THERE NEEDS TO BE LOGIC REFORM SO MULTIPLE SESSIONS CAN BE CREATED */}
-              {potentialCaregiver?.caregiverId !== user.id && (
+              {  (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                     onClick={() => {
@@ -409,15 +413,15 @@ const Slug: NextPage = () => {
                     Apply
                   </button>
                 )}
-                {potentialCaregiver?.caregiverId === user.id && (
+                {potentialCaregiver?.caregiverId !== user.id && (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                     onClick={() => {
-                      // setInputs({
-                      //   currentUserId: user?.id || "", //Why is this necessary?
-                      //   sessionId: currentSession?.sessionId || "",
-                      //   status: "pending", //Why is this necessary?
-                      // });
+                      setInputs({
+                        currentUserId: user?.id || "", //Why is this necessary?
+                        sessionId: currentSession?.sessionId || "",
+                        status: "pending", //Why is this necessary?
+                      });
                       removeCaregiver();
                     }}
                   >

@@ -94,6 +94,7 @@ export const careSessionRouter = router({
   // *        READ          *
   // ************************
 
+  //BROKEN
   readOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
@@ -104,7 +105,7 @@ export const careSessionRouter = router({
       const { careSessionId } = input;
       const item = await ctx.prisma.potentialCareSession.findUnique({
         where: {
-          careSessionId: careSessionId,
+          // id: careSessionId,
         },
       });
       return item;
@@ -259,6 +260,7 @@ export const careSessionRouter = router({
   // *       DELETE         *
   // ************************
 
+  //BROKEN
   deleteOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
@@ -270,7 +272,7 @@ export const careSessionRouter = router({
       const { careSessionId } = input;
       const item = await ctx.prisma.potentialCareSession.delete({
         where: {
-          careSessionId: careSessionId,
+          // careSessionId: careSessionId,
         },
       });
       return item;
