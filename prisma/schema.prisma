@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["referentialIntegrity"]
@@ -46,7 +43,8 @@ model CareSession {
   acceptedCaregiverId String?
   careSessionStatus   String? // could be "new", "scheduled", "completed", "canceled"
   createdAt           DateTime               @default(now())
-  potentialCaregivers PotentialCareSession[]
+    // disabled with careSession (line 70)
+    // potentialCaregivers PotentialCareSession[] 
 
   @@unique([slug])
   @@index([authorId])
@@ -66,7 +64,9 @@ model PotentialCareSession {
   id            String      @id @default(cuid())
   caregiver     User        @relation(fields: [caregiverId], references: [id])
   caregiverId   String // relation scalar field  (used in the `@relation` attribute above)
-  careSession   CareSession @relation(fields: [careSessionId], references: [id])
+    //Disabled careSession it was causing the prisma studio to break
+    //Was it used for anything or did I just add it for sake of it?
+    // careSession   CareSession @relation(fields: [careSessionId], references: [id]) 
   careSessionId String      // relation scalar field (used in the `@relation` attribute above)
   status        String // could be "pending", "accepted", "rejected"
   appliedAt     DateTime    @default(now())
