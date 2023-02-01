@@ -258,6 +258,9 @@ export const careSessionRouter = router({
   // *       DELETE         *
   // ************************
 
+
+  //THIS IS PROBABLY A REALLY BAD IDEA TO DELETE THE POTENTIAL CAREGIVERS
+  //INSTEAD IT SHOULD BE UPDATED TO HAVE A STATUS OF "CANCELLED"
   deleteOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
