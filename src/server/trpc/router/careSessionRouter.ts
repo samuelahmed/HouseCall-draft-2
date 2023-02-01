@@ -94,24 +94,23 @@ export const careSessionRouter = router({
   // *        READ          *
   // ************************
 
-  //BROKEN
   readOnePotentialCaregiver: privateProcedure
-  .input(
-    z.object({
-      caregiverId: z.string(),
-      careSessionId: z.string(),
-    })
-  )
-  .query(async ({ ctx, input }) => {
-    const { caregiverId, careSessionId } = input;
-    const item = await ctx.prisma.potentialCareSession.findFirst({
-      where: {
-        caregiverId: caregiverId,
-        careSessionId: careSessionId,
-      },
-    });
-    return item;
-  }),
+    .input(
+      z.object({
+        caregiverId: z.string(),
+        careSessionId: z.string(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const { caregiverId, careSessionId } = input;
+      const item = await ctx.prisma.potentialCareSession.findFirst({
+        where: {
+          caregiverId: caregiverId,
+          careSessionId: careSessionId,
+        },
+      });
+      return item;
+    }),
 
   readOneSessionBySessionId: privateProcedure
     .input(z.object({ sessionId: z.string() }))
@@ -141,16 +140,14 @@ export const careSessionRouter = router({
     .input(z.object({ careSessionId: z.string() }))
     .query(async ({ ctx, input }) => {
       const { careSessionId } = input;
-      const potentialCareSessions = await ctx.prisma.potentialCareSession.findMany(
-        {
+      const potentialCareSessions =
+        await ctx.prisma.potentialCareSession.findMany({
           where: {
             careSessionId,
           },
-        }
-      );
+        });
       return potentialCareSessions;
     }),
-    
 
   readAllSessions: publicProcedure.query(({ ctx }) => {
     const items = ctx.prisma.careSession.findMany({
@@ -166,7 +163,6 @@ export const careSessionRouter = router({
     });
     return items;
   }),
-
 
   readAllSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
@@ -262,21 +258,31 @@ export const careSessionRouter = router({
   // *       DELETE         *
   // ************************
 
-  //BROKEN
   deleteOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
-        careSessionId: z.string(),
         caregiverId: z.string(),
+        careSessionId: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
-      const { careSessionId } = input;
-      const item = await ctx.prisma.potentialCareSession.delete({
-        where: {
-          // careSessionId,z
-        },
-      });
-      return item;
+      const { caregiverId, careSessionId } = input;
+      const potentialCareSession =
+        await ctx.prisma.potentialCareSession.findFirst({
+          where: {
+            caregiverId,
+            careSessionId,
+          },
+        });
+      if (!potentialCareSession) {
+        throw new Error("Potential care session not found");
+      }
+      const deletedPotentialCareSession =
+        await ctx.prisma.potentialCareSession.delete({
+          where: {
+            id: potentialCareSession.id || "",
+          },
+        });
+      return deletedPotentialCareSession;
     }),
 });
