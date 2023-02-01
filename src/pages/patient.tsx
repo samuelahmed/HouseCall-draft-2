@@ -34,7 +34,7 @@ const Patient: NextPage = (props) => {
               {/***********************
                *   LEFT SECTION       *
                **********************/}
-              Í
+              
               <div
                 className={
                   openSide === 1 ? "col-span-1 w-full" : "hidden lg:block"
