@@ -380,7 +380,6 @@ const Slug: NextPage = () => {
                 </div>
               </div>
               <div className="mt-12 mb-12 flex justify-around ">
-                {/* BROKEN: ONLY WORKS IF CURRENT USER CREATED THE SESSION */}
                 {potentialCaregiver?.caregiverId !== user.id && (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
@@ -396,7 +395,6 @@ const Slug: NextPage = () => {
                     Apply
                   </button>
                 )}
-                {/* BROKEN: DOES NOT DELETE ANYTHING */}
                 {potentialCaregiver?.caregiverId === user.id && (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
