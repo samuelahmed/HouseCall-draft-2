@@ -4,45 +4,42 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useSession } from "next-auth/react";
-import Caregiver from "../caregiver";
+// import Caregiver from "../caregiver";
 
 const Slug: NextPage = () => {
-  const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
-  const { data: session } = useSession();
-
-
+  //*** IMPORTS ***\\
   const router = useRouter();
   const { slug } = router.query as { slug: string };
-  const { data: currentSession } = trpc.careSessionAPIs.readOneSessionBySlug.useQuery({
-    slug,
-  });
+  const { data: session } = useSession();
 
-  const { data: potentialCaregivers } = trpc.careSessionAPIs.readAllPotentialCareSessionsByCareSessionId.useQuery({  
-    careSessionId: currentSession?.sessionId || "",
-  });
+  //*** API ROUTES ***\\
+  const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
 
+  const { data: currentSession } =
+    trpc.careSessionAPIs.readOneSessionBySlug.useQuery({
+      slug,
+    });
+
+  const { data: potentialCaregivers } =
+    trpc.careSessionAPIs.readAllPotentialCareSessionsByCareSessionId.useQuery({
+      careSessionId: currentSession?.sessionId || "",
+    });
+
+  const { data: potentialCaregiver } =
+    trpc.careSessionAPIs.readOnePotentialCaregiver.useQuery({
+      careSessionId: currentSession?.sessionId || "",
+    });
+
+  //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
     currentUserId: "",
     sessionId: currentSession?.sessionId || "",
     status: "pending",
   });
 
-
-
-
   const [errorMessage, setErrorMessage] = useState("");
-
-  // useEffect(() => {
-  //   if (user && currentSession) {
-  //     setInputs({
-  //       currentUserId: user.id,
-  //       sessionId: currentSession.sessionId,
-  //       status: "pending",
-  //     });
-  //   }
-  // }, [user, currentSession]);
 
   const publish = () => {
     if (user && currentSession) {
@@ -57,9 +54,8 @@ const Slug: NextPage = () => {
   const removeCaregiver = () => {
     if (user && currentSession) {
       mutateTwo({
-        caregiverId: user.id, //Is this necessary?
+        caregiverId: user.id,
         careSessionId: currentSession.sessionId,
-        // status: "pending", //Why can this be disabled?
       });
     }
   };
@@ -70,51 +66,28 @@ const Slug: NextPage = () => {
         setErrorMessage(error.message);
       },
       onSuccess: () => {
-        // some action on success
-        //reoload page
         alert("Meow! You have successfully applied to this care session.");
         // router.reload();
       },
     });
-
+    
   const { mutate: mutateTwo } =
     trpc.careSessionAPIs.deleteOnePotentialCaregiver.useMutation({
       onError: (error) => {
         setErrorMessage(error.message);
       },
       onSuccess: () => {
-        // some action on success
-        //reoload page
         alert("Meow! You have removed yourself from this care session.");
         // router.reload();
       },
     });
 
-  const { data: potentialCaregiver } =
-    trpc.careSessionAPIs.readOnePotentialCaregiver.useQuery({
-      careSessionId: currentSession?.sessionId || "",
-    });
+  //*** TESTS ***\\
+  console.log(currentSession?.sessionId);
+  console.log(user?.id);
+  console.log(potentialCaregivers);
+  console.log(potentialCaregiver?.id);
 
-    // potentialCaregivers?.map((potentialCaregiver) => {
-    //   console.log('potentialCaregiver' + ' ' +       potentialCaregiver.caregiverId
-    //   )
-    // })
-
-
-    // console.log('user' + ' ' + user?.id)
-    // console.log('currentSession.sessionId' + ' ' + currentSession?.sessionId)
-    // console.log('caregiverId' + ' ' + potentialCaregiver)
-    // console.log('careSessionid' + ' ' + potentialCaregiver?.careSessionId)
-    // console.log('status' + ' ' + potentialCaregiver?.status)
-
-console.log(currentSession?.sessionId)
-console.log(user?.id)
-console.log(potentialCaregivers)
-console.log(potentialCaregiver?.id)
-
-
-
-    
   return (
     <>
       <Head>
@@ -288,9 +261,9 @@ console.log(potentialCaregiver?.id)
                   </p>
                 </div>
                 <div>
-                  List of potentialCareSession. 
-                    {/* //map through potentialCareSession and display them */}
-                {/* <ul>
+                  List of potentialCareSession.
+                  {/* //map through potentialCareSession and display them */}
+                  {/* <ul>
                   {potentialCaregivers 
                     ?.map((potentialCaregiver) => {
                       const {
@@ -401,8 +374,8 @@ console.log(potentialCaregiver?.id)
                 </div>
               </div>
               <div className="mt-12 mb-12 flex justify-around ">
-              {/* ONLY WORKS IF CURRENT USER CREATED THE SESSION */}
-              {potentialCaregiver?.caregiverId !== user.id &&  (
+                {/* ONLY WORKS IF CURRENT USER CREATED THE SESSION */}
+                {potentialCaregiver?.caregiverId !== user.id && (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                     onClick={() => {
