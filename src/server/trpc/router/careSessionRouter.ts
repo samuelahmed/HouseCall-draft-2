@@ -96,20 +96,20 @@ export const careSessionRouter = router({
 
   //BROKEN
   readOnePotentialCaregiver: privateProcedure
-    .input(
-      z.object({
-        careSessionId: z.string(),
-      })
-    )
-    .query(async ({ input, ctx }) => {
-      const { careSessionId } = input;
-      const item = await ctx.prisma.potentialCareSession.findUnique({
-        where: {
-          // id: careSessionId,
-        },
-      });
-      return item;
-    }),
+  .input(
+    z.object({
+      careSessionId: z.string(),
+    })
+  )
+  .query(async ({ ctx, input }) => {
+    const { careSessionId } = input;
+    const item = await ctx.prisma.potentialCareSession.findFirst({
+      where: {
+        careSessionId,
+      },
+    });
+    return item;
+  }),
 
   readOneSessionBySessionId: privateProcedure
     .input(z.object({ sessionId: z.string() }))
@@ -272,7 +272,7 @@ export const careSessionRouter = router({
       const { careSessionId } = input;
       const item = await ctx.prisma.potentialCareSession.delete({
         where: {
-          // careSessionId: careSessionId,
+          // careSessionId,z
         },
       });
       return item;

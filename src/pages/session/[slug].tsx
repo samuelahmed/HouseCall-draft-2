@@ -110,7 +110,7 @@ const Slug: NextPage = () => {
 console.log(currentSession?.sessionId)
 console.log(user?.id)
 console.log(potentialCaregivers)
-
+console.log(potentialCaregiver?.id)
 
 
 
@@ -403,7 +403,8 @@ console.log(potentialCaregivers)
               <div className="mt-12 mb-12 flex justify-around ">
                 {/* CURRENTLY MAKES ERROR THAT USER HAS ALREADY APPLIED IF ANOTHER USER HAS APPLIED
                 TO FIX THIS THERE NEEDS TO BE LOGIC REFORM SO MULTIPLE SESSIONS CAN BE CREATED */}
-              {  (
+                {/* FOR SOME REASON THIS IS NOT WORKING NEED TO TEST WITH SECOND USER */}
+              {potentialCaregiver?.caregiverId !== user.id &&  (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                     onClick={() => {
@@ -418,7 +419,8 @@ console.log(potentialCaregivers)
                     Apply
                   </button>
                 )}
-                {potentialCaregiver?.caregiverId !== user.id && (
+                {/* BROKEN DOES NOT DELETE ANYTHING AT THE MOMENT */}
+                {potentialCaregiver?.caregiverId === user.id && (
                   <button
                     className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                     onClick={() => {
