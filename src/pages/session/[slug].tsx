@@ -6,6 +6,7 @@ import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Caregiver from "../caregiver";
 
 const Slug: NextPage = () => {
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
@@ -105,6 +106,10 @@ const Slug: NextPage = () => {
     // console.log('caregiverId' + ' ' + potentialCaregiver)
     // console.log('careSessionid' + ' ' + potentialCaregiver?.careSessionId)
     // console.log('status' + ' ' + potentialCaregiver?.status)
+
+console.log(currentSession?.sessionId)
+console.log(user?.id)
+console.log(potentialCaregivers)
 
 
 
