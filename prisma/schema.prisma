@@ -57,7 +57,7 @@ model CareSession {
   acceptedCaregiverId String?
   careSessionStatus   String? // could be "new", "scheduled", "completed", "canceled"
   createdAt           DateTime @default(now())
-  // disabled with careSession (line 70)
+  // disabled with careSession (line 70) <- how dumb to use line numbers in comments the code moves around
   // potentialCaregivers PotentialCareSession[] 
 
   @@unique([slug])
