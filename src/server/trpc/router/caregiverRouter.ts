@@ -11,6 +11,7 @@ export const careSessionRouter = router({
   // *       CREATE         *
   // ************************
 
+  //create one CaregiverPage
   createOneCareSession: privateProcedure
     .input(
       z.object({
@@ -69,6 +70,7 @@ export const careSessionRouter = router({
       });
       return item;
     }),
+
 
   //this is what happens you click on the button right now 
   //this route is not doing anything useful
