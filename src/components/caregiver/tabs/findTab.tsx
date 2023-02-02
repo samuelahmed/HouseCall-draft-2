@@ -115,7 +115,7 @@ const FindTab = () => {
                           <div className="mb-4 flex flex-col items-center justify-center">
                             <button
                               onClick={() =>
-                                router.push(`/session/${data.slug}`)
+                                router.push(`/careSession/${data.slug}`)
                               }
                               className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white  md:hidden lg:hidden"
                             >
@@ -192,7 +192,7 @@ const FindTab = () => {
                         <button
                           onClick={() =>
                             router.push(
-                              `/session/${selectedSession.data?.slug}`
+                              `/careSession/${selectedSession.data?.slug}`
                             )
                           }
                           className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) mt-6 h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-800 hover:bg-[hsl(154,47%,66%)] dark:text-gray-100 dark:hover:text-gray-800"
