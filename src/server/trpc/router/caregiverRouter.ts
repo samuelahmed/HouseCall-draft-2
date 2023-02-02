@@ -7,12 +7,35 @@ import slug from "slug";
 //PotentialCareSession
 
 export const careSessionRouter = router({
+
   // ************************
   // *       CREATE         *
   // ************************
 
   //create one CaregiverPage
-  createOneCareSession: privateProcedure
+
+  //This page will be created when:
+    //1. A caregiver applies for a session - this page is created with caregiver current info & status pending & session unique info (like caregiver's notes)
+    //2. A caregiver is accepted for a session - This page is updated to reflect the accepted status
+    //3. A caregiver is declined for a session - This page is updated to reflect the declined status
+
+  //On this page the information displayed will be:
+    //1. Caregiver's name
+    //2. Caregiver's Image (maybe)
+    //3. Caregiver's notes when applying for the session (this needs to be built completely)
+    //4. Caregiver's hourly rate
+    //5. Caregiver's total expected hours
+    //6. Caregiver's total expected compensation
+    //7. Caregiver's status (accepted, pending, declined)
+    //8. Caregiver's rating (this needs to be built completely)
+    //9. Caregiver's reviews (DO WE WANT THIS?)
+
+  //On this page the follow actions can be taken:
+    //10. Button to Accept Caregiver
+    //11. Button to Decline Caregiver
+    //12. Button to Message Caregiver
+
+  createOneCaregiverPage: privateProcedure
     .input(
       z.object({
         name: z.string(),
@@ -71,194 +94,9 @@ export const careSessionRouter = router({
       return item;
     }),
 
-
-  //this is what happens you click on the button right now 
-  //this route is not doing anything useful
-  createOnePotentialCaregiver: privateProcedure
-    .input(
-      z.object({
-        careSessionId: z.string(),
-        caregiverId: z.string(),
-        status: z.string(),
-      })
-    )
-    .mutation(async ({ input, ctx }) => {
-      const { careSessionId, caregiverId, status } = input;
-      const secondSlug = Math.random().toString(36).substring(7);
-
-      const item = await ctx.prisma.potentialCareSession.create({
-        data: {
-          careSessionId,
-          caregiverId,
-          status,
-          slug: slug(secondSlug),
-        },
-      });
-      return item;
-    }),
-
-
-
   // ************************
   // *        READ          *
   // ************************
-
-
-  readOnePotentialCaregiver: privateProcedure
-    .input(
-      z.object({
-        caregiverId: z.string(),
-        careSessionId: z.string(),
-      })
-    )
-    .query(async ({ ctx, input }) => {
-      const { caregiverId, careSessionId } = input;
-      const item = await ctx.prisma.potentialCareSession.findFirst({
-        where: {
-          caregiverId: caregiverId,
-          careSessionId: careSessionId,
-        },
-      });
-      return item;
-    }),
-
-  readOneSessionBySessionId: privateProcedure
-    .input(z.object({ sessionId: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const { sessionId } = input;
-      const returnedSession = ctx.prisma.careSession.findUnique({
-        where: {
-          sessionId,
-        },
-      });
-      return returnedSession;
-    }),
-
-  readOneSessionBySlug: privateProcedure
-    .input(z.object({ slug: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const { slug } = input;
-      const card = await ctx.prisma.careSession.findUnique({
-        where: {
-          slug,
-        },
-      });
-      return card;
-    }),
-
-  readAllPotentialCareSessionsByCareSessionId: privateProcedure
-    .input(z.object({ careSessionId: z.string() }))
-    .query(async ({ ctx, input }) => {
-      const { careSessionId } = input;
-      const potentialCareSessions =
-        await ctx.prisma.potentialCareSession.findMany({
-          where: {
-            careSessionId,
-          },
-        });
-      return potentialCareSessions;
-    }),
-
-  readAllSessions: publicProcedure.query(({ ctx }) => {
-    const items = ctx.prisma.careSession.findMany({
-      include: {
-        author: {
-          select: {
-            id: true,
-            username: true,
-            role: true,
-          },
-        },
-      },
-    });
-    return items;
-  }),
-
-  readAllSessionsByUser: privateProcedure.query(({ ctx }) => {
-    if (!ctx.session || !ctx.session.user) {
-      return null;
-    }
-    const items = ctx.prisma.careSession.findMany({
-      where: {
-        authorId: ctx.session.user.id,
-      },
-      include: {
-        author: {
-          select: {
-            id: true,
-            username: true,
-            role: true,
-          },
-        },
-      },
-    });
-    return items;
-  }),
-
-  readAllPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
-    if (!ctx.session || !ctx.session.user) {
-      throw new Error("Meow! Not authorized.");
-    }
-    const user = await ctx.prisma.user.findUnique({
-      where: {
-        id: ctx.session.user.id,
-      },
-    });
-    if (!user) {
-      throw new Error("Meow! user not found.");
-    }
-    const userId = user.id;
-    const currentUserPotentialCareSessions =
-      await ctx.prisma.potentialCareSession.findMany({
-        where: {
-          caregiverId: userId,
-        },
-      });
-    const careSessionIds = currentUserPotentialCareSessions.map(
-      (session) => session.careSessionId
-    );
-    const careSessions = await ctx.prisma.careSession.findMany({
-      where: {
-        sessionId: {
-          in: careSessionIds,
-        },
-      },
-    });
-    return careSessions;
-  }),
-
-  readAllHistoricalSessionsByUser: privateProcedure.query(async ({ ctx }) => {
-    if (!ctx.session || !ctx.session.user) {
-      throw new Error("Meow! Not authorized.");
-    }
-    const user = await ctx.prisma.user.findUnique({
-      where: {
-        id: ctx.session.user.id,
-      },
-    });
-    if (!user) {
-      throw new Error("Meow! user not found.");
-    }
-    const userId = user.id;
-    const currentUserPotentialCareSessions =
-      await ctx.prisma.potentialCareSession.findMany({
-        where: {
-          caregiverId: userId,
-          //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
-        },
-      });
-    const careSessionIds = currentUserPotentialCareSessions.map(
-      (session) => session.careSessionId
-    );
-    const careSessions = await ctx.prisma.careSession.findMany({
-      where: {
-        sessionId: {
-          in: careSessionIds,
-        },
-      },
-    });
-    return careSessions;
-  }),
 
   // ************************
   // *       UPDATE         *
@@ -267,35 +105,4 @@ export const careSessionRouter = router({
   // ************************
   // *       DELETE         *
   // ************************
-
-
-  //THIS IS PROBABLY A REALLY BAD IDEA TO DELETE THE POTENTIAL CAREGIVERS
-  //INSTEAD IT SHOULD BE UPDATED TO HAVE A STATUS OF "CANCELLED"
-  deleteOnePotentialCaregiver: privateProcedure
-    .input(
-      z.object({
-        caregiverId: z.string(),
-        careSessionId: z.string(),
-      })
-    )
-    .mutation(async ({ input, ctx }) => {
-      const { caregiverId, careSessionId } = input;
-      const potentialCareSession =
-        await ctx.prisma.potentialCareSession.findFirst({
-          where: {
-            caregiverId,
-            careSessionId,
-          },
-        });
-      if (!potentialCareSession) {
-        throw new Error("Potential care session not found");
-      }
-      const deletedPotentialCareSession =
-        await ctx.prisma.potentialCareSession.delete({
-          where: {
-            id: potentialCareSession.id || "",
-          },
-        });
-      return deletedPotentialCareSession;
-    }),
 });
