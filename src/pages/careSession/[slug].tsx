@@ -33,6 +33,8 @@ const Slug: NextPage = () => {
       careSessionId: currentSession?.sessionId || "",
     });
 
+
+
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
     currentUserId: "",
@@ -91,7 +93,7 @@ const Slug: NextPage = () => {
     "potentialCaregiver?.caregiverId" + " " + potentialCaregiver?.caregiverId
   );
 
-  console.log(potentialCaregiver);
+  // console.log(potentialCaregiver);
   return (
     <>
       <Head>
@@ -277,8 +279,8 @@ const Slug: NextPage = () => {
               List of potential Caregivers:
               {/* //map through potentialCareSession and display them */}
               <ul>
-                {potentialCaregivers?.map((potentialCaregiver) => {
-                  const { id, caregiverId, status } = potentialCaregiver;
+                {potentialCaregivers?.map((meow) => {
+                  const { id, caregiverId, status } = meow;
                   return (
                     <li
                       key={id}
@@ -289,6 +291,8 @@ const Slug: NextPage = () => {
                           <span className="font-semibold text-gray-900 dark:text-white">
                             Caregiver:&nbsp;
                           </span>
+                          {/* //Caregiver name will be displayed here */}
+
                           {potentialCaregiver?.caregiverId}
                         </p>
                         <p className="text-gray-900  dark:text-white">
@@ -426,7 +430,10 @@ const Slug: NextPage = () => {
               <ul>
                 {potentialCaregivers?.map((potentialCaregiver) => {
                   const { id, caregiverId, status } = potentialCaregiver;
+         
+
                   return (
+
                     <li
                       key={id}
                       className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
@@ -455,6 +462,8 @@ const Slug: NextPage = () => {
                             //there will also be a link to message the caregiver on their profile.
                             //This is just a link to their profile
                             console.log(potentialCaregiver)
+                            // console.log(potenticalCaregiverInfo)
+
 
                           }}
                         >

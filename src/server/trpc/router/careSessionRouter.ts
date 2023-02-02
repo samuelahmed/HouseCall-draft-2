@@ -99,6 +99,18 @@ export const careSessionRouter = router({
   // *        READ          *
   // ************************
 
+  readOneUser: privateProcedure
+    .input(z.object({ caregiverId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { caregiverId } = input;
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: caregiverId,
+        },
+      });
+      return user;
+    }),
+
   readOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
