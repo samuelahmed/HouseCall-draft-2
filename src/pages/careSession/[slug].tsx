@@ -33,8 +33,6 @@ const Slug: NextPage = () => {
       careSessionId: currentSession?.sessionId || "",
     });
 
-
-
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
     currentUserId: "",
@@ -86,14 +84,7 @@ const Slug: NextPage = () => {
     });
 
   //*** TESTS ***\\
-  // console.log(currentSession?.sessionId);
-  console.log("user.id" + " " + user?.id);
-  // console.log(potentialCaregivers);
-  console.log(
-    "potentialCaregiver?.caregiverId" + " " + potentialCaregiver?.caregiverId
-  );
 
-  // console.log(potentialCaregiver);
   return (
     <>
       <Head>
@@ -292,7 +283,6 @@ const Slug: NextPage = () => {
                             Caregiver:&nbsp;
                           </span>
                           {/* //Caregiver name will be displayed here */}
-
                           {potentialCaregiver?.caregiverId}
                         </p>
                         <p className="text-gray-900  dark:text-white">
@@ -428,12 +418,11 @@ const Slug: NextPage = () => {
               List of potential Caregivers:
               {/* //map through potentialCareSession and display them */}
               <ul>
+                {/* IS IT OKAY TO HAVE THE MAP INSIDE OF HERE?  */}
+                {/* IF NOT. MOVE IT OUTSIDE THE RETURN? */}
                 {potentialCaregivers?.map((potentialCaregiver) => {
                   const { id, caregiverId, status } = potentialCaregiver;
-         
-
                   return (
-
                     <li
                       key={id}
                       className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
@@ -456,15 +445,10 @@ const Slug: NextPage = () => {
                         <button
                           className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                           onClick={() => {
-
                             // Do stuff to link to caregiver profile
                             //Note confirmation will occur on the profile of the caregiver
                             //there will also be a link to message the caregiver on their profile.
                             //This is just a link to their profile
-                            console.log(potentialCaregiver)
-                            // console.log(potenticalCaregiverInfo)
-
-
                           }}
                         >
                           See Profile
