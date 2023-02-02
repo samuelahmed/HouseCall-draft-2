@@ -62,7 +62,7 @@ const Slug: NextPage = () => {
   };
 
   const { mutate } =
-    trpc.careSessionAPIs.createOnePotentialCaregiver.useMutation({
+    trpc.careSessionAPIs.createOnePotentialCaregiverPage.useMutation({
       onError: (error) => {
         setErrorMessage(error.message);
       },
@@ -445,10 +445,8 @@ const Slug: NextPage = () => {
                         <button
                           className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                           onClick={() => {
-                            // Do stuff to link to caregiver profile
-                            //Note confirmation will occur on the profile of the caregiver
-                            //there will also be a link to message the caregiver on their profile.
-                            //This is just a link to their profile
+                            // Route to the potentialCaregiver Page
+                            console.log(potentialCaregiver)
                           }}
                         >
                           See Profile

@@ -72,7 +72,7 @@ export const careSessionRouter = router({
 
   //this is what happens you click on the button right now 
   //this route is not doing anything useful
-  createOnePotentialCaregiver: privateProcedure
+  createOnePotentialCaregiverPage: privateProcedure
     .input(
       z.object({
         careSessionId: z.string(),
