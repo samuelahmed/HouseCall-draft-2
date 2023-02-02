@@ -11,7 +11,7 @@ export const careSessionRouter = router({
   // *       CREATE         *
   // ************************
 
-  createOneSession: privateProcedure
+  createOneCareSession: privateProcedure
     .input(
       z.object({
         name: z.string(),
@@ -80,15 +80,20 @@ export const careSessionRouter = router({
     )
     .mutation(async ({ input, ctx }) => {
       const { careSessionId, caregiverId, status } = input;
+      const secondSlug = Math.random().toString(36).substring(7);
+
       const item = await ctx.prisma.potentialCareSession.create({
         data: {
           careSessionId,
           caregiverId,
           status,
+          slug: slug(secondSlug),
         },
       });
       return item;
     }),
+
+
 
   // ************************
   // *        READ          *

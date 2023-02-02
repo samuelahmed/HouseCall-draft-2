@@ -9,7 +9,7 @@ const CreateSession = () => {
   const router = useRouter();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
 
-  const { mutate } = trpc.careSessionAPIs.createOneSession.useMutation({
+  const { mutate } = trpc.careSessionAPIs.createOneCareSession.useMutation({
     onSuccess(newSession) {
       alert("Meow! Session successfully created!");
       setItems((prev) => [...prev, newSession]);
