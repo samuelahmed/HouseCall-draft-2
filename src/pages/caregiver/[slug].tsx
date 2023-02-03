@@ -15,10 +15,18 @@ const Slug: NextPage = () => {
   //*** API ROUTES ***\\
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
 
-  const { data: currentSession } =
+  const { data: potentialCareSession } =
     trpc.careSessionAPIs.readOnePotentialCaregiverPageBySlug.useQuery({
       slug,
     });
+
+    //1) Route that bring in User data based on the CaregiverId
+
+    //2) Route that allows the buttons to update the potentialCareSession
+    //Route that allows the buttons to update the careSession
+      //^^ do I need both of these or can I just use the one route? and only have one status across both models?
+
+    
 
   //*** FUNCTIONS ***\\
 
@@ -27,7 +35,7 @@ const Slug: NextPage = () => {
   return (
     <>
       <Head>
-        <title>PotentialCaregiver: {currentSession?.caregiverId}</title>
+        <title>PotentialCaregiver: {potentialCareSession?.caregiverId}</title>
       </Head>
       <NavLayout />
       {/***********************
@@ -45,7 +53,7 @@ const Slug: NextPage = () => {
         <>
           {/* {user.username} */}
           this need to be linked to caregiver User to get their name:
-          {currentSession?.caregiverId}
+          {potentialCareSession?.caregiverId}
           <div className="mt-2 mb-2 space-x-2 ">
             <button
               className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
