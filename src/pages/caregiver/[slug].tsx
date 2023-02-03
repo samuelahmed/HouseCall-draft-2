@@ -7,12 +7,11 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 const Slug: NextPage = () => {
-
   //*** IMPORTS ***\\
   const router = useRouter();
   const { slug } = router.query as { slug: string };
   const { data: session } = useSession();
-  
+
   //*** API ROUTES ***\\
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
 
@@ -42,14 +41,38 @@ const Slug: NextPage = () => {
       {/***********************
        * CAREGIVER & PATIENT  *
        **********************/}
-      {session && user?.role === "Caregiver & Patient" && <>
-       
-       {/* {user.username} */}
-       this need to be linked to caregiver User to get their name: 
-       {currentSession?.caregiverId}
-      
-    
-      </>}
+      {session && user?.role === "Caregiver & Patient" && (
+        <>
+          {/* {user.username} */}
+          this need to be linked to caregiver User to get their name:
+          {currentSession?.caregiverId}
+          <div className="mt-2 mb-2 space-x-2 ">
+            <button
+              className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+              onClick={() => router.push("/messages")}
+            >
+              Message Caregiver
+            </button>
+            <button
+              className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+              onClick={() => console.log("Accept Caregiver")}
+            >
+              Accept Caregiver
+            </button>
+            <button
+              className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white"
+              onClick={() => console.log("Deny Caregiver")}
+            >
+              Deny Caregiver
+            </button>
+
+            </div>
+
+            
+
+
+        </>
+      )}
       {/***********************
        *      NO SESSION      *
        **********************/}
