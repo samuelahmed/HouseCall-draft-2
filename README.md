@@ -34,9 +34,8 @@
  ┃ ┃ ┗ 📜messageDashboardConnectionCardJohn.tsx
  ┃ ┗ 📂patient
  ┃ ┃ ┣ 📜activeSessionPatient.tsx
- ┃ ┃ ┣ 📜createSession.tsx
+ ┃ ┃ ┣ 📜createCareSession.tsx
  ┃ ┃ ┗ 📜historyPatient.tsx
-
  ┣ 📂env
  ┃ ┣ 📜client.mjs
  ┃ ┣ 📜schema.mjs
@@ -50,7 +49,9 @@
  ┃ ┃ ┃ ┗ 📜[trpc].ts
  ┃ ┃ ┣ 📜examples.ts
  ┃ ┃ ┗ 📜restricted.ts
- ┃ ┣ 📂session
+ ┃ ┣ 📂careSession
+ ┃ ┃ ┗ 📜[slug].tsx
+ ┃ ┣ 📂caregiver
  ┃ ┃ ┗ 📜[slug].tsx
  ┃ ┣ 📜_app.tsx
  ┃ ┣ 📜account.tsx
@@ -79,14 +80,11 @@
 
  ┣ 📂styles
  ┃ ┗ 📜globals.css
-
  ┣ 📂types
  ┃ ┗ 📜next-auth.d.ts
-
  ┣ 📂utils
  ┃ ┗ 📜trpc.ts
-
  ┣ 📂validation
- ┗  ┗ 📜auth.ts
+ ┃ ┗ 📜auth.ts
 
  ```
