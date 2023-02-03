@@ -2,7 +2,7 @@ import { router, publicProcedure, privateProcedure } from "../trpc";
 import { z } from "zod";
 import slug from "slug";
 
-//This router is for the following schemas:
+//This router is for the following prisma models:
 //CareSession
 //PotentialCareSession
 
@@ -10,7 +10,6 @@ export const careSessionRouter = router({
   // ************************
   // *       CREATE         *
   // ************************
-
   createOneCareSession: privateProcedure
     .input(
       z.object({
@@ -70,8 +69,6 @@ export const careSessionRouter = router({
       return item;
     }),
 
-  //this is what happens you click on the button right now 
-  //this route is not doing anything useful
   createOnePotentialCaregiverPage: privateProcedure
     .input(
       z.object({
@@ -82,8 +79,9 @@ export const careSessionRouter = router({
     )
     .mutation(async ({ input, ctx }) => {
       const { careSessionId, caregiverId, status } = input;
+      //Instead of generating random string here it would be better to do something else
+      //This will probably collide eventually
       const secondSlug = Math.random().toString(36).substring(7);
-
       const item = await ctx.prisma.potentialCareSession.create({
         data: {
           careSessionId,
@@ -95,13 +93,9 @@ export const careSessionRouter = router({
       return item;
     }),
 
-
-
   // ************************
   // *        READ          *
   // ************************
-
-
   readOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
@@ -144,7 +138,7 @@ export const careSessionRouter = router({
       return card;
     }),
 
-    readOnePotentialCaregiverPageBySlug: privateProcedure
+  readOnePotentialCaregiverPageBySlug: privateProcedure
     .input(z.object({ slug: z.string() }))
     .query(async ({ ctx, input }) => {
       const { slug } = input;
@@ -155,8 +149,6 @@ export const careSessionRouter = router({
       });
       return card;
     }),
-    
-
 
   readAllPotentialCareSessionsByCareSessionId: privateProcedure
     .input(z.object({ careSessionId: z.string() }))
@@ -279,7 +271,6 @@ export const careSessionRouter = router({
   // ************************
   // *       DELETE         *
   // ************************
-
 
   //THIS IS PROBABLY A REALLY BAD IDEA TO DELETE THE POTENTIAL CAREGIVERS
   //INSTEAD IT SHOULD BE UPDATED TO HAVE A STATUS OF "CANCELLED"

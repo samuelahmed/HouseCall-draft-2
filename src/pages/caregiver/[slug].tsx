@@ -7,10 +7,12 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 const Slug: NextPage = () => {
+
   //*** IMPORTS ***\\
   const router = useRouter();
   const { slug } = router.query as { slug: string };
   const { data: session } = useSession();
+  
   //*** API ROUTES ***\\
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
 
@@ -19,16 +21,14 @@ const Slug: NextPage = () => {
       slug,
     });
 
-
   //*** FUNCTIONS ***\\
-
 
   //*** TESTS ***\\
 
   return (
     <>
       <Head>
-        <title>Session: {currentSession?.slug}</title>
+        <title>PotentialCaregiver: {currentSession?.caregiverId}</title>
       </Head>
       <NavLayout />
       {/***********************
