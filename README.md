@@ -80,10 +80,13 @@
 
  ┣ 📂styles
  ┃ ┗ 📜globals.css
+
  ┣ 📂types
  ┃ ┗ 📜next-auth.d.ts
+
  ┣ 📂utils
  ┃ ┗ 📜trpc.ts
+ 
  ┣ 📂validation
  ┃ ┗ 📜auth.ts
 
