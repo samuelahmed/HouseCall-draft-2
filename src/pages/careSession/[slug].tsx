@@ -444,10 +444,11 @@ const Slug: NextPage = () => {
                       <div className="mt-2 mb-2 flex justify-around ">
                         <button
                           className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                          onClick={() => {
-                            // Route to the potentialCaregiver Page
-                            console.log(potentialCaregiver)
-                          }}
+                          onClick={() =>
+                            router.push(
+                              `/caregiver/${potentialCaregiver?.slug}`
+                            )
+                          }
                         >
                           See Profile
                         </button>

@@ -144,6 +144,20 @@ export const careSessionRouter = router({
       return card;
     }),
 
+    readOnePotentialCaregiverPageBySlug: privateProcedure
+    .input(z.object({ slug: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { slug } = input;
+      const card = await ctx.prisma.potentialCareSession.findUnique({
+        where: {
+          slug,
+        },
+      });
+      return card;
+    }),
+    
+
+
   readAllPotentialCareSessionsByCareSessionId: privateProcedure
     .input(z.object({ careSessionId: z.string() }))
     .query(async ({ ctx, input }) => {
