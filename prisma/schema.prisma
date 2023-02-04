@@ -53,6 +53,8 @@ model CareSession {
   createdAt           DateTime @default(now())
   potentialCareSessions PotentialCareSession[] 
   // potentialCaregivers PotentialCareSession[] 
+
+
   @@unique([slug])
   @@index([userId])
 }
@@ -67,14 +69,16 @@ model Session {
 }
 
 model PotentialCareSession {
-  id            String   @id @default(cuid())
-  caregiver     User     @relation(fields: [caregiverId], references: [id])
+  id            String      @id @default(cuid())
+  caregiver     User        @relation(fields: [caregiverId], references: [id])
   caregiverId   String // relation scalar field  (used in the `@relation` attribute above)
   careSession   CareSession @relation(fields: [careSessionId], references: [id])
-  careSessionId String  // relation scalar field  (used in the `@relation` attribute above)
+  careSessionId String // relation scalar field  (used in the `@relation` attribute above)
   status        String // could be "pending", "accepted", "rejected"
-  appliedAt     DateTime @default(now())
+  appliedAt     DateTime    @default(now())
   slug          String
+
+
   @@unique([slug])
   @@index([caregiverId])
   @@index([careSessionId])

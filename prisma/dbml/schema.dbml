@@ -21,8 +21,8 @@ Table User {
 Table CareSession {
   id String [pk]
   sessionId String [unique, not null]
-  user User [not null]
-  userId String [not null]
+  author User [not null]
+  authorId String [not null]
   name String
   title String
   address String
@@ -58,7 +58,7 @@ Table PotentialCareSession {
   slug String [unique, not null]
 }
 
-Ref: CareSession.userId > User.id
+Ref: CareSession.authorId > User.id
 
 Ref: Session.userId > User.id [delete: Cascade]
 

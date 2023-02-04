@@ -49,7 +49,7 @@ export const careSessionRouter = router({
       if (!user) {
         throw new Error("Meow! user not found.");
       }
-      const currentUserId = user.id;
+      const userId = user.id;
       const item = await ctx.prisma.careSession.create({
         data: {
           name,
@@ -63,7 +63,7 @@ export const careSessionRouter = router({
           acceptedCaregiverId,
           careSessionStatus,
           slug: slug(sessionId),
-          userId: currentUserId,
+          authorId: userId,
         },
       });
       return item;
@@ -100,27 +100,27 @@ export const careSessionRouter = router({
     .input(
       z.object({
         caregiverId: z.string(),
-        careSessionId: z.string(),
+        id: z.string(),
       })
     )
     .query(async ({ ctx, input }) => {
-      const { caregiverId, careSessionId } = input;
+      const { caregiverId, id } = input;
       const item = await ctx.prisma.potentialCareSession.findFirst({
         where: {
           caregiverId: caregiverId,
-          careSessionId: careSessionId,
+          // careSessionId: id,
         },
       });
       return item;
     }),
 
   readOneSessionBySessionId: privateProcedure
-    .input(z.object({ sessionId: z.string() }))
+    .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      const { sessionId } = input;
+      const { id } = input;
       const returnedSession = ctx.prisma.careSession.findUnique({
         where: {
-          sessionId,
+          id,
         },
       });
       return returnedSession;
@@ -151,13 +151,13 @@ export const careSessionRouter = router({
     }),
 
   readAllPotentialCareSessionsByCareSessionId: privateProcedure
-    .input(z.object({ careSessionId: z.string() }))
+    .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      const { careSessionId } = input;
+      const { id } = input;
       const potentialCareSessions =
         await ctx.prisma.potentialCareSession.findMany({
           where: {
-            careSessionId,
+            careSessionId: id,
           },
         });
       return potentialCareSessions;
@@ -166,7 +166,7 @@ export const careSessionRouter = router({
   readAllSessions: publicProcedure.query(({ ctx }) => {
     const items = ctx.prisma.careSession.findMany({
       include: {
-        user: {
+        author: {
           select: {
             id: true,
             username: true,
@@ -184,10 +184,10 @@ export const careSessionRouter = router({
     }
     const items = ctx.prisma.careSession.findMany({
       where: {
-        userId: ctx.session.user.id,
+        authorId: ctx.session.user.id,
       },
       include: {
-        user: {
+        author: {
           select: {
             id: true,
             username: true,
@@ -201,7 +201,7 @@ export const careSessionRouter = router({
 
   readAllPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
-      throw new Error("Meow! Not userized.");
+      throw new Error("Meow! Not authorized.");
     }
     const user = await ctx.prisma.user.findUnique({
       where: {
@@ -223,7 +223,7 @@ export const careSessionRouter = router({
     );
     const careSessions = await ctx.prisma.careSession.findMany({
       where: {
-        sessionId: {
+        id: {
           in: careSessionIds,
         },
       },
@@ -231,9 +231,10 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
+
   readAllHistoricalSessionsByUser: privateProcedure.query(async ({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
-      throw new Error("Meow! Not userized.");
+      throw new Error("Meow! Not authorized.");
     }
     const user = await ctx.prisma.user.findUnique({
       where: {
@@ -256,7 +257,7 @@ export const careSessionRouter = router({
     );
     const careSessions = await ctx.prisma.careSession.findMany({
       where: {
-        sessionId: {
+        id: {
           in: careSessionIds,
         },
       },
