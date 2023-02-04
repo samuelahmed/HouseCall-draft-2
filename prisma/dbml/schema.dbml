@@ -1,0 +1,67 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Table User {
+  id String [pk]
+  username String [unique]
+  email String [unique]
+  emailVerified DateTime
+  password String [not null]
+  image String
+  role String
+  address String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  potentialCareSessions PotentialCareSession [not null]
+  sessions Session [not null]
+  careSessions CareSession [not null]
+}
+
+Table CareSession {
+  id String [pk]
+  sessionId String [unique, not null]
+  author User [not null]
+  authorId String [not null]
+  name String
+  title String
+  address String
+  medicalNotes String
+  overview String
+  sessionType String
+  hourlyRate Int
+  totalHours Int
+  totalCompensation Int
+  slug String [unique, not null]
+  acceptedCaregiverId String
+  careSessionStatus String
+  createdAt DateTime [default: `now()`, not null]
+  potentialCareSessions PotentialCareSession [not null]
+}
+
+Table Session {
+  id String [pk]
+  sessionToken String [unique, not null]
+  userId String [not null]
+  expires DateTime [not null]
+  user User [not null]
+}
+
+Table PotentialCareSession {
+  id String [pk]
+  caregiver User [not null]
+  caregiverId String [not null]
+  careSession CareSession [not null]
+  careSessionId String [not null]
+  status String [not null]
+  appliedAt DateTime [default: `now()`, not null]
+  slug String [unique, not null]
+}
+
+Ref: CareSession.authorId > User.id
+
+Ref: Session.userId > User.id [delete: Cascade]
+
+Ref: PotentialCareSession.caregiverId > User.id
+
+Ref: PotentialCareSession.careSessionId > CareSession.id
