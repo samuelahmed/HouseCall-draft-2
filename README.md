@@ -1,3 +1,6 @@
+
+
+
 ```
 📦src
 
@@ -91,3 +94,5 @@
  ┃ ┗ 📜auth.ts
 
  ```
+
+![Alt text](https://github.com/samuelahmed/HouseCall-draft-2/blob/074d033f8a8d7d6a4972f4856ab2a6086b094b7e/prisma/dbImg/feb3_2023.png?raw=true "DB Schema")

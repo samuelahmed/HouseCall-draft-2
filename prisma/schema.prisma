@@ -53,8 +53,6 @@ model CareSession {
   createdAt           DateTime @default(now())
   potentialCareSessions PotentialCareSession[] 
   // potentialCaregivers PotentialCareSession[] 
-
-
   @@unique([slug])
   @@index([userId])
 }
@@ -65,7 +63,6 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   @@index([userId])
 }
 
@@ -78,8 +75,6 @@ model PotentialCareSession {
   status        String // could be "pending", "accepted", "rejected"
   appliedAt     DateTime @default(now())
   slug          String
-
-
   @@unique([slug])
   @@index([caregiverId])
   @@index([careSessionId])
