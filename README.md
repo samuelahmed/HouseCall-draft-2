@@ -2,7 +2,7 @@
 
 ![alt text](https://github.com/samuelahmed/HouseCall-draft-2/tree/main/prisma/dbImg/feb3_2023.png
 
-![Alt text](/samuelahmed/HouseCall-draft-2/tree/main/prisma/dbImg/feb3_2023.png?raw=true "Optional Title")
+![Alt text](https://github.com/samuelahmed/HouseCall-draft-2/tree/main/prisma/dbImg/feb3_2023.png?raw=true "Optional Title")
 
 
 
