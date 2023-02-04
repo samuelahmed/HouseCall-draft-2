@@ -100,27 +100,27 @@ export const careSessionRouter = router({
     .input(
       z.object({
         caregiverId: z.string(),
-        careSessionId: z.string(),
+        id: z.string(),
       })
     )
     .query(async ({ ctx, input }) => {
-      const { caregiverId, careSessionId } = input;
+      const { caregiverId, id } = input;
       const item = await ctx.prisma.potentialCareSession.findFirst({
         where: {
           caregiverId: caregiverId,
-          careSessionId: careSessionId,
+          id: id,
         },
       });
       return item;
     }),
 
   readOneSessionBySessionId: privateProcedure
-    .input(z.object({ sessionId: z.string() }))
+    .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      const { sessionId } = input;
+      const { id } = input;
       const returnedSession = ctx.prisma.careSession.findUnique({
         where: {
-          sessionId,
+          id,
         },
       });
       return returnedSession;
@@ -151,13 +151,13 @@ export const careSessionRouter = router({
     }),
 
   readAllPotentialCareSessionsByCareSessionId: privateProcedure
-    .input(z.object({ careSessionId: z.string() }))
+    .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      const { careSessionId } = input;
+      const { id } = input;
       const potentialCareSessions =
         await ctx.prisma.potentialCareSession.findMany({
           where: {
-            careSessionId,
+            id,
           },
         });
       return potentialCareSessions;
@@ -223,13 +223,14 @@ export const careSessionRouter = router({
     );
     const careSessions = await ctx.prisma.careSession.findMany({
       where: {
-        sessionId: {
+        id: {
           in: careSessionIds,
         },
       },
     });
     return careSessions;
   }),
+
 
   readAllHistoricalSessionsByUser: privateProcedure.query(async ({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
@@ -256,7 +257,7 @@ export const careSessionRouter = router({
     );
     const careSessions = await ctx.prisma.careSession.findMany({
       where: {
-        sessionId: {
+        id: {
           in: careSessionIds,
         },
       },

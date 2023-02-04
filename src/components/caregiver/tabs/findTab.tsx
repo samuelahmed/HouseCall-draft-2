@@ -9,7 +9,7 @@ const FindTab = () => {
 
   const [inputs, setInputs] = useState({
     title: "",
-    sessionId: "",
+    id: "",
     name: "",
     address: "",
     overview: "",
@@ -21,8 +21,8 @@ const FindTab = () => {
   });
 
   const selectedSession = trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
-    sessionId:
-      inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
+    id:
+      inputs?.id || (data?.[data?.length - 1]?.id ?? "0"),
   });
 
   return (
@@ -42,7 +42,7 @@ const FindTab = () => {
                   {data
                     ?.map((data) => {
                       const {
-                        sessionId,
+                        id,
                         title,
                         name,
                         address,
@@ -55,13 +55,13 @@ const FindTab = () => {
                       } = data;
                       return (
                         <li
-                          key={sessionId}
+                          key={id}
                           className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
                         >
                           <div
                             onClick={() => {
                               setInputs({
-                                sessionId: sessionId,
+                                id: id,
                                 title: title || "still loading",
                                 name: name || "still loading",
                                 address: address || "still loading",
