@@ -21,8 +21,14 @@ Table User {
 Table CareSession {
   id String [pk]
 <<<<<<< HEAD
+<<<<<<< HEAD
   user User [not null]
   userId String [not null]
+=======
+  sessionId String [unique, not null]
+  author User [not null]
+  authorId String [not null]
+>>>>>>> parent of a28a4d7 (Fix careSessionRouter to match new schema)
 =======
   sessionId String [unique, not null]
   author User [not null]
