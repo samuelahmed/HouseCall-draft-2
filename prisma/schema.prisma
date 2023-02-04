@@ -9,6 +9,12 @@ datasource db {
   relationMode = "prisma"
 }
 
+//To generate the dbml file, run: npx prisma generate
+//Visualize the file at: https://dbdiagram.io
+generator dbml {
+  provider = "prisma-dbml-generator"
+}
+
 model User {
   id                    String                 @id @default(cuid())
   username              String?                @unique
@@ -43,8 +49,9 @@ model CareSession {
   acceptedCaregiverId String?
   careSessionStatus   String? // could be "new", "scheduled", "completed", "canceled"
   createdAt           DateTime @default(now())
-  // disabled with careSession (line 70) <- how dumb to use line numbers in comments the code moves around
+  potentialCareSessions PotentialCareSession[] 
   // potentialCaregivers PotentialCareSession[] 
+
 
   @@unique([slug])
   @@index([authorId])
@@ -64,10 +71,12 @@ model PotentialCareSession {
   id            String   @id @default(cuid())
   caregiver     User     @relation(fields: [caregiverId], references: [id])
   caregiverId   String // relation scalar field  (used in the `@relation` attribute above)
-  careSessionId String // relation scalar field (used in the `@relation` attribute above)
+  careSession   CareSession @relation(fields: [careSessionId], references: [id])
+  careSessionId String  // relation scalar field  (used in the `@relation` attribute above)
   status        String // could be "pending", "accepted", "rejected"
   appliedAt     DateTime @default(now())
   slug          String
+
 
   @@unique([slug])
   @@index([caregiverId])
