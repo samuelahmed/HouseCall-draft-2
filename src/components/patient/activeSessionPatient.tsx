@@ -6,12 +6,12 @@ const ActiveSessionPatient = () => {
   const { data } = trpc.careSessionAPIs.readAllSessionsByUser.useQuery();
   const router = useRouter();
   const [inputs, setInputs] = useState({
-    sessionId: "",
+    id: "",
   });
 
   const selectedSession = trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
-    sessionId:
-      inputs?.sessionId || (data?.[data?.length - 1]?.sessionId ?? "0"),
+    id:
+      inputs?.id || (data?.[data?.length - 1]?.id ?? "0"),
   });
 
   return (
@@ -24,7 +24,7 @@ const ActiveSessionPatient = () => {
                 {data
                   ?.map((data) => {
                     const {
-                      sessionId,
+                      id,
                       title,
                       name,
                       address,
@@ -37,7 +37,7 @@ const ActiveSessionPatient = () => {
                     } = data;
                     return (
                       <li
-                        key={sessionId}
+                        key={id}
                         className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
                       >
                         <div className="text-center text-xl text-gray-800 dark:text-gray-100">
