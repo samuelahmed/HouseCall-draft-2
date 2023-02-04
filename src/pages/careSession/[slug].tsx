@@ -23,20 +23,20 @@ const Slug: NextPage = () => {
 
   const { data: potentialCaregivers } =
     trpc.careSessionAPIs.readAllPotentialCareSessionsByCareSessionId.useQuery({
-      careSessionId: currentSession?.sessionId || "",
+      id: currentSession?.id || "",
     });
 
   const { data: potentialCaregiver } =
     trpc.careSessionAPIs.readOnePotentialCaregiver.useQuery({
       // careSessionId: currentSession?.sessionId || "",
       caregiverId: user?.id || "",
-      careSessionId: currentSession?.sessionId || "",
+      id: currentSession?.id || "",
     });
 
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
     currentUserId: "",
-    sessionId: currentSession?.sessionId || "",
+    id: currentSession?.id || "",
     status: "pending",
   });
 
@@ -46,7 +46,7 @@ const Slug: NextPage = () => {
     if (user && currentSession) {
       mutate({
         caregiverId: user.id,
-        careSessionId: currentSession.sessionId,
+        careSessionId: currentSession.id,
         status: "pending",
       });
     }
@@ -56,7 +56,7 @@ const Slug: NextPage = () => {
     if (user && currentSession) {
       mutateTwo({
         caregiverId: user.id,
-        careSessionId: currentSession.sessionId,
+        careSessionId: currentSession.id,
       });
     }
   };
@@ -160,7 +160,7 @@ const Slug: NextPage = () => {
                     onClick={() => {
                       setInputs({
                         currentUserId: user?.id || "",
-                        sessionId: currentSession?.sessionId || "",
+                        id: currentSession?.id || "",
                         status: "pending",
                       });
                       publish();
@@ -175,7 +175,7 @@ const Slug: NextPage = () => {
                     onClick={() => {
                       setInputs({
                         currentUserId: user?.id || "", //Why is this necessary?
-                        sessionId: currentSession?.sessionId || "",
+                        id: currentSession?.id || "",
                         status: "pending", //Why is this necessary?
                       });
                       removeCaregiver();
@@ -381,7 +381,7 @@ const Slug: NextPage = () => {
                     onClick={() => {
                       setInputs({
                         currentUserId: user?.id,
-                        sessionId: currentSession?.sessionId || "",
+                        id: currentSession?.id || "",
                         status: "pending",
                       });
                       publish();
@@ -396,7 +396,7 @@ const Slug: NextPage = () => {
                     onClick={() => {
                       setInputs({
                         currentUserId: user?.id || "",
-                        sessionId: currentSession?.sessionId || "",
+                        id: currentSession?.id || "",
                         status: "pending",
                       });
                       removeCaregiver();
@@ -432,7 +432,7 @@ const Slug: NextPage = () => {
                           <span className="font-semibold text-gray-900 dark:text-white">
                             Caregiver:&nbsp;
                           </span>
-                          {potentialCaregiver?.caregiverId}
+                          {potentialCaregiver?.id}
                         </p>
                         <p className="text-gray-900  dark:text-white">
                           <span className="font-semibold text-gray-900 dark:text-white">
