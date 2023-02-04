@@ -1,6 +1,6 @@
 
 
-![alt text](https://github.com/samuelahmed/HouseCall-draft-2/tree/main/prisma/dbImg/feb3_2023.png?raw=true)
+![alt text](https://github.com/samuelahmed/HouseCall-draft-2/tree/main/prisma/dbImg/feb3_2023.png
 
 
 
