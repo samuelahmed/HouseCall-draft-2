@@ -108,7 +108,7 @@ export const careSessionRouter = router({
       const item = await ctx.prisma.potentialCareSession.findFirst({
         where: {
           caregiverId: caregiverId,
-          id: id,
+          // careSessionId: id,
         },
       });
       return item;
@@ -157,7 +157,7 @@ export const careSessionRouter = router({
       const potentialCareSessions =
         await ctx.prisma.potentialCareSession.findMany({
           where: {
-            id,
+            careSessionId: id,
           },
         });
       return potentialCareSessions;
