@@ -24,7 +24,7 @@ const Slug: NextPage = () => {
     });
 
 
-  const { data: potentialCaregivers } =
+    const { data: potentialCaregivers } =
     trpc.careSessionAPIs.readAllPotentialCareSessionsByCareSessionId.useQuery({
       id: currentSession?.id || "",
     });
@@ -40,8 +40,6 @@ const Slug: NextPage = () => {
       id: currentSession?.id || "",
     });
 
-    console.log(potentialCaregiver)
-    console.log(user?.id)
 
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
@@ -94,6 +92,7 @@ const Slug: NextPage = () => {
     });
 
   //*** TESTS ***\\
+  
 
   return (
     <>
