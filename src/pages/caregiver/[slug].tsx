@@ -25,9 +25,6 @@ const Slug: NextPage = () => {
       id: potentialCareSession?.careSessionId || "",
     });
 
-  // console.log(currentSession);
-  // console.log(potentialCareSession?.caregiverId)
-
   const { data: potentialCaregiverInfo } =
     trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
       caregiverId: potentialCareSession?.caregiverId || "",
