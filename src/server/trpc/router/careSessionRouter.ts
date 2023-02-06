@@ -97,7 +97,7 @@ export const careSessionRouter = router({
   // *        READ          *
   // ************************
 
-  // NOTE: THIS WILL ALL USER INFORMATION
+  // NOTE: THIS WILL PULL ALL USER INFORMATION
   //       INCLUDING HASHED PASSWORDS.
   // SHOULD THIS BE MOVED TO USER ROUTER?
   readOneUserByPotentialCareSessionCaregiverId: privateProcedure
