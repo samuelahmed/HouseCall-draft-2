@@ -65,11 +65,11 @@ const Slug: NextPage = () => {
 
   const { mutate } = trpc.careSessionAPIs.updateOneCareSession.useMutation({
     onError: (error) => {
-      alert("Meow! Something went wrong.");
+      alert("Something went wrong.");
     },
     onSuccess: () => {
-      alert("Meow! You have removed yourself from this care session.");
-      // router.reload();
+      //Trigger some notifications here?
+      router.reload();
     },
   });
 
@@ -122,7 +122,6 @@ const Slug: NextPage = () => {
                     careSessionStatus: "accepted",
                   });
                   acceptedSession();
-                  console.log("inputs" + inputs);
                 }}
               >
                 Accept Caregiver
@@ -132,15 +131,12 @@ const Slug: NextPage = () => {
               <button
                 className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                 onClick={() => {
-                  console.log('Build cancel session')
-                  console.log("Accept Caregiver CLICKED");
                   setInputs({
                     careSessionId: currentSession?.id || "",
                     acceptedCaregiverId: "",
                     careSessionStatus: "Canceled",
                   });
                   cancelSession();
-                  console.log("inputs" + inputs);
                 }}
               >
                 Cancel Session
