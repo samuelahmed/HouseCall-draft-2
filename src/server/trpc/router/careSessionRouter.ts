@@ -286,8 +286,6 @@ export const careSessionRouter = router({
         slug,
         userId,
       } = input;
-      
-
       const updatedCareSession = await ctx.prisma.careSession.upsert({
         create: {
           slug,

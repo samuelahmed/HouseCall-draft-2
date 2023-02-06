@@ -15,20 +15,17 @@ const Slug: NextPage = () => {
   //*** API ROUTES ***\\
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
 
-
   const { data: potentialCareSession } =
     trpc.careSessionAPIs.readOnePotentialCaregiverPageBySlug.useQuery({
       slug,
     });
 
-    const { data: currentSession } =
+  const { data: currentSession } =
     trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
       id: potentialCareSession?.careSessionId || "",
     });
 
-    console.log(currentSession)
-
-    // console.log(potentialCareSession)
+  console.log(currentSession);
 
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
@@ -49,8 +46,6 @@ const Slug: NextPage = () => {
     }
   };
 
-
-
   const { mutate } = trpc.careSessionAPIs.updateOneCareSession.useMutation({
     onError: (error) => {
       alert("Meow! Something went wrong.");
@@ -60,6 +55,7 @@ const Slug: NextPage = () => {
       // router.reload();
     },
   });
+  
   //*** TESTS ***\\
 
   return (
@@ -91,7 +87,7 @@ const Slug: NextPage = () => {
             >
               Message Caregiver
             </button>
-
+            {/* NOTE: ADD MODAL HERE TO CONFIRM ACCEPT */}
             <button
               className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
               onClick={() => {
@@ -106,13 +102,6 @@ const Slug: NextPage = () => {
               }}
             >
               Accept Caregiver
-            </button>
-
-            <button
-              className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white"
-              onClick={() => console.log("Deny Caregiver")}
-            >
-              Deny Caregiver
             </button>
           </div>
         </>
