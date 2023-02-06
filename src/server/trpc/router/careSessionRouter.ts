@@ -264,12 +264,14 @@ export const careSessionRouter = router({
     }
     const userId = user.id;
     const currentUserPotentialCareSessions =
-      await ctx.prisma.potentialCareSession.findMany({
-        where: {
-          caregiverId: userId,
-          //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
+    await ctx.prisma.potentialCareSession.findMany({
+      where: {
+        caregiverId: userId
+        //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
+        // careSessionStatus: "accepted"
+        //why is this not working?
         },
-      });
+    });
     const careSessionIds = currentUserPotentialCareSessions.map(
       (session) => session.careSessionId
     );
