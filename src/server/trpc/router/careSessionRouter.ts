@@ -231,7 +231,6 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
-
   readAllHistoricalSessionsByUser: privateProcedure.query(async ({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       throw new Error("Meow! Not authorized.");
@@ -268,6 +267,46 @@ export const careSessionRouter = router({
   // ************************
   // *       UPDATE         *
   // ************************
+
+  updateOneCareSession: privateProcedure
+    .input(
+      z.object({
+        acceptedCaregiverId: z.string(),
+        careSessionStatus: z.string(),
+        careSessionId: z.string(),
+        slug: z.string(),
+        userId: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const {
+        acceptedCaregiverId,
+        careSessionStatus,
+        careSessionId,
+        slug,
+        userId,
+      } = input;
+      
+
+      const updatedCareSession = await ctx.prisma.careSession.upsert({
+        create: {
+          slug,
+          userId,
+          acceptedCaregiverId,
+          careSessionStatus,
+        },
+        update: {
+          acceptedCaregiverId,
+          careSessionStatus,
+          slug,
+          userId,
+        },
+        where: {
+          id: careSessionId,
+        },
+      });
+      return updatedCareSession;
+    }),
 
   // ************************
   // *       DELETE         *

@@ -15,21 +15,51 @@ const Slug: NextPage = () => {
   //*** API ROUTES ***\\
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
 
+
   const { data: potentialCareSession } =
     trpc.careSessionAPIs.readOnePotentialCaregiverPageBySlug.useQuery({
       slug,
     });
 
-    //1) Route that bring in User data based on the CaregiverId
+    const { data: currentSession } =
+    trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
+      id: potentialCareSession?.careSessionId || "",
+    });
 
-    //2) Route that allows the buttons to update the potentialCareSession
-    //Route that allows the buttons to update the careSession
-      //^^ do I need both of these or can I just use the one route? and only have one status across both models?
+    console.log(currentSession)
 
-    
+    // console.log(potentialCareSession)
 
   //*** FUNCTIONS ***\\
+  const [inputs, setInputs] = useState({
+    careSessionId: currentSession?.id || "",
+    acceptedCaregiverId: "",
+    careSessionStatus: "pending",
+  });
 
+  const publish = () => {
+    if (user && currentSession) {
+      mutate({
+        careSessionId: currentSession.id,
+        acceptedCaregiverId: user.id,
+        careSessionStatus: "accepted",
+        slug: currentSession.slug,
+        userId: user.id,
+      });
+    }
+  };
+
+
+
+  const { mutate } = trpc.careSessionAPIs.updateOneCareSession.useMutation({
+    onError: (error) => {
+      alert("Meow! Something went wrong.");
+    },
+    onSuccess: () => {
+      alert("Meow! You have removed yourself from this care session.");
+      // router.reload();
+    },
+  });
   //*** TESTS ***\\
 
   return (
@@ -61,24 +91,30 @@ const Slug: NextPage = () => {
             >
               Message Caregiver
             </button>
+
             <button
               className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-              onClick={() => console.log("Accept Caregiver")}
+              onClick={() => {
+                console.log("Accept Caregiver CLICKED");
+                setInputs({
+                  careSessionId: currentSession?.id || "",
+                  acceptedCaregiverId: potentialCareSession?.caregiverId || "",
+                  careSessionStatus: "accepted",
+                });
+                publish();
+                console.log("inputs" + inputs);
+              }}
             >
               Accept Caregiver
             </button>
+
             <button
               className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white"
               onClick={() => console.log("Deny Caregiver")}
             >
               Deny Caregiver
             </button>
-
-            </div>
-
-            
-
-
+          </div>
         </>
       )}
       {/***********************
@@ -90,28 +126,3 @@ const Slug: NextPage = () => {
 };
 
 export default Slug;
-
-// console.log(potentialCaregiver);
-
-//create one CaregiverPage
-
-//This page will be created when:
-//1. A caregiver applies for a session - this page is created with caregiver current info & status pending & session unique info (like caregiver's notes)
-//2. A caregiver is accepted for a session - This page is updated to reflect the accepted status
-//3. A caregiver is declined for a session - This page is updated to reflect the declined status
-
-//On this page the information displayed will be:
-//1. Caregiver's name
-//2. Caregiver's Image (maybe)
-//3. Caregiver's notes when applying for the session (this needs to be built completely)
-//4. Caregiver's hourly rate
-//5. Caregiver's total expected hours
-//6. Caregiver's total expected compensation
-//7. Caregiver's status (accepted, pending, declined)
-//8. Caregiver's rating (this needs to be built completely)
-//9. Caregiver's reviews (DO WE WANT THIS?)
-
-//On this page the follow actions can be taken:
-//10. Button to Accept Caregiver
-//11. Button to Decline Caregiver
-//12. Button to Message Caregiver
