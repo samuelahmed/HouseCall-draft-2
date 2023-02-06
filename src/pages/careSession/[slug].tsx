@@ -381,91 +381,118 @@ const Slug: NextPage = () => {
                   </p>
                 </div>
               </div>
-              <div className="mt-12 mb-12 flex justify-around ">
-                {potentialCaregiver?.caregiverId !== user.id && (
-                  <button
-                    className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                    onClick={() => {
-                      setInputs({
-                        currentUserId: user?.id,
-                        id: currentSession?.id || "",
-                        status: "pending",
-                      });
-                      publish();
-                    }}
-                  >
-                    Apply
-                  </button>
-                )}
-                {potentialCaregiver?.caregiverId === user.id && (
-                  <button
-                    className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                    onClick={() => {
-                      setInputs({
-                        currentUserId: user?.id || "",
-                        id: currentSession?.id || "",
-                        status: "pending",
-                      });
-                      removeCaregiver();
-                    }}
-                  >
-                    Cancel Application
-                  </button>
-                )}
-              </div>
-              <div>
-                {errorMessage && (
-                  <p className="text-center text-red-600">
-                    Meow! You already applied to this session.
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="w-full px-2">
-              List of potential Caregivers:
-              {/* //map through potentialCareSession and display them */}
-              <ul>
-                {/* IS IT OKAY TO HAVE THE MAP INSIDE OF HERE?  */}
-                {/* IF NOT. MOVE IT OUTSIDE THE RETURN? */}
-                {potentialCaregivers?.map((potentialCaregiver) => {
-                  const { id, caregiverId, status } = potentialCaregiver;
 
-                  return (
-                    <li
-                      key={id}
-                      className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
-                    >
-                      <div>
-                        <p className="text-gray-900  dark:text-white">
-                          <span className="font-semibold text-gray-900 dark:text-white">
-                            Caregiver:&nbsp;
-                          </span>
-                          {potentialCaregiver?.caregiverId}
-                        </p>
-                        <p className="text-gray-900  dark:text-white">
-                          <span className="font-semibold text-gray-900 dark:text-white">
-                            Status:&nbsp;
-                          </span>
-                          {potentialCaregiver?.status}
-                        </p>
-                      </div>
-                      <div className="mt-2 mb-2 flex justify-around ">
-                        <button
-                          className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                          onClick={() =>
-                            router.push(
-                              `/caregiver/${potentialCaregiver?.slug}`
-                            )
-                          }
-                        >
-                          See Profile
-                        </button>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+              {currentSession?.userId !== user.id && (
+                <>
+                  <div className="mt-12 mb-12 flex justify-around ">
+                    {potentialCaregiver?.caregiverId !== user.id && (
+                      <button
+                        className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                        onClick={() => {
+                          setInputs({
+                            currentUserId: user?.id,
+                            id: currentSession?.id || "",
+                            status: "pending",
+                          });
+                          publish();
+                        }}
+                      >
+                        Apply
+                      </button>
+                    )}
+
+                    {potentialCaregiver?.caregiverId === user.id && (
+                      <button
+                        className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                        onClick={() => {
+                          setInputs({
+                            currentUserId: user?.id || "",
+                            id: currentSession?.id || "",
+                            status: "pending",
+                          });
+                          removeCaregiver();
+                        }}
+                      >
+                        Cancel Application
+                      </button>
+                    )}
+                  </div>
+                  <div>
+                    {errorMessage && (
+                      <p className="text-center text-red-600">
+                        Meow! You already applied to this session.
+                      </p>
+                    )}
+                  </div>
+                </>
+              )}
             </div>
+            {currentSession?.userId === user.id && (
+              <div>
+                test
+                {currentSession?.careSessionStatus !== "accepted" && (
+                  <div className="w-full px-2">
+                    List of potential Caregivers:
+                    {/* //map through potentialCareSession and display them */}
+                    <ul>
+                      {/* IS IT OKAY TO HAVE THE MAP INSIDE OF HERE?  */}
+                      {/* IF NOT. MOVE IT OUTSIDE THE RETURN? */}
+                      {potentialCaregivers?.map((potentialCaregiver) => {
+                        const { id, caregiverId, status } = potentialCaregiver;
+
+                        return (
+                          <li
+                            key={id}
+                            className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
+                          >
+                            <div>
+                              <p className="text-gray-900  dark:text-white">
+                                <span className="font-semibold text-gray-900 dark:text-white">
+                                  Caregiver:&nbsp;
+                                </span>
+                                {potentialCaregiver?.caregiverId}
+                              </p>
+                              <p className="text-gray-900  dark:text-white">
+                                <span className="font-semibold text-gray-900 dark:text-white">
+                                  Status:&nbsp;
+                                </span>
+                                {potentialCaregiver?.status}
+                              </p>
+                            </div>
+                            <div className="mt-2 mb-2 flex justify-around ">
+                              <button
+                                className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                                onClick={() =>
+                                  router.push(
+                                    `/caregiver/${potentialCaregiver?.slug}`
+                                  )
+                                }
+                              >
+                                See Profile
+                              </button>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {currentSession?.careSessionStatus === "accepted" && (
+              <div>
+                {currentSession?.acceptedCaregiverId}
+                <button
+                  className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                  onClick={() =>
+                    router.push(`/caregiver/${potentialCaregiver?.slug}`)
+                  }
+                >
+                  See Profile
+                </button>
+              </div>
+            )}
           </div>
         </>
       )}

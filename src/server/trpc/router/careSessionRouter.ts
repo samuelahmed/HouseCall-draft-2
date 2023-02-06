@@ -3,8 +3,8 @@ import { z } from "zod";
 import slug from "slug";
 
 //This router is for the following prisma models:
-//CareSession
-//PotentialCareSession
+  //CareSession
+  //PotentialCareSession
 
 export const careSessionRouter = router({
   // ************************

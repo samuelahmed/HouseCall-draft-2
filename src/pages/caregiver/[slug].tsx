@@ -39,7 +39,7 @@ const Slug: NextPage = () => {
     careSessionStatus: "pending",
   });
 
-  const publish = () => {
+  const acceptedSession = () => {
     if (user && currentSession) {
       mutate({
         careSessionId: currentSession.id,
@@ -51,20 +51,30 @@ const Slug: NextPage = () => {
     }
   };
 
+  const cancelSession = () => {
+    if (user && currentSession) {
+      mutate({
+        careSessionId: currentSession.id,
+        acceptedCaregiverId: "",
+        careSessionStatus: "Canceled",
+        slug: currentSession.slug,
+        userId: user.id,
+      });
+    }
+  };
+
   const { mutate } = trpc.careSessionAPIs.updateOneCareSession.useMutation({
     onError: (error) => {
-      alert("Meow! Something went wrong.");
+      alert("Something went wrong.");
     },
     onSuccess: () => {
-      alert("Meow! You have removed yourself from this care session.");
-      // router.reload();
+      //Trigger some notifications here?
+      router.reload();
     },
   });
 
   //*** TESTS ***\\
-
   
-
   return (
     <>
       <Head>
@@ -111,8 +121,7 @@ const Slug: NextPage = () => {
                       potentialCareSession?.caregiverId || "",
                     careSessionStatus: "accepted",
                   });
-                  publish();
-                  console.log("inputs" + inputs);
+                  acceptedSession();
                 }}
               >
                 Accept Caregiver
@@ -122,16 +131,12 @@ const Slug: NextPage = () => {
               <button
                 className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                 onClick={() => {
-                  console.log('Build cancel session')
-                  // console.log("Accept Caregiver CLICKED");
-                  // setInputs({
-                  //   careSessionId: currentSession?.id || "",
-                  //   acceptedCaregiverId:
-                  //     potentialCareSession?.caregiverId || "",
-                  //   careSessionStatus: "accepted",
-                  // });
-                  // publish();
-                  // console.log("inputs" + inputs);
+                  setInputs({
+                    careSessionId: currentSession?.id || "",
+                    acceptedCaregiverId: "",
+                    careSessionStatus: "Canceled",
+                  });
+                  cancelSession();
                 }}
               >
                 Cancel Session
