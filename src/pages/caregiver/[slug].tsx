@@ -25,7 +25,15 @@ const Slug: NextPage = () => {
       id: potentialCareSession?.careSessionId || "",
     });
 
-  console.log(currentSession);
+  // console.log(currentSession);
+  // console.log(potentialCareSession?.caregiverId)
+
+  const { data: potentialCaregiverInfo } =
+    trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
+      caregiverId: potentialCareSession?.caregiverId || "",
+    });
+
+  console.log(potentialCaregiverInfo);
 
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
@@ -55,7 +63,7 @@ const Slug: NextPage = () => {
       // router.reload();
     },
   });
-  
+
   //*** TESTS ***\\
 
   return (
@@ -77,9 +85,15 @@ const Slug: NextPage = () => {
        **********************/}
       {session && user?.role === "Caregiver & Patient" && (
         <>
-          {/* {user.username} */}
-          this need to be linked to caregiver User to get their name:
-          {potentialCareSession?.caregiverId}
+          <h1 className="text-3xl  text-gray-900 dark:text-white">
+            {potentialCaregiverInfo?.username}
+          </h1>
+          <h1 className="text-1xl text-gray-900 dark:text-white">
+            {potentialCaregiverInfo?.email}
+          </h1>
+          <h1 className="text-1xl  text-gray-900 dark:text-white">
+            {potentialCaregiverInfo?.address}
+          </h1>
           <div className="mt-2 mb-2 space-x-2 ">
             <button
               className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"

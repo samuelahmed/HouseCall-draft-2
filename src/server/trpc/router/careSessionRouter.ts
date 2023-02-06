@@ -96,6 +96,25 @@ export const careSessionRouter = router({
   // ************************
   // *        READ          *
   // ************************
+
+  // NOTE: THIS WILL ALL USER INFORMATION
+  //       INCLUDING HASHED PASSWORDS.
+  // SHOULD THIS BE MOVED TO USER ROUTER?
+  readOneUserByPotentialCareSessionCaregiverId: privateProcedure
+    .input(z.object({ caregiverId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { caregiverId } = input;
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: caregiverId,
+        },
+      });
+      if (!user) {
+        throw new Error("Meow! user not found.");
+      }
+      return user;
+    }),
+
   readOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
