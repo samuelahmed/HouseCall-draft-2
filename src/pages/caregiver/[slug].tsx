@@ -15,15 +15,20 @@ const Slug: NextPage = () => {
   //*** API ROUTES ***\\
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
 
-  const { data: currentSession } =
-    trpc.careSessionAPIs.readOneSessionBySlug.useQuery({
-      slug,
-    });
 
   const { data: potentialCareSession } =
     trpc.careSessionAPIs.readOnePotentialCaregiverPageBySlug.useQuery({
       slug,
     });
+
+    const { data: currentSession } =
+    trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
+      id: potentialCareSession?.careSessionId || "",
+    });
+
+    console.log(currentSession)
+
+    // console.log(potentialCareSession)
 
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
@@ -43,6 +48,8 @@ const Slug: NextPage = () => {
       });
     }
   };
+
+
 
   const { mutate } = trpc.careSessionAPIs.updateOneCareSession.useMutation({
     onError: (error) => {
