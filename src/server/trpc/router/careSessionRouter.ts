@@ -96,6 +96,25 @@ export const careSessionRouter = router({
   // ************************
   // *        READ          *
   // ************************
+
+  // NOTE: THIS WILL ALL USER INFORMATION
+  //       INCLUDING HASHED PASSWORDS.
+  // SHOULD THIS BE MOVED TO USER ROUTER?
+  readOneUserByPotentialCareSessionCaregiverId: privateProcedure
+    .input(z.object({ caregiverId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { caregiverId } = input;
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: caregiverId,
+        },
+      });
+      if (!user) {
+        throw new Error("Meow! user not found.");
+      }
+      return user;
+    }),
+
   readOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
@@ -245,12 +264,14 @@ export const careSessionRouter = router({
     }
     const userId = user.id;
     const currentUserPotentialCareSessions =
-      await ctx.prisma.potentialCareSession.findMany({
-        where: {
-          caregiverId: userId,
-          //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
+    await ctx.prisma.potentialCareSession.findMany({
+      where: {
+        caregiverId: userId
+        //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
+        // careSessionStatus: "accepted"
+        //why is this not working?
         },
-      });
+    });
     const careSessionIds = currentUserPotentialCareSessions.map(
       (session) => session.careSessionId
     );
@@ -286,8 +307,6 @@ export const careSessionRouter = router({
         slug,
         userId,
       } = input;
-      
-
       const updatedCareSession = await ctx.prisma.careSession.upsert({
         create: {
           slug,

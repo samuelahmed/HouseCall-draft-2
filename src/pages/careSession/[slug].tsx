@@ -32,6 +32,16 @@ const Slug: NextPage = () => {
       id: currentSession?.id || "",
     });
 
+  //attempt to display caregiver info not just ID
+  //does not work because there is a loop to get the caregiver ID
+  // and I am not sure how to pass each id into the query
+  // const { data: potentialCaregiverInfo } =
+  // trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
+  //   caregiverId: potentialCaregiver?.caregiverId || "",
+  // });
+
+  // console.log(potentialCaregiverInfo);
+
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
     currentUserId: "",
@@ -421,6 +431,7 @@ const Slug: NextPage = () => {
                 {/* IF NOT. MOVE IT OUTSIDE THE RETURN? */}
                 {potentialCaregivers?.map((potentialCaregiver) => {
                   const { id, caregiverId, status } = potentialCaregiver;
+
                   return (
                     <li
                       key={id}

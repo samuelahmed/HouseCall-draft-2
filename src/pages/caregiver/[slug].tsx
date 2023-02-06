@@ -15,20 +15,22 @@ const Slug: NextPage = () => {
   //*** API ROUTES ***\\
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
 
-
   const { data: potentialCareSession } =
     trpc.careSessionAPIs.readOnePotentialCaregiverPageBySlug.useQuery({
       slug,
     });
 
-    const { data: currentSession } =
+  const { data: currentSession } =
     trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
       id: potentialCareSession?.careSessionId || "",
     });
 
-    console.log(currentSession)
+  const { data: potentialCaregiverInfo } =
+    trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
+      caregiverId: potentialCareSession?.caregiverId || "",
+    });
 
-    // console.log(potentialCareSession)
+  console.log(potentialCaregiverInfo);
 
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
@@ -49,8 +51,6 @@ const Slug: NextPage = () => {
     }
   };
 
-
-
   const { mutate } = trpc.careSessionAPIs.updateOneCareSession.useMutation({
     onError: (error) => {
       alert("Meow! Something went wrong.");
@@ -60,6 +60,7 @@ const Slug: NextPage = () => {
       // router.reload();
     },
   });
+
   //*** TESTS ***\\
 
   return (
@@ -81,9 +82,15 @@ const Slug: NextPage = () => {
        **********************/}
       {session && user?.role === "Caregiver & Patient" && (
         <>
-          {/* {user.username} */}
-          this need to be linked to caregiver User to get their name:
-          {potentialCareSession?.caregiverId}
+          <h1 className="text-3xl  text-gray-900 dark:text-white">
+            {potentialCaregiverInfo?.username}
+          </h1>
+          <h1 className="text-1xl text-gray-900 dark:text-white">
+            {potentialCaregiverInfo?.email}
+          </h1>
+          <h1 className="text-1xl  text-gray-900 dark:text-white">
+            {potentialCaregiverInfo?.address}
+          </h1>
           <div className="mt-2 mb-2 space-x-2 ">
             <button
               className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
@@ -91,29 +98,43 @@ const Slug: NextPage = () => {
             >
               Message Caregiver
             </button>
-
-            <button
-              className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-              onClick={() => {
-                console.log("Accept Caregiver CLICKED");
-                setInputs({
-                  careSessionId: currentSession?.id || "",
-                  acceptedCaregiverId: potentialCareSession?.caregiverId || "",
-                  careSessionStatus: "accepted",
-                });
-                publish();
-                console.log("inputs" + inputs);
-              }}
-            >
-              Accept Caregiver
-            </button>
-
-            <button
-              className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white"
-              onClick={() => console.log("Deny Caregiver")}
-            >
-              Deny Caregiver
-            </button>
+            {/* NOTE: ADD MODAL HERE TO CONFIRM ACCEPT */}
+            {currentSession?.careSessionStatus !== "accepted" && (
+              <button
+                className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                onClick={() => {
+                  setInputs({
+                    careSessionId: currentSession?.id || "",
+                    acceptedCaregiverId:
+                      potentialCareSession?.caregiverId || "",
+                    careSessionStatus: "accepted",
+                  });
+                  publish();
+                  console.log("inputs" + inputs);
+                }}
+              >
+                Accept Caregiver
+              </button>
+            )}
+            {currentSession?.careSessionStatus === "accepted" && (
+              <button
+                className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                onClick={() => {
+                  console.log('Build cancel session')
+                  // console.log("Accept Caregiver CLICKED");
+                  // setInputs({
+                  //   careSessionId: currentSession?.id || "",
+                  //   acceptedCaregiverId:
+                  //     potentialCareSession?.caregiverId || "",
+                  //   careSessionStatus: "accepted",
+                  // });
+                  // publish();
+                  // console.log("inputs" + inputs);
+                }}
+              >
+                Cancel Session
+              </button>
+            )}
           </div>
         </>
       )}
