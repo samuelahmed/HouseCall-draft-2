@@ -39,12 +39,24 @@ const Slug: NextPage = () => {
     careSessionStatus: "pending",
   });
 
-  const publish = () => {
+  const acceptedSession = () => {
     if (user && currentSession) {
       mutate({
         careSessionId: currentSession.id,
         acceptedCaregiverId: user.id,
         careSessionStatus: "accepted",
+        slug: currentSession.slug,
+        userId: user.id,
+      });
+    }
+  };
+
+  const cancelSession = () => {
+    if (user && currentSession) {
+      mutate({
+        careSessionId: currentSession.id,
+        acceptedCaregiverId: "",
+        careSessionStatus: "Canceled",
         slug: currentSession.slug,
         userId: user.id,
       });
@@ -63,9 +75,6 @@ const Slug: NextPage = () => {
 
   //*** TESTS ***\\
   
-
-  
-
   return (
     <>
       <Head>
@@ -112,7 +121,7 @@ const Slug: NextPage = () => {
                       potentialCareSession?.caregiverId || "",
                     careSessionStatus: "accepted",
                   });
-                  publish();
+                  acceptedSession();
                   console.log("inputs" + inputs);
                 }}
               >
@@ -124,15 +133,14 @@ const Slug: NextPage = () => {
                 className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                 onClick={() => {
                   console.log('Build cancel session')
-                  // console.log("Accept Caregiver CLICKED");
-                  // setInputs({
-                  //   careSessionId: currentSession?.id || "",
-                  //   acceptedCaregiverId:
-                  //     potentialCareSession?.caregiverId || "",
-                  //   careSessionStatus: "accepted",
-                  // });
-                  // publish();
-                  // console.log("inputs" + inputs);
+                  console.log("Accept Caregiver CLICKED");
+                  setInputs({
+                    careSessionId: currentSession?.id || "",
+                    acceptedCaregiverId: "",
+                    careSessionStatus: "Canceled",
+                  });
+                  cancelSession();
+                  console.log("inputs" + inputs);
                 }}
               >
                 Cancel Session
