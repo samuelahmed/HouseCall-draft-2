@@ -31,20 +31,20 @@ const ActiveTab = () => {
                       return (
                         <li
                           key={id}
-                          className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600"
+                          className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400 bg-white px-2 hover:bg-gray-100 dark:border-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600"
                         >
                           <div className="text-center text-xl text-gray-800 dark:text-gray-100">
                             <p>{title}</p>
                           </div>
                           <div className="grid grid-cols-3 items-center justify-center">
                             <div className="cols-span-1">
-                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                              <p className="text-sm text-gray-800 dark:text-gray-100">
                                 <span className="font-semibold text-gray-800 dark:text-gray-200">
                                   Status:&nbsp;
                                 </span>
                                 {careSessionStatus}
                               </p>
-                              <p className="text-sm  text-gray-800 dark:text-gray-100">
+                              <p className="text-sm text-gray-800 dark:text-gray-100">
                                 <span className="font-semibold text-gray-800 dark:text-gray-200">
                                   Name:&nbsp;
                                 </span>
