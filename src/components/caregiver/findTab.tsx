@@ -20,17 +20,17 @@ const FindTab = () => {
     careSessionStatus: "",
   });
 
-  const selectedSession = trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
-    id:
-      inputs?.id || (data?.[data?.length - 1]?.id ?? "0"),
-  });
+  const selectedSession =
+    trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
+      id: inputs?.id || (data?.[data?.length - 1]?.id ?? "0"),
+    });
 
   return (
     <>
-      <div className="grid grid-rows-1  bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700">
+      <div className="grid grid-rows-1 bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700">
         <div className="mb-4 grid grid-cols-1 bg-[hsl(0,0%,88%)] pt-2 pb-2 dark:bg-gray-700 md:grid-cols-2">
           <div className="max-h-78vh min-h-78vh overflow-scroll">
-            <div className="grid justify-items-center gap-4  bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
+            <div className="grid justify-items-center gap-4 bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
               <div
                 className=""
                 onClick={(e) => {
@@ -56,7 +56,7 @@ const FindTab = () => {
                       return (
                         <li
                           key={id}
-                          className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
+                          className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400 bg-white px-2 hover:bg-gray-100 dark:border-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600"
                         >
                           <div
                             onClick={() => {
@@ -67,7 +67,8 @@ const FindTab = () => {
                                 address: address || "still loading",
                                 overview: overview || "still loading",
                                 sessionType: sessionType || "still loading",
-                                careSessionStatus: careSessionStatus || "still loading",
+                                careSessionStatus:
+                                  careSessionStatus || "still loading",
                                 hourlyRate: Number(data.hourlyRate) || 0,
                                 totalHours: Number(data.totalHours) || 0,
                                 totalCompensation:
@@ -81,32 +82,32 @@ const FindTab = () => {
                             <div className="mb-2 p-4 text-center text-xl text-gray-800 dark:text-gray-100">
                               {title}
                             </div>
-                            <p className="text-sm  text-gray-800 dark:text-gray-100">
+                            <p className="text-sm text-gray-800 dark:text-gray-100">
                               <span className="font-semibold text-gray-800 dark:text-gray-200">
                                 Status:&nbsp;
                               </span>
                               {careSessionStatus}
                             </p>
-                            <p className="text-sm  text-gray-800 dark:text-gray-100">
+                            <p className="text-sm text-gray-800 dark:text-gray-100">
                               <span className="font-semibold text-gray-800 dark:text-gray-200">
                                 Name:&nbsp;
                               </span>
                               {name}
                             </p>
-                            <p className="text-sm  text-gray-800 dark:text-gray-100">
-                              <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                            <p className="text-sm text-gray-800 dark:text-gray-100">
+                              <span className="font-semibold text-gray-800 dark:text-gray-200">
                                 Address:&nbsp;
                               </span>
                               {address}
                             </p>
-                            <p className="text-sm  text-gray-800 dark:text-gray-100">
-                              <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                            <p className="text-sm text-gray-800 dark:text-gray-100">
+                              <span className="font-semibold text-gray-800 dark:text-gray-200">
                                 Overview:&nbsp;
                               </span>
                               {overview}
                             </p>
-                            <p className="text-sm  text-gray-800 dark:text-gray-100">
-                              <span className="font-semibold  text-gray-800 dark:text-gray-200">
+                            <p className="text-sm text-gray-800 dark:text-gray-100">
+                              <span className="font-semibold text-gray-800 dark:text-gray-200">
                                 Total Compensation:&nbsp;
                               </span>
                               ${totalCompensation}
@@ -117,7 +118,7 @@ const FindTab = () => {
                               onClick={() =>
                                 router.push(`/careSession/${data.slug}`)
                               }
-                              className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white  md:hidden lg:hidden"
+                              className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white md:hidden lg:hidden"
                             >
                               Schedule Session
                             </button>
@@ -133,14 +134,14 @@ const FindTab = () => {
           {/* Job Details Card */}
           <div className="hidden overflow-scroll pr-2 md:block">
             <div className="grid max-h-78vh min-h-78vh justify-items-center gap-4 rounded bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
-              <div className="flex h-128 w-11/12  flex-col  justify-between rounded-xl border border-gray-400 bg-white p-2 leading-normal dark:bg-gray-800">
+              <div className="flex h-128 w-11/12 flex-col justify-between rounded-xl border border-gray-400 bg-white p-2 leading-normal dark:bg-gray-800">
                 <div className={rightCard === 1 ? "" : "hidden"}>
-                  <div className="mb-4 mr-4 ml-4  justify-center  ">
-                    <div className="mb-2 p-4 text-center text-xl  text-gray-800 dark:text-gray-100">
+                  <div className="mb-4 mr-4 ml-4 justify-center ">
+                    <div className="mb-2 p-4 text-center text-xl text-gray-800 dark:text-gray-100">
                       {selectedSession?.data?.title || isLoading}
                     </div>
-                    <div className="text-sm ">
-                    <p className="text-gray-900 dark:text-gray-100">
+                    <div className="text-sm">
+                      <p className="text-gray-900 dark:text-gray-100">
                         <span className="font-semibold text-gray-800 dark:text-gray-200">
                           Status:&nbsp;
                         </span>

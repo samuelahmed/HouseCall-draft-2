@@ -6,14 +6,9 @@
  ┃ ┣ 📂account
  ┃ ┃ ┗ 📜accountEditModal.tsx
  ┃ ┣ 📂caregiver
- ┃ ┃ ┣ 📂modals
- ┃ ┃ ┃ ┣ 📜historyModal.tsx
- ┃ ┃ ┃ ┣ 📜mobileFindSessionModal.tsx
- ┃ ┃ ┃ ┗ 📜scheduledSessionModal.tsx
- ┃ ┃ ┗ 📂tabs
- ┃ ┃ ┃ ┣ 📜activeTab.tsx
- ┃ ┃ ┃ ┣ 📜findTab.tsx
- ┃ ┃ ┃ ┗ 📜historyTab.tsx
+ ┃ ┃ ┣ 📜activeTab.tsx
+ ┃ ┃ ┣ 📜findTab.tsx
+ ┃ ┃ ┗ 📜historyTab.tsx
  ┃ ┣ 📂engines
  ┃ ┃ ┗ 📜searchEngine.tsx
  ┃ ┣ 📂forms
@@ -37,6 +32,7 @@
  ┃ ┃ ┣ 📜activeSessionPatient.tsx
  ┃ ┃ ┣ 📜createCareSession.tsx
  ┃ ┃ ┗ 📜historyPatient.tsx
+
  ┣ 📂env
  ┃ ┣ 📜client.mjs
  ┃ ┣ 📜schema.mjs

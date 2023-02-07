@@ -32,14 +32,6 @@ const Slug: NextPage = () => {
       id: currentSession?.id || "",
     });
 
-  //attempt to display caregiver info not just ID
-  //does not work because there is a loop to get the caregiver ID
-  // and I am not sure how to pass each id into the query
-  // const { data: potentialCaregiverInfo } =
-  // trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
-  //   caregiverId: potentialCaregiver?.caregiverId || "",
-  // });
-
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
     currentUserId: "",
@@ -106,7 +98,7 @@ const Slug: NextPage = () => {
           <div className="h-screen items-center justify-center dark:bg-gray-800 md:flex">
             <div className="mx-2 my-2 h-4/6 w-1/2 rounded-lg border-2 dark:bg-sky-900">
               <div className="mb-4 mr-4 ml-4">
-                <div className="mb-2 mr-4 ml-4 mt-12 p-4 text-center  text-xl text-gray-900 dark:text-white">
+                <div className="mb-2 mr-4 ml-4 mt-12 p-4 text-center text-xl text-gray-900 dark:text-white">
                   {currentSession?.title}
                 </div>
                 <div className="text-sm">
@@ -273,52 +265,47 @@ const Slug: NextPage = () => {
                 )}
               </div>
             </div>
-
             <div className="w-full px-2">
-                    List of potential Caregivers:
-                    {/* //map through potentialCareSession and display them */}
-                    <ul>
-                      {/* IS IT OKAY TO HAVE THE MAP INSIDE OF HERE?  */}
-                      {/* IF NOT. MOVE IT OUTSIDE THE RETURN? */}
-                      {potentialCaregivers?.map((potentialCaregiver) => {
-                        const { id, caregiverId, status } = potentialCaregiver;
-
-                        return (
-                          <li
-                            key={id}
-                            className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
-                          >
-                            <div>
-                              <p className="text-gray-900  dark:text-white">
-                                <span className="font-semibold text-gray-900 dark:text-white">
-                                  Caregiver:&nbsp;
-                                </span>
-                                {potentialCaregiver?.caregiverId}
-                              </p>
-                              <p className="text-gray-900  dark:text-white">
-                                <span className="font-semibold text-gray-900 dark:text-white">
-                                  Status:&nbsp;
-                                </span>
-                                {potentialCaregiver?.status}
-                              </p>
-                            </div>
-                            <div className="mt-2 mb-2 flex justify-around ">
-                              <button
-                                className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                                onClick={() =>
-                                  router.push(
-                                    `/caregiver/${potentialCaregiver?.slug}`
-                                  )
-                                }
-                              >
-                                See Profile
-                              </button>
-                            </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
+              List of potential Caregivers:
+              <ul>
+                {potentialCaregivers?.map((potentialCaregiver) => {
+                  const { id, caregiverId, status } = potentialCaregiver;
+                  return (
+                    <li
+                      key={id}
+                      className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600"
+                    >
+                      <div>
+                        <p className="text-gray-900  dark:text-white">
+                          <span className="font-semibold text-gray-900 dark:text-white">
+                            Caregiver:&nbsp;
+                          </span>
+                          {potentialCaregiver?.caregiverId}
+                        </p>
+                        <p className="text-gray-900  dark:text-white">
+                          <span className="font-semibold text-gray-900 dark:text-white">
+                            Status:&nbsp;
+                          </span>
+                          {potentialCaregiver?.status}
+                        </p>
+                      </div>
+                      <div className="mt-2 mb-2 flex justify-around ">
+                        <button
+                          className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                          onClick={() =>
+                            router.push(
+                              `/caregiver/${potentialCaregiver?.slug}`
+                            )
+                          }
+                        >
+                          See Profile
+                        </button>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </>
       )}
@@ -330,7 +317,7 @@ const Slug: NextPage = () => {
           <div className="h-screen items-center justify-center dark:bg-gray-800 md:flex">
             <div className="mx-2 my-2 h-4/6 w-1/2 rounded-lg border-2 dark:bg-sky-900">
               <div className="mb-4 mr-4 ml-4">
-                <div className="mb-2 mr-4 ml-4 mt-12 p-4 text-center  text-xl text-gray-900 dark:text-white">
+                <div className="mb-2 mr-4 ml-4 mt-12 p-4 text-center text-xl text-gray-900 dark:text-white">
                   {currentSession?.title}
                 </div>
                 <div className="text-sm">
@@ -384,7 +371,6 @@ const Slug: NextPage = () => {
                   </p>
                 </div>
               </div>
-
               {currentSession?.userId !== user.id && (
                 <>
                   <div className="mt-12 mb-12 flex justify-around ">
@@ -403,7 +389,6 @@ const Slug: NextPage = () => {
                         Apply
                       </button>
                     )}
-
                     {potentialCaregiver?.caregiverId === user.id && (
                       <button
                         className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
@@ -442,11 +427,10 @@ const Slug: NextPage = () => {
                       {/* IF NOT. MOVE IT OUTSIDE THE RETURN? */}
                       {potentialCaregivers?.map((potentialCaregiver) => {
                         const { id, caregiverId, status } = potentialCaregiver;
-
                         return (
                           <li
                             key={id}
-                            className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400  dark:bg-gray-800 dark:hover:bg-gray-600"
+                            className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400 bg-white px-2 hover:bg-gray-100 dark:border-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600"
                           >
                             <div>
                               <p className="text-gray-900  dark:text-white">
@@ -482,7 +466,6 @@ const Slug: NextPage = () => {
                 )}
               </div>
             )}
-
             {currentSession?.careSessionStatus === "accepted" && (
               <div>
                 {currentSession?.acceptedCaregiverId}
