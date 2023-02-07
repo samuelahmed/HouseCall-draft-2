@@ -34,7 +34,7 @@ const Slug: NextPage = () => {
   const [inputs, setInputs] = useState({
     careSessionId: currentSession?.id || "",
     acceptedCaregiverId: "",
-    careSessionStatus: "pending",
+    careSessionStatus: "New",
   });
 
   const acceptedSession = () => {
@@ -42,7 +42,7 @@ const Slug: NextPage = () => {
       mutate({
         careSessionId: currentSession.id,
         acceptedCaregiverId: potentialCaregiverInfo?.id || "",
-        careSessionStatus: "accepted",
+        careSessionStatus: "Active",
         slug: currentSession.slug,
         userId: user.id,
       });
@@ -105,7 +105,7 @@ const Slug: NextPage = () => {
               Message Caregiver
             </button>
             {/* NOTE: ADD MODAL HERE TO CONFIRM ACCEPT */}
-            {currentSession?.careSessionStatus !== "accepted" && (
+            {currentSession?.careSessionStatus !== "Active" && (
               <button
                 className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                 onClick={() => {
@@ -113,7 +113,7 @@ const Slug: NextPage = () => {
                     careSessionId: currentSession?.id || "",
                     acceptedCaregiverId:
                       potentialCareSession?.caregiverId || "",
-                    careSessionStatus: "accepted",
+                    careSessionStatus: "Active",
                   });
                   acceptedSession();
                 }}
@@ -121,7 +121,7 @@ const Slug: NextPage = () => {
                 Accept Caregiver
               </button>
             )}
-            {currentSession?.careSessionStatus === "accepted" && (
+            {currentSession?.careSessionStatus === "Active" && (
               <button
                 className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                 onClick={() => {
@@ -161,7 +161,7 @@ const Slug: NextPage = () => {
               Message Caregiver
             </button>
             {/* NOTE: ADD MODAL HERE TO CONFIRM ACCEPT */}
-            {currentSession?.careSessionStatus !== "accepted" && (
+            {currentSession?.careSessionStatus !== "Active" && (
               <button
                 className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                 onClick={() => {
@@ -169,7 +169,7 @@ const Slug: NextPage = () => {
                     careSessionId: currentSession?.id || "",
                     acceptedCaregiverId:
                       potentialCareSession?.caregiverId || "",
-                    careSessionStatus: "accepted",
+                    careSessionStatus: "Active",
                   });
                   acceptedSession();
                 }}
@@ -177,7 +177,7 @@ const Slug: NextPage = () => {
                 Accept Caregiver
               </button>
             )}
-            {currentSession?.careSessionStatus === "accepted" && (
+            {currentSession?.careSessionStatus === "Active" && (
               <button
                 className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                 onClick={() => {
