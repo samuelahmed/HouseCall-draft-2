@@ -30,8 +30,6 @@ const Slug: NextPage = () => {
       caregiverId: potentialCareSession?.caregiverId || "",
     });
 
-  console.log(potentialCaregiverInfo);
-
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
     careSessionId: currentSession?.id || "",
