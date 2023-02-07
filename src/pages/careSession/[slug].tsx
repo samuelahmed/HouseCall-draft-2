@@ -32,15 +32,10 @@ const Slug: NextPage = () => {
     });
 
   //Start: Works but make sure to review
-  const caregiverId = potentialCaregivers
-    ? potentialCaregivers
-        .map((potentialCaregiver) => potentialCaregiver.caregiverId)
-        .join(",")
-    : "";
   const { data: potentialCaregiverInfo } =
-    trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
-      caregiverId,
-    });
+  trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
+    caregiverId: potentialCaregivers?.map((potentialCaregiver) => potentialCaregiver.caregiverId).toString() || "",
+  });
   //End: Works but make sure to review
 
   //*** FUNCTIONS ***\\
