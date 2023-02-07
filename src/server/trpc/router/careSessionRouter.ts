@@ -50,7 +50,7 @@ export const careSessionRouter = router({
         throw new Error("Meow! user not found.");
       }
       const currentUserId = user.id;
-      const item = await ctx.prisma.careSession.create({
+      const careSession = await ctx.prisma.careSession.create({
         data: {
           name,
           address,
@@ -66,7 +66,7 @@ export const careSessionRouter = router({
           userId: currentUserId,
         },
       });
-      return item;
+      return careSession;
     }),
 
   createOnePotentialCaregiverPage: privateProcedure
@@ -82,7 +82,7 @@ export const careSessionRouter = router({
       //Instead of generating random string here it would be better to do something else
       //This will probably collide eventually
       const secondSlug = Math.random().toString(36).substring(7);
-      const item = await ctx.prisma.potentialCareSession.create({
+      const potentialCaregiverPage = await ctx.prisma.potentialCareSession.create({
         data: {
           careSessionId,
           caregiverId,
@@ -90,7 +90,7 @@ export const careSessionRouter = router({
           slug: slug(secondSlug),
         },
       });
-      return item;
+      return potentialCaregiverPage;
     }),
 
   // ************************
@@ -104,15 +104,15 @@ export const careSessionRouter = router({
     .input(z.object({ caregiverId: z.string() }))
     .query(async ({ ctx, input }) => {
       const { caregiverId } = input;
-      const user = await ctx.prisma.user.findUnique({
+      const userInformation = await ctx.prisma.user.findUnique({
         where: {
           id: caregiverId,
         },
       });
-      if (!user) {
+      if (!userInformation) {
         throw new Error("Meow! user not found.");
       }
-      return user;
+      return userInformation;
     }),
 
   readOnePotentialCaregiver: privateProcedure
@@ -124,49 +124,49 @@ export const careSessionRouter = router({
     )
     .query(async ({ ctx, input }) => {
       const { caregiverId, id } = input;
-      const item = await ctx.prisma.potentialCareSession.findFirst({
+      const potentialCaregiver = await ctx.prisma.potentialCareSession.findFirst({
         where: {
           caregiverId: caregiverId,
           careSessionId: id,
         },
       });
-      return item;
+      return potentialCaregiver;
     }),
 
   readOneSessionBySessionId: privateProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
       const { id } = input;
-      const returnedSession = ctx.prisma.careSession.findUnique({
+      const careSession = ctx.prisma.careSession.findUnique({
         where: {
           id,
         },
       });
-      return returnedSession;
+      return careSession;
     }),
 
   readOneSessionBySlug: privateProcedure
     .input(z.object({ slug: z.string() }))
     .query(async ({ ctx, input }) => {
       const { slug } = input;
-      const card = await ctx.prisma.careSession.findUnique({
+      const careSession = await ctx.prisma.careSession.findUnique({
         where: {
           slug,
         },
       });
-      return card;
+      return careSession;
     }),
 
   readOnePotentialCaregiverPageBySlug: privateProcedure
     .input(z.object({ slug: z.string() }))
     .query(async ({ ctx, input }) => {
       const { slug } = input;
-      const card = await ctx.prisma.potentialCareSession.findUnique({
+      const potentialCaregiver = await ctx.prisma.potentialCareSession.findUnique({
         where: {
           slug,
         },
       });
-      return card;
+      return potentialCaregiver;
     }),
 
   readAllPotentialCareSessionsByCareSessionId: privateProcedure
@@ -183,7 +183,7 @@ export const careSessionRouter = router({
     }),
 
   readAllSessions: publicProcedure.query(({ ctx }) => {
-    const items = ctx.prisma.careSession.findMany({
+    const careSessions = ctx.prisma.careSession.findMany({
       include: {
         user: {
           select: {
@@ -194,14 +194,14 @@ export const careSessionRouter = router({
         },
       },
     });
-    return items;
+    return careSessions;
   }),
 
   readAllSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       return null;
     }
-    const items = ctx.prisma.careSession.findMany({
+    const careSessions = ctx.prisma.careSession.findMany({
       where: {
         userId: ctx.session.user.id,
       },
@@ -215,7 +215,7 @@ export const careSessionRouter = router({
         },
       },
     });
-    return items;
+    return careSessions;
   }),
 
   readAllPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
