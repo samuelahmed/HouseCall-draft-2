@@ -5,7 +5,6 @@ import Head from "next/head";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-// import Caregiver from "../caregiver";
 
 const Slug: NextPage = () => {
   //*** IMPORTS ***\\
@@ -31,6 +30,18 @@ const Slug: NextPage = () => {
       caregiverId: user?.id || "",
       id: currentSession?.id || "",
     });
+
+  //Start: Works but make sure to review
+  const caregiverId = potentialCaregivers
+    ? potentialCaregivers
+        .map((potentialCaregiver) => potentialCaregiver.caregiverId)
+        .join(",")
+    : "";
+  const { data: potentialCaregiverInfo } =
+    trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
+      caregiverId,
+    });
+  //End: Works but make sure to review
 
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
@@ -417,7 +428,6 @@ const Slug: NextPage = () => {
             </div>
             {currentSession?.userId === user.id && (
               <div>
-                test
                 <div className="w-full px-2">
                   List of potential Caregivers:
                   {/* //map through potentialCareSession and display them */}
@@ -436,7 +446,7 @@ const Slug: NextPage = () => {
                               <span className="font-semibold text-gray-900 dark:text-white">
                                 Caregiver:&nbsp;
                               </span>
-                              {potentialCaregiver?.caregiverId}
+                              {potentialCaregiverInfo?.username}
                             </p>
                             <p className="text-gray-900  dark:text-white">
                               <span className="font-semibold text-gray-900 dark:text-white">
