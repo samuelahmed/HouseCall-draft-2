@@ -67,7 +67,7 @@ const Slug: NextPage = () => {
     },
     onSuccess: () => {
       //Trigger some notifications here?
-      // router.reload();
+      router.reload();
     },
   });
 

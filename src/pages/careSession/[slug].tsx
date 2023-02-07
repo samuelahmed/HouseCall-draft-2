@@ -67,7 +67,7 @@ const Slug: NextPage = () => {
       },
       onSuccess: () => {
         alert("Meow! You have successfully applied to this care session.");
-        // router.reload();
+        router.reload();
       },
     });
 
@@ -78,7 +78,7 @@ const Slug: NextPage = () => {
       },
       onSuccess: () => {
         alert("Meow! You have removed yourself from this care session.");
-        // router.reload();
+        router.reload();
       },
     });
 
@@ -483,7 +483,6 @@ const Slug: NextPage = () => {
                 </div>
               </div>
             )}
-            <div></div>
           </div>
         </>
       )}
