@@ -41,7 +41,7 @@ const Slug: NextPage = () => {
     if (user && currentSession) {
       mutate({
         careSessionId: currentSession.id,
-        acceptedCaregiverId: user.id,
+        acceptedCaregiverId: potentialCaregiverInfo?.id || "",
         careSessionStatus: "accepted",
         slug: currentSession.slug,
         userId: user.id,
@@ -67,7 +67,7 @@ const Slug: NextPage = () => {
     },
     onSuccess: () => {
       //Trigger some notifications here?
-      router.reload();
+      // router.reload();
     },
   });
 
