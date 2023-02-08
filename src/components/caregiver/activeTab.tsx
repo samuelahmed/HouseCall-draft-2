@@ -2,9 +2,13 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 
 const ActiveTab = () => {
-  const { data } =
+  //NOTE: This route filters for status: "Pending" automatically
+  const { data: careSessionData } =
     trpc.careSessionAPIs.readAllPotentialSessionsByUser.useQuery();
   const router = useRouter();
+
+  // TODO: Add potentialCareSession status for each careSession
+
   return (
     <>
       <div className="grid grid-rows-1 bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700">
@@ -12,8 +16,8 @@ const ActiveTab = () => {
           <div className="max-h-78vh min-h-78vh overflow-scroll">
             <div className="grid grid-cols-1 justify-items-center gap-4 bg-[hsl(0,0%,88%)] pt-6 pb-6 dark:bg-gray-700">
               <ul>
-                {data &&
-                  data
+                {careSessionData &&
+                  careSessionData
                     .map((item) => {
                       const {
                         id,
@@ -38,6 +42,11 @@ const ActiveTab = () => {
                           </div>
                           <div className="grid grid-cols-3 items-center justify-center">
                             <div className="cols-span-1">
+                              <p className="text-sm text-gray-800 dark:text-gray-100">
+                                <span className="font-semibold text-gray-800 dark:text-gray-200">
+                                  Application Status:&nbsp;
+                                </span>
+                              </p>
                               <p className="text-sm text-gray-800 dark:text-gray-100">
                                 <span className="font-semibold text-gray-800 dark:text-gray-200">
                                   Status:&nbsp;

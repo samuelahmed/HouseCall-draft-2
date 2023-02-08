@@ -235,6 +235,7 @@ export const careSessionRouter = router({
       await ctx.prisma.potentialCareSession.findMany({
         where: {
           caregiverId: userId,
+          status: "Pending",
         },
       });
     const careSessionIds = currentUserPotentialCareSessions.map(
