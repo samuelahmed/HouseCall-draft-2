@@ -89,9 +89,6 @@
 
  ```
 
-![db Schema](https://github.com/samuelahmed/HouseCall-draft-2/blob/e8010a37549ac9f8478fc43acd678bae89547c16/prisma/dbImg/logicFlowFeb7_2023.png?raw=true "DB Schema")
-
 ![db Schema](https://github.com/samuelahmed/HouseCall-draft-2/blob/2f0593251bf01309be4efa881d28aa6292c9002c/prisma/dbImg/feb3_2023.png?raw=true "DB Schema")
-
 
 
