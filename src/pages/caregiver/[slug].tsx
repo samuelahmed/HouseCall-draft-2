@@ -61,6 +61,16 @@ const Slug: NextPage = () => {
     }
   };
 
+  const cancelThisPotentialCareSession = () => {
+    if (user && currentSession) {
+      mutate2({
+        careSessionId: currentSession.id,
+        caregiverId: potentialCaregiverInfo?.id || "",
+        status: "Canceled",
+      });
+    }
+  };
+
   const updateThisPotentialCareSession = () => {
     if (user && currentSession) {
       mutate2({
@@ -211,6 +221,7 @@ const Slug: NextPage = () => {
                     careSessionStatus: "Canceled",
                   });
                   cancelSession();
+                  cancelThisPotentialCareSession();
                 }}
               >
                 Cancel Session
