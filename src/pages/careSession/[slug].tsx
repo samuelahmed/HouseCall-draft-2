@@ -63,6 +63,9 @@ const Slug: NextPage = () => {
     }
   };
 
+  //The confusing part for a caregiver is that even though this status updates
+  //as soon as they look at the careSession itself it will say "Applied" and 
+  //they have no way to get back to their potentialCareSession. 
   const removeCaregiver = () => {
     if (user && currentSession) {
       mutateTwo({
