@@ -358,6 +358,45 @@ export const careSessionRouter = router({
       return updatedCareSession;
     }),
 
+
+      updateOnePotentialCareSession: privateProcedure
+      .input(
+        z.object({
+          status: z.string(),
+          caregiverId: z.string(),
+          careSessionId: z.string(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const { status, caregiverId, careSessionId } = input;
+        const potentialCareSession =
+          await ctx.prisma.potentialCareSession.findFirst({
+            where: {
+              caregiverId,
+              careSessionId,
+            },
+          });
+        if (!potentialCareSession) {
+          throw new Error("Potential care session not found");
+        }
+        const updatedPotentialCareSession =
+          await ctx.prisma.potentialCareSession.update({
+            where: {
+              id: potentialCareSession.id || "",
+            },
+            data: {
+              status,
+            },
+          });
+        return updatedPotentialCareSession;
+      }),
+
+      
+    
+
+
+
+
   // ************************
   // *       DELETE         *
   // ************************

@@ -42,7 +42,7 @@ const Slug: NextPage = () => {
       mutate({
         careSessionId: currentSession.id,
         acceptedCaregiverId: potentialCaregiverInfo?.id || "",
-        careSessionStatus: "Active",
+        careSessionStatus: "Scheduled",
         slug: currentSession.slug,
         userId: user.id,
       });
@@ -61,15 +61,36 @@ const Slug: NextPage = () => {
     }
   };
 
+  const updateThisPotentialCareSession = () => {
+    if (user && currentSession) {
+      mutate2({
+        careSessionId: currentSession.id,
+        caregiverId: potentialCaregiverInfo?.id || "",
+        status: "Accepted",
+      });
+    }
+  };
+
   const { mutate } = trpc.careSessionAPIs.updateOneCareSession.useMutation({
     onError: (error) => {
       alert("Something went wrong.");
     },
     onSuccess: () => {
       //Trigger some notifications here?
-      router.reload();
+      // router.reload();
     },
   });
+
+  const { mutate: mutate2 } =
+    trpc.careSessionAPIs.updateOnePotentialCareSession.useMutation({
+      onError: (error) => {
+        alert("Something went wrong.");
+      },
+      onSuccess: () => {
+        //Trigger some notifications here?
+        // router.reload();
+      },
+    });
 
   //*** TESTS ***\\
 
@@ -161,23 +182,26 @@ const Slug: NextPage = () => {
               Message Caregiver
             </button>
             {/* NOTE: ADD MODAL HERE TO CONFIRM ACCEPT */}
-            {currentSession?.careSessionStatus !== "Active" && (
-              <button
-                className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                onClick={() => {
-                  setInputs({
-                    careSessionId: currentSession?.id || "",
-                    acceptedCaregiverId:
-                      potentialCareSession?.caregiverId || "",
-                    careSessionStatus: "Active",
-                  });
-                  acceptedSession();
-                }}
-              >
-                Accept Caregiver
-              </button>
-            )}
-            {currentSession?.careSessionStatus === "Active" && (
+            {currentSession?.careSessionStatus === "New" ||
+              currentSession?.careSessionStatus === "Scheduled" ||
+              (currentSession?.careSessionStatus === "Canceled" && (
+                <button
+                  className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                  onClick={() => {
+                    setInputs({
+                      careSessionId: currentSession?.id || "",
+                      acceptedCaregiverId:
+                        potentialCareSession?.caregiverId || "",
+                      careSessionStatus: "Active",
+                    });
+                    acceptedSession();
+                    updateThisPotentialCareSession();
+                  }}
+                >
+                  Accept Caregiver
+                </button>
+              ))}
+            {currentSession?.careSessionStatus === "Scheduled" && (
               <button
                 className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                 onClick={() => {
