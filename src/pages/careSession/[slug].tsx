@@ -7,13 +7,9 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 
 const Slug: NextPage = () => {
-  //*** IMPORTS ***\\
   const router = useRouter();
-
   const { slug } = router.query as { slug: string };
   const { data: session } = useSession();
-
-  //*** API ROUTES ***\\
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
 
   const { data: currentSession } =
@@ -43,7 +39,6 @@ const Slug: NextPage = () => {
           .toString() || "",
     });
 
-  //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
     currentUserId: "",
     id: currentSession?.id || "",
@@ -63,17 +58,11 @@ const Slug: NextPage = () => {
     }
   };
 
-  //The confusing part for a caregiver is that even though this status updates
-  //as soon as they look at the careSession itself it will say "Applied" and 
-  //they have no way to get back to their potentialCareSession. 
   const removeCaregiver = () => {
     if (user && currentSession) {
       mutateTwo({
-        // caregiverId: user.id,
-        // careSessionId: currentSession.id,
-        caregiverId: potentialCaregiver?.caregiverId || "",
-        careSessionId: potentialCaregiver?.careSessionId || "",
-        status: "Closed",
+        caregiverId: user.id,
+        careSessionId: currentSession.id,
       });
     }
   };
@@ -83,7 +72,7 @@ const Slug: NextPage = () => {
       mutationUpdateCareSessionStatusToApplied({
         userId: currentSession.userId,
         slug: currentSession.slug,
-        careSessionStatus: "Applied",
+        careSessionStatus: "Active",
         careSessionId: currentSession.id,
       });
     }
@@ -101,7 +90,7 @@ const Slug: NextPage = () => {
     });
 
   const { mutate: mutateTwo } =
-    trpc.careSessionAPIs.updateOnePotentialCaregiver.useMutation({
+    trpc.careSessionAPIs.deleteOnePotentialCaregiver.useMutation({
       onError: (error) => {
         setErrorMessage(error.message);
       },
@@ -121,8 +110,6 @@ const Slug: NextPage = () => {
         // router.reload();
       },
     });
-
-  //*** TESTS ***\\
 
   return (
     <>
@@ -414,32 +401,30 @@ const Slug: NextPage = () => {
               {currentSession?.userId !== user.id && (
                 <>
                   <div className="mt-12 mb-12 flex justify-around ">
-                    {potentialCaregiver?.caregiverId !== user.id
+                    {potentialCaregiver?.caregiverId !== user.id && (
                       // potentialCaregiver?.status === "" ||
                       // potentialCaregiver?.status === "Closed"
 
-                       && (
-                        <button
-                          className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                          onClick={() => {
-                            setInputs({
-                              currentUserId: user?.id,
-                              id: currentSession?.id || "",
-                              // status: "pending",
-                            });
-                            publish();
-                            updateCareSessionStatusToApplied();
-                          }}
-                        >
-                          Apply
-                        </button>
-                      )}
-                      {/* Can apply but if you cancel application it will not let you apply again.  */}
+                      <button
+                        className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                        onClick={() => {
+                          setInputs({
+                            currentUserId: user?.id,
+                            id: currentSession?.id || "",
+                            // status: "pending",
+                          });
+                          publish();
+                          updateCareSessionStatusToApplied();
+                        }}
+                      >
+                        Apply
+                      </button>
+                    )}
+                    {/* Can apply but if you cancel application it will not let you apply again.  */}
                     {potentialCaregiver?.caregiverId === user.id &&
-                      potentialCaregiver?.status !== "Closed"
-                      // potentialCaregiver?.status === "Applied"
-                      // potentialCaregiver?.status === "Accepted"
-                      && (
+                      potentialCaregiver?.status !== "Closed" && (
+                        // potentialCaregiver?.status === "Applied"
+                        // potentialCaregiver?.status === "Accepted"
                         <button
                           className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                           onClick={() => {
