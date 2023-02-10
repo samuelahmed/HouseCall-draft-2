@@ -65,8 +65,11 @@ const Slug: NextPage = () => {
   const removeCaregiver = () => {
     if (user && currentSession) {
       mutateTwo({
-        caregiverId: user.id,
-        careSessionId: currentSession.id,
+        // caregiverId: user.id,
+        // careSessionId: currentSession.id,
+        caregiverId: potentialCaregiver?.caregiverId || "",
+        careSessionId: potentialCaregiver?.careSessionId || "",
+        status: "Closed",
       });
     }
   };
@@ -94,7 +97,7 @@ const Slug: NextPage = () => {
     });
 
   const { mutate: mutateTwo } =
-    trpc.careSessionAPIs.deleteOnePotentialCaregiver.useMutation({
+    trpc.careSessionAPIs.updateOnePotentialCaregiver.useMutation({
       onError: (error) => {
         setErrorMessage(error.message);
       },
