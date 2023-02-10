@@ -102,6 +102,28 @@ const Slug: NextPage = () => {
       },
     });
 
+  const { mutate: mutate3 } =
+    trpc.careSessionAPIs.updateAllOtherPotentialCareSessionsToClosed.useMutation(
+      {
+        onError: (error) => {
+          alert("Something went wrong.");
+        },
+        onSuccess: () => {
+          //Trigger some notifications here?
+          // router.reload();
+        },
+      }
+    );
+  const updateAllOtherPotentialCareSessions = () => {
+    if (user && currentSession) {
+      mutate3({
+        // careSessionId: currentSession.id,
+        caregiverId: potentialCaregiverInfo?.id || "",
+        // status: "Canceled",
+      });
+    }
+  };
+
   //*** TESTS ***\\
 
   return (
@@ -206,6 +228,7 @@ const Slug: NextPage = () => {
                     });
                     acceptedSession();
                     updateThisPotentialCareSession();
+                    updateAllOtherPotentialCareSessions();
                   }}
                 >
                   Accept Caregiver

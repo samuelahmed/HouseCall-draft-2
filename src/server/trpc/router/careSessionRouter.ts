@@ -358,44 +358,71 @@ export const careSessionRouter = router({
       return updatedCareSession;
     }),
 
+  updateOnePotentialCareSession: privateProcedure
+    .input(
+      z.object({
+        status: z.string(),
+        caregiverId: z.string(),
+        careSessionId: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { status, caregiverId, careSessionId } = input;
+      const potentialCareSession =
+        await ctx.prisma.potentialCareSession.findFirst({
+          where: {
+            caregiverId,
+            careSessionId,
+          },
+        });
+      if (!potentialCareSession) {
+        throw new Error("Potential care session not found");
+      }
+      const updatedPotentialCareSession =
+        await ctx.prisma.potentialCareSession.update({
+          where: {
+            id: potentialCareSession.id || "",
+          },
+          data: {
+            status,
+          },
+        });
+      return updatedPotentialCareSession;
+    }),
 
-      updateOnePotentialCareSession: privateProcedure
-      .input(
-        z.object({
-          status: z.string(),
-          caregiverId: z.string(),
-          careSessionId: z.string(),
-        })
-      )
-      .mutation(async ({ input, ctx }) => {
-        const { status, caregiverId, careSessionId } = input;
-        const potentialCareSession =
-          await ctx.prisma.potentialCareSession.findFirst({
-            where: {
-              caregiverId,
-              careSessionId,
+  updateAllOtherPotentialCareSessionsToClosed: privateProcedure
+    .input(
+      z.object({
+        // careSessionId: z.string(),
+        caregiverId: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { caregiverId } = input;
+      const potentialCareSessions =
+        await ctx.prisma.potentialCareSession.findMany({
+          where: {
+            caregiverId: {
+              not: caregiverId,
             },
-          });
-        if (!potentialCareSession) {
-          throw new Error("Potential care session not found");
-        }
-        const updatedPotentialCareSession =
-          await ctx.prisma.potentialCareSession.update({
-            where: {
-              id: potentialCareSession.id || "",
+          },
+        });
+      if (!potentialCareSessions) {
+        throw new Error("Potential care session not found");
+      }
+      const updatedPotentialCareSessions =
+        await ctx.prisma.potentialCareSession.updateMany({
+          where: {
+            caregiverId: {
+              not: caregiverId,
             },
-            data: {
-              status,
-            },
-          });
-        return updatedPotentialCareSession;
-      }),
-
-      
-    
-
-
-
+          },
+          data: {
+            status: "Closed",
+          },
+        });
+      return updatedPotentialCareSessions;
+    }),
 
   // ************************
   // *       DELETE         *
