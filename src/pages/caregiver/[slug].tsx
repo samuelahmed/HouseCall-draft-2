@@ -61,12 +61,12 @@ const Slug: NextPage = () => {
     }
   };
 
-  const cancelThisPotentialCareSession = () => {
+  const closeThisPotentialCareSession = () => {
     if (user && currentSession) {
       mutate2({
         careSessionId: currentSession.id,
         caregiverId: potentialCaregiverInfo?.id || "",
-        status: "Canceled",
+        status: "Closed",
       });
     }
   };
@@ -87,7 +87,7 @@ const Slug: NextPage = () => {
     },
     onSuccess: () => {
       //Trigger some notifications here?
-      // router.reload();
+      router.reload();
     },
   });
 
@@ -98,7 +98,7 @@ const Slug: NextPage = () => {
       },
       onSuccess: () => {
         //Trigger some notifications here?
-        // router.reload();
+        router.reload();
       },
     });
 
@@ -244,7 +244,7 @@ const Slug: NextPage = () => {
                     careSessionStatus: "Canceled",
                   });
                   cancelSession();
-                  cancelThisPotentialCareSession();
+                  closeThisPotentialCareSession();
                 }}
               >
                 Cancel Session
