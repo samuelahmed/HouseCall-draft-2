@@ -61,12 +61,12 @@ const Slug: NextPage = () => {
     }
   };
 
-  const cancelThisPotentialCareSession = () => {
+  const closeThisPotentialCareSession = () => {
     if (user && currentSession) {
       mutate2({
         careSessionId: currentSession.id,
         caregiverId: potentialCaregiverInfo?.id || "",
-        status: "Canceled",
+        status: "Closed",
       });
     }
   };
@@ -87,7 +87,7 @@ const Slug: NextPage = () => {
     },
     onSuccess: () => {
       //Trigger some notifications here?
-      // router.reload();
+      router.reload();
     },
   });
 
@@ -98,7 +98,7 @@ const Slug: NextPage = () => {
       },
       onSuccess: () => {
         //Trigger some notifications here?
-        // router.reload();
+        router.reload();
       },
     });
 
@@ -125,6 +125,7 @@ const Slug: NextPage = () => {
   };
 
   //*** TESTS ***\\
+  console.log("currentSession?.careSessionStatus", currentSession?.careSessionStatus)
 
   return (
     <>
@@ -214,9 +215,13 @@ const Slug: NextPage = () => {
               Message Caregiver
             </button>
             {/* NOTE: ADD MODAL HERE TO CONFIRM ACCEPT */}
-            {currentSession?.careSessionStatus === "New" ||
-              currentSession?.careSessionStatus === "Scheduled" ||
-              (currentSession?.careSessionStatus === "Canceled" && (
+            {/* CURRENTLY NOT SEEING ANY OPTION TO ACCEPT CAREGIVER */}
+            {/* WHY WERE THESE BELOW HERE IN THE FIRST PLACE?? */}
+            {
+            // currentSession?.careSessionStatus === "New" ||
+              // currentSession?.careSessionStatus === "Scheduled" ||
+             
+              (currentSession?.careSessionStatus === "Applied" && (
                 <button
                   className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
                   onClick={() => {
@@ -233,6 +238,7 @@ const Slug: NextPage = () => {
                 >
                   Accept Caregiver
                 </button>
+                
               ))}
             {currentSession?.careSessionStatus === "Scheduled" && (
               <button
@@ -244,7 +250,7 @@ const Slug: NextPage = () => {
                     careSessionStatus: "Canceled",
                   });
                   cancelSession();
-                  cancelThisPotentialCareSession();
+                  closeThisPotentialCareSession();
                 }}
               >
                 Cancel Session
