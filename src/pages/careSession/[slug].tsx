@@ -375,6 +375,8 @@ const Slug: NextPage = () => {
       {/***********************
        * CAREGIVER & PATIENT  *
        **********************/}
+
+
       {session && user?.role === "Caregiver & Patient" && (
         <>
           <div className="h-screen items-center justify-center dark:bg-gray-800 md:flex">
@@ -556,6 +558,10 @@ const Slug: NextPage = () => {
           </div>
         </>
       )}
+
+
+
+      
       {/***********************
        *      NO SESSION      *
        **********************/}
