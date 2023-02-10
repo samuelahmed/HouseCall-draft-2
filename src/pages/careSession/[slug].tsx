@@ -181,19 +181,55 @@ const Slug: NextPage = () => {
               </div>
               <div className="mt-12 mb-12 flex justify-around ">
                 {potentialCaregiver?.caregiverId !== user.id && (
-                  <button
-                    className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                    onClick={() => {
-                      setInputs({
-                        currentUserId: user?.id || "",
-                        id: currentSession?.id || "",
-                        // status: "pending",
-                      });
-                      publish();
-                    }}
-                  >
-                    Apply
-                  </button>
+                  <>
+                    {/* <div className="mt-12 mb-12 flex justify-around "> */}
+                      {potentialCaregiver?.caregiverId !== user.id && (
+                        // potentialCaregiver?.status === "" ||
+                        // potentialCaregiver?.status === "Closed"
+
+                        <button
+                          className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                          onClick={() => {
+                            setInputs({
+                              currentUserId: user?.id,
+                              id: currentSession?.id || "",
+                              // status: "pending",
+                            });
+                            publish();
+                            updateCareSessionStatusToApplied();
+                          }}
+                        >
+                          Apply
+                        </button>
+                      )}
+                      {/* Can apply but if you cancel application it will not let you apply again.  */}
+                      {potentialCaregiver?.caregiverId === user.id &&
+                        potentialCaregiver?.status !== "Closed" && (
+                          // potentialCaregiver?.status === "Applied"
+                          // potentialCaregiver?.status === "Accepted"
+                          <button
+                            className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                            onClick={() => {
+                              setInputs({
+                                currentUserId: user?.id || "",
+                                id: currentSession?.id || "",
+                                // status: "pending",
+                              });
+                              removeCaregiver();
+                            }}
+                          >
+                            Cancel Application
+                          </button>
+                        )}
+                    {/* </div> */}
+                    <div>
+                      {errorMessage && (
+                        <p className="text-center text-red-600">
+                          Meow! You already applied to this session.
+                        </p>
+                      )}
+                    </div>
+                  </>
                 )}
                 {potentialCaregiver?.caregiverId === user.id && (
                   <button
