@@ -3,8 +3,8 @@ import { z } from "zod";
 import slug from "slug";
 
 //This router is for the following prisma models:
-  //CareSession
-  //PotentialCareSession
+//CareSession
+//PotentialCareSession
 
 export const careSessionRouter = router({
   // ************************
@@ -82,14 +82,15 @@ export const careSessionRouter = router({
       //Instead of generating random string here it would be better to do something else
       //This will probably collide eventually
       const secondSlug = Math.random().toString(36).substring(7);
-      const potentialCaregiverPage = await ctx.prisma.potentialCareSession.create({
-        data: {
-          careSessionId,
-          caregiverId,
-          status,
-          slug: slug(secondSlug),
-        },
-      });
+      const potentialCaregiverPage =
+        await ctx.prisma.potentialCareSession.create({
+          data: {
+            careSessionId,
+            caregiverId,
+            status,
+            slug: slug(secondSlug),
+          },
+        });
       return potentialCaregiverPage;
     }),
 
@@ -124,12 +125,13 @@ export const careSessionRouter = router({
     )
     .query(async ({ ctx, input }) => {
       const { caregiverId, id } = input;
-      const potentialCaregiver = await ctx.prisma.potentialCareSession.findFirst({
-        where: {
-          caregiverId: caregiverId,
-          careSessionId: id,
-        },
-      });
+      const potentialCaregiver =
+        await ctx.prisma.potentialCareSession.findFirst({
+          where: {
+            caregiverId: caregiverId,
+            careSessionId: id,
+          },
+        });
       return potentialCaregiver;
     }),
 
@@ -161,11 +163,12 @@ export const careSessionRouter = router({
     .input(z.object({ slug: z.string() }))
     .query(async ({ ctx, input }) => {
       const { slug } = input;
-      const potentialCaregiver = await ctx.prisma.potentialCareSession.findUnique({
-        where: {
-          slug,
-        },
-      });
+      const potentialCaregiver =
+        await ctx.prisma.potentialCareSession.findUnique({
+          where: {
+            slug,
+          },
+        });
       return potentialCaregiver;
     }),
 
@@ -265,14 +268,14 @@ export const careSessionRouter = router({
     }
     const userId = user.id;
     const currentUserPotentialCareSessions =
-    await ctx.prisma.potentialCareSession.findMany({
-      where: {
-        caregiverId: userId
-        //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
-        // careSessionStatus: "accepted"
-        //why is this not working?
+      await ctx.prisma.potentialCareSession.findMany({
+        where: {
+          caregiverId: userId,
+          //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
+          // careSessionStatus: "accepted"
+          //why is this not working?
         },
-    });
+      });
     const careSessionIds = currentUserPotentialCareSessions.map(
       (session) => session.careSessionId
     );
@@ -320,6 +323,33 @@ export const careSessionRouter = router({
           careSessionStatus,
           slug,
           userId,
+        },
+        where: {
+          id: careSessionId,
+        },
+      });
+      return updatedCareSession;
+    }),
+
+  updateOneCareSessionTwo: privateProcedure
+    .input(
+      z.object({
+        careSessionStatus: z.string(),
+        careSessionId: z.string(),
+        slug: z.string(),
+        userId: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      const { careSessionStatus, slug, careSessionId, userId } = input;
+      const updatedCareSession = await ctx.prisma.careSession.upsert({
+        create: {
+          slug,
+          userId,
+          careSessionStatus,
+        },
+        update: {
+          careSessionStatus,
         },
         where: {
           id: careSessionId,

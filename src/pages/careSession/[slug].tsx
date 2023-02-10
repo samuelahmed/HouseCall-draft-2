@@ -35,25 +35,29 @@ const Slug: NextPage = () => {
   //       Because it is querying for a string of ids instead of a single id
   //Fix:   To fix this the query needs to accept an array of ids and return an array of users
   const { data: potentialCaregiverInfo } =
-  trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
-    caregiverId: potentialCaregivers?.map((potentialCaregiver) => potentialCaregiver.caregiverId).toString() || "",
-  });
+    trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
+      caregiverId:
+        potentialCaregivers
+          ?.map((potentialCaregiver) => potentialCaregiver.caregiverId)
+          .toString() || "",
+    });
 
   //*** FUNCTIONS ***\\
   const [inputs, setInputs] = useState({
     currentUserId: "",
     id: currentSession?.id || "",
-    status: "pending",
+    // status: "pending",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
 
+  //rename function with accurate name.
   const publish = () => {
     if (user && currentSession) {
       mutate({
         caregiverId: user.id,
         careSessionId: currentSession.id,
-        status: "pending",
+        status: "Applied",
       });
     }
   };
@@ -67,6 +71,17 @@ const Slug: NextPage = () => {
     }
   };
 
+  const updateCareSessionStatusToApplied = () => {
+    if (currentSession) {
+      mutationUpdateCareSessionStatusToApplied({
+        userId: currentSession.userId,
+        slug: currentSession.slug,
+        careSessionStatus: "Applied",
+        careSessionId: currentSession.id,
+      });
+    }
+  };
+
   const { mutate } =
     trpc.careSessionAPIs.createOnePotentialCaregiverPage.useMutation({
       onError: (error) => {
@@ -74,7 +89,7 @@ const Slug: NextPage = () => {
       },
       onSuccess: () => {
         alert("Meow! You have successfully applied to this care session.");
-        router.reload();
+        // router.reload();
       },
     });
 
@@ -85,7 +100,18 @@ const Slug: NextPage = () => {
       },
       onSuccess: () => {
         alert("Meow! You have removed yourself from this care session.");
-        router.reload();
+        // router.reload();
+      },
+    });
+
+  const { mutate: mutationUpdateCareSessionStatusToApplied } =
+    trpc.careSessionAPIs.updateOneCareSessionTwo.useMutation({
+      onError: (error) => {
+        setErrorMessage(error.message);
+      },
+      onSuccess: () => {
+        alert("Meow! The Care Session status has been atomatically updated.");
+        // router.reload();
       },
     });
 
@@ -167,7 +193,7 @@ const Slug: NextPage = () => {
                       setInputs({
                         currentUserId: user?.id || "",
                         id: currentSession?.id || "",
-                        status: "pending",
+                        // status: "pending",
                       });
                       publish();
                     }}
@@ -182,7 +208,7 @@ const Slug: NextPage = () => {
                       setInputs({
                         currentUserId: user?.id || "", //Why is this necessary?
                         id: currentSession?.id || "",
-                        status: "pending", //Why is this necessary?
+                        // status: "pending", //Why is this necessary?
                       });
                       removeCaregiver();
                     }}
@@ -275,7 +301,6 @@ const Slug: NextPage = () => {
             <div className="w-full px-2">
               List of potential Caregivers:
               <ul>
-                
                 {potentialCaregivers?.map((potentialCaregiver) => {
                   const { id, caregiverId, status } = potentialCaregiver;
                   return (
@@ -389,9 +414,10 @@ const Slug: NextPage = () => {
                           setInputs({
                             currentUserId: user?.id,
                             id: currentSession?.id || "",
-                            status: "pending",
+                            // status: "pending",
                           });
                           publish();
+                          updateCareSessionStatusToApplied();
                         }}
                       >
                         Apply
@@ -404,7 +430,7 @@ const Slug: NextPage = () => {
                           setInputs({
                             currentUserId: user?.id || "",
                             id: currentSession?.id || "",
-                            status: "pending",
+                            // status: "pending",
                           });
                           removeCaregiver();
                         }}
