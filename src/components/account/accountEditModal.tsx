@@ -8,7 +8,11 @@ import { trpc } from "../../utils/trpc";
 const AccountEditModal = () => {
   const [showModal, setShowModal] = useState(false);
   const dbTest = trpc.userAPIs.readCurrentUser.useQuery();
-  const roles = ["Caregiver", "Patient", "Caregiver & Patient"];
+  //the blank role helps with the dropdown menu
+  //need a better way to do it since it allows the users
+  //to select a blank role
+  const roles = ["","Caregiver", "Patient"];
+  
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
