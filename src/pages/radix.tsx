@@ -13,8 +13,7 @@ import ActiveTab from "@/components/caregiver/activeTab";
 import React from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import * as Switch from "@radix-ui/react-switch";
-import * as Separator from '@radix-ui/react-separator';
-
+import * as Separator from "@radix-ui/react-separator";
 
 const Caregiver: NextPage = (props) => {
   const { data: session } = useSession();
@@ -31,32 +30,21 @@ const Caregiver: NextPage = (props) => {
         {session && (
           <>
             <main className=" min-h-90vh  bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100">
-              {/***********************
-               *   LEFT SECTION        *
-               ***********************/}
-              <Tabs.Root defaultValue="tab1" orientation="vertical">
 
-              <div style={{ display: 'flex', height: 20, alignItems: 'center' }}>
-      <div className="Text">Blog</div>
-      <Separator.Root
-        className="SeparatorRoot"
-        decorative
-        orientation="vertical"
-        style={{ margin: '0 15px' }}
-      />
-      <div className="Text">Docs</div>
-      <Separator.Root
-        className="SeparatorRoot"
-        decorative
-        orientation="vertical"
-        style={{ margin: '0 15px' }}
-      />
-      <div className="Text">Source</div>
-    </div>
-
-                  <Tabs.List
-                    className="flex flex-row gap-2"
-                    aria-label="tabs example"
+              <Tabs.Root 
+              defaultValue="tab1" orientation="vertical">
+                <div>
+                <Tabs.List
+                  className="flex flex-row gap-2 justify-center"
+                  aria-label="tabs example"
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      height: 40,
+                      alignItems: "center",
+                    }}
+                    className=" "
                   >
                     <Tabs.Trigger
                       className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
@@ -64,23 +52,33 @@ const Caregiver: NextPage = (props) => {
                     >
                       Find Session
                     </Tabs.Trigger>
+                    <Separator.Root
+                      className="SeparatorRoot"
+                      decorative
+                      orientation="vertical"
+                      style={{ margin: "0 15px" }}
+                    />
                     <Tabs.Trigger
                       className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
                       value="tab2"
                     >
                       Active Sessions
                     </Tabs.Trigger>
+                    <Separator.Root
+                      className="SeparatorRoot"
+                      decorative
+                      orientation="vertical"
+                      style={{ margin: "0 15px" }}
+                    />
                     <Tabs.Trigger
                       className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
                       value="tab3"
                     >
                       History
-                    </Tabs.Trigger>
-                  </Tabs.List>
-
-                {/************************
-                 *   MIDDLE SECTION      *
-                 ***********************/}
+                    </Tabs.Trigger>{" "}
+                  </div>
+                </Tabs.List>
+                </div>
                 <div
                   className={
                     openSide === 1
@@ -88,23 +86,7 @@ const Caregiver: NextPage = (props) => {
                       : "col-span-3 w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:col-span-4"
                   }
                 >
-                  {/* Container to toggle left-section-menu and hold search-bar */}
                   <div className="flex flex-row bg-[hsl(0,0%,88%)] pl-0.5 dark:bg-gray-700">
-                    <Switch.Root
-                      className="SwitchRoot lg:hidden "
-                      id="toggle-menu"
-                      onClick={() => {
-                        if (openSide === 1) {
-                          setOpenSide(0);
-                        } else {
-                          setOpenSide(1);
-                        }
-                      }}
-                      // className="lg:hidden "
-                    >
-                      <Switch.Thumb className="SwitchThumb" />
-                    </Switch.Root>
-
                     <SearchEngine />
                   </div>
                 </div>
@@ -120,7 +102,52 @@ const Caregiver: NextPage = (props) => {
                 {/************************
                  *  EMPTY RIGHT SECTION  *
                  ***********************/}
-                <div className="cols-span-1 hidden w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:block "></div>
+                <div className="cols-span-1 hidden w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:block ">
+                <Tabs.List
+                  className="flex flex-row gap-2 justify-center"
+                  aria-label="tabs example"
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      height: 40,
+                      alignItems: "center",
+                    }}
+                    className=" "
+                  >
+                    <Tabs.Trigger
+                      className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
+                      value="tab1"
+                    >
+                      Find Session
+                    </Tabs.Trigger>
+                    <Separator.Root
+                      className="SeparatorRoot"
+                      decorative
+                      orientation="vertical"
+                      style={{ margin: "0 15px" }}
+                    />
+                    <Tabs.Trigger
+                      className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
+                      value="tab2"
+                    >
+                      Active Sessions
+                    </Tabs.Trigger>
+                    <Separator.Root
+                      className="SeparatorRoot"
+                      decorative
+                      orientation="vertical"
+                      style={{ margin: "0 15px" }}
+                    />
+                    <Tabs.Trigger
+                      className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
+                      value="tab3"
+                    >
+                      History
+                    </Tabs.Trigger>{" "}
+                  </div>
+                </Tabs.List>
+                </div>
               </Tabs.Root>
             </main>
             <Footer />
