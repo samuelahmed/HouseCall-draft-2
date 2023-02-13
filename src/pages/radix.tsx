@@ -13,6 +13,8 @@ import ActiveTab from "@/components/caregiver/activeTab";
 import React from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import * as Switch from "@radix-ui/react-switch";
+import * as Separator from '@radix-ui/react-separator';
+
 
 const Caregiver: NextPage = (props) => {
   const { data: session } = useSession();
@@ -28,19 +30,32 @@ const Caregiver: NextPage = (props) => {
       <div>
         {session && (
           <>
-            <main className="grid min-h-90vh grid-cols-3 justify-items-center bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100 lg:grid-cols-6">
+            <main className=" min-h-90vh  bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100">
               {/***********************
                *   LEFT SECTION        *
                ***********************/}
-              <div
-                className={
-                  openSide === 1 ? "col-span-1 w-full" : "hidden lg:block"
-                }
-                id="link1"
-              >
-                <Tabs.Root defaultValue="tab1" orientation="vertical">
+              <Tabs.Root defaultValue="tab1" orientation="vertical">
+
+              <div style={{ display: 'flex', height: 20, alignItems: 'center' }}>
+      <div className="Text">Blog</div>
+      <Separator.Root
+        className="SeparatorRoot"
+        decorative
+        orientation="vertical"
+        style={{ margin: '0 15px' }}
+      />
+      <div className="Text">Docs</div>
+      <Separator.Root
+        className="SeparatorRoot"
+        decorative
+        orientation="vertical"
+        style={{ margin: '0 15px' }}
+      />
+      <div className="Text">Source</div>
+    </div>
+
                   <Tabs.List
-                    className="flex flex-col gap-2"
+                    className="flex flex-row gap-2"
                     aria-label="tabs example"
                   >
                     <Tabs.Trigger
@@ -63,56 +78,50 @@ const Caregiver: NextPage = (props) => {
                     </Tabs.Trigger>
                   </Tabs.List>
 
-                  <Tabs.Content value="tab1">Tab one content</Tabs.Content>
-                  <Tabs.Content value="tab2">Tab two content</Tabs.Content>
-                  <Tabs.Content value="tab3">Tab three content</Tabs.Content>
-                </Tabs.Root>
-              </div>
-              {/************************
-               *   MIDDLE SECTION      *
-               ***********************/}
-              <div
-                className={
-                  openSide === 1
-                    ? "col-span-2 w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:col-span-4"
-                    : "col-span-3 w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:col-span-4"
-                }
-              >
-                {/* Container to toggle left-section-menu and hold search-bar */}
-                <div className="flex flex-row bg-[hsl(0,0%,88%)] pl-0.5 dark:bg-gray-700">
-                  <Switch.Root
-                    className="SwitchRoot lg:hidden "
-                    id="toggle-menu"
-                    onClick={() => {
-                      if (openSide === 1) {
-                        setOpenSide(0);
-                      } else {
-                        setOpenSide(1);
-                      }
-                    }}
-                    // className="lg:hidden "
-                  >
-                    <Switch.Thumb className="SwitchThumb" />
-                  </Switch.Root>
+                {/************************
+                 *   MIDDLE SECTION      *
+                 ***********************/}
+                <div
+                  className={
+                    openSide === 1
+                      ? "col-span-2 w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:col-span-4"
+                      : "col-span-3 w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:col-span-4"
+                  }
+                >
+                  {/* Container to toggle left-section-menu and hold search-bar */}
+                  <div className="flex flex-row bg-[hsl(0,0%,88%)] pl-0.5 dark:bg-gray-700">
+                    <Switch.Root
+                      className="SwitchRoot lg:hidden "
+                      id="toggle-menu"
+                      onClick={() => {
+                        if (openSide === 1) {
+                          setOpenSide(0);
+                        } else {
+                          setOpenSide(1);
+                        }
+                      }}
+                      // className="lg:hidden "
+                    >
+                      <Switch.Thumb className="SwitchThumb" />
+                    </Switch.Root>
 
-                  <SearchEngine />
+                    <SearchEngine />
+                  </div>
                 </div>
-                {/* Containers to hold content that get dynamically changed from left-section-menu */}
-
-                <div className={openTab === 1 ? "block" : "hidden"} id="link1">
+                <Tabs.Content value="tab1">
                   <FindTab />
-                </div>
-                <div className={openTab === 2 ? "block" : "hidden"} id="link2">
+                </Tabs.Content>
+                <Tabs.Content value="tab2">
                   <ActiveTab />
-                </div>
-                <div className={openTab === 3 ? "block" : "hidden"} id="link3">
+                </Tabs.Content>
+                <Tabs.Content value="tab3">
                   <HistoryTab />
-                </div>
-              </div>
-              {/************************
-               *  EMPTY RIGHT SECTION  *
-               ***********************/}
-              <div className="cols-span-1 hidden w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:block "></div>
+                </Tabs.Content>
+                {/************************
+                 *  EMPTY RIGHT SECTION  *
+                 ***********************/}
+                <div className="cols-span-1 hidden w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:block "></div>
+              </Tabs.Root>
             </main>
             <Footer />
           </>

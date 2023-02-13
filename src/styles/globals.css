@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 
-/* For the Switch component */
+/* Switch component */
 /* https://www.radix-ui.com/docs/primitives/components/switch */
 @import '@radix-ui/colors/blackA.css';
 
@@ -43,3 +43,20 @@ button {
   }
   /* end of Switch component */
   
+
+/* Seperator component */
+/* https://www.radix-ui.com/docs/primitives/components/separator */
+@import '@radix-ui/colors/violet.css';
+
+.SeparatorRoot {
+  background-color: var(--violet6);
+}
+.SeparatorRoot[data-orientation='horizontal'] {
+  height: 1px;
+  width: 100%;
+}
+.SeparatorRoot[data-orientation='vertical'] {
+  height: 100%;
+  width: 1px;
+}
+/* end of Separator component */
