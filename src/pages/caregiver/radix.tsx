@@ -53,15 +53,40 @@ const Caregiver: NextPage = (props) => {
               <div
                 className="
                 col-span-5 min-h-90vh min-w-max
-                bg-blue11
+                bg-blue1 dark:bg-darkBlue1
                 "
               >
                 <div
                   className="
-                bg-olive11
-                "
+                mx-4 mt-4
+                grid min-h-90vh
+                grid-cols-2
+                bg-blue1
+                dark:bg-darkBlue1
+                gap-x-1	                "
                 >
-                  CENTER DIV
+                  <div
+                    className="
+                    col-span-2
+                    md:col-span-1 border
+                    border-blue6
+                    bg-blue2 dark:bg-darkBlue1
+                    dark:border-darkBlue6
+                  "
+                  >
+                    Left Table
+                  </div>
+                  <div
+                    className="
+                    hidden md:block
+                    md:col-span-1 border
+                    border-blue6
+                    bg-blue2 dark:bg-darkBlue1
+                    dark:border-darkBlue6
+                  "
+                  >
+                    Right Table
+                  </div>
                 </div>
               </div>
             </main>
