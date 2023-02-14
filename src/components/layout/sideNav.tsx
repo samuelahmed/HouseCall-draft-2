@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { trpc } from "@/utils/trpc";
 import { useSession } from "next-auth/react";
+import {
+  ChatBubbleIcon,
+  FaceIcon,
+  PersonIcon,
+  CalendarIcon,
+  IdCardIcon,
+  ArchiveIcon,
+  QuestionMarkIcon,
+} from "@radix-ui/react-icons";
 
 const SideNav = () => {
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
@@ -18,43 +27,44 @@ const SideNav = () => {
               lg:block
               "
           >
-            MENU
-            <Link
-              href={"/help"}
-              className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
+            <div
+              className="
+                  flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg
+                "
             >
-              Help
-            </Link>
-          </div>
-
-          {/* <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
-              <Link
-                href={"/caregiver"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
-              >
-                Caregiver Dashboard asdfsdf
+              <Link href={"/help"} className="flex flex-row items-center">
+                <FaceIcon className="mr-2" />
+                Discover
               </Link>
-              <Link
-                href={"/messages"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
-              >
+              <Link href={"/help"} className="flex flex-row items-center">
+                <IdCardIcon className="mr-2" />
+                Applied
+              </Link>
+
+              <Link href={"/help"} className="flex flex-row items-center">
+                <CalendarIcon className="mr-2" />
+                Scheduled
+              </Link>
+
+              <Link href={"/help"} className="flex flex-row items-center">
+                <ArchiveIcon className="mr-2" />
+                History
+              </Link>
+
+              <Link href={"/help"} className="flex flex-row items-center">
+                <ChatBubbleIcon className="mr-2" />
                 Messages
               </Link>
-              <Link
-                href={"/account"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
-              >
+              <Link href={"/help"} className="flex flex-row items-center">
+                <PersonIcon className="mr-2" />
                 Account
               </Link>
-              <Link
-                href={"/help"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
-              >
+              <Link href={"/help"} className="flex flex-row items-center">
+                <QuestionMarkIcon className="mr-2" />
                 Help
               </Link>
             </div>
-          </div> */}
+          </div>
         </>
       )}
       {session && user?.address && user?.role === "Patient" && (
