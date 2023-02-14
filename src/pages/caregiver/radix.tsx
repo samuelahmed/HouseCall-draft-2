@@ -25,155 +25,49 @@ const Caregiver: NextPage = (props) => {
       <Head>
         <title>Caregiver Dashbaord</title>
       </Head>
+      {/* <header className="h-14"></header> */}
       <NavLayout />
+
       <div>
         {session && (
           <>
-            <main className=" min-h-90vh bg-blue12  bg-indigo1 text-indigo1 dark:bg-slate-800 dark:text-gray-100">
+            <main
+              className="
+            grid min-h-95vh grid-cols-1
+           bg-blue1
+           dark:bg-darkBlue1 
+             md:grid-cols-6
+            "
+            >
+              <div
+                className="
+              col-span-1 hidden min-h-max
+             bg-slate12 
+             text-olive2
+              lg:block 
+              "
+              >
+                MENU
+              </div>
 
-              <Tabs.Root 
-              defaultValue="tab1" orientation="vertical">
-                <div>
-                <Tabs.List
-                  className="flex flex-row gap-2 justify-center"
-                  aria-label="tabs example"
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      height: 40,
-                      alignItems: "center",
-                    }}
-                    className=" "
-                  >
-                    <Tabs.Trigger
-                      className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
-                      value="tab1"
-                    >
-                      Find Session
-                    </Tabs.Trigger>
-                    <Separator.Root
-                      className="SeparatorRoot"
-                      decorative
-                      orientation="vertical"
-                      style={{ margin: "0 15px" }}
-                    />
-                    <Tabs.Trigger
-                      className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
-                      value="tab2"
-                    >
-                      Active Sessions
-                    </Tabs.Trigger>
-                    <Separator.Root
-                      className="SeparatorRoot"
-                      decorative
-                      orientation="vertical"
-                      style={{ margin: "0 15px" }}
-                    />
-                    <Tabs.Trigger
-                      className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
-                      value="tab3"
-                    >
-                      History
-                    </Tabs.Trigger>{" "}
-                  </div>
-                </Tabs.List>
-                </div>
+              <div
+                className="
+                col-span-5 min-h-90vh min-w-max
+                bg-blue11
+                "
+              >
                 <div
-                  className={
-                    openSide === 1
-                      ? "col-span-2 w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:col-span-4"
-                      : "col-span-3 w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:col-span-4"
-                  }
+                  className="
+                bg-olive11
+                "
                 >
-                  <div className="flex flex-row bg-[hsl(0,0%,88%)] pl-0.5 dark:bg-gray-700">
-                    <SearchEngine />
-                  </div>
-                </div>
-                <Tabs.Content value="tab1">
-                  <FindTab />
-                </Tabs.Content>
-                <Tabs.Content value="tab2">
-                  <ActiveTab />
-                </Tabs.Content>
-                <Tabs.Content value="tab3">
-                  <HistoryTab />
-                </Tabs.Content>
-                {/************************
-                 *  EMPTY RIGHT SECTION  *
-                 ***********************/}
-                <div className="cols-span-1 hidden w-full bg-[hsl(0,0%,96%)] dark:bg-slate-800 lg:block ">
-                <Tabs.List
-                  className="flex flex-row gap-2 justify-center"
-                  aria-label="tabs example"
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      height: 40,
-                      alignItems: "center",
-                    }}
-                    className=" "
-                  >
-                    <Tabs.Trigger
-                      className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
-                      value="tab1"
-                    >
-                      Find Session
-                    </Tabs.Trigger>
-                    <Separator.Root
-                      className="SeparatorRoot"
-                      decorative
-                      orientation="vertical"
-                      style={{ margin: "0 15px" }}
-                    />
-                    <Tabs.Trigger
-                      className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
-                      value="tab2"
-                    >
-                      Active Sessions
-                    </Tabs.Trigger>
-                    <Separator.Root
-                      className="SeparatorRoot"
-                      decorative
-                      orientation="vertical"
-                      style={{ margin: "0 15px" }}
-                    />
-                    <Tabs.Trigger
-                      className="text-md text-gray-800 dark:text-gray-100 md:text-xl"
-                      value="tab3"
-                    >
-                      History
-                    </Tabs.Trigger>{" "}
-                  </div>
-                </Tabs.List>
-                </div>
-              </Tabs.Root>
-            </main>
-            <Footer />
-          </>
-        )}
-        {!session && (
-          <>
-            <main className="justify-top flex min-h-90vh flex-col items-center md:justify-center lg:justify-center">
-              <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-                <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
-                  Caregiver{" "}
-                  <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
-                </h1>
-                <div className="flex flex-row gap-2">
-                  <Link href={"/signin"} className="rounded border py-1 px-4">
-                    Sign in
-                  </Link>
-                  <Link href={"/register"} className="rounded border py-1 px-4">
-                    Register
-                  </Link>
+                  CENTER DIV
                 </div>
               </div>
             </main>
-            <Footer />
           </>
         )}
+        {!session && <></>}
       </div>
     </>
   );

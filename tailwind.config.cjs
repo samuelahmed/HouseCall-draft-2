@@ -29,26 +29,46 @@ module.exports = {
 
       // Slate - Side Menu
       slate12: '#11181c',
+
+      // Yellow - Sun
+      yellow9: '#f5d90a',
+
+
+
+
     },
     extend: {
       height: {
         '128': '32rem',
       },
       maxHeight: {
+        '5vh': '5vh',
+
         '70vh': '70vh',
         '75vh': '75vh',
         '78vh': '78vh',
         '80vh': '80vh',
         '85vh': '85vh',
-        '90vh': '90vh'
+        '90vh': '90vh',
+        '95vh': '95vh',
+        '98vh': '98vh',
+
+        '100vh': '100vh',
+
+
       },
       minHeight: {
+        '5vh': '5vh',
+
         '70vh': '70vh',
         '78vh': '78vh',
         '85vh': '85vh',
         '80vh': '80vh',
         '85vh': '85vh',
         '90vh': '90vh',
+        '95vh': '95vh',
+
+        '100vh': '100vh'
       }
     },
   },
