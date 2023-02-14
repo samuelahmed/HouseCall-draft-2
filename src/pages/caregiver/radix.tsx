@@ -68,7 +68,7 @@ const Caregiver: NextPage = (props) => {
           <>
             <main
               className="
-            grid min-h-85vh grid-cols-1
+            grid  grid-cols-1
            bg-blue1
            dark:bg-darkBlue1 
              md:grid-cols-6
@@ -124,21 +124,22 @@ const Caregiver: NextPage = (props) => {
 
               <div
                 className="
-                col-span-5 min-h-90vh min-w-max
+                col-span-5  min-w-max
                 bg-blue1 dark:bg-darkBlue1
                 "
               >
                 <div
                   className="
                   mx-4 mt-4 mb-1
-                flex items-center" >
+                flex items-center"
+                >
                   <SearchEngine />
                 </div>
 
                 <div
                   className="
                 mx-4 
-                grid min-h-90vh
+                grid min-h-88vh
                 grid-cols-2
                 gap-x-1
                 bg-blue1
@@ -251,8 +252,8 @@ const Caregiver: NextPage = (props) => {
 
                   <div
                     className="
-                    hidden border
-                    max-h-85vh
+                    hidden max-h-85vh
+                    border
                     border-blue6 bg-blue2
                     dark:border-darkBlue6
                     dark:bg-darkBlue1 md:col-span-1
