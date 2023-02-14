@@ -3,9 +3,33 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: 'class',
   theme: {
-    // colors: {
-    //   bgLight: "#151819",
-    // },
+    colors: {
+      //Colors from: https://www.radix-ui.com/docs/colors/palette-composition/the-scales
+      //Blue
+      blue1: '#fbfdff', 
+      blue2: '#f5faff', 
+      blue3: '#edf6ff',
+      blue6: '#b7d9f8',
+      blue11: '#006adc',
+      blue12: "#00254d", 
+      //Dark Blue
+      darkBlue1: '#0f1720', 
+      darkBlue2: '#0f1b2d',  
+      darkBlue3: '#10243e',
+      darkBlue6: '#0d3868',
+      darkBlue12: '#eaf6ff', 
+      
+      // Olive
+      olive2:'#f8faf8',  
+      olive11: '#6b716a',
+      olive12: '#141e12',
+      // Dark Olive
+      darkOlive2:' #1a1d19', 
+      darkOlive12: '#eceeec',
+
+      // Slate - Side Menu
+      slate12: '#11181c',
+    },
     extend: {
       height: {
         '128': '32rem',

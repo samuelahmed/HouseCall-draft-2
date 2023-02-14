@@ -29,7 +29,7 @@ const Caregiver: NextPage = (props) => {
       <div>
         {session && (
           <>
-            <main className=" min-h-90vh  bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100">
+            <main className=" min-h-90vh bg-blue12  bg-indigo1 text-indigo1 dark:bg-slate-800 dark:text-gray-100">
 
               <Tabs.Root 
               defaultValue="tab1" orientation="vertical">
