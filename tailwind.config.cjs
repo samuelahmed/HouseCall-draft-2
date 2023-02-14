@@ -10,6 +10,10 @@ module.exports = {
       blue2: '#f5faff', 
       blue3: '#edf6ff',
       blue6: '#b7d9f8',
+      blue7: '#96c7f2',
+      blue8: '#5eb0ef',
+
+
       blue11: '#006adc',
       blue12: "#00254d", 
       //Dark Blue
@@ -17,14 +21,23 @@ module.exports = {
       darkBlue2: '#0f1b2d',  
       darkBlue3: '#10243e',
       darkBlue6: '#0d3868',
+      darkBlue7: '#0a4481',
+      darkBlue8: '#0954a5',
+
       darkBlue12: '#eaf6ff', 
       
       // Olive
       olive2:'#f8faf8',  
+
+      olive10: '#818780',
+
       olive11: '#6b716a',
       olive12: '#141e12',
       // Dark Olive
       darkOlive2:' #1a1d19', 
+
+      darkOlive10: '#778175',
+
       darkOlive12: '#eceeec',
 
       // Slate - Side Menu

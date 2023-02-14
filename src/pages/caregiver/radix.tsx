@@ -131,6 +131,7 @@ const Caregiver: NextPage = (props) => {
                 <div
                   className="
                   mx-4 mt-4 mb-1
+                  text-olive12 dark:text-darkOlive12
                 flex items-center"
                 >
                   <SearchEngine />
@@ -152,7 +153,7 @@ const Caregiver: NextPage = (props) => {
                     border
                     border-blue6 bg-blue2
                     dark:border-darkBlue6
-                    dark:bg-darkBlue1
+                    dark:bg-darkBlue2
                     md:col-span-1
                   
                   "
@@ -184,7 +185,7 @@ const Caregiver: NextPage = (props) => {
                               <li
                                 key={id}
                                 // this className makes the cards
-                                className="boder-gray-400 bg-white hover:bg-gray-100 dark:border-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600 mx-2 mb-2 cursor-pointer items-center justify-around rounded-lg border px-2"
+                                className="boder-gray-400 bg-blue1 hover:bg-gray-100 dark:border-darkBlue6 dark:bg-darkBlue1 dark:hover:bg-gray-600 mx-2 mb-2 cursor-pointer items-center justify-around rounded-lg border px-2"
                               >
                                 <div
                                   onClick={() => {
@@ -256,13 +257,13 @@ const Caregiver: NextPage = (props) => {
                     border
                     border-blue6 bg-blue2
                     dark:border-darkBlue6
-                    dark:bg-darkBlue1 md:col-span-1
+                    dark:bg-darkBlue2 md:col-span-1
                     md:block
                   "
                   >
                     {/* Right Table */}
                     {/* this className is for the right card */}
-                    <div className="border-gray-400 bg-white dark:bg-gray-800 mx-2  mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-xl border">
+                    <div className="border-blue6 bg-blue1 dark:bg-darkBlue1 dark:border-darkBlue6 mx-2  mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-xl border">
                       <div className={rightCard === 1 ? "" : "hidden"}>
                         <div className="mb-4 mr-4 ml-4 justify-center ">
                           <div className="text-gray-800 dark:text-gray-100 mb-2 p-4 text-center text-xl">
