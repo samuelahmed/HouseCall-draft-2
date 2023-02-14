@@ -68,7 +68,7 @@ const Caregiver: NextPage = (props) => {
           <>
             <main
               className="
-            grid min-h-95vh grid-cols-1
+            grid min-h-85vh grid-cols-1
            bg-blue1
            dark:bg-darkBlue1 
              md:grid-cols-6
@@ -130,7 +130,8 @@ const Caregiver: NextPage = (props) => {
               >
                 <div
                   className="
-                flex items-center mx-2" >
+                  mx-4 mt-4 mb-1
+                flex items-center" >
                   <SearchEngine />
                 </div>
 
@@ -146,7 +147,7 @@ const Caregiver: NextPage = (props) => {
                   <div
                     className="
                     col-span-2
-                    max-h-90vh overflow-scroll
+                    max-h-85vh overflow-scroll
                     border
                     border-blue6 bg-blue2
                     dark:border-darkBlue6
@@ -251,6 +252,7 @@ const Caregiver: NextPage = (props) => {
                   <div
                     className="
                     hidden border
+                    max-h-85vh
                     border-blue6 bg-blue2
                     dark:border-darkBlue6
                     dark:bg-darkBlue1 md:col-span-1
@@ -259,7 +261,7 @@ const Caregiver: NextPage = (props) => {
                   >
                     {/* Right Table */}
                     {/* this className is for the right card */}
-                    <div className="border-gray-400 bg-white dark:bg-gray-800 mx-2  mt-4 flex min-h-85vh min-w-max flex-col justify-between rounded-xl border">
+                    <div className="border-gray-400 bg-white dark:bg-gray-800 mx-2  mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-xl border">
                       <div className={rightCard === 1 ? "" : "hidden"}>
                         <div className="mb-4 mr-4 ml-4 justify-center ">
                           <div className="text-gray-800 dark:text-gray-100 mb-2 p-4 text-center text-xl">

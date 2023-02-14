@@ -8,10 +8,10 @@ import SelectSessionType from './selectSessionType';
 const SearchEngine = () => {
   return (
     <>
-      <div className="min-w-full   ">
-        <div className=" flex items-center justify-center bg-blue11">
+      <div className="min-w-full">
+        <div className=" flex items-center justify-center border border-blue6 bg-blue2 ">
           <div className="hidden  md:block">
-            <div className="relative">
+            <div className="relative border border-blue6">
               < SelectSessionType />
             </div>
           </div>
@@ -20,7 +20,7 @@ const SearchEngine = () => {
               className=" border-gray-200 text-gray-700 focus:border-gray-500 focus:bg-white dark:border-white  dark:bg-gray-800 dark:text-gray-200 w-full rounded border bg-[hsl(0,0%,96%)] py-3 px-4 leading-tight focus:outline-none"
               id="grid-city"
               type="text"
-              placeholder="City"
+              placeholder="Date"
             />
           </div>
           <div className="justify-items-center px-3 md:mb-0 md:w-1/3">
