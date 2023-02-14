@@ -9,61 +9,79 @@ const SideNav = () => {
     <>
       {session && user?.address && user?.role === "Caregiver" && (
         <>
-          <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
+          <div
+            className="
+              fixed col-span-1 min-h-95vh min-w-40vw
+             max-w-sm 
+             bg-slate12
+              text-olive2 
+              lg:block
+              "
+          >
+            MENU
+            <Link
+              href={"/help"}
+              className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
+            >
+              Help
+            </Link>
+          </div>
+
+          {/* <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
+            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
               <Link
                 href={"/caregiver"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
-                Caregiver Dashboard
+                Caregiver Dashboard asdfsdf
               </Link>
               <Link
                 href={"/messages"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Messages
               </Link>
               <Link
                 href={"/account"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Account
               </Link>
               <Link
                 href={"/help"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Help
               </Link>
             </div>
-          </div>
+          </div> */}
         </>
       )}
       {session && user?.address && user?.role === "Patient" && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
+            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
               <Link
                 href={"/patient"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Patient Dashboard
               </Link>
               <Link
                 href={"/messages"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Messages
               </Link>
               <Link
                 href={"/account"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Account
               </Link>
               <Link
                 href={"/help"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Help
               </Link>
@@ -74,34 +92,34 @@ const SideNav = () => {
       {session && user?.address && user?.role === "Caregiver & Patient" && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
+            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
               <Link
                 href={"/caregiver"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Caregiver Dashboard
               </Link>
               <Link
                 href={"/patient"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Patient Dashboard
               </Link>
               <Link
                 href={"/messages"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Messages
               </Link>
               <Link
                 href={"/account"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Account
               </Link>
               <Link
                 href={"/help"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Help
               </Link>
@@ -112,16 +130,16 @@ const SideNav = () => {
       {((session && !user?.role) || (session && !user?.address)) && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
+            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
               <Link
                 href={"/account"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Account
               </Link>
               <Link
                 href={"/help"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Help
               </Link>
@@ -132,10 +150,10 @@ const SideNav = () => {
       {!session && (
         <>
           <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg dark:bg-gray-700 md:text-lg xl:text-xl">
+            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
               <Link
                 href={"/help"}
-                className=" border border-gray-200 py-1  px-4 dark:border-gray-800"
+                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
               >
                 Help
               </Link>
