@@ -131,8 +131,8 @@ const Caregiver: NextPage = (props) => {
                 <div
                   className="
                   mx-4 mt-4 mb-1
-                  text-olive12 dark:text-darkOlive12
-                flex items-center"
+                  flex items-center
+                text-olive12 dark:text-darkOlive12"
                 >
                   <SearchEngine />
                 </div>
@@ -185,7 +185,11 @@ const Caregiver: NextPage = (props) => {
                               <li
                                 key={id}
                                 // this className makes the cards
-                                className="boder-gray-400 bg-blue1 hover:bg-gray-100 dark:border-darkBlue6 dark:bg-darkBlue1 dark:hover:bg-gray-600 mx-2 mb-2 cursor-pointer items-center justify-around rounded-lg border px-2"
+                                className="hover:bg-gray-100 dark:hover:bg-gray-600 mx-2 mb-2
+                                 cursor-pointer items-center justify-around rounded-lg border border-blue6 bg-blue1 px-2 text-olive12 dark:border-darkBlue6
+                                 dark:bg-darkBlue1 dark:text-darkOlive12
+                                 hover:bg-blue4 dark:hover:bg-darkBlue4
+                                 "
                               >
                                 <div
                                   onClick={() => {
@@ -207,27 +211,37 @@ const Caregiver: NextPage = (props) => {
                                           (Number(hourlyRate) || 0),
                                     });
                                   }}
-                                  className="mb-8"
+                                  className="mb-8 text-sm"
                                 >
-                                  <div className="">{title}</div>
+                                  <div className="pt-2 text-center text-lg font-semibold">
+                                    {title}
+                                  </div>
                                   <p className="">
-                                    <span className="">Status:&nbsp;</span>
+                                    <span className="font-semibold">
+                                      Status:&nbsp;
+                                    </span>
                                     {careSessionStatus}
                                   </p>
                                   <p className="">
-                                    <span className="">Name:&nbsp;</span>
+                                    <span className="font-semibold">
+                                      Name:&nbsp;
+                                    </span>
                                     {name}
                                   </p>
                                   <p className="">
-                                    <span className="">Address:&nbsp;</span>
+                                    <span className="font-semibold">
+                                      Address:&nbsp;
+                                    </span>
                                     {address}
                                   </p>
                                   <p className="">
-                                    <span className="">Overview:&nbsp;</span>
+                                    <span className="font-semibold">
+                                      Overview:&nbsp;
+                                    </span>
                                     {overview}
                                   </p>
                                   <p className="">
-                                    <span className="">
+                                    <span className="font-semibold">
                                       Total Compensation:&nbsp;
                                     </span>
                                     ${totalCompensation}
@@ -256,65 +270,66 @@ const Caregiver: NextPage = (props) => {
                     hidden max-h-85vh
                     border
                     border-blue6 bg-blue2
-                    dark:border-darkBlue6
-                    dark:bg-darkBlue2 md:col-span-1
-                    md:block
+                    text-olive12
+                    dark:border-darkBlue6 dark:bg-darkBlue2
+                    dark:text-darkOlive12
+                    md:col-span-1 md:block
                   "
                   >
                     {/* Right Table */}
                     {/* this className is for the right card */}
-                    <div className="border-blue6 bg-blue1 dark:bg-darkBlue1 dark:border-darkBlue6 mx-2  mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-xl border">
+                    <div className="mx-2 mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-lg border border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1">
                       <div className={rightCard === 1 ? "" : "hidden"}>
                         <div className="mb-4 mr-4 ml-4 justify-center ">
-                          <div className="text-gray-800 dark:text-gray-100 mb-2 p-4 text-center text-xl">
+                          <div className="mb-2 p-4 text-center text-2xl font-semibold">
                             {selectedSession?.data?.title || isLoading}
                           </div>
                           <div className="text-sm">
-                            <p className="text-gray-900 dark:text-gray-100">
-                              <span className="text-gray-800 dark:text-gray-200 font-semibold">
+                            <p className="">
+                              <span className="font-semibold">
                                 Status:&nbsp;
                               </span>
                               {selectedSession?.data?.careSessionStatus ||
                                 isLoading}
                             </p>
-                            <p className="text-gray-900 dark:text-gray-100">
-                              <span className="text-gray-800 dark:text-gray-200 font-semibold">
+                            <p className="">
+                              <span className="font-semibold">
                                 Name:&nbsp;
                               </span>
                               {selectedSession?.data?.name || isLoading}
                             </p>
-                            <p className="text-gray-900 dark:text-gray-100">
-                              <span className="text-gray-800 dark:text-gray-200 font-semibold">
+                            <p className="">
+                              <span className="font-semibold">
                                 Address:&nbsp;
                               </span>
                               {selectedSession?.data?.address || isLoading}
                             </p>
-                            <p className="text-gray-900 dark:text-gray-100">
-                              <span className="text-gray-800 dark:text-gray-200 font-semibold">
+                            <p className="">
+                              <span className="font-semibold">
                                 Medical Notes:&nbsp;
                               </span>
                               {selectedSession?.data?.medicalNotes || isLoading}
                             </p>
-                            <p className="text-gray-900 dark:text-gray-100">
-                              <span className="text-gray-800 dark:text-gray-200 font-semibold">
+                            <p className="">
+                              <span className="font-semibold">
                                 Overview:&nbsp;
                               </span>
                               {selectedSession?.data?.overview || isLoading}
                             </p>
-                            <p className="text-gray-900 dark:text-gray-100">
-                              <span className="text-gray-800 dark:text-gray-200 font-semibold">
+                            <p className="">
+                              <span className="font-semibold">
                                 Hourly Rate:&nbsp;
                               </span>
                               ${selectedSession?.data?.hourlyRate || isLoading}
                             </p>
-                            <p className="text-gray-900 dark:text-gray-100">
-                              <span className="text-gray-800 dark:text-gray-200 font-semibold">
+                            <p className="">
+                              <span className="font-semibold">
                                 Hours:&nbsp;
                               </span>
                               {selectedSession?.data?.totalHours || isLoading}
                             </p>
-                            <p className="text-gray-900 dark:text-gray-100">
-                              <span className="text-gray-800 dark:text-gray-200 font-semibold">
+                            <p className="">
+                              <span className="font-semibold">
                                 Total:&nbsp;
                               </span>
                               $
@@ -328,7 +343,7 @@ const Caregiver: NextPage = (props) => {
                                     `/careSession/${selectedSession.data?.slug}`
                                   )
                                 }
-                                className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) border-gray-500 bg-transparent text-gray-800 dark:text-gray-100 dark:hover:text-gray-800 mt-6 h-10 rounded border px-4 pt-2 pb-8 font-semibold hover:bg-[hsl(154,47%,66%)]"
+                                className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) border-gray-500 bg-transparent dark:hover: mt-6 h-10 rounded border px-4 pt-2 pb-8 font-semibold hover:bg-[hsl(154,47%,66%)]"
                               >
                                 Schedule
                               </button>
