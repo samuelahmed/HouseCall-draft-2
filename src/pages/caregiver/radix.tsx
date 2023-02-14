@@ -12,6 +12,7 @@ import ActiveTab from "@/components/caregiver/activeTab";
 import SideNav from "@/components/layout/sideNav";
 
 import React from "react";
+
 import * as Tabs from "@radix-ui/react-tabs";
 import * as Switch from "@radix-ui/react-switch";
 import * as Separator from "@radix-ui/react-separator";
@@ -129,7 +130,13 @@ const Caregiver: NextPage = (props) => {
               >
                 <div
                   className="
-                mx-4 mt-4
+                flex items-center mx-2" >
+                  <SearchEngine />
+                </div>
+
+                <div
+                  className="
+                mx-4 
                 grid min-h-90vh
                 grid-cols-2
                 gap-x-1
@@ -252,7 +259,7 @@ const Caregiver: NextPage = (props) => {
                   >
                     {/* Right Table */}
                     {/* this className is for the right card */}
-                    <div className="border-gray-400 bg-white dark:bg-gray-800 flex  min-w-max flex-col justify-between rounded-xl border mt-4 mx-2 min-h-85vh">
+                    <div className="border-gray-400 bg-white dark:bg-gray-800 mx-2  mt-4 flex min-h-85vh min-w-max flex-col justify-between rounded-xl border">
                       <div className={rightCard === 1 ? "" : "hidden"}>
                         <div className="mb-4 mr-4 ml-4 justify-center ">
                           <div className="text-gray-800 dark:text-gray-100 mb-2 p-4 text-center text-xl">
