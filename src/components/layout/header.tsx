@@ -17,17 +17,20 @@ const Header = ({
   return (
     <div className="sticky top-0 z-50 grid grid-cols-2 items-center bg-blue12 py-1">
       <div className="flex justify-start ">
-        <div className=" md:pl-0">
+        <div className="md:hidden md:pl-0">
           <Bars3CenterLeftIcon
             className="h-8 w-8 cursor-pointer text-olive2"
             onClick={() => setShowNav(!showNav)}
           />
         </div>
         <div className="ml-4 flex items-center pr-4 text-olive2">
-          {session &&
-            (isLoading || (data && data?.username) || (
-              <span className="text-red-600">Meow! No Name</span>
-            ))}
+          <div className="hidden text-xl text-olive2 md:block">House Call</div>
+          <div className="md:hidden">
+            {session &&
+              (isLoading || (data && data?.username) || (
+                <span className="text-red-600">Meow! No Name</span>
+              ))}
+          </div>
         </div>
       </div>
       <div className="flex justify-end">
@@ -41,21 +44,19 @@ export default Header;
 
 const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
-  // console.log(sessionData)
   return (
-    <div className="flex items-center min-h-5vh max-h-5vh">
+    <div className="flex max-h-5vh min-h-5vh items-center">
       <button
-        className="mr-2 rounded-lg px-4 py-2 text-sm font-medium text-olive2 hover:bg-[hsl(0,0%,96%)] focus:outline-none dark:text-olive2 dark:hover:bg-gray-600 lg:py-2.5 marker:lg:px-5"
+        className="dark:hover:bg-gray-600 mr-2 rounded-lg px-4 py-2 text-sm font-medium text-olive2 hover:bg-[hsl(0,0%,96%)] focus:outline-none dark:text-olive2 lg:py-2.5 marker:lg:px-5"
         onClick={sessionData ? () => signOut() : () => signIn()}
       >
         {sessionData ? "Sign out" : "Sign in"}
       </button>
-
       <Link
         className={
           sessionData
             ? "hidden"
-            : "visible mr-6 rounded-lg px-4 py-2 text-sm font-medium text-olive2 hover:bg-[hsl(0,0%,96%)] dark:olive2 dark:hover:bg-gray-600"
+            : "dark:olive2 dark:hover:bg-gray-600 visible mr-6 rounded-lg px-4 py-2 text-sm font-medium text-olive2 hover:bg-[hsl(0,0%,96%)]"
         }
         href={"/register"}
       >
