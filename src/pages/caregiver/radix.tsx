@@ -248,12 +248,17 @@ const Caregiver: NextPage = (props) => {
                                   </p>
                                 </div>
                                 <div className="mb-4 flex flex-col items-center justify-center">
+
+
                                   <button
                                     onClick={() =>
                                       router.push(`/careSession/${data.slug}`)
                                     }
-                                    className="border-gray-500 bg-transparent text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white h-10 border px-4 pt-2 pb-8 font-semibold md:hidden lg:hidden"
-                                  >
+                                    className="ml-3 border border-solid  md:hidden border-blue7 
+                                    bg-blue9 px-3 text-darkOlive12 hover:border-blue8
+                                     hover:bg-blue10 hover:text-olive12 dark:border-darkBlue7 dark:bg-darkBlue9
+                                      dark:text-olive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10 dark:hover:text-darkOlive12"
+                                  >                                    
                                     Schedule Session
                                   </button>
                                 </div>
@@ -264,7 +269,6 @@ const Caregiver: NextPage = (props) => {
                       </ul>
                     </div>
                   </div>
-
                   <div
                     className="
                     hidden max-h-85vh
@@ -343,7 +347,10 @@ const Caregiver: NextPage = (props) => {
                                     `/careSession/${selectedSession.data?.slug}`
                                   )
                                 }
-                                className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) border-gray-500 bg-transparent dark:hover: mt-6 h-10 border px-4 pt-2 pb-8 font-semibold hover:bg-[hsl(154,47%,66%)]"
+                                className="text-base ml-3 border border-solid border-blue7 
+                                bg-blue9 px-3 text-darkOlive12 hover:border-blue8
+                                 hover:bg-blue10 hover:text-olive12 dark:border-darkBlue7 dark:bg-darkBlue9
+                                  dark:text-olive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10 dark:hover:text-darkOlive12"
                               >
                                 Schedule
                               </button>
