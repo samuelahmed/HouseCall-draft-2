@@ -1,24 +1,30 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../components/layout/navLayout";
+import NavLayout from "../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
 import Footer from "@/components/layout/navMenu";
+import CreateSession from "@/components/patient/createCareSession";
 import SearchEngine from "@/components/engines/searchEngine";
-import FindTab from "@/components/caregiver/findTab";
-import HistoryTab from "@/components/caregiver/historyTab";
-import ActiveTab from "@/components/caregiver/activeTab";
+import HistoryPatient from "@/components/patient/historyPatient";
+import ActiveSessionPatient from "@/components/patient/activeSessionPatient";
 
-const Caregiver: NextPage = (props) => {
+const Patient: NextPage = (props) => {
   const { data: session } = useSession();
   const [openSide, setOpenSide] = useState(0);
   const [openTab, setOpenTab] = useState(1);
+  let search;
+  if (openTab !== 1) {
+    search = <SearchEngine />;
+  } else {
+    search = <div className="h-14"></div>;
+  }
 
   return (
     <>
       <Head>
-        <title>Caregiver Dashbaord</title>
+        <title>Patient Dashboard</title>
       </Head>
       <NavLayout />
       <div>
@@ -26,8 +32,9 @@ const Caregiver: NextPage = (props) => {
           <>
             <main className="grid min-h-90vh grid-cols-3 justify-items-center bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100 lg:grid-cols-6">
               {/***********************
-               *   LEFT SECTION        *
-               ***********************/}
+               *   LEFT SECTION       *
+               **********************/}
+              
               <div
                 className={
                   openSide === 1 ? "col-span-1 w-full" : "hidden lg:block"
@@ -46,8 +53,8 @@ const Caregiver: NextPage = (props) => {
                     href="#link1"
                     role="tablist"
                   >
-                    <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
-                      <h1>Find Session</h1>
+                    <div className="text-md text-gray-800  dark:text-gray-100 md:text-xl">
+                      <h1>Create Session</h1>
                     </div>
                   </a>
                   <a
@@ -100,7 +107,7 @@ const Caregiver: NextPage = (props) => {
                         setOpenSide(1);
                       }
                     }}
-                    className="lg:hidden "
+                    className="lg:hidden"
                   >
                     <div className={"" + (openSide === 1 ? "hidden" : "")}>
                       <svg
@@ -125,17 +132,17 @@ const Caregiver: NextPage = (props) => {
                       </svg>
                     </div>
                   </button>
-                  <SearchEngine />
+                  {search}
                 </div>
                 {/* Containers to hold content that get dynamically changed from left-section-menu */}
                 <div className={openTab === 1 ? "block" : "hidden"} id="link1">
-                  <FindTab />
+                  <CreateSession />
                 </div>
                 <div className={openTab === 2 ? "block" : "hidden"} id="link2">
-                  <ActiveTab />
+                  <ActiveSessionPatient />
                 </div>
                 <div className={openTab === 3 ? "block" : "hidden"} id="link3">
-                  <HistoryTab />
+                  <HistoryPatient />
                 </div>
               </div>
               {/************************
@@ -151,7 +158,7 @@ const Caregiver: NextPage = (props) => {
             <main className="justify-top flex min-h-90vh flex-col items-center md:justify-center lg:justify-center">
               <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
                 <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
-                  Caregiver{" "}
+                  Patient{" "}
                   <span className="text-[hsl(280,100%,70%)]">Dashboard</span>
                 </h1>
                 <div className="flex flex-row gap-2">
@@ -172,4 +179,4 @@ const Caregiver: NextPage = (props) => {
   );
 };
 
-export default Caregiver;
+export default Patient;

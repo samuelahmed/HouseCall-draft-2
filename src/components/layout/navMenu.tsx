@@ -11,7 +11,8 @@ import Link from "next/link";
 
 const NavMenu = () => {
   return (
-    <div className="col-span-1 hidden min-h-max bg-slate12 text-olive2  md:flex lg:block">
+    <div className="min-h-max col-span-1 hidden md:flex lg:block bg-slate12 text-darkOlive12">
+
       <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
         <Link
           href={"/caregiver/discover"}
@@ -48,7 +49,8 @@ const NavMenu = () => {
           Help
         </Link>
       </div>
-    </div>
+      </div>
+
   );
 };
 
