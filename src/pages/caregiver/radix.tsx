@@ -185,8 +185,8 @@ const Caregiver: NextPage = (props) => {
                               <li
                                 key={id}
                                 // this className makes the cards
-                                className="hover:bg-gray-100 dark:hover:bg-gray-600 mx-2 mb-2
-                                 cursor-pointer items-center justify-around rounded-lg border border-blue6 bg-blue1 px-2 text-olive12 dark:border-darkBlue6
+                                className="hover:bg-gray-100 dark:hover:bg-gray-600 mx-2 mb-2 rounded-sm
+                                 cursor-pointer items-center justify-around border border-blue6 bg-blue1 px-2 text-olive12 dark:border-darkBlue6
                                  dark:bg-darkBlue1 dark:text-darkOlive12
                                  hover:bg-blue4 dark:hover:bg-darkBlue4
                                  "
@@ -252,7 +252,7 @@ const Caregiver: NextPage = (props) => {
                                     onClick={() =>
                                       router.push(`/careSession/${data.slug}`)
                                     }
-                                    className="border-gray-500 bg-transparent text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white h-10 rounded border px-4 pt-2 pb-8 font-semibold md:hidden lg:hidden"
+                                    className="border-gray-500 bg-transparent text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white h-10 border px-4 pt-2 pb-8 font-semibold md:hidden lg:hidden"
                                   >
                                     Schedule Session
                                   </button>
@@ -278,7 +278,7 @@ const Caregiver: NextPage = (props) => {
                   >
                     {/* Right Table */}
                     {/* this className is for the right card */}
-                    <div className="mx-2 mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-lg border border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1">
+                    <div className="rounded-sm mx-2 mt-4 flex min-h-80vh min-w-max flex-col justify-between border border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1">
                       <div className={rightCard === 1 ? "" : "hidden"}>
                         <div className="mb-4 mr-4 ml-4 justify-center ">
                           <div className="mb-2 p-4 text-center text-2xl font-semibold">
@@ -343,7 +343,7 @@ const Caregiver: NextPage = (props) => {
                                     `/careSession/${selectedSession.data?.slug}`
                                   )
                                 }
-                                className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) border-gray-500 bg-transparent dark:hover: mt-6 h-10 rounded border px-4 pt-2 pb-8 font-semibold hover:bg-[hsl(154,47%,66%)]"
+                                className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) border-gray-500 bg-transparent dark:hover: mt-6 h-10 border px-4 pt-2 pb-8 font-semibold hover:bg-[hsl(154,47%,66%)]"
                               >
                                 Schedule
                               </button>
