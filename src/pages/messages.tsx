@@ -4,7 +4,7 @@ import NavLayout from "../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import Footer from "@/components/layout/footer";
+import Footer from "@/components/layout/navMenu";
 import DemoConversationTwo from "@/components/messages/demoConversationTwo";
 import DemoConversationTwoCopy from "@/components/messages/demoConversationTwoCopy";
 import MessageDashboardConnectionCard from "@/components/messages/messageDashboardConnectionCard";

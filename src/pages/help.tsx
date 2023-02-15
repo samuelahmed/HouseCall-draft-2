@@ -4,7 +4,7 @@ import NavLayout from "../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import Footer from "@/components/layout/footer";
+import Footer from "@/components/layout/navMenu";
 import SupportDocumentation from "@/components/help/supportDocumentation";
 import ContactUs from "@/components/help/contactUs";
 

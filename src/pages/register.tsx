@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "../components/layout/navLayout";
 import { useState } from "react";
-import Footer from "@/components/layout/footer";
+import Footer from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
 import RegisterForm from "@/components/forms/registerForm";
 

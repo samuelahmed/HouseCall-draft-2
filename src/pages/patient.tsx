@@ -4,7 +4,7 @@ import NavLayout from "../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import Footer from "@/components/layout/footer";
+import Footer from "@/components/layout/navMenu";
 import CreateSession from "@/components/patient/createCareSession";
 import SearchEngine from "@/components/engines/searchEngine";
 import HistoryPatient from "@/components/patient/historyPatient";
