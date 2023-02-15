@@ -1,12 +1,5 @@
 // import * as Select from "@radix-ui/react-select";
-import React from "react";
-import * as Select from "@radix-ui/react-select";
-import classnames from "classnames";
-import {
-  CheckIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "@radix-ui/react-icons";
+// import React from "react";
 import SelectSessionType from "./selectSessionType";
 
 const SearchEngine = () => {
@@ -38,9 +31,9 @@ const SearchEngine = () => {
 
           <button
             className="ml-3 border border-solid border-blue7 
-            bg-blue9 px-3 text-darkOlive12 hover:border-blue8
-             hover:bg-blue10 hover:text-olive12 dark:border-darkBlue7 dark:bg-darkBlue9
-              dark:text-olive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10 dark:hover:text-darkOlive12"
+            bg-blue9 px-3 text-olive12 hover:border-blue8
+             hover:bg-blue10 dark:border-darkBlue7 dark:bg-darkBlue9
+              dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10"
           >
             Search
           </button>

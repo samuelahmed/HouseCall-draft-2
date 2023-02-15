@@ -88,7 +88,7 @@ const Caregiver: NextPage = (props) => {
                   flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg
                 "
                 >
-                  <Link href={"/help"} className="flex flex-row items-center">
+                  <Link href={"/caregiver/radix"} className="flex flex-row items-center">
                     <FaceIcon className="mr-2" />
                     Discover
                   </Link>
@@ -186,7 +186,7 @@ const Caregiver: NextPage = (props) => {
                                 key={id}
                                 // this className makes the cards
                                 className="hover:bg-gray-100 dark:hover:bg-gray-600 mx-2 mb-2 rounded-sm
-                                 cursor-pointer items-center justify-around border border-blue6 bg-blue1 px-2 text-olive12 dark:border-darkBlue6
+                                 md:cursor-pointer items-center justify-around border border-blue6 bg-blue1 px-2 text-olive12 dark:border-darkBlue6
                                  dark:bg-darkBlue1 dark:text-darkOlive12
                                  hover:bg-blue4 dark:hover:bg-darkBlue4
                                  "
@@ -254,10 +254,10 @@ const Caregiver: NextPage = (props) => {
                                     onClick={() =>
                                       router.push(`/careSession/${data.slug}`)
                                     }
-                                    className="ml-3 border border-solid  md:hidden border-blue7 
-                                    bg-blue9 px-3 text-darkOlive12 hover:border-blue8
-                                     hover:bg-blue10 hover:text-olive12 dark:border-darkBlue7 dark:bg-darkBlue9
-                                      dark:text-olive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10 dark:hover:text-darkOlive12"
+                                    className="ml-3 border border-solid  cursor-pointer md:hidden border-blue7 
+                                    bg-blue9 px-3 text-olive12 hover:border-blue8
+                                     hover:bg-blue10 dark:border-darkBlue7 dark:bg-darkBlue9
+                                      dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10"
                                   >                                    
                                     Schedule Session
                                   </button>
@@ -347,10 +347,10 @@ const Caregiver: NextPage = (props) => {
                                     `/careSession/${selectedSession.data?.slug}`
                                   )
                                 }
-                                className="text-base ml-3 border border-solid border-blue7 
-                                bg-blue9 px-3 text-darkOlive12 hover:border-blue8
-                                 hover:bg-blue10 hover:text-olive12 dark:border-darkBlue7 dark:bg-darkBlue9
-                                  dark:text-olive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10 dark:hover:text-darkOlive12"
+                                className="text-base ml-3 border border-solid  cursor-pointer border-blue7 
+                                bg-blue9 px-3 text-olive12 hover:border-blue8
+                                 hover:bg-blue10  dark:border-darkBlue7 dark:bg-darkBlue9
+                                  dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10"
                               >
                                 Schedule
                               </button>
