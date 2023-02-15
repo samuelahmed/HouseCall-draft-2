@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { trpc } from "@/utils/trpc";
 import "../styles/globals.css";
+import Head from "next/head";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -12,6 +13,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <ThemeProvider attribute="class">
       <SessionProvider session={session}>
+        {/* Added this <Head> to force propagate favicon to all pages.
+        Make sure to review for better solution. */}
+        <Head>
+          <link rel="icon" href="/faviconLarge.png" />
+        </Head>
         <Component {...pageProps} />
       </SessionProvider>
     </ThemeProvider>
