@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import NavMenu from "@/components/layout/navMenu";
 
-const Discover: NextPage = () => {
+const Discover: NextPage = (props) => {
   const { data: session } = useSession();
   const [rightCard, setRightCard] = useState(1);
   const { data, isLoading } = trpc.careSessionAPIs.readAllSessions.useQuery();

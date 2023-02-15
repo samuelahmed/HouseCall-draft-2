@@ -9,7 +9,7 @@ const Home: NextPage = () => {
       <Head>
         <title>House Call</title>
         <meta name="description" content="Care in the comfort of your home" />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/faviconLarge.png" />
       </Head>
       <NavLayout />
       <main className="flex min-h-screen flex-col items-center justify-center">
