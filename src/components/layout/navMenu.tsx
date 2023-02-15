@@ -15,36 +15,36 @@ const NavMenu = () => {
 
       <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
         <Link
-          href={"/caregiver/discover"}
+          href={"/dashboard/caregiver/discover"}
           className="flex flex-row items-center"
         >
           <FaceIcon className="mr-2" />
           Discover
         </Link>
-        <Link href={"/caregiver/applied"} className="flex flex-row items-center">
+        <Link href={"/dashboard/caregiver/applied"} className="flex flex-row items-center">
           <IdCardIcon className="mr-2" />
           Applied
         </Link>
 
-        <Link href={"/help"} className="flex flex-row items-center">
+        <Link href={"/dashboard/caregiver/scheduled"} className="flex flex-row items-center">
           <CalendarIcon className="mr-2" />
           Scheduled
         </Link>
 
-        <Link href={"/caregiver/history"} className="flex flex-row items-center">
+        <Link href={"/dashboard/caregiver/history"} className="flex flex-row items-center">
           <ArchiveIcon className="mr-2" />
           History
         </Link>
 
-        <Link href={"/help"} className="flex flex-row items-center">
+        <Link href={"/dashboard/messages"} className="flex flex-row items-center">
           <ChatBubbleIcon className="mr-2" />
           Messages
         </Link>
-        <Link href={"/help"} className="flex flex-row items-center">
+        <Link href={"/dashboard/account"} className="flex flex-row items-center">
           <PersonIcon className="mr-2" />
           Account
         </Link>
-        <Link href={"/help"} className="flex flex-row items-center">
+        <Link href={"/dashboard/help"} className="flex flex-row items-center">
           <QuestionMarkIcon className="mr-2" />
           Help
         </Link>
