@@ -15,12 +15,14 @@ const Header = ({
   const { data: session } = useSession();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
   // console.log(session)
-  //get name of current end route
-  const currentRoute = useRouter().pathname.split("/")[2];
-  //
 
-  console.log(currentRoute);
 
+  //Get name of current end of url
+  //Is there a better way to do this?
+  const currentRoute = useRouter().pathname.split("/")[
+    useRouter().pathname.split("/").length - 1
+  ];
+  
   return (
     <div className="sticky top-0 z-50 grid grid-cols-3 items-center bg-blue12 py-1">
       <div className="flex justify-start ">
