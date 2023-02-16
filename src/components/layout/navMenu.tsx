@@ -152,7 +152,7 @@ const NavMenu = () => {
                 Register
               </Link>
               <Link
-                href={"/dashboard/help"}
+                href={"/help"}
                 className="flex flex-row items-center"
               >
                 <QuestionMarkIcon className="mr-2" />
