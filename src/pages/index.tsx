@@ -38,7 +38,7 @@ const Home: NextPage = () => {
               className="bg-black/10 text-gray-800 hover:bg-black/20 dark:bg-white/10 dark:text-gray-100 dark:hover:bg-white/20 flex max-w-xs flex-col gap-4 rounded-xl p-4"
               href="/dashboard/caregiver/discover"
             >
-              <h3 className="text-2xl font-bold">Caregivers →</h3>
+              <h3 className="text-2xl font-bold">Caregivers</h3>
               <div className="text-lg">
                 You are passionate to help those in need.
               </div>
@@ -47,7 +47,7 @@ const Home: NextPage = () => {
               className="bg-black/10 text-gray-800 hover:bg-black/20 dark:bg-white/10 dark:text-gray-100 dark:hover:bg-white/20 flex max-w-xs flex-col gap-4 rounded-xl p-4"
               href="/dashboard/patient/create"
             >
-              <h3 className="text-2xl font-bold">Patients →</h3>
+              <h3 className="text-2xl font-bold">Patients</h3>
               <div className="text-lg">
                 You or someone you care about needs assistance.
               </div>
