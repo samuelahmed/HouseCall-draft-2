@@ -40,8 +40,8 @@ const LoginForm = () => {
         {errors.password && <span>Meow! This field is required</span>}
         <input
           type="submit"
-          className="mt-2 cursor-pointer border border-solid border-blue7 bg-blue9 text-base text-olive12 hover:border-blue8 hover:bg-blue10 
-        dark:border-darkBlue7 dark:bg-darkBlue9 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10"
+          className="mt-2 cursor-pointer border border-solid border-blue7 bg-blue3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
+        dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
         />
       </form>
     </div>

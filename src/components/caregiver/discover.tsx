@@ -60,8 +60,8 @@ const DiscoverEngine = () => {
                     key={id}
                     // this className makes the cards
                     className="mx-2 mb-2 items-center justify-around rounded-sm border
-                  border-blue6 bg-blue1 px-2 text-olive12 hover:bg-blue4 dark:border-darkBlue6
-                 dark:bg-darkBlue1 dark:text-darkOlive12 dark:hover:bg-darkBlue4 md:cursor-pointer"
+                  border-blue6 bg-blue1 px-2 text-olive12 hover:bg-blue2 dark:border-darkBlue6
+                 dark:bg-darkBlue1 dark:text-darkOlive12 dark:hover:bg-darkBlue2 md:cursor-pointer"
                   >
                     <div
                       onClick={() => {
@@ -113,10 +113,10 @@ const DiscoverEngine = () => {
                     <div className="mb-4 flex flex-col items-center justify-center">
                       <button
                         onClick={() => router.push(`/careSession/${data.slug}`)}
-                        className="ml-3 cursor-pointer border  border-solid border-blue7 bg-blue9 px-3 text-olive12 hover:border-blue8 hover:bg-blue10
-                     dark:border-darkBlue7 dark:bg-darkBlue9 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10 md:hidden"
+                        className="ml-3 cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+                     dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4 md:hidden"
                       >
-                        Schedule Session
+                        Schedule
                       </button>
                     </div>
                   </li>
@@ -179,8 +179,8 @@ const DiscoverEngine = () => {
                     onClick={() =>
                       router.push(`/careSession/${selectedSession.data?.slug}`)
                     }
-                    className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue9 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue10 
-                 dark:border-darkBlue7 dark:bg-darkBlue9 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10"
+                    className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
+                 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
                   >
                     Schedule
                   </button>
