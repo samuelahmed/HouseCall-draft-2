@@ -31,9 +31,9 @@ const SearchEngine = () => {
 
           <button
             className="ml-3 border border-solid border-blue7 
-            bg-blue9 px-3 text-olive12 hover:border-blue8
-             hover:bg-blue10 dark:border-darkBlue7 dark:bg-darkBlue9
-              dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10"
+            bg-blue3 px-3 text-olive12 hover:border-blue8
+             hover:bg-blue4 dark:border-darkBlue7 dark:bg-darkBlue3
+              dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
           >
             Search
           </button>

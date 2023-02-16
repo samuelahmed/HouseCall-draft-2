@@ -59,7 +59,7 @@ const DiscoverEngine = () => {
                   <li
                     key={id}
                     // this className makes the cards
-                    className="hover:bg-gray-100 dark:hover:bg-gray-600 mx-2 mb-2 items-center justify-around rounded-sm border
+                    className="mx-2 mb-2 items-center justify-around rounded-sm border
                   border-blue6 bg-blue1 px-2 text-olive12 hover:bg-blue4 dark:border-darkBlue6
                  dark:bg-darkBlue1 dark:text-darkOlive12 dark:hover:bg-darkBlue4 md:cursor-pointer"
                   >

@@ -69,7 +69,7 @@ const NavMenu = () => {
                 Account
               </Link>
               <Link
-                href={"/dashboard/help"}
+                href={"/help"}
                 className="flex flex-row items-center"
               >
                 <QuestionMarkIcon className="mr-2" />
@@ -129,7 +129,7 @@ const NavMenu = () => {
                 Account
               </Link>
               <Link
-                href={"/dashboard/help"}
+                href={"/help"}
                 className="flex flex-row items-center"
               >
                 <QuestionMarkIcon className="mr-2" />
