@@ -27,40 +27,44 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 bg-[hsl(0,0%,96%)] dark:bg-slate-800">
+    <div className="flex flex-col items-center gap-2 bg-blue1 dark:bg-darkBlue1">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         {errorMessage && (
-          <p className="text-center text-red-600">{errorMessage}</p>
+          <p className="text-red-600 text-center">{errorMessage}</p>
         )}
         <label>Username</label>
         <input
-          className="rounded border py-1 px-4"
+          className="w-full rounded-sm border border-blue7 bg-blue1 px-1 text-left text-olive12 focus:border-blue8 focus:outline-none dark:border-darkBlue7 dark:bg-darkBlue1 dark:text-darkOlive12 dark:focus:border-darkBlue8"
           type="username"
           {...register("username", { required: true })}
         />
         {errors.username && (
-          <p className="text-center text-red-600">This field is required</p>
+          <p className="text-red-600 text-center">This field is required</p>
         )}
         <label>Email</label>
         <input
-          className="rounded border py-1 px-4"
+          className="w-full rounded-sm border border-blue7 bg-blue1 px-1 text-left text-olive12 focus:border-blue8 focus:outline-none dark:border-darkBlue7 dark:bg-darkBlue1 dark:text-darkOlive12 dark:focus:border-darkBlue8"
           type="text"
           {...register("email", { required: true })}
         />
         {errors.email && (
-          <p className="text-center text-red-600">This field is required</p>
+          <p className="text-red-600 text-center">This field is required</p>
         )}
         <label>Password</label>
         <input
-          className="rounded border py-1 px-4"
+          className="w-full rounded-sm border border-blue7 bg-blue1 px-1 text-left text-olive12 focus:border-blue8 focus:outline-none dark:border-darkBlue7 dark:bg-darkBlue1 dark:text-darkOlive12 dark:focus:border-darkBlue8"
           type="password"
           {...register("password", { required: true })}
         />
         {errors.password && (
-          <p className="text-center text-red-600">This field is required</p>
+          <p className="text-red-600 text-center">This field is required</p>
         )}
 
-        <input type="submit" className="rounded border py-1 px-4" />
+        <input
+          type="submit"
+          className="mt-2 cursor-pointer border border-solid border-blue7 bg-blue9 text-base text-olive12 hover:border-blue8 hover:bg-blue10 
+          dark:border-darkBlue7 dark:bg-darkBlue9 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue10"
+        />
       </form>
     </div>
   );
