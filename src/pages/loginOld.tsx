@@ -2,18 +2,18 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "../components/layout/navLayout";
 import { useState } from "react";
-import Footer from "@/components/layout/footer";
+import Footer from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
 import RegisterForm from "@/components/forms/registerForm";
 
-const Signin: NextPage = (props) => {
+const Login: NextPage = (props) => {
   const [openSide, setOpenSide] = useState(0);
   const [openTab, setOpenTab] = useState(1);
 
   return (
     <>
       <Head>
-        <title>Sign in</title>
+        <title>Login</title>
       </Head>
       <NavLayout />
       <div>
@@ -135,4 +135,4 @@ const Signin: NextPage = (props) => {
   );
 };
 
-export default Signin;
+export default Login;

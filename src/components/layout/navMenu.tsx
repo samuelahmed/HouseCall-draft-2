@@ -1,6 +1,3 @@
-import Link from "next/link";
-import { trpc } from "@/utils/trpc";
-import { useSession } from "next-auth/react";
 import {
   ChatBubbleIcon,
   FaceIcon,
@@ -9,29 +6,23 @@ import {
   IdCardIcon,
   ArchiveIcon,
   QuestionMarkIcon,
+  EnterIcon,
+  Pencil2Icon,
 } from "@radix-ui/react-icons";
+import Link from "next/link";
+import { trpc } from "@/utils/trpc";
+import { useSession } from "next-auth/react";
 
-const SideNav = () => {
+const NavMenu = () => {
   const { data: user } = trpc.userAPIs.readCurrentUser.useQuery();
   const { data: session } = useSession();
+
   return (
     <>
       {session && user?.address && user?.role === "Caregiver" && (
         <>
-          <div
-            className="
-              fixed col-span-1 min-h-95vh min-w-40vw
-             max-w-sm 
-             bg-slate12
-              text-olive2 
-              lg:block
-              "
-          >
-            <div
-              className="
-                  flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg
-                "
-            >
+          <div className="col-span-1 hidden min-h-max bg-slate12 text-darkOlive12 md:flex lg:block">
+            <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
               <Link
                 href={"/dashboard/caregiver/discover"}
                 className="flex flex-row items-center"
@@ -78,7 +69,7 @@ const SideNav = () => {
                 Account
               </Link>
               <Link
-                href={"/dashboard/help"}
+                href={"/help"}
                 className="flex flex-row items-center"
               >
                 <QuestionMarkIcon className="mr-2" />
@@ -90,21 +81,9 @@ const SideNav = () => {
       )}
       {session && user?.address && user?.role === "Patient" && (
         <>
-          <div
-            className="
-              fixed col-span-1 min-h-95vh min-w-40vw
-             max-w-sm 
-             bg-slate12
-              text-olive2 
-              lg:block
-              "
-          >
-            <div
-              className="
-                  flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg
-                "
-            >
-               <Link
+          <div className="col-span-1 hidden min-h-max bg-slate12 text-darkOlive12 md:flex lg:block">
+            <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
+              <Link
                 href={"/dashboard/patient/create"}
                 className="flex flex-row items-center"
               >
@@ -150,7 +129,7 @@ const SideNav = () => {
                 Account
               </Link>
               <Link
-                href={"/dashboard/help"}
+                href={"/help"}
                 className="flex flex-row items-center"
               >
                 <QuestionMarkIcon className="mr-2" />
@@ -160,34 +139,23 @@ const SideNav = () => {
           </div>
         </>
       )}
-      {((session && !user?.role) || (session && !user?.address)) && (
-        <>
-          <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
-              <Link
-                href={"/account"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
-              >
-                Account
-              </Link>
-              <Link
-                href={"/help"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
-              >
-                Help
-              </Link>
-            </div>
-          </div>
-        </>
-      )}
       {!session && (
         <>
-          <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
+          <div className="col-span-1 hidden min-h-max bg-slate12 text-darkOlive12 md:flex lg:block">
+            <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
+              <Link href={"/login"} className="flex flex-row items-center">
+                <EnterIcon className="mr-2" />
+                Login
+              </Link>
+              <Link href={"/register"} className="flex flex-row items-center">
+                <Pencil2Icon className="mr-2" />
+                Register
+              </Link>
               <Link
                 href={"/help"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
+                className="flex flex-row items-center"
               >
+                <QuestionMarkIcon className="mr-2" />
                 Help
               </Link>
             </div>
@@ -198,4 +166,4 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+export default NavMenu;

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
 import { trpc } from "@/utils/trpc";
 
+import { useRouter } from "next/router";
 const Header = ({
   showNav,
   setShowNav,
@@ -13,24 +14,41 @@ const Header = ({
 }) => {
   const { data: session } = useSession();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
+  // console.log(session)
 
+
+  //Get name of current end of url
+  //Is there a better way to do this?
+  const currentRoute = useRouter().pathname.split("/")[
+    useRouter().pathname.split("/").length - 1
+  ];
+  
   return (
-    <div className="sticky top-0 z-50 grid grid-cols-2 items-center bg-[hsl(0,0%,88%)] py-1 dark:bg-gray-700">
+    <div className="sticky top-0 z-50 grid grid-cols-3 items-center bg-blue12 py-1">
       <div className="flex justify-start ">
-        <div className=" md:pl-0">
+        <div className="md:hidden md:pl-0">
           <Bars3CenterLeftIcon
-            className=" h-8 w-8 cursor-pointer text-gray-900 dark:text-gray-100"
+            className="h-8 w-8 cursor-pointer text-darkOlive12"
             onClick={() => setShowNav(!showNav)}
           />
         </div>
-        <div className="ml-4 flex items-center pr-4 text-gray-900 dark:text-gray-100">
+        <div className="ml-4 flex items-center pr-4 text-darkOlive12">
+          <div className="hidden text-xl md:block">House Call</div>
+        </div>
+      </div>
+      <div className="flex justify-center text-xl text-darkOlive12 capitalize">
+        {currentRoute}
+      
+      </div>
+
+
+      <div className="flex justify-end">
+        <div className="flex  items-center text-darkOlive12">
           {session &&
             (isLoading || (data && data?.username) || (
               <span className="text-red-600">Meow! No Name</span>
             ))}
         </div>
-      </div>
-      <div className="flex justify-end">
         <ThemeManager />
         <AuthShowcase />
       </div>
@@ -41,21 +59,19 @@ export default Header;
 
 const AuthShowcase: React.FC = () => {
   const { data: sessionData } = useSession();
-  // console.log(sessionData)
   return (
-    <div className="flex items-center">
+    <div className="flex max-h-5vh min-h-5vh items-center">
       <button
-        className="mr-2 rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-[hsl(0,0%,96%)] focus:outline-none dark:text-gray-100 dark:hover:bg-gray-600 lg:py-2.5 marker:lg:px-5"
+        className="mr-2 rounded-lg px-4 py-2 text-sm font-medium text-darkOlive12 hover:bg-blue10 focus:outline-none lg:py-2.5 marker:lg:px-5"
         onClick={sessionData ? () => signOut() : () => signIn()}
       >
         {sessionData ? "Sign out" : "Sign in"}
       </button>
-
       <Link
         className={
           sessionData
             ? "hidden"
-            : "visible mr-6 rounded-lg px-4 py-2 text-sm font-medium text-gray-800 hover:bg-[hsl(0,0%,96%)] dark:text-gray-100 dark:hover:bg-gray-600"
+            : "visible mr-6 rounded-lg px-4 py-2 text-sm font-medium text-darkOlive12 hover:bg-blue10"
         }
         href={"/register"}
       >

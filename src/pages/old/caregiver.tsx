@@ -1,10 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../components/layout/navLayout";
+import NavLayout from "../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import Footer from "@/components/layout/footer";
+import Footer from "@/components/layout/navMenu";
 import SearchEngine from "@/components/engines/searchEngine";
 import FindTab from "@/components/caregiver/findTab";
 import HistoryTab from "@/components/caregiver/historyTab";

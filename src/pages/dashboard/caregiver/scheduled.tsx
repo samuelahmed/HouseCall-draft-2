@@ -1,22 +1,18 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../components/layout/navLayout";
-import { useState } from "react";
-import Footer from "@/components/layout/navMenu";
-import LoginForm from "@/components/forms/loginForm";
-import RegisterForm from "@/components/forms/registerForm";
+import NavLayout from "../../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
+import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
+import LoginForm from "@/components/forms/loginForm";
 
-const Register: NextPage = (props) => {
-
+const Scheduled: NextPage = () => {
   const { data: session } = useSession();
-
 
   return (
     <>
-          <Head>
-        <title>Register</title>
+      <Head>
+        <title>Scheduled</title>
       </Head>
       <NavLayout />
       <div>
@@ -25,9 +21,12 @@ const Register: NextPage = (props) => {
             <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
               <NavMenu />
               <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
-                <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
-                  {/* display nothing here since user is already logged in */}
-                  {/* maybe add a logout button in the future */}
+                <div className="mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12">
+                  <SearchEngine />
+                </div>
+                <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
+                  {/* DYNAMIC PART OF DASHBOARD */}
+
                 </div>
               </div>
             </main>
@@ -38,15 +37,15 @@ const Register: NextPage = (props) => {
               <NavMenu />
               <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
                 <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
-                  <RegisterForm />
+                  <LoginForm />
                 </div>
               </div>
             </main>
+        
         </>}
       </div>
-
     </>
   );
 };
 
-export default Register;
+export default Scheduled;

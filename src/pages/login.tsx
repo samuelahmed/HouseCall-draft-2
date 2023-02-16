@@ -1,22 +1,19 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "../components/layout/navLayout";
-import { useState } from "react";
-import Footer from "@/components/layout/navMenu";
-import LoginForm from "@/components/forms/loginForm";
-import RegisterForm from "@/components/forms/registerForm";
 import { useSession } from "next-auth/react";
+// import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
+// import AccountEditModal from "@/components/account/accountEditModal";
+import LoginForm from "@/components/forms/loginForm";
 
-const Register: NextPage = (props) => {
-
+const Account: NextPage = () => {
   const { data: session } = useSession();
-
 
   return (
     <>
-          <Head>
-        <title>Register</title>
+      <Head>
+        <title>Account</title>
       </Head>
       <NavLayout />
       <div>
@@ -38,15 +35,14 @@ const Register: NextPage = (props) => {
               <NavMenu />
               <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
                 <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
-                  <RegisterForm />
+                  <LoginForm />
                 </div>
               </div>
             </main>
         </>}
       </div>
-
     </>
   );
 };
 
-export default Register;
+export default Account;

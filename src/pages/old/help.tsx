@@ -1,17 +1,15 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../components/layout/navLayout";
+import NavLayout from "../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
-import Footer from "@/components/layout/footer";
-// import Image from "next/image";
-import AccountEditModal from "@/components/account/accountEditModal";
-import { trpc } from "@/utils/trpc";
+import Footer from "@/components/layout/navMenu";
+import SupportDocumentation from "@/components/help/supportDocumentation";
+import ContactUs from "@/components/help/contactUs";
 
-const Account: NextPage = (props) => {
+const Help: NextPage = (props) => {
   const { data: session } = useSession();
-  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
   const [openSide, setOpenSide] = useState(0);
   const [openTab, setOpenTab] = useState(1);
 
@@ -21,7 +19,10 @@ const Account: NextPage = (props) => {
         <title>Account Settings</title>
       </Head>
       <NavLayout />
-      {session && (
+      <div>
+        {/* FOR MOMENT KEEP THE HELP PAGE VISIBLE 
+        WHETHER USER HAS ACTIVE SESSION OR NOT. */}
+        {/* {session && ( */}
         <>
           <main className="grid min-h-90vh grid-cols-3 justify-items-center bg-[hsl(0,0%,96%)] text-gray-800 dark:bg-slate-800 dark:text-gray-100 lg:grid-cols-6">
             {/***********************
@@ -46,7 +47,21 @@ const Account: NextPage = (props) => {
                   role="tablist"
                 >
                   <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
-                    <h1>Manage Account</h1>
+                    <h1>Documentation</h1>
+                  </div>
+                </a>
+                <a
+                  className={"my-2 ml-4" + (openTab === 1 ? "" : "")}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenTab(2);
+                  }}
+                  data-toggle="tab"
+                  href="#link1"
+                  role="tablist"
+                >
+                  <div className="text-md text-gray-800 dark:text-gray-100 md:text-xl">
+                    <h1>Contact Support</h1>
                   </div>
                 </a>
               </div>
@@ -99,51 +114,11 @@ const Account: NextPage = (props) => {
                 <div className="h-14"></div>
               </div>
               {/* Containers to hold content that get dynamically changed from left-section-menu */}
-              <div className="flex flex-row bg-[hsl(0,0%,88%)] dark:bg-gray-700 ">
-                <div className="w-full grid-rows-1 bg-[hsl(0,0%,96%)] px-2 dark:bg-gray-800">
-                  {/* <Image
-                      className="mt-10 rounded"
-                      src={(data && data?.image) || "/cat.jpg"}
-                      alt=""
-                      width={200}
-                      height={200}
-                    /> */}
-                  <div className="mt-2 flex flex-col gap-2">
-                    <div className="">
-                      Name:{" "}
-                      {isLoading || (data && data?.username) || (
-                        <span className="text-red-600">Meow! No Name</span>
-                      )}
-                    </div>
-                    <div className="">
-                      Email:{" "}
-                      {isLoading || (data && data?.email) || (
-                        <span className="text-red-600">
-                          Meow! Something went very wrong.
-                        </span>
-                      )}
-                    </div>
-                    <div className="">
-                      Address:{" "}
-                      {isLoading || (data && data?.address) || (
-                        <span className="text-red-600">
-                          Meow! Something went very wrong.
-                        </span>
-                      )}
-                    </div>
-                    <div className="">
-                      Role:{" "}
-                      {isLoading || (data && data?.role) || (
-                        <span className="text-red-600">
-                          Meow! Something went very wrong.
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="flex justify-center">
-                    <AccountEditModal />
-                  </div>
-                </div>
+              <div className={openTab === 1 ? "block" : "hidden"} id="link1">
+                <SupportDocumentation />
+              </div>
+              <div className={openTab === 2 ? "block" : "hidden"} id="link2">
+                <ContactUs />
               </div>
             </div>
             {/************************
@@ -153,30 +128,31 @@ const Account: NextPage = (props) => {
           </main>
           <Footer />
         </>
-      )}
-      {!session && (
-        <>
-          <main className="justify-top flex min-h-90vh flex-col items-center md:justify-center lg:justify-center">
-            <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-              <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
-                Account{" "}
-                <span className="text-[hsl(280,100%,70%)]">Settings</span>
-              </h1>
-              <div className="flex flex-row gap-2">
-                <Link href={"/signin"} className="rounded border py-1 px-4">
-                  Sign in
-                </Link>
-                <Link href={"/register"} className="rounded border py-1 px-4">
-                  Register
-                </Link>
+        {/* )} */}
+        {/* {!session && (
+          <>
+            <main className="justify-top flex min-h-90vh flex-col items-center md:justify-center lg:justify-center">
+              <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
+                <h1 className="border-gray-900 text-center text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-[5rem]">
+                  Help &{" "}
+                  <span className="text-[hsl(280,100%,70%)]">Support</span>
+                </h1>
+                <div className="flex flex-row gap-2">
+                  <Link href={"/signin"} className="rounded border py-1 px-4">
+                    Sign in
+                  </Link>
+                  <Link href={"/register"} className="rounded border py-1 px-4">
+                    Register
+                  </Link>
+                </div>
               </div>
-            </div>
-          </main>
-          <Footer />
-        </>
-      )}
+            </main>
+            <Footer />
+          </>
+        )} */}
+      </div>
     </>
   );
 };
 
-export default Account;
+export default Help;
