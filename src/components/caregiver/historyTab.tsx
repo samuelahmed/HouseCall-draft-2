@@ -6,6 +6,8 @@ const HistoryTab = () => {
     trpc.careSessionAPIs.readAllHistoricalSessionsByUser.useQuery();
   const router = useRouter();
 
+  
+
   return (
     <>
       <div className="grid grid-rows-1  bg-[hsl(0,0%,88%)] px-4 dark:bg-gray-700">

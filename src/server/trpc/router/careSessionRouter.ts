@@ -221,7 +221,7 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
-  readAllPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
+  readAllAppliedPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       throw new Error("Meow! Not authorized.");
     }
@@ -239,7 +239,41 @@ export const careSessionRouter = router({
       await ctx.prisma.potentialCareSession.findMany({
         where: {
           caregiverId: userId,
-          status: "Pending",
+          status: "Applied",
+        },
+      });
+    const careSessionIds = currentUserPotentialCareSessions.map(
+      (session) => session.careSessionId
+    );
+    const careSessions = await ctx.prisma.careSession.findMany({
+      where: {
+        id: {
+          in: careSessionIds,
+        },
+      },
+    });
+    return careSessions;
+  }),
+
+  readAllScheduledPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      throw new Error("Meow! Not authorized.");
+    }
+    const user = await ctx.prisma.user.findUnique({
+      where: {
+        id: ctx.session.user.id,
+      },
+    });
+    console.log('user' + user)
+    if (!user) {
+      throw new Error("Meow! user not found.");
+    }
+    const userId = user.id;
+    const currentUserPotentialCareSessions =
+      await ctx.prisma.potentialCareSession.findMany({
+        where: {
+          caregiverId: userId,
+          status: "Accepted",
         },
       });
     const careSessionIds = currentUserPotentialCareSessions.map(
