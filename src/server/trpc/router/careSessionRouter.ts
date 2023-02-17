@@ -230,6 +230,7 @@ export const careSessionRouter = router({
         id: ctx.session.user.id,
       },
     });
+    console.log('user' + user)
     if (!user) {
       throw new Error("Meow! user not found.");
     }

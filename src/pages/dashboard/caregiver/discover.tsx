@@ -4,7 +4,7 @@ import NavLayout from "../../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
-import DiscoverEngine from "@/components/caregiver/discover";
+import DiscoverEngine from "@/components/caregiver/discoverEngine";
 import LoginForm from "@/components/forms/loginForm";
 
 const Discover: NextPage = () => {
