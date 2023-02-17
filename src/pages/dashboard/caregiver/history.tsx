@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
-import HistoryTab from "@/components/caregiver/historyTab";
+import HistoryEngine from "@/components/caregiver/historyEngine";
 
 const History: NextPage = () => {
   const { data: session } = useSession();
@@ -27,7 +27,7 @@ const History: NextPage = () => {
                 </div>
                 <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
-                  < HistoryTab />
+                  < HistoryEngine />
                 </div>
               </div>
             </main>
