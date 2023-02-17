@@ -19,7 +19,7 @@ const NavMenu = () => {
 
   return (
     <>
-      {session && user?.address && user?.role === "Caregiver" && (
+      {session && user?.role === "Caregiver" && (
         <>
           <div className="col-span-1 hidden min-h-max bg-slate12 text-darkOlive12 md:flex lg:block">
             <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
@@ -79,7 +79,7 @@ const NavMenu = () => {
           </div>
         </>
       )}
-      {session && user?.address && user?.role === "Patient" && (
+      {session && user?.role === "Patient" && (
         <>
           <div className="col-span-1 hidden min-h-max bg-slate12 text-darkOlive12 md:flex lg:block">
             <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">

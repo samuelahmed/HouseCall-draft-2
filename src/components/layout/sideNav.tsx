@@ -16,7 +16,7 @@ const SideNav = () => {
   const { data: session } = useSession();
   return (
     <>
-      {session && user?.address && user?.role === "Caregiver" && (
+      {session && user?.role === "Caregiver" && (
         <>
           <div
             className="
@@ -88,7 +88,7 @@ const SideNav = () => {
           </div>
         </>
       )}
-      {session && user?.address && user?.role === "Patient" && (
+      {session && user?.role === "Patient" && (
         <>
           <div
             className="
