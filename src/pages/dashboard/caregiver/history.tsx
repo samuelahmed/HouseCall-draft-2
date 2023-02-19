@@ -27,14 +27,15 @@ const History: NextPage = () => {
                 </div>
                 <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
-                  < HistoryEngine />
+                  <HistoryEngine />
                 </div>
               </div>
             </main>
           </>
         )}
-        {!session && <>
-          <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
+        {!session && (
+          <>
+            <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
               <NavMenu />
               <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
                 <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
@@ -42,7 +43,8 @@ const History: NextPage = () => {
                 </div>
               </div>
             </main>
-        </>}
+          </>
+        )}
       </div>
     </>
   );

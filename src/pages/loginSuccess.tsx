@@ -17,7 +17,7 @@ const LoginSuccess: NextPage = () => {
       </Head>
       <NavLayout />
       {session && (
-        <main className="grid grid-cols-1 text-olive12 dark:text-darkOlive12 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
+        <main className="grid grid-cols-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12 md:grid-cols-6">
           <NavMenu />
           <div className="col-span-5 flex min-h-screen flex-col items-center justify-center">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
@@ -40,9 +40,9 @@ const LoginSuccess: NextPage = () => {
                 </span>
                 <Link
                   href={"/dashboard/account"}
-                  className="px-1.5 py-1.5 mt-2 cursor-pointer border border-solid border-blue7 bg-blue3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
+                  className="mt-2 cursor-pointer border border-solid border-blue7 bg-blue3 px-1.5 py-1.5 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
                   dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                          >
+                >
                   Add address
                 </Link>
               </div>

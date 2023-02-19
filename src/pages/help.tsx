@@ -25,17 +25,9 @@ const Help: NextPage = () => {
                 </div> */}
                 <div className="mx-4 grid min-h-95vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
-                  <div>
-                  Help content for logged in users
-
-                  </div>
-                  <div>
-                    contact us form
-                  </div>
-
-
+                  <div>Help content for logged in users</div>
+                  <div>contact us form</div>
                 </div>
-
               </div>
             </main>
           </>
