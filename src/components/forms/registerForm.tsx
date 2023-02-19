@@ -12,7 +12,7 @@ const RegisterForm = () => {
 
   const mutation = trpc.auth.register.useMutation({
     onError: (e) => setErrorMessage(e.message),
-    onSuccess: () => router.push("/signin"),
+    onSuccess: () => router.push("/login"),
   });
 
   const {
