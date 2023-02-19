@@ -4,6 +4,8 @@ import NavLayout from "../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
+import AccordionEngine from "@/components/help/accordion";
+import ContactUs from "@/components/help/contactUs";
 
 const Help: NextPage = () => {
   const { data: session } = useSession();
@@ -40,9 +42,17 @@ const Help: NextPage = () => {
                 {/* <div className="mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12">
                   <SearchEngine />
                 </div> */}
-                <div className="mx-4 grid min-h-95vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
+                <div className="mx-4 grid min-h-95vh grid-cols-1 md:grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
-                  Help content for logged out users
+                  <div className="col-span-1 px-4 mx-1">
+                  <AccordionEngine />
+                  </div>
+                  <div className="col-span-1 px-4 mx-1">
+                    {/* < ContactUs /> */}
+                    <div>
+                      contact us form
+                    </div>
+                  </div>
                 </div>
               </div>
             </main>
