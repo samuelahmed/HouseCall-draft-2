@@ -221,6 +221,50 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
+  readAllNewSessionsByUser: privateProcedure.query(({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      return null;
+    }
+    const careSessions = ctx.prisma.careSession.findMany({
+      where: {
+        userId: ctx.session.user.id,
+        careSessionStatus: "New",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            role: true,
+          },
+        },
+      },
+    });
+    return careSessions;
+  }),
+
+  readAllActiveSessionsByUser: privateProcedure.query(({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      return null;
+    }
+    const careSessions = ctx.prisma.careSession.findMany({
+      where: {
+        userId: ctx.session.user.id,
+        careSessionStatus: "Active",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            role: true,
+          },
+        },
+      },
+    });
+    return careSessions;
+  }),
+
   readAllAppliedPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       throw new Error("Meow! Not authorized.");
@@ -323,6 +367,8 @@ export const careSessionRouter = router({
     });
     return careSessions;
   }),
+
+
 
   // ************************
   // *       UPDATE         *

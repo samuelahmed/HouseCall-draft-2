@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 const ActiveSessionPatient = () => {
-  const { data } = trpc.careSessionAPIs.readAllSessionsByUser.useQuery();
+  
+  const { data } = trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
   const router = useRouter();
   const [inputs, setInputs] = useState({
     id: "",
