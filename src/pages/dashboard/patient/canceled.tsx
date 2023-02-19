@@ -5,16 +5,16 @@ import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
-import PatientScheduledEngine from "@/components/patient/patientScheduledEngine";
+import CanceledEngine from "@/components/patient/canceledEngine";
 
 
-const Scheduled: NextPage = () => {
+const Pending: NextPage = () => {
   const { data: session } = useSession();
 
   return (
     <>
       <Head>
-        <title>Scheduled</title>
+        <title>New</title>
       </Head>
       <NavLayout />
       <div>
@@ -28,7 +28,7 @@ const Scheduled: NextPage = () => {
                 </div>
                 <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
-                  < PatientScheduledEngine />
+                  < CanceledEngine />
                 </div>
               </div>
             </main>
@@ -51,4 +51,4 @@ const Scheduled: NextPage = () => {
   );
 };
 
-export default Scheduled;
+export default Pending;

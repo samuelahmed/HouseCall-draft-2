@@ -265,6 +265,50 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
+  readAllScheduledSessionsByUser: privateProcedure.query(({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      return null;
+    }
+    const careSessions = ctx.prisma.careSession.findMany({
+      where: {
+        userId: ctx.session.user.id,
+        careSessionStatus: "Scheduled",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            role: true,
+          },
+        },
+      },
+    });
+    return careSessions;
+  }),
+
+  readAllCanceledSessionsByUser: privateProcedure.query(({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      return null;
+    }
+    const careSessions = ctx.prisma.careSession.findMany({
+      where: {
+        userId: ctx.session.user.id,
+        careSessionStatus: "Canceled",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            role: true,
+          },
+        },
+      },
+    });
+    return careSessions;
+  }),
+
   readAllAppliedPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       throw new Error("Meow! Not authorized.");

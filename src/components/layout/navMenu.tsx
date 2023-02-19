@@ -121,6 +121,13 @@ const NavMenu = () => {
                 <ArchiveIcon className="mr-2" />
                 Completed
               </Link>
+              <Link
+                href={"/dashboard/patient/canceled"}
+                className="flex flex-row items-center"
+              >
+                <ArchiveIcon className="mr-2" />
+                Canceled
+              </Link>
 
               <Link
                 href={"/dashboard/messages"}

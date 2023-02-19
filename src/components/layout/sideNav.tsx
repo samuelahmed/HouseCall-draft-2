@@ -143,6 +143,14 @@ const SideNav = () => {
               </Link>
 
               <Link
+                href={"/dashboard/patient/canceled"}
+                className="flex flex-row items-center"
+              >
+                <ArchiveIcon className="mr-2" />
+                Canceled
+              </Link>
+
+              <Link
                 href={"/dashboard/messages"}
                 className="flex flex-row items-center"
               >
