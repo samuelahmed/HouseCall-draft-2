@@ -6,11 +6,13 @@
  ┃ ┣ 📂account
  ┃ ┃ ┗ 📜accountEditModal.tsx
  ┃ ┣ 📂caregiver
- ┃ ┃ ┣ 📜activeTab.tsx
- ┃ ┃ ┣ 📜findTab.tsx
- ┃ ┃ ┗ 📜historyTab.tsx
+ ┃ ┃ ┣ 📜appliedEngine.tsx
+ ┃ ┃ ┣ 📜discoverEngine.tsx
+ ┃ ┃ ┣ 📜historyEngine.tsx
+ ┃ ┃ ┗ 📜scheduledEngine.tsx
  ┃ ┣ 📂engines
- ┃ ┃ ┗ 📜searchEngine.tsx
+ ┃ ┃ ┣ 📜searchEngine.tsx
+ ┃ ┃ ┗ 📜selectSessionType.tsx
  ┃ ┣ 📂forms
  ┃ ┃ ┣ 📜loginForm.tsx
  ┃ ┃ ┗ 📜registerForm.tsx
@@ -18,9 +20,9 @@
  ┃ ┃ ┣ 📜contactUs.tsx
  ┃ ┃ ┗ 📜supportDocumentation.tsx
  ┃ ┣ 📂layout
- ┃ ┃ ┣ 📜footer.tsx
  ┃ ┃ ┣ 📜header.tsx
  ┃ ┃ ┣ 📜navLayout.tsx
+ ┃ ┃ ┣ 📜navMenu.tsx
  ┃ ┃ ┣ 📜sideNav.tsx
  ┃ ┃ ┗ 📜themeManager.tsx
  ┃ ┣ 📂messages
@@ -29,9 +31,11 @@
  ┃ ┃ ┣ 📜messageDashboardConnectionCard.tsx
  ┃ ┃ ┗ 📜messageDashboardConnectionCardJohn.tsx
  ┃ ┗ 📂patient
- ┃ ┃ ┣ 📜activeSessionPatient.tsx
+ ┃ ┃ ┣ 📜activeEngine.tsx
+ ┃ ┃ ┣ 📜canceledEngine.tsx
  ┃ ┃ ┣ 📜createCareSession.tsx
- ┃ ┃ ┗ 📜historyPatient.tsx
+ ┃ ┃ ┣ 📜newEngine.tsx
+ ┃ ┃ ┗ 📜patientScheduledEngine.tsx
 
  ┣ 📂env
  ┃ ┣ 📜client.mjs
@@ -50,16 +54,27 @@
  ┃ ┃ ┗ 📜[slug].tsx
  ┃ ┣ 📂caregiver
  ┃ ┃ ┗ 📜[slug].tsx
+ ┃ ┣ 📂dashboard
+ ┃ ┃ ┣ 📂caregiver
+ ┃ ┃ ┃ ┣ 📜applied.tsx
+ ┃ ┃ ┃ ┣ 📜discover.tsx
+ ┃ ┃ ┃ ┣ 📜history.tsx
+ ┃ ┃ ┃ ┗ 📜scheduled.tsx
+ ┃ ┃ ┣ 📂patient
+ ┃ ┃ ┃ ┣ 📜active.tsx
+ ┃ ┃ ┃ ┣ 📜canceled.tsx
+ ┃ ┃ ┃ ┣ 📜completed.tsx
+ ┃ ┃ ┃ ┣ 📜create.tsx
+ ┃ ┃ ┃ ┣ 📜new.tsx
+ ┃ ┃ ┃ ┗ 📜scheduled.tsx
+ ┃ ┃ ┣ 📜account.tsx
+ ┃ ┃ ┗ 📜messages.tsx
  ┃ ┣ 📜_app.tsx
- ┃ ┣ 📜account.tsx
- ┃ ┣ 📜caregiver.tsx
  ┃ ┣ 📜help.tsx
  ┃ ┣ 📜index.tsx
+ ┃ ┣ 📜login.tsx
  ┃ ┣ 📜loginSuccess.tsx
- ┃ ┣ 📜messages.tsx
- ┃ ┣ 📜patient.tsx
- ┃ ┣ 📜register.tsx
- ┃ ┗ 📜signin.tsx
+ ┃ ┗ 📜register.tsx
 
  ┣ 📂server
  ┃ ┣ 📂common
@@ -74,16 +89,13 @@
  ┃ ┃ ┃ ┗ 📜userRouter.ts
  ┃ ┃ ┣ 📜context.ts
  ┃ ┃ ┗ 📜trpc.ts
-
+ 
  ┣ 📂styles
  ┃ ┗ 📜globals.css
-
  ┣ 📂types
  ┃ ┗ 📜next-auth.d.ts
-
  ┣ 📂utils
  ┃ ┗ 📜trpc.ts
- 
  ┣ 📂validation
  ┃ ┗ 📜auth.ts
 
