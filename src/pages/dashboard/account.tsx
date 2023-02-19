@@ -27,6 +27,8 @@ const Account: NextPage = () => {
                 </div>
                 <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
+
+                  
                   <AccountEditModal />
 
                 </div>
