@@ -5,15 +5,15 @@ import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
-import CreateSession from "@/components/patient/createCareSession";
+import CanceledEngine from "@/components/patient/canceledEngine";
 
-const Create: NextPage = () => {
+const Pending: NextPage = () => {
   const { data: session } = useSession();
 
   return (
     <>
       <Head>
-        <title>Create</title>
+        <title>New</title>
       </Head>
       <NavLayout />
       <div>
@@ -25,9 +25,9 @@ const Create: NextPage = () => {
                 <div className="mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12">
                   <SearchEngine />
                 </div>
-                <div className="mx-4 grid min-h-88vh grid-cols-1 gap-x-1 bg-blue1 dark:bg-darkBlue1">
+                <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
-                  <CreateSession />
+                  <CanceledEngine />
                 </div>
               </div>
             </main>
@@ -50,4 +50,4 @@ const Create: NextPage = () => {
   );
 };
 
-export default Create;
+export default Pending;

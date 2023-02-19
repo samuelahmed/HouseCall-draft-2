@@ -20,12 +20,13 @@ const Help: NextPage = () => {
             <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
               <NavMenu />
               <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
-                <div className="mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12">
+                {/* <div className="mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12">
                   <SearchEngine />
-                </div>
+                </div> */}
                 <div className="mx-4 grid min-h-95vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
-                  Help content for lodgge in users
+                  <div>Help content for logged in users</div>
+                  <div>contact us form</div>
                 </div>
               </div>
             </main>

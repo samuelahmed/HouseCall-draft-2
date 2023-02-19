@@ -83,7 +83,9 @@ const Slug: NextPage = () => {
     },
     onSuccess: () => {
       //Trigger some notifications here?
-      router.reload();
+      router.push('/dashboard/patient/scheduled');
+
+      // router.reload();
     },
   });
 
@@ -94,7 +96,8 @@ const Slug: NextPage = () => {
       },
       onSuccess: () => {
         //Trigger some notifications here?
-        router.reload();
+        // router.reload();
+        
       },
     });
 

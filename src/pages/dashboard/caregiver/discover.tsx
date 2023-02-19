@@ -4,7 +4,7 @@ import NavLayout from "../../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
-import DiscoverEngine from "@/components/caregiver/discover";
+import DiscoverEngine from "@/components/caregiver/discoverEngine";
 import LoginForm from "@/components/forms/loginForm";
 
 const Discover: NextPage = () => {
@@ -33,8 +33,9 @@ const Discover: NextPage = () => {
             </main>
           </>
         )}
-        {!session && <>
-          <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
+        {!session && (
+          <>
+            <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
               <NavMenu />
               <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
                 <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
@@ -42,8 +43,8 @@ const Discover: NextPage = () => {
                 </div>
               </div>
             </main>
-        
-        </>}
+          </>
+        )}
       </div>
     </>
   );

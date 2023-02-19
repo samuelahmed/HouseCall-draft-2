@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { trpc } from "../../utils/trpc";
 
 //Note: Due to hashing, password update will need its own process
-//Note: Fix naming - dbTest is not acceptable. 
+//Note: Fix naming - dbTest is not acceptable.
 
 const AccountEditModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -11,8 +11,8 @@ const AccountEditModal = () => {
   //the blank role helps with the dropdown menu
   //need a better way to do it since it allows the users
   //to select a blank role
-  const roles = ["","Caregiver", "Patient"];
-  
+  const roles = ["", "Caregiver", "Patient"];
+
   const [inputs, setInputs] = useState({
     username: "",
     email: "",
@@ -48,21 +48,22 @@ const AccountEditModal = () => {
   return (
     <>
       <button
-        className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+        className="ml-3 h-10 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-center text-base text-olive12 hover:border-blue8 hover:bg-blue4 
+                    dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
         onClick={() => setShowModal(true)}
       >
         Edit Account
       </button>
       {showModal ? (
         <>
-          <div className="fixed inset-0 z-50 grid h-screen place-items-center backdrop-brightness-50">
-            <div className="w-11/12 justify-items-center rounded border-2 border-gray-300 outline-none focus:outline-none ">
+          <div className="fixed inset-0 z-50 grid h-screen place-items-center backdrop-brightness-50 text-olive12 dark:text-darkOlive12">
+            <div className="w-max justify-items-center border border-blue6 outline-none focus:outline-none dark:border-darkBlue6 ">
               <div className="relative mx-auto">
-                <div className=" relative flex flex-col bg-white  shadow-lg outline-none focus:outline-none dark:bg-sky-900">
-                  <div className="h-128 rounded-t border-gray-300 ">
-                    <div className="mx-4 mt-4 flex w-3/6 flex-col ">
+                <div className="relative flex flex-col bg-blue1 shadow-lg outline-none focus:outline-none dark:bg-darkBlue1">
+                  <div className="py-4 rounded-t ">
+                    <div className="mx-4 mt-4 flex w-max flex-col ">
                       {/* NAME */}
-                      <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
+                      <div className="mt-2 flex flex-row items-center px-2 text-olive12 dark:text-darkOlive12">
                         <p className="mr-2 w-28 text-lg"> Name </p>
                         <input
                           value={inputs.username}
@@ -74,12 +75,12 @@ const AccountEditModal = () => {
                           }
                           type="text"
                           name="text"
-                          className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
+                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
                           placeholder=""
                         />
                       </div>
                       {/* EMAIL */}
-                      <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
+                      <div className="mt-2 flex flex-row items-center px-2">
                         <p className="mr-2 w-28 text-lg"> Email </p>
                         <input
                           value={inputs.email}
@@ -91,12 +92,12 @@ const AccountEditModal = () => {
                           }
                           type="text"
                           name="text"
-                          className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
+                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
                           placeholder=""
                         />
                       </div>
                       {/* ADDRESS */}
-                      <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
+                      <div className="mt-2 flex flex-row items-center px-2">
                         <p className="mr-2 w-28 text-lg"> Address </p>
                         <input
                           value={inputs.address}
@@ -108,15 +109,15 @@ const AccountEditModal = () => {
                           }
                           type="text"
                           name="text"
-                          className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
+                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
                           placeholder=""
                         />
                       </div>
                       {/* ROLE */}
-                      <div className="mt-2 flex flex-row items-center px-2 text-gray-900 dark:text-white">
+                      <div className="mt-2 flex flex-row items-center px-2">
                         <p className="mr-2 w-28 text-lg"> Role </p>
                         <select
-                          className="block w-full appearance-none rounded border border-gray-200 bg-gray-200  py-3 px-4 leading-tight text-gray-700 focus:border-gray-500 focus:bg-white focus:outline-none dark:border-white dark:bg-gray-900 dark:text-white"
+                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
                           value={inputs.role || selectedRole}
                           onChange={(e) => {
                             setSelectedRole(e.target.value);
@@ -140,16 +141,18 @@ const AccountEditModal = () => {
                               publish();
                               setShowModal(false);
                             }}
-                            className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                          >
+                            className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-center text-base text-olive12 hover:border-blue8 hover:bg-blue4 
+                            dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                                  >
                             Update Account
                           </button>
                         </div>
                         <div className="flex justify-end">
                           <button
                             onClick={() => setShowModal(false)}
-                            className="h-10 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-700 hover:border-gray-700 hover:bg-red-200 hover:text-black dark:text-white"
-                          >
+                            className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-center text-base text-olive12 hover:border-blue8 hover:bg-blue4 
+                            dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                                  >
                             Close
                           </button>
                         </div>

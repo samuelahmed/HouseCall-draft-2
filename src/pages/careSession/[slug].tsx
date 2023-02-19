@@ -106,7 +106,7 @@ const Slug: NextPage = () => {
         setErrorMessage(error.message);
       },
       onSuccess: () => {
-        alert("Meow! The Care Session status has been atomatically updated.");
+        alert("Meow! The Care Session status has been automatically updated.");
         // router.reload();
       },
     });

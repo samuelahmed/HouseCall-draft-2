@@ -91,12 +91,20 @@ const NavMenu = () => {
                 Create
               </Link>
               <Link
-                href={"/dashboard/patient/pending"}
+                href={"/dashboard/patient/new"}
                 className="flex flex-row items-center"
               >
                 <IdCardIcon className="mr-2" />
-                Pending
+                New
               </Link>
+              <Link
+                href={"/dashboard/patient/active"}
+                className="flex flex-row items-center"
+              >
+                <IdCardIcon className="mr-2" />
+                Active
+              </Link>
+
 
               <Link
                 href={"/dashboard/patient/scheduled"}
@@ -112,6 +120,13 @@ const NavMenu = () => {
               >
                 <ArchiveIcon className="mr-2" />
                 Completed
+              </Link>
+              <Link
+                href={"/dashboard/patient/canceled"}
+                className="flex flex-row items-center"
+              >
+                <ArchiveIcon className="mr-2" />
+                Canceled
               </Link>
 
               <Link
