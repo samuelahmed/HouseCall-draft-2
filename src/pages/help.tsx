@@ -44,7 +44,7 @@ const Help: NextPage = () => {
                 </div> */}
                 <div className="mx-4 grid min-h-95vh grid-cols-1 md:grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
-                  <div className="col-span-1 px-4 mx-1">
+                  <div className="col-span-1 px-4 mx-1 pt-4">
                   <AccordionEngine />
                   </div>
                   <div className="col-span-1 px-4 mx-1">
