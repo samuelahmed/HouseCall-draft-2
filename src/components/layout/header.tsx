@@ -3,8 +3,8 @@ import ThemeManager from "./themeManager";
 import Link from "next/link";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
 import { trpc } from "@/utils/trpc";
-
 import { useRouter } from "next/router";
+
 const Header = ({
   showNav,
   setShowNav,
@@ -16,13 +16,12 @@ const Header = ({
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
   // console.log(session)
 
-
   //Get name of current end of url
-  //Is there a better way to do this?
-  const currentRoute = useRouter().pathname.split("/")[
-    useRouter().pathname.split("/").length - 1
-  ];
-  
+  //This should be done in a better way.
+  const currentRoute =
+    useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 1];
+  const router = useRouter();
+
   return (
     <div className="sticky top-0 z-50 grid grid-cols-3 items-center bg-blue12 py-1">
       <div className="flex justify-start ">
@@ -33,14 +32,27 @@ const Header = ({
           />
         </div>
         <div className="ml-4 flex items-center pr-4 text-darkOlive12">
-          <div className="hidden text-xl md:block">House Call</div>
+          {data?.role === "Caregiver" && (
+            <div
+              onClick={() => router.push("/dashboard/caregiver/discover")}
+              className="hidden text-xl md:block"
+            >
+              House Call
+            </div>
+          )}
+          {data?.role === "Patient" && (
+            <div
+              onClick={() => router.push("/dashboard/patient/create")}
+              className="hidden text-xl md:block"
+            >
+              House Call
+            </div>
+          )}
         </div>
       </div>
-      <div className="flex justify-center text-xl text-darkOlive12 capitalize">
+      <div className="flex justify-center text-xl capitalize text-darkOlive12">
         {currentRoute}
-      
       </div>
-
 
       <div className="flex justify-end">
         <div className="flex  items-center text-darkOlive12">

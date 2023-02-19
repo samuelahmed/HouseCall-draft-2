@@ -13,7 +13,7 @@ const CreateSession = () => {
     onSuccess(newSession) {
       alert("Meow! Session successfully created!");
       setItems((prev) => [...prev, newSession]);
-      router.push("/dashboard/patient/pending");
+      router.push("/dashboard/patient/new");
     },
   });
 

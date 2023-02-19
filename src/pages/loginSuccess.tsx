@@ -50,14 +50,15 @@ const LoginSuccess: NextPage = () => {
             )}
 
             {!data?.role && (
-              <div className="mt-6 flex flex-col">
+              <div className="mt-6 flex flex-col items-center">
                 <span className="text-red-700">
                   {" "}
                   Your account needs a role{" "}
                 </span>
                 <Link
                   href={"/dashboard/account"}
-                  className="hover:border-hsl(0,0%,6%) hover:text-hsl(0,0%,6%) border-gray-500 bg-transparent text-gray-800 dark:text-gray-100 dark:hover:text-gray-800 mt-6 h-10 rounded border px-4 pt-2 pb-8 text-center font-semibold hover:bg-[hsl(154,47%,66%)]"
+                  className="mt-2 cursor-pointer border border-solid border-blue7 bg-blue3 px-1.5 py-1.5 text-center text-olive12 hover:border-blue8 hover:bg-blue4 
+                  dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
                 >
                   Add role
                 </Link>

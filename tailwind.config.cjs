@@ -14,11 +14,7 @@ module.exports = {
       blue7: '#96c7f2',
       blue8: '#5eb0ef',
       blue9: '#0091ff',
-
-
       blue10: '#0081f1',
-
-
       blue11: '#006adc',
       blue12: "#00254d", 
       //Dark Blue
@@ -26,40 +22,25 @@ module.exports = {
       darkBlue2: '#0f1b2d',  
       darkBlue3: '#10243e',
       darkBlue4: '#102a4c',
-
       darkBlue6: '#0d3868',
       darkBlue7: '#0a4481',
       darkBlue8: '#0954a5',
       darkBlue9: '#0091ff',
-
-
       darkBlue10: '#369eff',
-
       darkBlue12: '#eaf6ff', 
-      
       // Olive
       olive2:'#f8faf8',  
-
       olive10: '#818780',
-
       olive11: '#6b716a',
       olive12: '#141e12',
       // Dark Olive
       darkOlive2:' #1a1d19', 
-
       darkOlive10: '#778175',
-
       darkOlive12: '#eceeec',
-
       // Slate - Side Menu
       slate12: '#11181c',
-
       // Yellow - Sun
       yellow9: '#f5d90a',
-
-
-
-
     },
     extend: {
       height: {
@@ -67,7 +48,6 @@ module.exports = {
       },
       maxHeight: {
         '5vh': '5vh',
-
         '70vh': '70vh',
         '75vh': '75vh',
         '78vh': '78vh',
@@ -76,34 +56,40 @@ module.exports = {
         '90vh': '90vh',
         '95vh': '95vh',
         '98vh': '98vh',
-
         '100vh': '100vh',
-
-
       },
       minHeight: {
         '5vh': '5vh',
-
         '70vh': '70vh',
         '78vh': '78vh',
         '85vh': '85vh',
         '80vh': '80vh',
         '85vh': '85vh',
         '88vh': '88vh',
-
         '90vh': '90vh',
         '95vh': '95vh',
-
         '100vh': '100vh'
       },
       maxWidth: {
         '5vw': '5vw',
-
       },
       minWidth: {
         '40vw': '40vw',
-
-      }
+      },
+      keyframes: {
+        slideDown: {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        slideUp: {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 },
+        },
+      },
+      animation: {
+        slideDown: 'slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+        slideUp: 'slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1)',
+      },
     },
   },
   plugins: [],
