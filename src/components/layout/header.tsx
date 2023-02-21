@@ -23,8 +23,8 @@ const Header = ({
   const router = useRouter();
 
   return (
-    <div className="sticky top-0 z-50 grid grid-cols-3 items-center bg-blue12 py-1">
-      <div className="flex justify-start ">
+    <div className="sticky top-0 z-50 flex flex-cols-3 justify-between  md:grid md:grid-cols-3 items-center bg-blue12 py-1">
+      <div className="flex justify-start">
         <div className="md:hidden md:pl-0">
           <Bars3CenterLeftIcon
             className="h-8 w-8 cursor-pointer text-darkOlive12"
@@ -50,20 +50,26 @@ const Header = ({
           )}
         </div>
       </div>
-      <div className="flex justify-center text-xl capitalize text-darkOlive12">
+
+      <div className="flex md:justify-center text-xl px-1 capitalize text-darkOlive12">
         {currentRoute}
       </div>
 
-      <div className="flex justify-end">
-        <div className="flex  items-center text-darkOlive12">
+
+
+      <div className="flex justify-end ">
+        <div className="items-center text-darkOlive12 hidden md:flex">
           {session &&
             (isLoading || (data && data?.username) || (
               <span className="text-red-600">Meow! No Name</span>
             ))}
-        </div>
+        </div>  
+
         <ThemeManager />
         <AuthShowcase />
       </div>
+
+
     </div>
   );
 };
