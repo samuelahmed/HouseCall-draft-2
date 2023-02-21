@@ -8,6 +8,8 @@ import {
   QuestionMarkIcon,
   EnterIcon,
   Pencil2Icon,
+  PlusCircledIcon,
+  StopIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { trpc } from "@/utils/trpc";
@@ -87,14 +89,14 @@ const NavMenu = () => {
                 href={"/dashboard/patient/create"}
                 className="flex flex-row items-center"
               >
-                <FaceIcon className="mr-2" />
+                <PlusCircledIcon className="mr-2" />
                 Create
               </Link>
               <Link
                 href={"/dashboard/patient/new"}
                 className="flex flex-row items-center"
               >
-                <IdCardIcon className="mr-2" />
+                <FaceIcon className="mr-2" />
                 New
               </Link>
               <Link
@@ -125,7 +127,7 @@ const NavMenu = () => {
                 href={"/dashboard/patient/canceled"}
                 className="flex flex-row items-center"
               >
-                <ArchiveIcon className="mr-2" />
+                <StopIcon className="mr-2" />
                 Canceled
               </Link>
 
