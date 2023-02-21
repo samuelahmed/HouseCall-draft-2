@@ -9,6 +9,8 @@ import {
   IdCardIcon,
   ArchiveIcon,
   QuestionMarkIcon,
+  EnterIcon,
+  Pencil2Icon,
 } from "@radix-ui/react-icons";
 
 const SideNav = () => {
@@ -177,7 +179,7 @@ const SideNav = () => {
       )}
       {((session && !user?.role) || (session && !user?.address)) && (
         <>
-          <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
+          {/* <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
             <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
               <Link
                 href={"/account"}
@@ -192,17 +194,38 @@ const SideNav = () => {
                 Help
               </Link>
             </div>
-          </div>
+          </div> */}
         </>
       )}
       {!session && (
         <>
-          <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
+          <div
+            className="
+              fixed col-span-1 min-h-full min-w-40vw
+             max-w-sm 
+             bg-slate12
+              text-olive2 
+              lg:block
+              "
+          >
+            <div
+              className="
+                  flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg
+                "
+            >
+            <Link href={"/login"} className="flex flex-row items-center">
+                <EnterIcon className="mr-2" />
+                Login
+              </Link>
+              <Link href={"/register"} className="flex flex-row items-center">
+                <Pencil2Icon className="mr-2" />
+                Register
+              </Link>
               <Link
                 href={"/help"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
+                className="flex flex-row items-center"
               >
+                <QuestionMarkIcon className="mr-2" />
                 Help
               </Link>
             </div>
