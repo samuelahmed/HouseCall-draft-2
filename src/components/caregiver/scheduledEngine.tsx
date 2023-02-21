@@ -3,10 +3,10 @@ import { trpc } from "@/utils/trpc";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 
-const AppliedEngine = () => {
+const ScheduledEngine = () => {
   const router = useRouter();
   const [rightCard, setRightCard] = useState(1);
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
 
   //something is acting strange with this route.
@@ -18,7 +18,6 @@ const AppliedEngine = () => {
 // console.log(session)
 
   const [inputs, setInputs] = useState({
-
     title: "",
     id: "",
     name: "",
@@ -204,4 +203,4 @@ const AppliedEngine = () => {
   );
 };
 
-export default AppliedEngine;
+export default ScheduledEngine;

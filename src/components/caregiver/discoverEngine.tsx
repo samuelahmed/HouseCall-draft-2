@@ -6,7 +6,7 @@ const DiscoverEngine = () => {
   const router = useRouter();
   const [rightCard, setRightCard] = useState(1);
 
-  const { data, isLoading } = trpc.careSessionAPIs.readAllSessions.useQuery();
+  const { data, isLoading } = trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
 
   const [inputs, setInputs] = useState({
     title: "",

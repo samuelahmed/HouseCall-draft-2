@@ -6,6 +6,7 @@ import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
 import DiscoverEngine from "@/components/caregiver/discoverEngine";
 import LoginForm from "@/components/forms/loginForm";
+import HistoryEngine from "@/components/caregiver/historyEngine";
 
 const Discover: NextPage = () => {
   const { data: session } = useSession();
@@ -28,6 +29,8 @@ const Discover: NextPage = () => {
                 <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
                   <DiscoverEngine />
+                  {/* <HistoryEngine /> */}
+                  {/* < DiscoverEngineTest /> */}
                 </div>
               </div>
             </main>

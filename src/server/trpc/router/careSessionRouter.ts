@@ -185,20 +185,11 @@ export const careSessionRouter = router({
       return potentialCareSessions;
     }),
 
-  readAllSessions: publicProcedure.query(({ ctx }) => {
-    const careSessions = ctx.prisma.careSession.findMany({
-      include: {
-        user: {
-          select: {
-            id: true,
-            username: true,
-            role: true,
-          },
-        },
-      },
-    });
-    return careSessions;
-  }),
+  //deprecated was causing issue with rendering of header
+  // readAllSessions: publicProcedure.query(({ ctx }) => {
+  //   const careSessions = ctx.prisma.careSession.findMany({});
+  //   return careSessions;
+  // }),
 
   readAllSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
@@ -265,6 +256,32 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
+  readAllSessionsWithStatusNew: privateProcedure.query(({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      return null;
+    }
+    const careSessions = ctx.prisma.careSession.findMany({
+      where: {
+        //If there is no parameter here, it will pull all the sessions and return in an array.
+        //However it tottaly destroys the UI for the navbar header and I have zero idea why.
+        //Copilot is telling me that the navbar is being rendered before the data is being pulled from the database.
+        careSessionStatus: {
+          in: ["New", "Active"],
+        },
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            role: true,
+          },
+        },
+      },
+    });
+    return careSessions;
+  }),
+
   readAllScheduledSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       return null;
@@ -309,110 +326,167 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
-  readAllAppliedPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
+  readAllHistoricalSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
-      throw new Error("Meow! Not authorized.");
+      return null;
     }
-    const user = await ctx.prisma.user.findUnique({
+    const careSessions = ctx.prisma.careSession.findMany({
       where: {
-        id: ctx.session.user.id,
-      },
-    });
-    console.log('user' + user)
-    if (!user) {
-      throw new Error("Meow! user not found.");
-    }
-    const userId = user.id;
-    const currentUserPotentialCareSessions =
-      await ctx.prisma.potentialCareSession.findMany({
-        where: {
-          caregiverId: userId,
-          status: "Applied",
+        userId: ctx.session.user.id,
+        careSessionStatus: {
+          in: ["New", "Active", "Scheduled", "Canceled"],
         },
-      });
-    const careSessionIds = currentUserPotentialCareSessions.map(
-      (session) => session.careSessionId
-    );
-    const careSessions = await ctx.prisma.careSession.findMany({
-      where: {
-        id: {
-          in: careSessionIds,
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            role: true,
+          },
         },
       },
     });
     return careSessions;
   }),
 
-  readAllScheduledPotentialSessionsByUser: privateProcedure.query(async ({ ctx }) => {
+  readAllScheduledPotentialSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
-      throw new Error("Meow! Not authorized.");
+      return null;
     }
-    const user = await ctx.prisma.user.findUnique({
+    const careSessions = ctx.prisma.careSession.findMany({
       where: {
-        id: ctx.session.user.id,
-      },
-    });
-    console.log('user' + user)
-    if (!user) {
-      throw new Error("Meow! user not found.");
-    }
-    const userId = user.id;
-    const currentUserPotentialCareSessions =
-      await ctx.prisma.potentialCareSession.findMany({
-        where: {
-          caregiverId: userId,
-          status: "Accepted",
+        userId: ctx.session.user.id,
+        careSessionStatus: {
+          in: ["Scheduled"],
         },
-      });
-    const careSessionIds = currentUserPotentialCareSessions.map(
-      (session) => session.careSessionId
-    );
-    const careSessions = await ctx.prisma.careSession.findMany({
-      where: {
-        id: {
-          in: careSessionIds,
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            role: true,
+          },
         },
       },
     });
     return careSessions;
   }),
 
-  readAllHistoricalSessionsByUser: privateProcedure.query(async ({ ctx }) => {
-    if (!ctx.session || !ctx.session.user) {
-      throw new Error("Meow! Not authorized.");
-    }
-    const user = await ctx.prisma.user.findUnique({
-      where: {
-        id: ctx.session.user.id,
-      },
-    });
-    if (!user) {
-      throw new Error("Meow! user not found.");
-    }
-    const userId = user.id;
-    const currentUserPotentialCareSessions =
-      await ctx.prisma.potentialCareSession.findMany({
+  //routes below are doing so dumb stuff I think
+  //DELETE THEM ASAP
+
+  readAllAppliedPotentialSessionsByUser: privateProcedure.query(
+    async ({ ctx }) => {
+      if (!ctx.session || !ctx.session.user) {
+        throw new Error("Meow! Not authorized.");
+      }
+      const user = await ctx.prisma.user.findUnique({
         where: {
-          caregiverId: userId,
-          //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
-          // careSessionStatus: "accepted"
-          //why is this not working?
+          id: ctx.session.user.id,
         },
       });
-    const careSessionIds = currentUserPotentialCareSessions.map(
-      (session) => session.careSessionId
-    );
-    const careSessions = await ctx.prisma.careSession.findMany({
-      where: {
-        id: {
-          in: careSessionIds,
+      console.log("user" + user);
+      if (!user) {
+        throw new Error("Meow! user not found.");
+      }
+      const userId = user.id;
+      const currentUserPotentialCareSessions =
+        await ctx.prisma.potentialCareSession.findMany({
+          where: {
+            caregiverId: userId,
+            status: "Applied",
+          },
+        });
+      const careSessionIds = currentUserPotentialCareSessions.map(
+        (session) => session.careSessionId
+      );
+      const careSessions = await ctx.prisma.careSession.findMany({
+        where: {
+          id: {
+            in: careSessionIds,
+          },
         },
-      },
-    });
-    return careSessions;
-  }),
+      });
+      return careSessions;
+    }
+  ),
 
+  DEPRECATEDreadAllScheduledPotentialSessionsByUser: privateProcedure.query(
+    async ({ ctx }) => {
+      if (!ctx.session || !ctx.session.user) {
+        throw new Error("Meow! Not authorized.");
+      }
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+      // console.log("user" + user);
+      if (!user) {
+        throw new Error("Meow! user not found.");
+      }
+      const userId = user.id;
+      const currentUserPotentialCareSessions =
+        await ctx.prisma.potentialCareSession.findMany({
+          where: {
+            caregiverId: userId,
+            status: "Accepted",
+          },
+        });
+      const careSessionIds = currentUserPotentialCareSessions.map(
+        (session) => session.careSessionId
+      );
+      const careSessions = await ctx.prisma.careSession.findMany({
+        where: {
+          id: {
+            in: careSessionIds,
+          },
+        },
+      });
+      return careSessions;
+    }
+  ),
 
+  DEPRECATEDreadAllHistoricalSessionsByUser: privateProcedure.query(
+    async ({ ctx }) => {
+      if (!ctx.session || !ctx.session.user) {
+        throw new Error("Meow! Not authorized.");
+      }
+      const user = await ctx.prisma.user.findUnique({
+        where: {
+          id: ctx.session.user.id,
+        },
+      });
+      if (!user) {
+        throw new Error("Meow! user not found.");
+      }
+      const userId = user.id;
+      const currentUserPotentialCareSessions =
+        await ctx.prisma.potentialCareSession.findMany({
+          where: {
+            caregiverId: userId,
+            //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
+            // careSessionStatus: "accepted"
+            //why is this not working?
+          },
+        });
+      const careSessionIds = currentUserPotentialCareSessions.map(
+        (session) => session.careSessionId
+      );
+      const careSessions = await ctx.prisma.careSession.findMany({
+        where: {
+          id: {
+            in: careSessionIds,
+          },
+        },
+      });
+      return careSessions;
+    }
+  ),
+
+  //routes above are doing so dumb stuff I think
 
   // ************************
   // *       UPDATE         *
@@ -549,7 +623,7 @@ export const careSessionRouter = router({
       return updatedPotentialCareSessions;
     }),
 
-    updateOnePotentialCaregiver: privateProcedure
+  updateOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
         // id: z.string(),
@@ -559,7 +633,7 @@ export const careSessionRouter = router({
       })
     )
     .mutation(async ({ input, ctx }) => {
-      const { caregiverId, careSessionId,status  } = input;
+      const { caregiverId, careSessionId, status } = input;
       const potentialCareSession =
         await ctx.prisma.potentialCareSession.findFirst({
           where: {
@@ -581,8 +655,6 @@ export const careSessionRouter = router({
         });
       return deletedPotentialCareSession;
     }),
-
-
 
   // ************************
   // *       DELETE         *
