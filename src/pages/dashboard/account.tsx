@@ -22,7 +22,7 @@ const Account: NextPage = () => {
               <NavMenu />
               <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
                 <div className="mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12">
-                  <SearchEngine />
+                  {/* <SearchEngine /> */}
                 </div>
                 <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                   {/* DYNAMIC PART OF DASHBOARD */}
