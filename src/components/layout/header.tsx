@@ -18,19 +18,22 @@ const Header = ({
 
   //Get name of current end of url
   //This should be done in a better way.
-  let currentRoute = useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 1];
-  if (useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 2] === "careSession") {
-    currentRoute = "Care Session"
+  const endRoute1 =
+    useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 1];
+  const endRoute2 =
+    useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 2];
+  let currentRoute = endRoute1;
+  if (endRoute1 === "[slug]" && endRoute2 === "careSession") {
+    currentRoute = "Care Session";
   }
-  if (useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 2] === "caregiver") {
-    currentRoute = "Caregiver"
+  if (endRoute1 === "[slug]" && endRoute2 === "caregiver") {
+    currentRoute = "Caregiver";
   }
-
 
   const router = useRouter();
 
   return (
-    <div className="sticky top-0 z-50 flex flex-cols-3 justify-between  md:grid md:grid-cols-3 items-center bg-blue12 py-1">
+    <div className="flex-cols-3 sticky top-0 z-50 flex items-center  justify-between bg-blue12 py-1 md:grid md:grid-cols-3">
       <div className="flex justify-start">
         <div className="md:hidden md:pl-0">
           <Bars3CenterLeftIcon
@@ -58,25 +61,21 @@ const Header = ({
         </div>
       </div>
 
-      <div className="flex md:justify-center text-xl px-1 capitalize text-darkOlive12">
+      <div className="flex px-1 text-xl capitalize text-darkOlive12 md:justify-center">
         {currentRoute}
       </div>
 
-
-
       <div className="flex justify-end ">
-        <div className="items-center text-darkOlive12 hidden md:flex">
+        <div className="hidden items-center text-darkOlive12 md:flex">
           {session &&
             (isLoading || (data && data?.username) || (
               <span className="text-red-600">Meow! No Name</span>
             ))}
-        </div>  
+        </div>
 
         <ThemeManager />
         <AuthShowcase />
       </div>
-
-
     </div>
   );
 };
