@@ -1,9 +1,9 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import ThemeManager from "./themeManager";
-import Link from "next/link";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
+import AuthShowcase from "./authShowcase";
 
 const Header = ({
   showNav,
@@ -80,27 +80,3 @@ const Header = ({
   );
 };
 export default Header;
-
-const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
-  return (
-    <div className="flex max-h-5vh min-h-5vh items-center">
-      <button
-        className="mr-2 rounded-lg px-4 py-2 text-sm font-medium text-darkOlive12 hover:bg-blue10 focus:outline-none lg:py-2.5 marker:lg:px-5"
-        onClick={sessionData ? () => signOut() : () => signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-      <Link
-        className={
-          sessionData
-            ? "hidden"
-            : "visible mr-6 rounded-lg px-4 py-2 text-sm font-medium text-darkOlive12 hover:bg-blue10"
-        }
-        href={"/register"}
-      >
-        Register
-      </Link>
-    </div>
-  );
-};
