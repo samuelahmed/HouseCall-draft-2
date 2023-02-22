@@ -6,19 +6,11 @@ import { useSession } from "next-auth/react";
 const AppliedEngine = () => {
   const router = useRouter();
   const [rightCard, setRightCard] = useState(1);
-  const { data: session } = useSession();
-
-
-  //something is acting strange with this route.
-  // It may have to do with the fact that I am using the same route for two different pages.
-  // but more likely it has to do with the fact that the data it is pulling may not exist as defined.
-  const { data, isLoading } = trpc.careSessionAPIs.readAllAppliedPotentialSessionsByUser.useQuery();
-
-//read all sessions that are applied
-// console.log(session)
+  // const { data: session } = useSession();
+  const { data, isLoading } =
+    trpc.careSessionAPIs.readAllAppliedPotentialSessionsByUser.useQuery();
 
   const [inputs, setInputs] = useState({
-
     title: "",
     id: "",
     name: "",

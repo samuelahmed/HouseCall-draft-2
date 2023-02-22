@@ -18,8 +18,15 @@ const Header = ({
 
   //Get name of current end of url
   //This should be done in a better way.
-  const currentRoute =
-    useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 1];
+  let currentRoute = useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 1];
+  if (useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 2] === "careSession") {
+    currentRoute = "Care Session"
+  }
+  if (useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 2] === "caregiver") {
+    currentRoute = "Caregiver"
+  }
+
+
   const router = useRouter();
 
   return (
