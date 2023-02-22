@@ -5,6 +5,7 @@ import Head from "next/head";
 import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import NavMenu from "@/components/layout/navMenu";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -122,140 +123,141 @@ const Slug: NextPage = () => {
        **********************/}
       {session && user?.role === "Caregiver" && (
         <>
-          <div className="h-screen items-center justify-center dark:bg-gray-800 md:flex">
-            <div className="mx-2 my-2 h-4/6 w-1/2 rounded-lg border-2 dark:bg-sky-900">
-              <div className="mb-4 mr-4 ml-4">
-                <div className="mb-2 mr-4 ml-4 mt-12 p-4 text-center text-xl text-gray-900 dark:text-white">
-                  {currentSession?.title}
-                </div>
-                <div className="text-sm">
-                  <p className="text-gray-900 dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Name:&nbsp;
-                    </span>
-                    {currentSession?.name}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Address:&nbsp;
-                    </span>
-                    {currentSession?.address}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Medical Notes:&nbsp;
-                    </span>
-                    {currentSession?.medicalNotes}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Overview:&nbsp;
-                    </span>
-                    {currentSession?.overview}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Compensation Per Hour:&nbsp;
-                    </span>
-                    ${currentSession?.hourlyRate}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Hours:&nbsp;
-                    </span>
-                    {currentSession?.totalHours}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Total:&nbsp;
-                    </span>
-                    ${currentSession?.totalCompensation}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Status:&nbsp;
-                    </span>
-                    {currentSession?.careSessionStatus}
-                  </p>
-                </div>
+          <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
+            <NavMenu />
+            <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
+              <div className="flex items-center text-olive12 dark:text-darkOlive12">
+                {/* <SearchEngine /> */}
               </div>
-              <div className="mt-12 mb-12 flex justify-around ">
-                {potentialCaregiver?.caregiverId !== user.id && (
-                  <>
-                    {/* <div className="mt-12 mb-12 flex justify-around "> */}
+              <div className=" grid min-h-88vh grid-cols-1 gap-x-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12">
+                {/* DYNAMIC PART OF DASHBOARD */}
+                <div className="flex h-screen items-center justify-center  bg-blue2 dark:bg-darkBlue2">
+                  <div className="h-4/6 w-1/2 rounded-sm border border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1">
+                    <div className="mb-4 mr-4 ml-4">
+                      <div className=" mb-2 mr-4 ml-4 mt-12 p-4 text-center text-xl">
+                        {currentSession?.title}
+                      </div>
+                      <div className="text-sm">
+                        <p className="">
+                          <span className="font-semibold">Name:&nbsp;</span>
+                          {currentSession?.name}
+                        </p>
+                        <p className="">
+                          <span className="font-semibold">Address:&nbsp;</span>
+                          {currentSession?.address}
+                        </p>
+                        <p className="">
+                          <span className="font-semibold">
+                            Medical Notes:&nbsp;
+                          </span>
+                          {currentSession?.medicalNotes}
+                        </p>
+                        <p className="">
+                          <span className="font-semibold">Overview:&nbsp;</span>
+                          {currentSession?.overview}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">
+                            Compensation Per Hour:&nbsp;
+                          </span>
+                          ${currentSession?.hourlyRate}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">Hours:&nbsp;</span>
+                          {currentSession?.totalHours}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">Total:&nbsp;</span>$
+                          {currentSession?.totalCompensation}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">Status:&nbsp;</span>
+                          {currentSession?.careSessionStatus}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="mt-12 mb-12 flex justify-center ">
                       {potentialCaregiver?.caregiverId !== user.id && (
-                        // potentialCaregiver?.status === "" ||
-                        // potentialCaregiver?.status === "Closed"
-
+                        <>
+                          {/* <div className="mt-12 mb-12 flex justify-around "> */}
+                          {potentialCaregiver?.caregiverId !== user.id && (
+                            // potentialCaregiver?.status === "" ||
+                            // potentialCaregiver?.status === "Closed"
+                            <button
+                              className=" cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+                            dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                              onClick={() => {
+                                setInputs({
+                                  currentUserId: user?.id,
+                                  id: currentSession?.id || "",
+                                  // status: "pending",
+                                });
+                                publish();
+                                updateCareSessionStatusToApplied();
+                              }}
+                            >
+                              Apply
+                            </button>
+                          )}
+                          {/* Can apply but if you cancel application it will not let you apply again.  */}
+                          {potentialCaregiver?.caregiverId === user.id &&
+                            potentialCaregiver?.status !== "Closed" && (
+                              // potentialCaregiver?.status === "Applied"
+                              // potentialCaregiver?.status === "Accepted"
+                              <button
+                                className=" cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+                              dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                                onClick={() => {
+                                  setInputs({
+                                    currentUserId: user?.id || "",
+                                    id: currentSession?.id || "",
+                                    // status: "pending",
+                                  });
+                                  removeCaregiver();
+                                }}
+                              >
+                                Cancel Application
+                              </button>
+                            )}
+                          {/* </div> */}
+                          <div>
+                            {errorMessage && (
+                              <p className="text-red-600 text-center">
+                                Meow! You already applied to this session.
+                              </p>
+                            )}
+                          </div>
+                        </>
+                      )}
+                      {potentialCaregiver?.caregiverId === user.id && (
                         <button
-                          className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                          className=" cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+                        dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
                           onClick={() => {
                             setInputs({
-                              currentUserId: user?.id,
+                              currentUserId: user?.id || "", //Why is this necessary?
                               id: currentSession?.id || "",
-                              // status: "pending",
+                              // status: "pending", //Why is this necessary?
                             });
-                            publish();
-                            updateCareSessionStatusToApplied();
+                            removeCaregiver();
                           }}
                         >
-                          Apply
+                          Cancel Application
                         </button>
                       )}
-                      {/* Can apply but if you cancel application it will not let you apply again.  */}
-                      {potentialCaregiver?.caregiverId === user.id &&
-                        potentialCaregiver?.status !== "Closed" && (
-                          // potentialCaregiver?.status === "Applied"
-                          // potentialCaregiver?.status === "Accepted"
-                          <button
-                            className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                            onClick={() => {
-                              setInputs({
-                                currentUserId: user?.id || "",
-                                id: currentSession?.id || "",
-                                // status: "pending",
-                              });
-                              removeCaregiver();
-                            }}
-                          >
-                            Cancel Application
-                          </button>
-                        )}
-                    {/* </div> */}
+                    </div>
                     <div>
                       {errorMessage && (
-                        <p className="text-center text-red-600">
+                        <p className="text-red-600 text-center">
                           Meow! You already applied to this session.
                         </p>
                       )}
                     </div>
-                  </>
-                )}
-                {potentialCaregiver?.caregiverId === user.id && (
-                  <button
-                    className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                    onClick={() => {
-                      setInputs({
-                        currentUserId: user?.id || "", //Why is this necessary?
-                        id: currentSession?.id || "",
-                        // status: "pending", //Why is this necessary?
-                      });
-                      removeCaregiver();
-                    }}
-                  >
-                    Cancel Application
-                  </button>
-                )}
-              </div>
-              <div>
-                {errorMessage && (
-                  <p className="text-center text-red-600">
-                    Meow! You already applied to this session.
-                  </p>
-                )}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </main>
         </>
       )}
       {/***********************
@@ -263,113 +265,117 @@ const Slug: NextPage = () => {
        **********************/}
       {session && user?.role === "Patient" && (
         <>
-          <div className="h-screen items-center justify-center dark:bg-gray-800 md:flex">
-            <div className="mx-2 my-2 h-4/6 w-1/2 rounded-lg border-2 dark:bg-sky-900">
-              <div className="mb-4 mr-4 ml-4">
-                <div className="mb-2 mr-4 ml-4 mt-12 p-4 text-center  text-xl text-gray-900 dark:text-white">
-                  {currentSession?.title}
-                </div>
-                <div className="text-sm">
-                  <p className="text-gray-900 dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Name:&nbsp;
-                    </span>
-                    {currentSession?.name}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Address:&nbsp;
-                    </span>
-                    {currentSession?.address}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Medical Notes:&nbsp;
-                    </span>
-                    {currentSession?.medicalNotes}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Overview:&nbsp;
-                    </span>
-                    {currentSession?.overview}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Compensation Per Hour:&nbsp;
-                    </span>
-                    ${currentSession?.hourlyRate}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Hours:&nbsp;
-                    </span>
-                    {currentSession?.totalHours}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Total:&nbsp;
-                    </span>
-                    ${currentSession?.totalCompensation}
-                  </p>
-                  <p className="text-gray-900  dark:text-white">
-                    <span className="font-semibold text-gray-900 dark:text-white">
-                      Status:&nbsp;
-                    </span>
-                    {currentSession?.careSessionStatus}
-                  </p>
-                </div>
+          <main className="grid grid-cols-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12 md:grid-cols-6">
+            <NavMenu />
+            <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
+              <div className="flex items-center text-olive12 dark:text-darkOlive12">
+                {/* <SearchEngine /> */}
               </div>
-              <div>
-                {errorMessage && (
-                  <p className="text-center text-red-600">
-                    Meow! You already applied to this session.
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="w-full px-2">
-              List of potential Caregivers:
-              <ul>
-                {potentialCaregivers?.map((potentialCaregiver) => {
-                  const { id, caregiverId, status } = potentialCaregiver;
-                  return (
-                    <li
-                      key={id}
-                      className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-gray-400  bg-white px-2 hover:bg-gray-100 dark:border-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600"
-                    >
-                      <div>
-                        <p className="text-gray-900  dark:text-white">
-                          <span className="font-semibold text-gray-900 dark:text-white">
-                            Caregiver:&nbsp;
-                          </span>
-                          {potentialCaregiver?.caregiverId}
+              <div className="grid min-h-88vh grid-cols-1 gap-x-1 bg-blue1 dark:bg-darkBlue1">
+                {/* DYNAMIC PART OF DASHBOARD */}
+
+                <div className="grid min-h-screen grid-rows-2 overflow-auto bg-blue2 px-4 py-4 dark:bg-darkBlue2 md:grid-cols-2">
+                  <div className="rounded-sm border border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1 ">
+                    <div className="mb-4 mr-4 ml-4">
+                      <div className="mb-2 mr-4 ml-4 mt-12  p-4 text-center text-xl">
+                        {currentSession?.title}
+                      </div>
+                      <div className="text-sm">
+                        <p className="">
+                          <span className=" font-semibold">Name:&nbsp;</span>
+                          {currentSession?.name}
                         </p>
-                        <p className="text-gray-900  dark:text-white">
-                          <span className="font-semibold text-gray-900 dark:text-white">
-                            Status:&nbsp;
+                        <p className="">
+                          <span className=" font-semibold">Address:&nbsp;</span>
+                          {currentSession?.address}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">
+                            Medical Notes:&nbsp;
                           </span>
-                          {potentialCaregiver?.status}
+                          {currentSession?.medicalNotes}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">
+                            Overview:&nbsp;
+                          </span>
+                          {currentSession?.overview}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">
+                            Compensation Per Hour:&nbsp;
+                          </span>
+                          ${currentSession?.hourlyRate}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">Hours:&nbsp;</span>
+                          {currentSession?.totalHours}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">Total:&nbsp;</span>$
+                          {currentSession?.totalCompensation}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">Status:&nbsp;</span>
+                          {currentSession?.careSessionStatus}
                         </p>
                       </div>
-                      <div className="mt-2 mb-2 flex justify-around ">
-                        <button
-                          className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
-                          onClick={() =>
-                            router.push(
-                              `/caregiver/${potentialCaregiver?.slug}`
-                            )
-                          }
-                        >
-                          See Profile
-                        </button>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+                    </div>
+                    <div>
+                      {errorMessage && (
+                        <p className="text-red-600 text-center">
+                          Meow! You already applied to this session.
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="px-2 ">
+                    <p className="my-4 text-xl"> Potential Caregivers:</p>
+                    <ul>
+                      {potentialCaregivers?.map((potentialCaregiver) => {
+                        const { id, caregiverId, status } = potentialCaregiver;
+                        return (
+                          <li
+                            key={id}
+                            className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-blue6  bg-blue1 px-2 hover:bg-blue2 dark:border-darkBlue6 dark:bg-darkBlue1 dark:hover:bg-darkBlue2"
+                          >
+                            <div>
+                              <p className=" ">
+                                <span className=" font-semibold">
+                                  Caregiver:&nbsp;
+                                </span>
+                                {potentialCaregiver?.caregiverId}
+                              </p>
+                              <p className="  ">
+                                <span className="  font-semibold">
+                                  Status:&nbsp;
+                                </span>
+                                {potentialCaregiver?.status}
+                              </p>
+                            </div>
+                            <div className="mt-2 mb-2 flex justify-around ">
+                              <button
+                                className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+                          dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                                onClick={() =>
+                                  router.push(
+                                    `/caregiver/${potentialCaregiver?.slug}`
+                                  )
+                                }
+                              >
+                                See Profile
+                              </button>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          </main>
         </>
       )}
     </>
