@@ -32,13 +32,13 @@ const Slug: NextPage = () => {
   //Issue: Does not work when there are multiple caregivers
   //       Because it is querying for a string of ids instead of a single id
   //Fix:   To fix this the query needs to accept an array of ids and return an array of users
-  const { data: potentialCaregiverInfo } =
-    trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
-      caregiverId:
-        potentialCaregivers
-          ?.map((potentialCaregiver) => potentialCaregiver.caregiverId)
-          .toString() || "",
-    });
+  // const { data: potentialCaregiverInfo } =
+  //   trpc.careSessionAPIs.readOneUserByPotentialCareSessionCaregiverId.useQuery({
+  //     caregiverId:
+  //       potentialCaregivers
+  //         ?.map((potentialCaregiver) => potentialCaregiver.caregiverId)
+  //         .toString() || "",
+  //   });
 
   const [inputs, setInputs] = useState({
     currentUserId: "",

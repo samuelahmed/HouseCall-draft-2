@@ -1,6 +1,6 @@
 {
-  "name": "t3-credentials",
-  "version": "0.1.0",
+  "name": "house-call-draft-2",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "next build",

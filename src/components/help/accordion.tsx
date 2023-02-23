@@ -25,7 +25,7 @@ const AccordionEngine = () => {
             className="text-mauve11 bg-mauve2 overflow-hidden py-2 px-2 text-[15px] data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp 
           "
           >
-                        House Call connects patients and caregivers in the comfort of the
+            House Call connects patients and caregivers in the comfort of the
             patient’s home.
           </Accordion.Content>
         </Accordion.Item>
@@ -43,7 +43,7 @@ const AccordionEngine = () => {
           "
           >
             Human connections are one of the most important aspects of a healthy
-            life. House Call reduces barriers by providing a network for
+            life. House Call reduces barriers by providing an application for
             caregivers and patients to meet, chat, and decide on how to spend
             their care sessions.
           </Accordion.Content>
@@ -95,7 +95,6 @@ const AccordionEngine = () => {
           </Accordion.Content>
         </Accordion.Item>
 
-
         <Accordion.Item className="min-w-full" value="item-4">
           <Accordion.Trigger
             className="flex min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  text-base 
@@ -108,11 +107,10 @@ const AccordionEngine = () => {
             className="text-mauve11 bg-mauve2 overflow-hidden py-2 px-2 text-[15px] data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp 
           "
           >
-   Anyone able and passionate to help others is welcome to join and become a caregiver. 
-
+            Anyone able and passionate to help others is welcome to join and
+            become a caregiver.
           </Accordion.Content>
         </Accordion.Item>
-
 
         <Accordion.Item className="min-w-full" value="item-5">
           <Accordion.Trigger
@@ -126,8 +124,8 @@ const AccordionEngine = () => {
             className="text-mauve11 bg-mauve2 overflow-hidden py-2 px-2 text-[15px] data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp 
           "
           >
-Anyone who wants to enhance their life with non-medical care sessions is welcome to join and become a patient. 
-
+            Anyone who wants to enhance their life with non-medical care
+            sessions is welcome to join and become a patient.
           </Accordion.Content>
         </Accordion.Item>
 
@@ -143,14 +141,10 @@ Anyone who wants to enhance their life with non-medical care sessions is welcome
             className="text-mauve11 bg-mauve2 overflow-hidden py-2 px-2 text-[15px] data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp 
           "
           >
-To provide a comprehensive suite of care services for patients while supporting and enabling caregivers.
-
+            To provide a comprehensive suite of care services for patients while
+            supporting and enabling caregivers.
           </Accordion.Content>
         </Accordion.Item>
-
-
-
-
       </Accordion.Root>
     </>
   );
