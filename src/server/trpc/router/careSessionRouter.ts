@@ -312,54 +312,6 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
-  // DEPRECATEDreadAllHistoricalSessionsByUser: privateProcedure.query(({ ctx }) => {
-  //   if (!ctx.session || !ctx.session.user) {
-  //     return null;
-  //   }
-  //   const careSessions = ctx.prisma.careSession.findMany({
-  //     where: {
-  //       userId: ctx.session.user.id,
-  //       careSessionStatus: {
-  //         in: ["New", "Active", "Scheduled", "Canceled"],
-  //       },
-  //     },
-  //     include: {
-  //       user: {
-  //         select: {
-  //           id: true,
-  //           username: true,
-  //           role: true,
-  //         },
-  //       },
-  //     },
-  //   });
-  //   return careSessions;
-  // }),
-
-  // DEPRECATEDreadAllScheduledPotentialSessionsByUser: privateProcedure.query(({ ctx }) => {
-  //   if (!ctx.session || !ctx.session.user) {
-  //     return null;
-  //   }
-  //   const careSessions = ctx.prisma.careSession.findMany({
-  //     where: {
-  //       userId: ctx.session.user.id,
-  //       careSessionStatus: {
-  //         in: ["Scheduled"],
-  //       },
-  //     },
-  //     include: {
-  //       user: {
-  //         select: {
-  //           id: true,
-  //           username: true,
-  //           role: true,
-  //         },
-  //       },
-  //     },
-  //   });
-  //   return careSessions;
-  // }),
-
   readAllAppliedPotentialSessionsByUser: privateProcedure.query(
     async ({ ctx }) => {
       if (!ctx.session || !ctx.session.user) {
@@ -370,7 +322,6 @@ export const careSessionRouter = router({
           id: ctx.session.user.id,
         },
       });
-      // console.log("user" + user);
       if (!user) {
         throw new Error("Meow! user not found.");
       }
@@ -406,7 +357,6 @@ export const careSessionRouter = router({
           id: ctx.session.user.id,
         },
       });
-      // console.log("user" + user);
       if (!user) {
         throw new Error("Meow! user not found.");
       }
@@ -432,41 +382,38 @@ export const careSessionRouter = router({
     }
   ),
 
-  readAllHistoricalSessionsByUser: privateProcedure.query(
-    async ({ ctx }) => {
-      if (!ctx.session || !ctx.session.user) {
-        throw new Error("Meow! Not authorized.");
-      }
-      const user = await ctx.prisma.user.findUnique({
-        where: {
-          id: ctx.session.user.id,
-        },
-      });
-      if (!user) {
-        throw new Error("Meow! user not found.");
-      }
-      const userId = user.id;
-      const currentUserPotentialCareSessions =
-        await ctx.prisma.potentialCareSession.findMany({
-          where: {
-            caregiverId: userId,
-            //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
-          },
-        });
-      const careSessionIds = currentUserPotentialCareSessions.map(
-        (session) => session.careSessionId
-      );
-      const careSessions = await ctx.prisma.careSession.findMany({
-        where: {
-          id: {
-            in: careSessionIds,
-          },
-        },
-      });
-      return careSessions;
+  readAllHistoricalSessionsByUser: privateProcedure.query(async ({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      throw new Error("Meow! Not authorized.");
     }
-  ),
-
+    const user = await ctx.prisma.user.findUnique({
+      where: {
+        id: ctx.session.user.id,
+      },
+    });
+    if (!user) {
+      throw new Error("Meow! user not found.");
+    }
+    const userId = user.id;
+    const currentUserPotentialCareSessions =
+      await ctx.prisma.potentialCareSession.findMany({
+        where: {
+          caregiverId: userId,
+          //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
+        },
+      });
+    const careSessionIds = currentUserPotentialCareSessions.map(
+      (session) => session.careSessionId
+    );
+    const careSessions = await ctx.prisma.careSession.findMany({
+      where: {
+        id: {
+          in: careSessionIds,
+        },
+      },
+    });
+    return careSessions;
+  }),
 
   // ************************
   // *       UPDATE         *
@@ -572,7 +519,6 @@ export const careSessionRouter = router({
   updateAllOtherPotentialCareSessionsToClosed: privateProcedure
     .input(
       z.object({
-        // careSessionId: z.string(),
         caregiverId: z.string(),
       })
     )
@@ -606,7 +552,6 @@ export const careSessionRouter = router({
   updateOnePotentialCaregiver: privateProcedure
     .input(
       z.object({
-        // id: z.string(),
         status: z.string(),
         caregiverId: z.string(),
         careSessionId: z.string(),
