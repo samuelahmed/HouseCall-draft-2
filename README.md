@@ -17,9 +17,7 @@
  ┃ ┃ ┣ 📜loginForm.tsx
  ┃ ┃ ┗ 📜registerForm.tsx
  ┃ ┣ 📂help
- ┃ ┃ ┣ 📜accordion.tsx
- ┃ ┃ ┣ 📜contactUs.tsx
- ┃ ┃ ┗ 📜supportDocumentation.tsx
+ ┃ ┃ ┗ 📜accordion.tsx
  ┃ ┣ 📂layout
  ┃ ┃ ┣ 📜authShowcase.tsx
  ┃ ┃ ┣ 📜header.tsx
