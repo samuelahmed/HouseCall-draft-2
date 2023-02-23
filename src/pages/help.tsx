@@ -27,7 +27,7 @@ const Help: NextPage = () => {
                   <div className="mt-2">
                     <AccordionEngine />
                   </div>
-                  <div>contact us form</div>
+                  <div></div>
 
                 </div>
               </div>

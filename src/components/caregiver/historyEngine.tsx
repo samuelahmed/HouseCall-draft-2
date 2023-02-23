@@ -117,7 +117,7 @@ const HistoryEngine = () => {
                         className="ml-3 cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
                      dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4 md:hidden"
                       >
-                        Schedule
+                        Details
                       </button>
                     </div>
                   </li>
@@ -183,7 +183,7 @@ const HistoryEngine = () => {
                     className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
                  dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
                   >
-                    Schedule
+                    Details
                   </button>
                 </div>
               </div>
