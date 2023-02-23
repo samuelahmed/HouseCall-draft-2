@@ -83,7 +83,7 @@ const Slug: NextPage = () => {
     },
     onSuccess: () => {
       //Trigger some notifications here?
-      router.push('/dashboard/patient/scheduled');
+      router.push("/dashboard/patient/scheduled");
 
       // router.reload();
     },
@@ -97,7 +97,6 @@ const Slug: NextPage = () => {
       onSuccess: () => {
         //Trigger some notifications here?
         // router.reload();
-        
       },
     });
 
@@ -133,19 +132,14 @@ const Slug: NextPage = () => {
        *       PATIENT        *
        **********************/}
       {session && user?.role === "Patient" && (
-        <>
-          <h1 className="text-3xl  text-gray-900 dark:text-white">
-            {potentialCaregiverInfo?.username}
-          </h1>
-          <h1 className="text-1xl text-gray-900 dark:text-white">
-            {potentialCaregiverInfo?.email}
-          </h1>
-          <h1 className="text-1xl  text-gray-900 dark:text-white">
-            {potentialCaregiverInfo?.address}
-          </h1>
+        <div className="flex min-h-screen flex-col items-center justify-center bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12">
+          <h1 className="text-3xl ">{potentialCaregiverInfo?.username}</h1>
+          <h1 className="text-1xl">{potentialCaregiverInfo?.email}</h1>
+          <h1 className="text-1xl ">{potentialCaregiverInfo?.address}</h1>
           <div className="mt-2 mb-2 space-x-2 ">
             <button
-              className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+              className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+                                dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
               onClick={() => router.push("/messages")}
             >
               Message Caregiver
@@ -155,7 +149,8 @@ const Slug: NextPage = () => {
             {(potentialCareSession?.status === "Applied" ||
               potentialCareSession?.status === "Closed") && (
               <button
-                className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+              dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
                 onClick={() => {
                   setInputs({
                     careSessionId: currentSession?.id || "",
@@ -173,7 +168,8 @@ const Slug: NextPage = () => {
             )}
             {currentSession?.careSessionStatus === "Scheduled" && (
               <button
-                className="h-12 rounded border border-gray-500 bg-transparent px-4 pt-2 pb-8 font-semibold text-gray-900 hover:border-gray-700 hover:bg-emerald-200 hover:text-black dark:text-white"
+                className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+              dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
                 onClick={() => {
                   setInputs({
                     careSessionId: currentSession?.id || "",
@@ -188,7 +184,7 @@ const Slug: NextPage = () => {
               </button>
             )}
           </div>
-        </>
+        </div>
       )}
     </>
   );
