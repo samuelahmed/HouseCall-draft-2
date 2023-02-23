@@ -5,8 +5,8 @@ import { useState } from "react";
 const DiscoverEngine = () => {
   const router = useRouter();
   const [rightCard, setRightCard] = useState(1);
-
-  const { data, isLoading } = trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
+  const { data, isLoading } =
+    trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
 
   const [inputs, setInputs] = useState({
     title: "",
@@ -58,7 +58,6 @@ const DiscoverEngine = () => {
                 return (
                   <li
                     key={id}
-                    // this className makes the cards
                     className="mx-2 mb-2 items-center justify-around rounded-sm border
                   border-blue6 bg-blue1 px-2 text-olive12 hover:bg-blue2 dark:border-darkBlue6
                  dark:bg-darkBlue1 dark:text-darkOlive12 dark:hover:bg-darkBlue2 md:cursor-pointer"
@@ -116,7 +115,7 @@ const DiscoverEngine = () => {
                         className="ml-3 cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
                      dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4 md:hidden"
                       >
-                        Schedule
+                        Details
                       </button>
                     </div>
                   </li>
@@ -131,7 +130,6 @@ const DiscoverEngine = () => {
     dark:border-darkBlue6 dark:bg-darkBlue2 dark:text-darkOlive12 md:col-span-1 md:block"
       >
         {/* Right Table */}
-        {/* this className is for the right card */}
         <div
           className="mx-2 mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-sm border 
     border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1"
@@ -182,7 +180,7 @@ const DiscoverEngine = () => {
                     className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
                  dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
                   >
-                    Schedule
+                    Details
                   </button>
                 </div>
               </div>

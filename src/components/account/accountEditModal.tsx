@@ -2,15 +2,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { trpc } from "../../utils/trpc";
 
-//Note: Due to hashing, password update will need its own process
-//Note: Fix naming - dbTest is not acceptable.
-
 const AccountEditModal = () => {
   const [showModal, setShowModal] = useState(false);
   const dbTest = trpc.userAPIs.readCurrentUser.useQuery();
-  //the blank role helps with the dropdown menu
-  //need a better way to do it since it allows the users
-  //to select a blank role
   const roles = ["", "Caregiver", "Patient"];
 
   const [inputs, setInputs] = useState({
@@ -22,6 +16,7 @@ const AccountEditModal = () => {
   });
 
   const [selectedRole, setSelectedRole] = useState(inputs.role);
+
   const { mutate } = trpc.userAPIs.updateCurrentUser.useMutation({
     onSuccess() {
       alert("Account information updated!");
@@ -56,11 +51,11 @@ const AccountEditModal = () => {
       </button>
       {showModal ? (
         <>
-          <div className="fixed inset-0 z-50 grid h-screen place-items-center backdrop-brightness-50 text-olive12 dark:text-darkOlive12">
+          <div className="fixed inset-0 z-50 grid h-screen place-items-center text-olive12 backdrop-brightness-50 dark:text-darkOlive12">
             <div className="w-max justify-items-center border border-blue6 outline-none focus:outline-none dark:border-darkBlue6 ">
               <div className="relative mx-auto">
                 <div className="relative flex flex-col bg-blue1 shadow-lg outline-none focus:outline-none dark:bg-darkBlue1">
-                  <div className="py-4 rounded-t ">
+                  <div className="rounded-t py-4 ">
                     <div className="mx-4 mt-4 flex w-max flex-col ">
                       {/* NAME */}
                       <div className="mt-2 flex flex-row items-center px-2 text-olive12 dark:text-darkOlive12">
@@ -143,7 +138,7 @@ const AccountEditModal = () => {
                             }}
                             className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-center text-base text-olive12 hover:border-blue8 hover:bg-blue4 
                             dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                                  >
+                          >
                             Update Account
                           </button>
                         </div>
@@ -152,7 +147,7 @@ const AccountEditModal = () => {
                             onClick={() => setShowModal(false)}
                             className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-center text-base text-olive12 hover:border-blue8 hover:bg-blue4 
                             dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                                  >
+                          >
                             Close
                           </button>
                         </div>

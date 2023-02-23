@@ -4,7 +4,7 @@ import { getServerAuthSession } from "@/server/common/get-server-auth-session";
 
 const restricted = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerAuthSession({ req, res });
-
+  // is this better than the way we are currently doing session checking?
   if (session) {
     res.send({
       content:

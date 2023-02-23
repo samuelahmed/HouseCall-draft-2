@@ -1,5 +1,3 @@
-// import * as Select from "@radix-ui/react-select";
-// import React from "react";
 import SelectSessionType from "./selectSessionType";
 
 const SearchEngine = () => {

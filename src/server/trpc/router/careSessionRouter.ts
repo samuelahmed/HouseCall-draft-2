@@ -39,7 +39,8 @@ export const careSessionRouter = router({
         careSessionStatus,
       } = input;
       //Instead of generating random string here it would be better to do something else
-      //This will probably collide eventually
+      //This will probably collide  ~50k times before it does
+      //Math.random() can also generate a 0
       const sessionId = Math.random().toString(36).substring(7);
       const user = await ctx.prisma.user.findUnique({
         where: {

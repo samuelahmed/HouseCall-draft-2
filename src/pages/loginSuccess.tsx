@@ -36,8 +36,7 @@ const LoginSuccess: NextPage = () => {
             {!data?.address && (
               <div className="flex flex-col items-center">
                 <span className="text-red-700">
-                  {" "}
-                  Your account needs an address{" "}
+                  Your account needs an address
                 </span>
                 <Link
                   href={"/dashboard/account"}
@@ -48,13 +47,9 @@ const LoginSuccess: NextPage = () => {
                 </Link>
               </div>
             )}
-
             {!data?.role && (
               <div className="mt-6 flex flex-col items-center">
-                <span className="text-red-700">
-                  {" "}
-                  Your account needs a role{" "}
-                </span>
+                <span className="text-red-700">Your account needs a role</span>
                 <Link
                   href={"/dashboard/account"}
                   className="mt-2 cursor-pointer border border-solid border-blue7 bg-blue3 px-1.5 py-1.5 text-center text-olive12 hover:border-blue8 hover:bg-blue4 
@@ -68,14 +63,14 @@ const LoginSuccess: NextPage = () => {
         </main>
       )}
       {!session && (
-            <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-            <NavMenu />
-            <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
-              <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
-                <LoginForm />
-              </div>
+        <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
+          <NavMenu />
+          <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
+            <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
+              <LoginForm />
             </div>
-          </main>
+          </div>
+        </main>
       )}
     </>
   );

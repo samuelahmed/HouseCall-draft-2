@@ -12,7 +12,7 @@ import {
   EnterIcon,
   Pencil2Icon,
   StopIcon,
-  PlusCircledIcon
+  PlusCircledIcon,
 } from "@radix-ui/react-icons";
 
 const SideNav = () => {
@@ -22,20 +22,8 @@ const SideNav = () => {
     <>
       {session && user?.role === "Caregiver" && (
         <>
-          <div
-            className="
-              fixed col-span-1 min-h-95vh min-w-40vw
-             max-w-sm 
-             bg-slate12
-              text-olive2 
-              lg:block
-              "
-          >
-            <div
-              className="
-                  flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg
-                "
-            >
+          <div className="fixed col-span-1 min-h-95vh min-w-40vw max-w-sm bg-slate12 text-olive2 lg:block">
+            <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
               <Link
                 href={"/dashboard/caregiver/discover"}
                 className="flex flex-row items-center"
@@ -66,7 +54,6 @@ const SideNav = () => {
                 <ArchiveIcon className="mr-2" />
                 History
               </Link>
-
               <Link
                 href={"/dashboard/messages"}
                 className="flex flex-row items-center"
@@ -81,10 +68,7 @@ const SideNav = () => {
                 <PersonIcon className="mr-2" />
                 Account
               </Link>
-              <Link
-                href={"/help"}
-                className="flex flex-row items-center"
-              >
+              <Link href={"/help"} className="flex flex-row items-center">
                 <QuestionMarkIcon className="mr-2" />
                 Help
               </Link>
@@ -94,21 +78,9 @@ const SideNav = () => {
       )}
       {session && user?.role === "Patient" && (
         <>
-          <div
-            className="
-              fixed col-span-1 min-h-95vh min-w-40vw
-             max-w-sm 
-             bg-slate12
-              text-olive2 
-              lg:block
-              "
-          >
-            <div
-              className="
-                  flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg
-                "
-            >
-               <Link
+          <div className="fixed col-span-1 min-h-95vh min-w-40vw max-w-sm bg-slate12 text-olive2 lg:block">
+            <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
+              <Link
                 href={"/dashboard/patient/create"}
                 className="flex flex-row items-center"
               >
@@ -129,7 +101,6 @@ const SideNav = () => {
                 <IdCardIcon className="mr-2" />
                 Active
               </Link>
-
               <Link
                 href={"/dashboard/patient/scheduled"}
                 className="flex flex-row items-center"
@@ -137,7 +108,6 @@ const SideNav = () => {
                 <CalendarIcon className="mr-2" />
                 Scheduled
               </Link>
-
               <Link
                 href={"/dashboard/patient/completed"}
                 className="flex flex-row items-center"
@@ -145,7 +115,6 @@ const SideNav = () => {
                 <ArchiveIcon className="mr-2" />
                 Completed
               </Link>
-
               <Link
                 href={"/dashboard/patient/canceled"}
                 className="flex flex-row items-center"
@@ -153,7 +122,6 @@ const SideNav = () => {
                 <StopIcon className="mr-2" />
                 Canceled
               </Link>
-
               <Link
                 href={"/dashboard/messages"}
                 className="flex flex-row items-center"
@@ -168,10 +136,7 @@ const SideNav = () => {
                 <PersonIcon className="mr-2" />
                 Account
               </Link>
-              <Link
-                href={"/help"}
-                className="flex flex-row items-center"
-              >
+              <Link href={"/help"} className="flex flex-row items-center">
                 <QuestionMarkIcon className="mr-2" />
                 Help
               </Link>
@@ -179,43 +144,11 @@ const SideNav = () => {
           </div>
         </>
       )}
-      {((session && !user?.role) || (session && !user?.address)) && (
-        <>
-          {/* <div className="fixed z-30 ml-0.5 w-64 shadow-sm">
-            <div className="dark:bg-gray-700 fixed z-50 grid grid-rows-1 bg-[hsl(0,0%,88%)] text-lg md:text-lg xl:text-xl">
-              <Link
-                href={"/account"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
-              >
-                Account
-              </Link>
-              <Link
-                href={"/help"}
-                className=" border-gray-200 dark:border-gray-800 border  py-1 px-4"
-              >
-                Help
-              </Link>
-            </div>
-          </div> */}
-        </>
-      )}
       {!session && (
         <>
-          <div
-            className="
-              fixed col-span-1 min-h-full min-w-40vw
-             max-w-sm 
-             bg-slate12
-              text-olive2 
-              lg:block
-              "
-          >
-            <div
-              className="
-                  flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg
-                "
-            >
-            <Link href={"/login"} className="flex flex-row items-center">
+          <div className="fixed col-span-1 min-h-full min-w-40vw max-w-sm bg-slate12 text-olive2 lg:block">
+            <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
+              <Link href={"/login"} className="flex flex-row items-center">
                 <EnterIcon className="mr-2" />
                 Login
               </Link>
@@ -223,10 +156,7 @@ const SideNav = () => {
                 <Pencil2Icon className="mr-2" />
                 Register
               </Link>
-              <Link
-                href={"/help"}
-                className="flex flex-row items-center"
-              >
+              <Link href={"/help"} className="flex flex-row items-center">
                 <QuestionMarkIcon className="mr-2" />
                 Help
               </Link>
