@@ -1,6 +1,8 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
+
+
 const AccordionEngine = () => {
   return (
     <>
@@ -8,14 +10,14 @@ const AccordionEngine = () => {
         //max-w-md is not a good way to do this
         //but it seems to breakout of the grid if I make it w-full
         //this is defintely a terrible way to do this - it will look bad on some mobile devices.
-        className="flex max-w-xs flex-col items-center md:max-w-lg"
+        className="flex h-10 max-w-xs flex-col items-center text-xl md:max-w-lg"
         type="single"
         defaultValue="item-1"
         collapsible
       >
-        <Accordion.Item className="min-w-full" value="item-1">
+        <Accordion.Item className="text-30 min-w-full" value="item-1">
           <Accordion.Trigger
-            className="flex min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  text-base 
+            className="flex h-10 min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3 
               text-olive12 hover:border-blue8 hover:bg-blue4 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
           >
             What is House Call?
@@ -25,33 +27,23 @@ const AccordionEngine = () => {
             className="text-mauve11 bg-mauve2 overflow-hidden py-2 px-2 text-[15px] data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp 
           "
           >
-            House Call connects patients and caregivers in the comfort of the
-            patient’s home.
-          </Accordion.Content>
-        </Accordion.Item>
-
-        <Accordion.Item className="min-w-full" value="item-2">
-          <Accordion.Trigger
-            className="flex min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  text-base 
-              text-olive12 hover:border-blue8 hover:bg-blue4 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-          >
-            Why use House Call?
-            <ChevronDownIcon className="text-olive12 transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180" />
-          </Accordion.Trigger>
-          <Accordion.Content
-            className="text-mauve11 bg-mauve2 overflow-hidden py-2 px-2 text-[15px] data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp 
-          "
-          >
-            Human connections are one of the most important aspects of a healthy
-            life. House Call reduces barriers by providing an application for
-            caregivers and patients to meet, chat, and decide on how to spend
-            their care sessions.
+            <p>
+              House Call connects patients and caregivers in the comfort of the
+              patient’s home.
+            </p>
+            <br></br>
+            <p>
+              Human connections are one of the most important aspects of a
+              healthy life. House Call reduces barriers by providing a
+              dashboard for caregivers and patients to meet, chat, and decide
+              on how to spend their care sessions.
+            </p>
           </Accordion.Content>
         </Accordion.Item>
 
         <Accordion.Item className="min-w-full" value="item-3">
           <Accordion.Trigger
-            className="flex min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  text-base 
+            className="flex h-10 min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  
               text-olive12 hover:border-blue8 hover:bg-blue4 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
           >
             What care session types are available?
@@ -97,7 +89,7 @@ const AccordionEngine = () => {
 
         <Accordion.Item className="min-w-full" value="item-4">
           <Accordion.Trigger
-            className="flex min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  text-base 
+            className="flex h-10 min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  
               text-olive12 hover:border-blue8 hover:bg-blue4 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
           >
             Who are Caregivers?
@@ -114,7 +106,7 @@ const AccordionEngine = () => {
 
         <Accordion.Item className="min-w-full" value="item-5">
           <Accordion.Trigger
-            className="flex min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  text-base 
+            className="flex h-10 min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  
               text-olive12 hover:border-blue8 hover:bg-blue4 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
           >
             Who are Patients?
@@ -131,7 +123,7 @@ const AccordionEngine = () => {
 
         <Accordion.Item className="min-w-full" value="item-6">
           <Accordion.Trigger
-            className="flex min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  text-base 
+            className="flex h-10 min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  
               text-olive12 hover:border-blue8 hover:bg-blue4 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
           >
             What is House Call&apos;s Mission
