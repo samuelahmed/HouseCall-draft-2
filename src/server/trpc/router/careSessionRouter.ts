@@ -2,10 +2,6 @@ import { router, publicProcedure, privateProcedure } from "../trpc";
 import { z } from "zod";
 import slug from "slug";
 
-//This router is for the following prisma models:
-//CareSession
-//PotentialCareSession
-
 export const careSessionRouter = router({
   // ************************
   // *       CREATE         *
@@ -99,9 +95,7 @@ export const careSessionRouter = router({
   // *        READ          *
   // ************************
 
-  // NOTE: THIS WILL PULL ALL USER INFORMATION
-  //       INCLUDING HASHED PASSWORDS.
-  // SHOULD THIS BE MOVED TO USER ROUTER?
+  //This will read all information including hashed passwords
   readOneUserByPotentialCareSessionCaregiverId: privateProcedure
     .input(z.object({ caregiverId: z.string() }))
     .query(async ({ ctx, input }) => {
@@ -186,12 +180,6 @@ export const careSessionRouter = router({
       return potentialCareSessions;
     }),
 
-  //deprecated was causing issue with rendering of header
-  // readAllSessions: publicProcedure.query(({ ctx }) => {
-  //   const careSessions = ctx.prisma.careSession.findMany({});
-  //   return careSessions;
-  // }),
-
   readAllSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       return null;
@@ -263,9 +251,6 @@ export const careSessionRouter = router({
     }
     const careSessions = ctx.prisma.careSession.findMany({
       where: {
-        //If there is no parameter here, it will pull all the sessions and return in an array.
-        //However it tottaly destroys the UI for the navbar header and I have zero idea why.
-        //Copilot is telling me that the navbar is being rendered before the data is being pulled from the database.
         careSessionStatus: {
           in: ["New", "Active"],
         },
@@ -327,56 +312,53 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
-  readAllHistoricalSessionsByUser: privateProcedure.query(({ ctx }) => {
-    if (!ctx.session || !ctx.session.user) {
-      return null;
-    }
-    const careSessions = ctx.prisma.careSession.findMany({
-      where: {
-        userId: ctx.session.user.id,
-        careSessionStatus: {
-          in: ["New", "Active", "Scheduled", "Canceled"],
-        },
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            username: true,
-            role: true,
-          },
-        },
-      },
-    });
-    return careSessions;
-  }),
+  // DEPRECATEDreadAllHistoricalSessionsByUser: privateProcedure.query(({ ctx }) => {
+  //   if (!ctx.session || !ctx.session.user) {
+  //     return null;
+  //   }
+  //   const careSessions = ctx.prisma.careSession.findMany({
+  //     where: {
+  //       userId: ctx.session.user.id,
+  //       careSessionStatus: {
+  //         in: ["New", "Active", "Scheduled", "Canceled"],
+  //       },
+  //     },
+  //     include: {
+  //       user: {
+  //         select: {
+  //           id: true,
+  //           username: true,
+  //           role: true,
+  //         },
+  //       },
+  //     },
+  //   });
+  //   return careSessions;
+  // }),
 
-  readAllScheduledPotentialSessionsByUser: privateProcedure.query(({ ctx }) => {
-    if (!ctx.session || !ctx.session.user) {
-      return null;
-    }
-    const careSessions = ctx.prisma.careSession.findMany({
-      where: {
-        userId: ctx.session.user.id,
-        careSessionStatus: {
-          in: ["Scheduled"],
-        },
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            username: true,
-            role: true,
-          },
-        },
-      },
-    });
-    return careSessions;
-  }),
-
-  //routes below are doing so dumb stuff I think
-  //DELETE THEM ASAP
+  // DEPRECATEDreadAllScheduledPotentialSessionsByUser: privateProcedure.query(({ ctx }) => {
+  //   if (!ctx.session || !ctx.session.user) {
+  //     return null;
+  //   }
+  //   const careSessions = ctx.prisma.careSession.findMany({
+  //     where: {
+  //       userId: ctx.session.user.id,
+  //       careSessionStatus: {
+  //         in: ["Scheduled"],
+  //       },
+  //     },
+  //     include: {
+  //       user: {
+  //         select: {
+  //           id: true,
+  //           username: true,
+  //           role: true,
+  //         },
+  //       },
+  //     },
+  //   });
+  //   return careSessions;
+  // }),
 
   readAllAppliedPotentialSessionsByUser: privateProcedure.query(
     async ({ ctx }) => {
@@ -388,7 +370,7 @@ export const careSessionRouter = router({
           id: ctx.session.user.id,
         },
       });
-      console.log("user" + user);
+      // console.log("user" + user);
       if (!user) {
         throw new Error("Meow! user not found.");
       }
@@ -414,7 +396,7 @@ export const careSessionRouter = router({
     }
   ),
 
-  DEPRECATEDreadAllScheduledPotentialSessionsByUser: privateProcedure.query(
+  readAllScheduledPotentialSessionsByUser: privateProcedure.query(
     async ({ ctx }) => {
       if (!ctx.session || !ctx.session.user) {
         throw new Error("Meow! Not authorized.");
@@ -450,7 +432,7 @@ export const careSessionRouter = router({
     }
   ),
 
-  DEPRECATEDreadAllHistoricalSessionsByUser: privateProcedure.query(
+  readAllHistoricalSessionsByUser: privateProcedure.query(
     async ({ ctx }) => {
       if (!ctx.session || !ctx.session.user) {
         throw new Error("Meow! Not authorized.");
@@ -469,8 +451,6 @@ export const careSessionRouter = router({
           where: {
             caregiverId: userId,
             //ADD STATUS: COMPLETED WHEN IT IS ADDED TO THE SCHEMA
-            // careSessionStatus: "accepted"
-            //why is this not working?
           },
         });
       const careSessionIds = currentUserPotentialCareSessions.map(
@@ -487,7 +467,6 @@ export const careSessionRouter = router({
     }
   ),
 
-  //routes above are doing so dumb stuff I think
 
   // ************************
   // *       UPDATE         *
