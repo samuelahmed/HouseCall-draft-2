@@ -1,14 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "../components/layout/navLayout";
-import { useState } from "react";
-import Footer from "@/components/layout/navMenu";
-import LoginForm from "@/components/forms/loginForm";
 import RegisterForm from "@/components/forms/registerForm";
 import { useSession } from "next-auth/react";
 import NavMenu from "@/components/layout/navMenu";
 
-const Register: NextPage = (props) => {
+const Register: NextPage = () => {
   const { data: session } = useSession();
 
   return (
@@ -24,8 +21,9 @@ const Register: NextPage = (props) => {
               <NavMenu />
               <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
                 <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
-                  {/* display nothing here since user is already logged in */}
-                  {/* maybe add a logout button in the future */}
+                  {/* display nothing here since user is already registered */}
+                  {/* maybe add a create second account link in future */}
+                  {/* this would be the way for people to have both patient and caregiver accounts */}
                 </div>
               </div>
             </main>

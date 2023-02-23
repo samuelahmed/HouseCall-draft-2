@@ -1,8 +1,6 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-
-
 const AccordionEngine = () => {
   return (
     <>
@@ -34,13 +32,12 @@ const AccordionEngine = () => {
             <br></br>
             <p>
               Human connections are one of the most important aspects of a
-              healthy life. House Call reduces barriers by providing a
-              dashboard for caregivers and patients to meet, chat, and decide
-              on how to spend their care sessions.
+              healthy life. House Call reduces barriers by providing a dashboard
+              for caregivers and patients to meet, chat, and decide on how to
+              spend their care sessions.
             </p>
           </Accordion.Content>
         </Accordion.Item>
-
         <Accordion.Item className="min-w-full" value="item-3">
           <Accordion.Trigger
             className="flex h-10 min-w-full cursor-pointer items-center justify-center border border-solid border-blue7 bg-blue3  
@@ -66,20 +63,17 @@ const AccordionEngine = () => {
               park or more specialized for patient needs.
             </p>
             <br></br>
-
             <p>
               <span className="font-semibold"> Personal Care:</span> Spending
               time together, to helping with cleaning and washing, helping sort
               bills and mail.
             </p>
             <br></br>
-
             <p>
               <span className="font-semibold"> Transportation: </span> Helping
               patients get to places in a safe and reliable way.
             </p>
             <br></br>
-
             <p>
               <span className="font-semibold"> Other:</span> Whatever the
               caregiver and patient find best suits their needs.

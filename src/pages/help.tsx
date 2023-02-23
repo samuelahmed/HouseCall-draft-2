@@ -2,10 +2,8 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "../components/layout/navLayout";
 import { useSession } from "next-auth/react";
-import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
 import AccordionEngine from "@/components/help/accordion";
-import ContactUs from "@/components/help/contactUs";
 
 const Help: NextPage = () => {
   const { data: session } = useSession();
@@ -28,7 +26,6 @@ const Help: NextPage = () => {
                     <AccordionEngine />
                   </div>
                   <div></div>
-
                 </div>
               </div>
             </main>

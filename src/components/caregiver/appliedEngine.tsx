@@ -1,12 +1,10 @@
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 
 const AppliedEngine = () => {
   const router = useRouter();
   const [rightCard, setRightCard] = useState(1);
-  // const { data: session } = useSession();
   const { data, isLoading } =
     trpc.careSessionAPIs.readAllAppliedPotentialSessionsByUser.useQuery();
 
@@ -60,7 +58,6 @@ const AppliedEngine = () => {
                 return (
                   <li
                     key={id}
-                    // this className makes the cards
                     className="mx-2 mb-2 items-center justify-around rounded-sm border
                   border-blue6 bg-blue1 px-2 text-olive12 hover:bg-blue2 dark:border-darkBlue6
                  dark:bg-darkBlue1 dark:text-darkOlive12 dark:hover:bg-darkBlue2 md:cursor-pointer"
@@ -133,7 +130,6 @@ const AppliedEngine = () => {
     dark:border-darkBlue6 dark:bg-darkBlue2 dark:text-darkOlive12 md:col-span-1 md:block"
       >
         {/* Right Table */}
-        {/* this className is for the right card */}
         <div
           className="mx-2 mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-sm border 
     border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1"

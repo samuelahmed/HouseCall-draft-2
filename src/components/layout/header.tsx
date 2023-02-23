@@ -14,14 +14,14 @@ const Header = ({
 }) => {
   const { data: session } = useSession();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
-  // console.log(session)
+  const router = useRouter();
 
-  //Get name of current end of url
-  //This should be done in a better way.
+  //Gets name of current pathname to set as header title
+  //This should be done in a better way
   const endRoute1 =
-    useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 1];
+    router.pathname.split("/")[router.pathname.split("/").length - 1];
   const endRoute2 =
-    useRouter().pathname.split("/")[useRouter().pathname.split("/").length - 2];
+    router.pathname.split("/")[router.pathname.split("/").length - 2];
   let currentRoute = endRoute1;
   if (endRoute1 === "[slug]" && endRoute2 === "careSession") {
     currentRoute = "Care Session";
@@ -29,8 +29,6 @@ const Header = ({
   if (endRoute1 === "[slug]" && endRoute2 === "caregiver") {
     currentRoute = "Caregiver";
   }
-
-  const router = useRouter();
 
   return (
     <div className="flex-cols-3 sticky top-0 z-50 flex items-center  justify-between bg-blue12 py-1 md:grid md:grid-cols-3">
@@ -60,11 +58,9 @@ const Header = ({
           )}
         </div>
       </div>
-
       <div className="flex px-1 text-xl capitalize text-darkOlive12 md:justify-center">
         {currentRoute}
       </div>
-
       <div className="flex justify-end ">
         <div className="hidden items-center text-darkOlive12 md:flex">
           {session &&
@@ -72,7 +68,6 @@ const Header = ({
               <span className="text-red-600">Meow! No Name</span>
             ))}
         </div>
-
         <ThemeManager />
         <AuthShowcase />
       </div>

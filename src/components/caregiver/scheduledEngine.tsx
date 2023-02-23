@@ -1,21 +1,12 @@
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 
 const ScheduledEngine = () => {
   const router = useRouter();
   const [rightCard, setRightCard] = useState(1);
-  // const { data: session } = useSession();
-
-
-  //something is acting strange with this route.
-  // It may have to do with the fact that I am using the same route for two different pages.
-  // but more likely it has to do with the fact that the data it is pulling may not exist as defined.
-  const { data, isLoading } = trpc.careSessionAPIs.readAllScheduledPotentialSessionsByUser.useQuery();
-
-//read all sessions that are applied
-// console.log(session)
+  const { data, isLoading } =
+    trpc.careSessionAPIs.readAllScheduledPotentialSessionsByUser.useQuery();
 
   const [inputs, setInputs] = useState({
     title: "",
@@ -67,7 +58,6 @@ const ScheduledEngine = () => {
                 return (
                   <li
                     key={id}
-                    // this className makes the cards
                     className="mx-2 mb-2 items-center justify-around rounded-sm border
                   border-blue6 bg-blue1 px-2 text-olive12 hover:bg-blue2 dark:border-darkBlue6
                  dark:bg-darkBlue1 dark:text-darkOlive12 dark:hover:bg-darkBlue2 md:cursor-pointer"
@@ -140,7 +130,6 @@ const ScheduledEngine = () => {
     dark:border-darkBlue6 dark:bg-darkBlue2 dark:text-darkOlive12 md:col-span-1 md:block"
       >
         {/* Right Table */}
-        {/* this className is for the right card */}
         <div
           className="mx-2 mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-sm border 
     border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1"

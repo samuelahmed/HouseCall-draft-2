@@ -84,7 +84,6 @@ const Slug: NextPage = () => {
     onSuccess: () => {
       //Trigger some notifications here?
       router.push("/dashboard/patient/scheduled");
-
       // router.reload();
     },
   });

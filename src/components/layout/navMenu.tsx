@@ -39,7 +39,6 @@ const NavMenu = () => {
                 <IdCardIcon className="mr-2" />
                 Applied
               </Link>
-
               <Link
                 href={"/dashboard/caregiver/scheduled"}
                 className="flex flex-row items-center"
@@ -47,7 +46,6 @@ const NavMenu = () => {
                 <CalendarIcon className="mr-2" />
                 Scheduled
               </Link>
-
               <Link
                 href={"/dashboard/caregiver/history"}
                 className="flex flex-row items-center"
@@ -55,7 +53,6 @@ const NavMenu = () => {
                 <ArchiveIcon className="mr-2" />
                 History
               </Link>
-
               <Link
                 href={"/dashboard/messages"}
                 className="flex flex-row items-center"
@@ -70,10 +67,7 @@ const NavMenu = () => {
                 <PersonIcon className="mr-2" />
                 Account
               </Link>
-              <Link
-                href={"/help"}
-                className="flex flex-row items-center"
-              >
+              <Link href={"/help"} className="flex flex-row items-center">
                 <QuestionMarkIcon className="mr-2" />
                 Help
               </Link>
@@ -106,8 +100,6 @@ const NavMenu = () => {
                 <IdCardIcon className="mr-2" />
                 Active
               </Link>
-
-
               <Link
                 href={"/dashboard/patient/scheduled"}
                 className="flex flex-row items-center"
@@ -130,7 +122,6 @@ const NavMenu = () => {
                 <StopIcon className="mr-2" />
                 Canceled
               </Link>
-
               <Link
                 href={"/dashboard/messages"}
                 className="flex flex-row items-center"
@@ -145,10 +136,7 @@ const NavMenu = () => {
                 <PersonIcon className="mr-2" />
                 Account
               </Link>
-              <Link
-                href={"/help"}
-                className="flex flex-row items-center"
-              >
+              <Link href={"/help"} className="flex flex-row items-center">
                 <QuestionMarkIcon className="mr-2" />
                 Help
               </Link>
@@ -168,10 +156,7 @@ const NavMenu = () => {
                 <Pencil2Icon className="mr-2" />
                 Register
               </Link>
-              <Link
-                href={"/help"}
-                className="flex flex-row items-center"
-              >
+              <Link href={"/help"} className="flex flex-row items-center">
                 <QuestionMarkIcon className="mr-2" />
                 Help
               </Link>
