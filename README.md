@@ -17,19 +17,16 @@
  ┃ ┃ ┣ 📜loginForm.tsx
  ┃ ┃ ┗ 📜registerForm.tsx
  ┃ ┣ 📂help
+ ┃ ┃ ┣ 📜accordion.tsx
  ┃ ┃ ┣ 📜contactUs.tsx
  ┃ ┃ ┗ 📜supportDocumentation.tsx
  ┃ ┣ 📂layout
+ ┃ ┃ ┣ 📜authShowcase.tsx
  ┃ ┃ ┣ 📜header.tsx
  ┃ ┃ ┣ 📜navLayout.tsx
  ┃ ┃ ┣ 📜navMenu.tsx
  ┃ ┃ ┣ 📜sideNav.tsx
  ┃ ┃ ┗ 📜themeManager.tsx
- ┃ ┣ 📂messages
- ┃ ┃ ┣ 📜demoConversationTwo.tsx
- ┃ ┃ ┣ 📜demoConversationTwoCopy.tsx
- ┃ ┃ ┣ 📜messageDashboardConnectionCard.tsx
- ┃ ┃ ┗ 📜messageDashboardConnectionCardJohn.tsx
  ┃ ┗ 📂patient
  ┃ ┃ ┣ 📜activeEngine.tsx
  ┃ ┃ ┣ 📜canceledEngine.tsx
