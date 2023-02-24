@@ -6,7 +6,6 @@ import {
   ChevronDownIcon,
   ChevronUpIcon,
 } from "@radix-ui/react-icons";
-// import './styles.css';
 
 const SelectSessionType = () => (
   <Select.Root>
@@ -14,9 +13,10 @@ const SelectSessionType = () => (
       className="SelectTrigger flex flex-row items-center space-x-1"
       aria-label="Food"
     >
-      <Select.Value 
-      className="placeholder-olive10 dark:placeholder-darkOlive10"
-      placeholder="Session Type" />
+      <Select.Value
+        className="placeholder-olive10 dark:placeholder-darkOlive10"
+        placeholder="Session Type"
+      />
       <Select.Icon className="SelectIcon">
         <ChevronDownIcon />
       </Select.Icon>
@@ -40,7 +40,6 @@ const SelectSessionType = () => (
   </Select.Root>
 );
 
-// Figure out how this is working in detail.
 // eslint-disable-next-line react/display-name
 const SelectItem = React.forwardRef(
   (
