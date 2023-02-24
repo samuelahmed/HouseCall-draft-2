@@ -75,6 +75,8 @@ module.exports = {
       },
       minWidth: {
         '40vw': '40vw',
+        '30vw': '30vw',
+
       },
       keyframes: {
         slideDown: {

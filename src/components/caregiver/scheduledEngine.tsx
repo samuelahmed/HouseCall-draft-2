@@ -130,6 +130,7 @@ const ScheduledEngine = () => {
     dark:border-darkBlue6 dark:bg-darkBlue2 dark:text-darkOlive12 md:col-span-1 md:block"
       >
         {/* Right Table */}
+        {/* this className is for the right card */}
         <div
           className="mx-2 mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-sm border 
     border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1"

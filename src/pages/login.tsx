@@ -2,9 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "../components/layout/navLayout";
 import { useSession } from "next-auth/react";
-// import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
-// import AccountEditModal from "@/components/account/accountEditModal";
 import LoginForm from "@/components/forms/loginForm";
 
 const Account: NextPage = () => {
