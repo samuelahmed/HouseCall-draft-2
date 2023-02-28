@@ -1,9 +1,11 @@
 import { useSession } from "next-auth/react";
 import ThemeManager from "./themeManager";
-import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
+import { MenuIcon } from "@heroicons/react/outline";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 import AuthShowcase from "./authShowcase";
+
+
 
 const Header = ({
   showNav,
@@ -34,7 +36,7 @@ const Header = ({
     <div className="flex-cols-3 sticky top-0 z-50 flex items-center  justify-between bg-blue12 py-1 md:grid md:grid-cols-3">
       <div className="flex justify-start">
         <div className="md:hidden md:pl-0">
-          <Bars3CenterLeftIcon
+          <MenuIcon
             className="h-8 w-8 cursor-pointer text-darkOlive12"
             onClick={() => setShowNav(!showNav)}
           />

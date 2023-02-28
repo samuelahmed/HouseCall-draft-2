@@ -4,6 +4,11 @@ import { useState } from "react";
 import type { CareSession } from "@prisma/client";
 import { useRouter } from "next/router";
 import * as Label from "@radix-ui/react-label";
+import DateEngine from "../dateSelect/dateEngine";
+import { OverlayContainer } from "@react-aria/overlays";
+import { DatePicker } from "../dateSelect/datePicker";
+import { today, getLocalTimeZone } from "@internationalized/date";
+import TimeEngine from "../dateSelect/timeEngine";
 
 const CreateSession = () => {
   const [items, setItems] = useState<CareSession[]>([]);
@@ -115,11 +120,29 @@ const CreateSession = () => {
                   />
                 </div>
 
+                <div className="">
+
+                  <DateEngine />
+                </div>
+
+                <div className="">
+
+                  <TimeEngine />
+                </div>
+
                 <div className="flex-col-1 flex max-w-fit text-sm">
+                  {/* <OverlayContainer> */}
+
                   <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                     <Label.Root className="px-0.5" htmlFor="firstName">
                       Start Time
                     </Label.Root>
+                    {/* <DatePicker
+                      className="fixed min-h-screen"
+                      label="Appointment date"
+                      minValue={today(getLocalTimeZone())}
+                    /> */}
+
                     <input
                       className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
                       type="text"
@@ -127,6 +150,9 @@ const CreateSession = () => {
                       defaultValue=""
                     />
                   </div>
+                  {/* </OverlayContainer> */}
+
+
                   <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                     <Label.Root className="px-0.5" htmlFor="firstName">
                       End Time
