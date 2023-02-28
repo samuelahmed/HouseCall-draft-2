@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useLocale } from "@react-aria/i18n";
 import { useTimeFieldState } from "@react-stately/datepicker";
 import { useTimeField } from "@react-aria/datepicker";
-import { DateSegment } from "./DateSegment";
+import { DateSegment } from "./dateSegment";
 
 export function TimeField(props) {
   let { locale } = useLocale();
