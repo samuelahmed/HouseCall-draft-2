@@ -10,6 +10,7 @@ module.exports = {
       blue2: '#f5faff', 
       blue3: '#edf6ff',
       blue4: '#e1f0ff',
+      blue5: '#cee7fe',
       blue6: '#b7d9f8',
       blue7: '#96c7f2',
       blue8: '#5eb0ef',
@@ -22,6 +23,10 @@ module.exports = {
       darkBlue2: '#0f1b2d',  
       darkBlue3: '#10243e',
       darkBlue4: '#102a4c',
+
+      darkBlue5: '#0f3058',
+
+
       darkBlue6: '#0d3868',
       darkBlue7: '#0a4481',
       darkBlue8: '#0954a5',
