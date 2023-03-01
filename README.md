@@ -1,7 +1,6 @@
 
 ```
 📦src
-
  ┣ 📂components
  ┃ ┣ 📂account
  ┃ ┃ ┗ 📜accountEditModal.tsx
@@ -10,6 +9,17 @@
  ┃ ┃ ┣ 📜discoverEngine.tsx
  ┃ ┃ ┣ 📜historyEngine.tsx
  ┃ ┃ ┗ 📜scheduledEngine.tsx
+ ┃ ┣ 📂dateSelect
+ ┃ ┃ ┣ 📜button.js
+ ┃ ┃ ┣ 📜calendar.js
+ ┃ ┃ ┣ 📜calendarCell.js
+ ┃ ┃ ┣ 📜calendarGrid.js
+ ┃ ┃ ┣ 📜dateEngine.js
+ ┃ ┃ ┣ 📜dateField.js
+ ┃ ┃ ┣ 📜datePicker.js
+ ┃ ┃ ┣ 📜dateSegment.js
+ ┃ ┃ ┣ 📜popover.js
+ ┃ ┃ ┗ 📜timeField.js
  ┃ ┣ 📂engines
  ┃ ┃ ┣ 📜searchEngine.tsx
  ┃ ┃ ┗ 📜selectSessionType.tsx
@@ -25,12 +35,14 @@
  ┃ ┃ ┣ 📜navMenu.tsx
  ┃ ┃ ┣ 📜sideNav.tsx
  ┃ ┃ ┗ 📜themeManager.tsx
- ┃ ┗ 📂patient
+ ┃ ┣ 📂patient
  ┃ ┃ ┣ 📜activeEngine.tsx
  ┃ ┃ ┣ 📜canceledEngine.tsx
+ ┃ ┃ ┣ 📜createCareSession copy.tsx
  ┃ ┃ ┣ 📜createCareSession.tsx
  ┃ ┃ ┣ 📜newEngine.tsx
  ┃ ┃ ┗ 📜patientScheduledEngine.tsx
+ ┃ ┗ 📂timeSelect
 
  ┣ 📂env
  ┃ ┣ 📜client.mjs
@@ -61,7 +73,8 @@
  ┃ ┃ ┃ ┣ 📜completed.tsx
  ┃ ┃ ┃ ┣ 📜create.tsx
  ┃ ┃ ┃ ┣ 📜new.tsx
- ┃ ┃ ┃ ┗ 📜scheduled.tsx
+ ┃ ┃ ┃ ┣ 📜scheduled.tsx
+ ┃ ┃ ┃ ┗ 📜test.tsx
  ┃ ┃ ┣ 📜account.tsx
  ┃ ┃ ┗ 📜messages.tsx
  ┃ ┣ 📜_app.tsx
@@ -84,7 +97,7 @@
  ┃ ┃ ┃ ┗ 📜userRouter.ts
  ┃ ┃ ┣ 📜context.ts
  ┃ ┃ ┗ 📜trpc.ts
- 
+
  ┣ 📂styles
  ┃ ┗ 📜globals.css
  ┣ 📂types
@@ -93,7 +106,6 @@
  ┃ ┗ 📜trpc.ts
  ┣ 📂validation
  ┃ ┗ 📜auth.ts
-
  ```
 
 ![db Schema](https://github.com/samuelahmed/HouseCall-draft-2/blob/2f0593251bf01309be4efa881d28aa6292c9002c/prisma/dbImg/feb3_2023.png?raw=true "DB Schema")
