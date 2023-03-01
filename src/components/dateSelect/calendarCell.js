@@ -54,12 +54,15 @@ export function CalendarCell({ state, date }) {
         className={`w-10 h-10 outline-none group ${
           isRoundedLeft ? "rounded-l-full" : ""
         } ${isRoundedRight ? "rounded-r-full" : ""} ${
-          isSelected ? (isInvalid ? "bg-red-300" : "bg-violet-300") : ""
+          //this will be the selected date after the user clicks on it
+          //isInvalid I assume are earlier in the month? it is the first day and calendar does not go to past months
+          //so there is no way to easily test this. or is there? 
+          isSelected ? (isInvalid ? "bg-blue12" : "bg-darkOlive10") : ""
         } ${isDisabled ? "disabled" : ""}`}
       >
         <div
           className={`w-full h-full rounded-full flex items-center justify-center ${
-            isDisabled && !isInvalid ? "text-gray-400" : ""
+            isDisabled && !isInvalid ? "" : ""
           } ${
             // Focus ring, visible while the cell has keyboard focus.
             isFocusVisible
@@ -67,10 +70,11 @@ export function CalendarCell({ state, date }) {
               : ""
           } ${
             // Darker selection background for the start and end.
+            //why is this overwriting the one above? 
             isSelectionStart || isSelectionEnd
               ? isInvalid
-                ? "bg-red-600 text-white hover:bg-red-700"
-                : "bg-violet-600 text-white hover:bg-violet-700"
+                ? "bg-darkOlive10 text-white hover:bg-darkOlive2"
+                : "bg-blue2 text-white hover:bg-violet-700"
               : ""
           } ${
             // Hover state for cells in the middle of the range.
