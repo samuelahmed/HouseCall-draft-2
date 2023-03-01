@@ -12,7 +12,7 @@ export function CalendarGrid({ state, ...props }) {
 
   return (
     <table {...gridProps} cellPadding="0" className="flex-1">
-      <thead {...headerProps} className="text-gray-600">
+      <thead {...headerProps} className="text-olive12 dark:text-darkOlive12">
         <tr>
           {weekDays.map((day, index) => (
             <th className="text-center" key={index}>

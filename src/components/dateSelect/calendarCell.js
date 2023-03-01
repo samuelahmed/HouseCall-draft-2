@@ -14,7 +14,7 @@ export function CalendarCell({ state, date }) {
     isOutsideVisibleRange,
     isDisabled,
     formattedDate,
-    isInvalid
+    isInvalid,
   } = useCalendarCell({ date }, state, ref);
 
   // The start and end date of the selected range will have
@@ -45,47 +45,48 @@ export function CalendarCell({ state, date }) {
   return (
     <td
       {...cellProps}
-      className={`py-0.5 relative ${isFocusVisible ? "z-10" : "z-0"}`}
+      className={`relative py-0.5 ${isFocusVisible ? "z-10" : "z-0"}`}
     >
       <div
         {...mergeProps(buttonProps, focusProps)}
         ref={ref}
         hidden={isOutsideVisibleRange}
-        className={`w-10 h-10 outline-none group ${
+        className={`group h-10 w-10 outline-none ${
           isRoundedLeft ? "rounded-l-full" : ""
         } ${isRoundedRight ? "rounded-r-full" : ""} ${
           //this will be the selected date after the user clicks on it
           //isInvalid I assume are earlier in the month? it is the first day and calendar does not go to past months
-          //so there is no way to easily test this. or is there? 
-          isSelected ? (isInvalid ? "bg-blue12" : "bg-darkOlive10") : ""
+          //so there is no way to easily test this. or is there?
+          isSelected ? (isInvalid ? "" : "") : ""
         } ${isDisabled ? "disabled" : ""}`}
       >
         <div
-          className={`w-full h-full rounded-full flex items-center justify-center ${
+          className={`flex h-full w-full items-center justify-center rounded-full ${
             isDisabled && !isInvalid ? "" : ""
           } ${
             // Focus ring, visible while the cell has keyboard focus.
-            isFocusVisible
-              ? "ring-2 group-focus:z-2 ring-violet-600 ring-offset-2"
-              : ""
+            isFocusVisible ? "" : ""
           } ${
             // Darker selection background for the start and end.
-            //why is this overwriting the one above? 
+            //why is this overwriting the one above?
             isSelectionStart || isSelectionEnd
               ? isInvalid
-                ? "bg-darkOlive10 text-white hover:bg-darkOlive2"
-                : "bg-blue2 text-white hover:bg-violet-700"
+                ? ""
+                : "bg-blue7 text-olive12 hover:bg-blue3 dark:bg-darkBlue7 dark:text-darkOlive12"
               : ""
           } ${
             // Hover state for cells in the middle of the range.
+            //what is this doing?
             isSelected && !isDisabled && !(isSelectionStart || isSelectionEnd)
               ? isInvalid
-                ? "hover:bg-red-400"
-                : "hover:bg-violet-400"
+                ? ""
+                : ""
               : ""
           } ${
             // Hover state for non-selected cells.
-            !isSelected && !isDisabled ? "hover:bg-violet-100" : ""
+            !isSelected && !isDisabled
+              ? "hover:bg-blue5 dark:hover:bg-darkBlue5"
+              : ""
           } cursor-default`}
         >
           {formattedDate}
