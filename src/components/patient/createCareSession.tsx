@@ -175,11 +175,11 @@ const CreateSession = () => {
                   />
                 </div>
 
-                <div className="">
+                <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
                   <DateEngine />
                 </div>
 
-                <div className="flex-col-1 flex max-w-fit text-sm">
+                <div className="  mx-4 mb-2 flex max-w-fit flex-row space-x-4 text-sm">
                   <TimeField
                     label="Session Start"
 
