@@ -4,11 +4,20 @@ import { useState } from "react";
 import type { CareSession } from "@prisma/client";
 import { useRouter } from "next/router";
 import * as Label from "@radix-ui/react-label";
+import DateEngine from "../dateSelect/dateEngine";
+// import SessionStartTime from "../dateSelect/sessionStartTime";
+// import SessionEndTime from "../dateSelect/sessionEndTime";
+import { TimeField } from "../dateSelect/timeField";
+import { time } from "console";
+import { useTimeField } from "@react-aria/datepicker";
+import { Time } from "@internationalized/date";
 
+// turn off strict mode
 const CreateSession = () => {
   const [items, setItems] = useState<CareSession[]>([]);
   const router = useRouter();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
+  // let [value, setValue] = useState();
 
   const { mutate } = trpc.careSessionAPIs.createOneCareSession.useMutation({
     onSuccess(newSession) {
@@ -18,6 +27,29 @@ const CreateSession = () => {
     },
   });
 
+  type StartTime = {
+    hour: number;
+    minute: number;
+    second: number;
+  };
+
+  const [startTime, setStartTime] = useState<StartTime>({
+    hour: 0,
+    minute: 0,
+    second: 0,
+  });
+
+  type EndTime = {
+    hour: number;
+    minute: number;
+    second: number;
+  };
+  const [endTime, setEndTime] = useState<EndTime>({
+    hour: 0,
+    minute: 0,
+    second: 0,
+  });
+
   const [inputs, setInputs] = useState({
     name: data?.username || "",
     address: data?.address || "",
@@ -25,13 +57,32 @@ const CreateSession = () => {
     overview: "",
     title: "",
     hourlyRate: 20,
-    totalHours: 1,
+    totalHours: Math.ceil(endTime.hour - startTime.hour),
     totalCompensation: 20,
     acceptedCaregiverId: "",
     careSessionStatus: "",
   });
 
-  const totalComp = inputs.totalHours * inputs.hourlyRate;
+  useEffect(() => {
+    // const hours = endTime && startTime ? endTime.hour - startTime.hour : 0;
+    // const minutes =
+    //   endTime && startTime ? endTime.minute - startTime.minute : 0;
+    // const seconds =
+    //   endTime && startTime ? endTime.second - startTime.second : 0;
+    const totalHours = Math.ceil(
+      endTime.hour +
+        endTime.minute / 60 -
+        (startTime.hour + startTime.minute / 60)
+    );
+    const totalCompensation = totalHours * inputs.hourlyRate;
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      totalHours,
+      totalCompensation,
+    }));
+  }, [startTime, endTime, inputs.hourlyRate]);
+
+  const totalComp = Math.ceil(inputs.totalHours * inputs.hourlyRate);
 
   useEffect(() => {
     setInputs((prev) => {
@@ -54,7 +105,28 @@ const CreateSession = () => {
   const publish = () => {
     mutate(inputs);
   };
-  console.log(inputs.title);
+  // console.log(inputs.title);
+  // console.log(endTime)
+  // console.log('session end time' + endTime.SessionEndTime)
+  // console.log(startTime)
+  // console.log('session start time' + startTime.SessionStartTime)
+  // console.log(TimeField())
+  // console.log(Time())
+  // console.log(TimeField)
+  // console.log(TimeField.arguments.Time)
+  // console.log(hours)
+  // console.log(Time.arguments.Time.hours)
+  // console.log(startTime);
+  // console.log(`Hour: ${startTime.hour}`);
+  // console.log(`Minute: ${startTime.minute}`);
+  // console.log(`Second: ${startTime.second}`);
+  // console.log(`Hour: ${endTime.hour}`);
+  // console.log(`Minute: ${endTime.minute}`);
+  // console.log(`Second: ${endTime.second}`);
+  // const total = endTime.hour - startTime.hour;
+  // console.log("total Hours" + total);
+  // console.log(inputs.totalHours);
+
   return (
     <>
       {/* <div  className=" max-h-fit overflow-scroll border 
@@ -104,40 +176,22 @@ const CreateSession = () => {
                 </div>
 
                 <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    Date
-                  </Label.Root>
-                  <input
-                    className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                    type="text"
-                    id="firstName"
-                    defaultValue=""
-                  />
+                  <DateEngine />
                 </div>
 
-                <div className="flex-col-1 flex max-w-fit text-sm">
-                  <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
-                    <Label.Root className="px-0.5" htmlFor="firstName">
-                      Start Time
-                    </Label.Root>
-                    <input
-                      className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                      type="text"
-                      id="firstName"
-                      defaultValue=""
-                    />
-                  </div>
-                  <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
-                    <Label.Root className="px-0.5" htmlFor="firstName">
-                      End Time
-                    </Label.Root>
-                    <input
-                      className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                      type="text"
-                      id="firstName"
-                      defaultValue=""
-                    />
-                  </div>
+                <div className="  mx-4 mb-2 flex max-w-fit flex-row space-x-4 text-sm">
+                  <TimeField
+                    label="Session Start"
+
+                    value={startTime}
+                    onChange={setStartTime}
+                  />
+
+                  <TimeField
+                    label="Session End"
+                    value={endTime}
+                    onChange={setEndTime}
+                  />
                 </div>
 
                 <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
@@ -260,14 +314,14 @@ const CreateSession = () => {
                       id="firstName"
                       type="number"
                       value={inputs.totalHours}
-                      onChange={(e) => {
-                        setInputs((prev) => ({
-                          ...prev,
-                          totalHours: parseFloat(e.target.value),
-                          totalCompensation:
-                            prev.hourlyRate * parseFloat(e.target.value),
-                        }));
-                      }}
+                      // onChange={(e) => {
+                      //   setInputs((prev) => ({
+                      //     ...prev,
+                      //     totalHours: parseFloat(e.target.value),
+                      //     totalCompensation:
+                      //       prev.hourlyRate * parseFloat(e.target.value),
+                      //   }));
+                      // }}
                     />
                   </div>
                 </div>
@@ -292,9 +346,10 @@ const CreateSession = () => {
               </div>
             </div>
           </div>
-          <div></div>
         </div>
+        <div></div>
       </div>
+      {/* </div>  */}
 
       {/* </div> */}
     </>

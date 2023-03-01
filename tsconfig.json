@@ -22,8 +22,10 @@
       "@/server/*": ["server/*"],
       "@/utils/*": ["utils/*"],
       "@/validation/*": ["validation/*"]
-    }
+    } 
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", "src/components/dateSelect/dateEngine.js", "src/components/dateSelect/dateSegment.js", "src/components/dateSelect/popover.js", "src/components/dateSelect/datePicker.js", "src/components/dateSelect/dateField.js", "src/components/dateSelect/calendarGrid.js", "src/components/dateSelect/calendarCell.js", "src/components/dateSelect/calendar.js", "src/components/dateSelect/button.js",  
+  // "src/components/dateSelect/timeField.js", "src/components/dateSelect/timePicker.js", "src/components/dateSelect/timeEngine.js", "src/components/dateSelect/timeGrid.js", "src/components/dateSelect/timeEngine.js",
+],
   "exclude": ["node_modules"]
 }
