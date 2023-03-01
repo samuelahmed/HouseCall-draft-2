@@ -23,9 +23,9 @@ export function Calendar(props) {
   );
 
   return (
-    <div {...calendarProps} ref={ref} className="inline-block text-gray-800">
+    <div {...calendarProps} ref={ref} className="inline-block text-olive12 dark:text-darkOlive12">
       <div className="flex items-center pb-4">
-        <h2 className="flex-1 font-bold text-xl ml-2">{title}</h2>
+        <h2 className="flex-1 font-bold text-xl ml-2">{title}</h2>  
         <CalendarButton {...prevButtonProps}>
           <ChevronLeftIcon className="h-6 w-6" />
         </CalendarButton>
