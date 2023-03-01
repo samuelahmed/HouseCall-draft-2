@@ -6,7 +6,7 @@ import { OverlayContainer } from "@react-aria/overlays";
 const DateEngine = () => {
   return (
     // < OverlayContainer >
-      <div className="ml-12 max-w-lg text-gray-700">
+      <div className="ml-12 max-w-lg text-olive12 dark:text-darkOlive12">
         <DatePicker
           label="Appointment date"
           minValue={today(getLocalTimeZone())}

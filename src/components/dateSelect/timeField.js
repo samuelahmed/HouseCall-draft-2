@@ -22,7 +22,7 @@ export function TimeField(props) {
       <div
         {...fieldProps}
         ref={ref}
-        className="flex bg-white border border-gray-300 hover:border-gray-400 transition-colors rounded-md pr-8 focus-within:border-violet-600 focus-within:hover:border-violet-600 p-1"
+        className="flex bg-blue1 dark:bg-darkBlue1 border border-blue7 dark:border-darkBlue7 hover:border-blue8 dark:hover:border-blue8 pr-4 p-1"
       >
         {state.segments.map((segment, i) => (
           <DateSegment key={i} segment={segment} state={state} />

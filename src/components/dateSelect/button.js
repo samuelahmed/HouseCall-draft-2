@@ -27,7 +27,7 @@ export function FieldButton(props) {
     <button
       {...buttonProps}
       ref={ref}
-      className={`-ml-px px-2 ${
+      className={`-ml-px px-2 border ${
         isPressed || props.isPressed
           ? "bg-blue2 dark:bg-darkBlue2"
           : "bg-blue1 dark:bg-darkBlue1 "
