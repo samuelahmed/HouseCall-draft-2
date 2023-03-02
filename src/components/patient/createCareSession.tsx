@@ -11,6 +11,8 @@ import { TimeField } from "../dateSelect/timeField";
 import { time } from "console";
 import { useTimeField } from "@react-aria/datepicker";
 import { Time } from "@internationalized/date";
+import { today, getLocalTimeZone } from "@internationalized/date";
+import { DatePicker } from "../dateSelect/datePicker";
 
 // turn off strict mode
 const CreateSession = () => {
@@ -49,6 +51,8 @@ const CreateSession = () => {
     minute: 0,
     second: 0,
   });
+
+  const [dateValue, setDateValue] = useState(today(getLocalTimeZone()));
 
   const [inputs, setInputs] = useState({
     name: data?.username || "",
@@ -126,6 +130,7 @@ const CreateSession = () => {
   // const total = endTime.hour - startTime.hour;
   // console.log("total Hours" + total);
   // console.log(inputs.totalHours);
+  console.log(dateValue);
 
   return (
     <>
@@ -176,20 +181,26 @@ const CreateSession = () => {
                 </div>
 
                 <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
-                  <DateEngine />
+                  <div className="max-w-lg text-olive12 dark:text-darkOlive12">
+                    <DatePicker
+                      label="Appointment date"
+                      minValue={today(getLocalTimeZone())}
+                      defaultValue={dateValue}
+                      onChange={setDateValue}
+                    />
+                  </div>
                 </div>
 
                 <div className="  mx-4 mb-2 flex max-w-fit flex-row space-x-4 text-sm">
                   <TimeField
                     label="Session Start"
-
-                    value={startTime}
+                    defaultValue={startTime}
                     onChange={setStartTime}
                   />
 
                   <TimeField
                     label="Session End"
-                    value={endTime}
+                    defaultValue={endTime}
                     onChange={setEndTime}
                   />
                 </div>
@@ -203,8 +214,8 @@ const CreateSession = () => {
                     bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
                     // type="text"
                     id="firstName"
-                    defaultValue="select"
-                    value={inputs.overview}
+                    // defaultValue="select"
+                    defaultValue={inputs.overview}
                     onChange={(e) =>
                       setInputs((prev) => ({
                         ...prev,
@@ -268,8 +279,8 @@ const CreateSession = () => {
                     border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
                     // type="text"
                     id="firstName"
-                    defaultValue=""
-                    value={inputs.medicalNotes}
+                    defaultValue={inputs.medicalNotes}
+                    // value={inputs.medicalNotes}
                     onChange={(e) =>
                       setInputs((prev) => ({
                         ...prev,
@@ -294,7 +305,7 @@ const CreateSession = () => {
                       className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
                       id="firstName"
                       type="number"
-                      value={inputs.hourlyRate}
+                      defaultValue={inputs.hourlyRate}
                       onChange={(e) => {
                         setInputs((prev) => ({
                           ...prev,
@@ -313,7 +324,7 @@ const CreateSession = () => {
                       className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
                       id="firstName"
                       type="number"
-                      value={inputs.totalHours}
+                      defaultValue={inputs.totalHours}
                       // onChange={(e) => {
                       //   setInputs((prev) => ({
                       //     ...prev,

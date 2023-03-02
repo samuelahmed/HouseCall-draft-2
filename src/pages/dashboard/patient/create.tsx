@@ -21,16 +21,16 @@ const Create: NextPage = () => {
       <div>
         {session && (
           <>
+            {/* this OverlayContainer is required for the calendar stuff
+            It does have behaviors such as impacting the tab order of the page, etc. 
+            Probably want to find a way to place the OverlayContainer closer to its actuall need
+            However at the moment attempting to do so will push everything in the container all the way to the bottom of the page, regardless of styling.  */}
             <OverlayContainer>
               <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
                 <NavMenu />
                 <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
-                  {/* <div className="h-10 mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12"> */}
-                  {/* <SearchEngine /> */}
-                  {/* </div> */}
                   <div className="mx-4 grid min-h-88vh grid-cols-1 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                     {/* DYNAMIC PART OF DASHBOARD */}
-                    {/* <DateEngine /> */}
                     <CreateSession />
                   </div>
                 </div>
