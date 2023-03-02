@@ -32,23 +32,33 @@ model User {
 }
 
 model CareSession {
-  id                    String                 @id @default(cuid())
-  sessionId             String                 @unique @default(cuid())
-  user                  User                   @relation(fields: [userId], references: [id])
-  userId                String // relation scalar field  (used in the `@relation` attribute above)
-  name                  String?
-  title                 String?
-  address               String?
-  medicalNotes          String?
-  overview              String?
-  sessionType           String?
-  hourlyRate            Int?
-  totalHours            Int?
-  totalCompensation     Int?
-  slug                  String
-  acceptedCaregiverId   String?
-  careSessionStatus     String?
-  createdAt             DateTime               @default(now())
+  id                  String  @id @default(cuid())
+  sessionId           String  @unique @default(cuid())
+  user                User    @relation(fields: [userId], references: [id])
+  userId              String // relation scalar field  (used in the `@relation` attribute above)
+  name                String?
+  title               String?
+  address             String?
+  medicalNotes        String?
+  overview            String?
+  sessionType         String?
+  hourlyRate          Int?
+  totalHours          Int?
+  totalCompensation   Int?
+  slug                String
+  acceptedCaregiverId String?
+  careSessionStatus   String?
+
+  sessionDay       Int?
+  sessionMonth     Int?
+  sessionYear      Int?
+  sessionStartHour Int?
+  sessionStartMinute  Int?
+  sessionEndHour   Int?
+  sessionEndMinute Int?
+
+  createdAt DateTime @default(now())
+
   potentialCareSessions PotentialCareSession[]
 
   @@unique([slug])
