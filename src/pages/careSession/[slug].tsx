@@ -6,6 +6,8 @@ import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import NavMenu from "@/components/layout/navMenu";
+import { TimeField } from "@/components/dateSelect/timeField";
+import { useEffect } from "react";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -100,6 +102,15 @@ const Slug: NextPage = () => {
       },
     });
 
+  //turn sessionStartHour into 12 hour time
+  const startTimeHour = currentSession?.sessionStartHour || 0;
+  const startTimeMinute = currentSession?.sessionStartMinute || 0;
+  const endTimeHour = currentSession?.sessionEndHour || 0;
+  const endTimeMinute = currentSession?.sessionEndMinute || 0;
+  const sessionDurationHours = endTimeHour - startTimeHour 
+  const sessionDurationMinutes = endTimeMinute - startTimeMinute
+
+
   return (
     <>
       <Head>
@@ -128,7 +139,13 @@ const Slug: NextPage = () => {
                           {currentSession?.name}
                         </p>
                         <p className="">
-                          <span className="font-semibold">Address:&nbsp;</span>
+                          <span className="font-semibold">
+                            Session Start Hour:&nbsp;
+                          </span>
+                          {currentSession?.sessionStartHour}
+                        </p>
+                        <p className="">
+                          <span className="font-semibol d">Address:&nbsp;</span>
                           {currentSession?.address}
                         </p>
                         <p className="">
@@ -260,12 +277,45 @@ const Slug: NextPage = () => {
                           <span className=" font-semibold">Address:&nbsp;</span>
                           {currentSession?.address}
                         </p>
+                        {/* CAN PULL IN HOUR LIKE THIS AND USE IT TO POPULATE A NON-EDIABLE TIME FIELD */}
                         <p className="">
+                          <span className="font-semibold">
+                            Session Start:&nbsp;
+                          </span>
+                          {startTimeHour > 12
+                            ? startTimeHour - 12
+                            : startTimeHour}{" "}
+                          :{" "}
+                          {startTimeMinute < 10
+                            ? "0" + startTimeMinute
+                            : startTimeMinute}{" "}
+                          {startTimeHour > 12 ? "PM" : "AM"}
+                        </p>
+                        <p className="">
+                          <span className="font-semibold">
+                            Session End:&nbsp;
+                          </span>
+                          {endTimeHour > 12
+                            ? endTimeHour - 12
+                            : endTimeHour}{" "}
+                          :{" "}
+                          {endTimeMinute < 10
+                            ? "0" + endTimeMinute
+                            : endTimeMinute}{" "}
+                          {endTimeHour > 12 ? "PM" : "AM"}
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">Duration:&nbsp;</span>
+                          {sessionDurationHours} hours {sessionDurationMinutes} minutes
+                        </p>
+
+                        {/* REMOVE THIS FROM THE PRISMA SCHEMA AS WELL */}
+                        {/* <p className="">
                           <span className=" font-semibold">
                             Medical Notes:&nbsp;
                           </span>
                           {currentSession?.medicalNotes}
-                        </p>
+                        </p> */}
                         <p className="">
                           <span className=" font-semibold">
                             Overview:&nbsp;
