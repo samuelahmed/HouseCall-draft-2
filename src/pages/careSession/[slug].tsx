@@ -102,13 +102,18 @@ const Slug: NextPage = () => {
       },
     });
 
-  //turn sessionStartHour into 12 hour time
+  //Time Data
   const startTimeHour = currentSession?.sessionStartHour || 0;
   const startTimeMinute = currentSession?.sessionStartMinute || 0;
   const endTimeHour = currentSession?.sessionEndHour || 0;
   const endTimeMinute = currentSession?.sessionEndMinute || 0;
   const sessionDurationHours = endTimeHour - startTimeHour 
   const sessionDurationMinutes = endTimeMinute - startTimeMinute
+  //Date Data
+  const sessionDay = currentSession?.sessionDay
+  const sessionMonth = currentSession?.sessionMonth
+  const sessionYear = currentSession?.sessionYear
+
 
 
   return (
@@ -307,6 +312,12 @@ const Slug: NextPage = () => {
                         <p className="">
                           <span className=" font-semibold">Duration:&nbsp;</span>
                           {sessionDurationHours} hours {sessionDurationMinutes} minutes
+                        </p>
+                        <p className="">
+                          <span className=" font-semibold">
+                            Date:&nbsp;
+                          </span>
+                          {sessionMonth} / {sessionDay} / {sessionYear}
                         </p>
 
                         {/* REMOVE THIS FROM THE PRISMA SCHEMA AS WELL */}
