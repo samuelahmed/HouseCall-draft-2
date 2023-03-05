@@ -453,49 +453,54 @@ const Slug: NextPage = () => {
 
                       <div className="px-2 ">
                         <p className="text-center text-xl">
-                          {" "}
-                          Potential Caregivers
+                          Caregivers
                         </p>
-                        <ul>
-                          {potentialCaregivers?.map((potentialCaregiver) => {
-                            const { id, caregiverId, status } =
-                              potentialCaregiver;
-                            return (
-                              <li
-                                key={id}
-                                className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-blue6 bg-blue1 px-2 hover:bg-blue2 dark:border-darkBlue6 dark:bg-darkBlue1 dark:hover:bg-darkBlue2"
-                              >
-                                <div>
-                                  <p className=" ">
-                                    <span className=" font-semibold">
-                                      Caregiver:&nbsp;
-                                    </span>
-                                    {potentialCaregiver?.caregiverId}
-                                  </p>
-                                  <p className="  ">
-                                    <span className="  font-semibold">
-                                      Status:&nbsp;
-                                    </span>
-                                    {potentialCaregiver?.status}
-                                  </p>
-                                </div>
-                                <div className="mt-2 mb-2 flex justify-around ">
-                                  <button
-                                    className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+                        {potentialCaregivers?.length === 0 ? (
+                          <p className="text-center">
+                            No caregivers have applied yet
+                          </p>
+                        ) : (
+                          <ul>
+                            {potentialCaregivers?.map((potentialCaregiver) => {
+                              const { id, caregiverId, status } =
+                                potentialCaregiver;
+                              return (
+                                <li
+                                  key={id}
+                                  className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-blue6 bg-blue1 px-2 hover:bg-blue2 dark:border-darkBlue6 dark:bg-darkBlue1 dark:hover:bg-darkBlue2"
+                                >
+                                  <div>
+                                    <p className=" ">
+                                      <span className=" font-semibold">
+                                        Caregiver:&nbsp;
+                                      </span>
+                                      {potentialCaregiver?.caregiverId}
+                                    </p>
+                                    <p className="  ">
+                                      <span className="  font-semibold">
+                                        Status:&nbsp;
+                                      </span>
+                                      {potentialCaregiver?.status}
+                                    </p>
+                                  </div>
+                                  <div className="mt-2 mb-2 flex justify-around ">
+                                    <button
+                                      className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
                           dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                                    onClick={() =>
-                                      router.push(
-                                        `/caregiver/${potentialCaregiver?.slug}`
-                                      )
-                                    }
-                                  >
-                                    See Profile
-                                  </button>
-                                </div>
-                              </li>
-                            );
-                          })}
-                        </ul>
+                                      onClick={() =>
+                                        router.push(
+                                          `/caregiver/${potentialCaregiver?.slug}`
+                                        )
+                                      }
+                                    >
+                                      See Profile
+                                    </button>
+                                  </div>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
                       </div>
                     </div>
                   </div>
