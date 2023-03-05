@@ -29,6 +29,8 @@ const CreateSession = () => {
     },
   });
 
+
+  //maybe all this type definition is not necessary?
   type StartTime = {
     hour: number;
     minute: number;
@@ -52,7 +54,15 @@ const CreateSession = () => {
     second: 0,
   });
 
+
+
+
   const [dateValue, setDateValue] = useState(today(getLocalTimeZone()));
+
+  // console.log(dateValue.day)
+  // console.log(dateValue.month)
+
+  // console.log(dateValue.day)
 
   const [inputs, setInputs] = useState({
     name: data?.username || "",
@@ -65,7 +75,35 @@ const CreateSession = () => {
     totalCompensation: 20,
     acceptedCaregiverId: "",
     careSessionStatus: "",
+
+    //calendar stuff
+    sessionDay: dateValue.day,
+    sessionMonth: dateValue.month,
+    sessionYear: dateValue.year,
+    sessionStartHour: startTime.hour,
+    sessionStartMinute: startTime.minute,
+    sessionEndHour: endTime.hour,
+    sessionEndMinute: endTime.minute,
+    
+
   });
+  // console.log(startTime)
+  // console.log(startTime.hour)
+  
+  // console.log(inputs.sessionStartHour)
+
+  useEffect(() => {
+    setInputs(inputs => ({
+      ...inputs,
+      sessionDay: dateValue.day,
+      sessionMonth: dateValue.month,
+      sessionYear: dateValue.year,
+      sessionStartHour: startTime.hour,
+      sessionStartMinute: startTime.minute,
+      sessionEndHour: endTime.hour,
+      sessionEndMinute: endTime.minute,
+    }));
+  }, [dateValue, endTime.hour, endTime.minute, startTime.hour, startTime.minute]);
 
   useEffect(() => {
     // const hours = endTime && startTime ? endTime.hour - startTime.hour : 0;
@@ -109,28 +147,7 @@ const CreateSession = () => {
   const publish = () => {
     mutate(inputs);
   };
-  // console.log(inputs.title);
-  // console.log(endTime)
-  // console.log('session end time' + endTime.SessionEndTime)
-  // console.log(startTime)
-  // console.log('session start time' + startTime.SessionStartTime)
-  // console.log(TimeField())
-  // console.log(Time())
-  // console.log(TimeField)
-  // console.log(TimeField.arguments.Time)
-  // console.log(hours)
-  // console.log(Time.arguments.Time.hours)
-  // console.log(startTime);
-  // console.log(`Hour: ${startTime.hour}`);
-  // console.log(`Minute: ${startTime.minute}`);
-  // console.log(`Second: ${startTime.second}`);
-  // console.log(`Hour: ${endTime.hour}`);
-  // console.log(`Minute: ${endTime.minute}`);
-  // console.log(`Second: ${endTime.second}`);
-  // const total = endTime.hour - startTime.hour;
-  // console.log("total Hours" + total);
-  // console.log(inputs.totalHours);
-  console.log(dateValue);
+
 
   return (
     <>

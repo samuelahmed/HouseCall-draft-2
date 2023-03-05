@@ -35,6 +35,13 @@ Table CareSession {
   slug String [unique, not null]
   acceptedCaregiverId String
   careSessionStatus String
+  sessionDay Int
+  sessionMonth Int
+  sessionYear Int
+  sessionStartHour Int
+  sessionStartMinute Int
+  sessionEndHour Int
+  sessionEndMinute Int
   createdAt DateTime [default: `now()`, not null]
   potentialCareSessions PotentialCareSession [not null]
 }
