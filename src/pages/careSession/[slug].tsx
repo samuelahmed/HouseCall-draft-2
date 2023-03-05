@@ -138,7 +138,7 @@ const Slug: NextPage = () => {
                 <div className="flex h-screen items-center justify-center  bg-blue2 dark:bg-darkBlue2">
                   <div className="h-4/6 w-1/2 rounded-sm border border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1">
                     <div className="mb-4 mr-4 ml-4">
-                      <div className=" mb-2 mr-4 ml-4 mt-12 p-4 text-center text-xl">
+                      <div className=" mb-2 mr-4 ml-4 mt-4 p-4 text-center text-xl">
                         {currentSession?.title}
                       </div>
                       <div className="text-sm">
@@ -186,7 +186,7 @@ const Slug: NextPage = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="mt-12 mb-12 flex justify-center ">
+                    <div className="mt- mb-12 flex justify-center ">
                       {potentialCaregiver?.caregiverId !== user.id && (
                         <>
                           {potentialCaregiver?.caregiverId !== user.id && (
@@ -270,85 +270,94 @@ const Slug: NextPage = () => {
             <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
               <div className="grid min-h-88vh grid-cols-1 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                 {/* DYNAMIC PART OF DASHBOARD */}
-                <div className="grid min-h-screen md:grid-cols-3 ">
-                  <div className="col-span-2 grid grid-cols-1 space-y-2 md:grid-cols-2  md:space-x-4 md:space-y-0">
+                <div className="grid min-h-screen md:grid-cols-2 ">
+                  <div className="col-span-2 mt-4 grid grid-cols-1 space-y-2  md:ml-4 md:grid-cols-2 md:space-x-4 md:space-y-0">
                     <div className="col-span-1">
-                      <div className=" min-h-88vh border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
+                      <div className=" mx-4 min-h-88vh border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
                         <h1 className="text-center text-lg font-extralight">
                           Overview
                         </h1>
 
-                        <div className=" mb-2 mr-4 ml-4 mt-12 p-4 text-center text-xl">
+                        <div className=" mb-2 mr-4 ml-4 mt-4 p-4 text-center text-xl">
                           {currentSession?.title}
                         </div>
 
-                        <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
-                          <p className="">
-                            <span className=" font-semibold">Name:&nbsp;</span>
-                            {currentSession?.name}
-                          </p>
+                        <div className="grid grid-rows-3 space-y-1 px-4 text-sm">
+                          <div className="row-span-1 grid grid-cols-2">
+                            <div className="col-span-1 min-w-max">
+                              <p className=" min-w-max">
+                                <span className=" font-semibold">
+                                  Name:&nbsp;
+                                </span>
+                                {currentSession?.name}
+                              </p>
+                            </div>
+
+                            <div className="col-span-1 min-w-max">
+                              <p className="">
+                                <span className=" font-semibold">
+                                  Status:&nbsp;
+                                </span>
+                                {currentSession?.careSessionStatus}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="row-span-1 grid grid-cols-2">
+                            <p className="">
+                              <span className=" font-semibold">
+                                Date:&nbsp;
+                              </span>
+                              {sessionMonth} / {sessionDay} / {sessionYear}
+                            </p>
+
+                            <p className="">
+                              <span className=" font-semibold">
+                                Duration:&nbsp;
+                              </span>
+                              {sessionDurationHours} hours{" "}
+                              {sessionDurationMinutes} minutes
+                            </p>
+                          </div>
+
+                          <div className="row-span-1 grid grid-cols-2">
+                            <p className="">
+                              <span className="font-semibold">
+                                Session Start:&nbsp;
+                              </span>
+                              {startTimeHour > 12
+                                ? startTimeHour - 12
+                                : startTimeHour}{" "}
+                              :{" "}
+                              {startTimeMinute < 10
+                                ? "0" + startTimeMinute
+                                : startTimeMinute}{" "}
+                              {startTimeHour > 12 ? "PM" : "AM"}
+                            </p>
+
+                            <p className="">
+                              <span className="font-semibold">
+                                Session End:&nbsp;
+                              </span>
+                              {endTimeHour > 12
+                                ? endTimeHour - 12
+                                : endTimeHour}{" "}
+                              :{" "}
+                              {endTimeMinute < 10
+                                ? "0" + endTimeMinute
+                                : endTimeMinute}{" "}
+                              {endTimeHour > 12 ? "PM" : "AM"}
+                            </p>
+                          </div>
                         </div>
-
-                        <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
-                          <p className="">
-                            <span className=" font-semibold">
-                              Status:&nbsp;
-                            </span>
-                            {currentSession?.careSessionStatus}
-                          </p>
-                        </div>
-
-                        <div className="  mx-4 mb-2 flex max-w-fit flex-row space-x-4 text-sm">
-                          <p className="">
-                            <span className=" font-semibold">Date:&nbsp;</span>
-                            {sessionMonth} / {sessionDay} / {sessionYear}
-                          </p>
-
-                          <p className="">
-                            <span className=" font-semibold">
-                              Duration:&nbsp;
-                            </span>
-                            {sessionDurationHours} hours{" "}
-                            {sessionDurationMinutes} minutes
-                          </p>
-                        </div>
-
-                        <div className="  mx-4 mb-2 flex max-w-fit flex-row space-x-4 text-sm">
-                          <p className="">
-                            <span className="font-semibold">
-                              Session Start:&nbsp;
-                            </span>
-                            {startTimeHour > 12
-                              ? startTimeHour - 12
-                              : startTimeHour}{" "}
-                            :{" "}
-                            {startTimeMinute < 10
-                              ? "0" + startTimeMinute
-                              : startTimeMinute}{" "}
-                            {startTimeHour > 12 ? "PM" : "AM"}
-                          </p>
-
-                          <p className="">
-                            <span className="font-semibold">
-                              Session End:&nbsp;
-                            </span>
-                            {endTimeHour > 12 ? endTimeHour - 12 : endTimeHour}{" "}
-                            :{" "}
-                            {endTimeMinute < 10
-                              ? "0" + endTimeMinute
-                              : endTimeMinute}{" "}
-                            {endTimeHour > 12 ? "PM" : "AM"}
-                          </p>
-                        </div>
-
                         <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
                           <p className="">
                             <span className=" font-semibold">
-                              Overview:&nbsp;
+                              Session Overview:&nbsp;
                             </span>
                             <textarea
                               className="inline-block h-96 w-full border border-blue7
-                    bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
+                           bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
                               // type="text"
                               id="firstName"
                               // defaultValue="select"
@@ -360,8 +369,8 @@ const Slug: NextPage = () => {
                       </div>
                     </div>
 
-                    <div className="col-span-1 grid min-h-88vh grid-rows-2 space-y-2">
-                      <div className="row-span-1 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
+                    <div className="col-span-1 flex flex-col space-y-2">
+                      <div className="row-span-1 mx-4 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
                         <h1 className="text-center text-lg font-extralight">
                           Location
                         </h1>
@@ -404,7 +413,7 @@ const Slug: NextPage = () => {
                             </span>
                             <textarea
                               className="inline-block h-24 w-full border border-blue7
-                    bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
+                       bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
                               // type="text"
                               id="firstName"
                               // defaultValue="select"
@@ -415,12 +424,12 @@ const Slug: NextPage = () => {
                         </div>
                       </div>
 
-                      <div className="row-span-1 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
+                      <div className="row-span-1 mx-4 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
                         <h1 className="text-center text-lg font-extralight">
                           Compensation
                         </h1>
 
-                        <div className=" max-w-fit text-sm">
+                        <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                           <p className="">
                             <span className=" font-semibold">
                               Compensation Per Hour:&nbsp;
@@ -441,51 +450,53 @@ const Slug: NextPage = () => {
                           </p>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div className="col-span-1">
-                    <div className="px-2 ">
-                      <p className="my-4 text-xl"> Potential Caregivers:</p>
-                      <ul>
-                        {potentialCaregivers?.map((potentialCaregiver) => {
-                          const { id, caregiverId, status } =
-                            potentialCaregiver;
-                          return (
-                            <li
-                              key={id}
-                              className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-blue6 bg-blue1 px-2 hover:bg-blue2 dark:border-darkBlue6 dark:bg-darkBlue1 dark:hover:bg-darkBlue2"
-                            >
-                              <div>
-                                <p className=" ">
-                                  <span className=" font-semibold">
-                                    Caregiver:&nbsp;
-                                  </span>
-                                  {potentialCaregiver?.caregiverId}
-                                </p>
-                                <p className="  ">
-                                  <span className="  font-semibold">
-                                    Status:&nbsp;
-                                  </span>
-                                  {potentialCaregiver?.status}
-                                </p>
-                              </div>
-                              <div className="mt-2 mb-2 flex justify-around ">
-                                <button
-                                  className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
+
+                      <div className="px-2 ">
+                        <p className="text-center text-xl">
+                          {" "}
+                          Potential Caregivers
+                        </p>
+                        <ul>
+                          {potentialCaregivers?.map((potentialCaregiver) => {
+                            const { id, caregiverId, status } =
+                              potentialCaregiver;
+                            return (
+                              <li
+                                key={id}
+                                className="mb-2 cursor-pointer items-center justify-around rounded-lg border border-blue6 bg-blue1 px-2 hover:bg-blue2 dark:border-darkBlue6 dark:bg-darkBlue1 dark:hover:bg-darkBlue2"
+                              >
+                                <div>
+                                  <p className=" ">
+                                    <span className=" font-semibold">
+                                      Caregiver:&nbsp;
+                                    </span>
+                                    {potentialCaregiver?.caregiverId}
+                                  </p>
+                                  <p className="  ">
+                                    <span className="  font-semibold">
+                                      Status:&nbsp;
+                                    </span>
+                                    {potentialCaregiver?.status}
+                                  </p>
+                                </div>
+                                <div className="mt-2 mb-2 flex justify-around ">
+                                  <button
+                                    className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
                           dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                                  onClick={() =>
-                                    router.push(
-                                      `/caregiver/${potentialCaregiver?.slug}`
-                                    )
-                                  }
-                                >
-                                  See Profile
-                                </button>
-                              </div>
-                            </li>
-                          );
-                        })}
-                      </ul>
+                                    onClick={() =>
+                                      router.push(
+                                        `/caregiver/${potentialCaregiver?.slug}`
+                                      )
+                                    }
+                                  >
+                                    See Profile
+                                  </button>
+                                </div>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
