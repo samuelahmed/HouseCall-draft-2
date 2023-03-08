@@ -391,7 +391,7 @@ const Slug: NextPage = () => {
                                 {/* ADD TO DB */}
                                 City:&nbsp;
                               </span>
-                              {currentSession?.address}
+                              {currentSession?.city}
                             </p>
                           </div>
                           <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
@@ -400,7 +400,7 @@ const Slug: NextPage = () => {
                               <span className=" font-semibold">
                                 Postal Code:&nbsp;
                               </span>
-                              {currentSession?.address}
+                              {currentSession?.postalCode}
                             </p>
                           </div>
                         </div>
@@ -417,7 +417,7 @@ const Slug: NextPage = () => {
                               // type="text"
                               id="firstName"
                               // defaultValue="select"
-                              defaultValue={currentSession?.overview || ""}
+                              defaultValue={currentSession?.location || ""}
                               readOnly={true}
                             />
                           </p>
@@ -452,9 +452,7 @@ const Slug: NextPage = () => {
                       </div>
 
                       <div className="px-2 ">
-                        <p className="text-center text-xl">
-                          Caregivers
-                        </p>
+                        <p className="text-center text-xl">Caregivers</p>
                         {potentialCaregivers?.length === 0 ? (
                           <p className="text-center">
                             No caregivers have applied yet

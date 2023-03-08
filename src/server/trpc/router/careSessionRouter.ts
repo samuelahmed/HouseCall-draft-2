@@ -26,6 +26,10 @@ export const careSessionRouter = router({
         sessionStartMinute: z.number(),
         sessionEndHour: z.number(),
         sessionEndMinute: z.number(),
+
+        city: z.string(),
+        postalCode: z.string(),
+        location: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -47,6 +51,9 @@ export const careSessionRouter = router({
         sessionStartMinute,
         sessionEndHour,
         sessionEndMinute,
+        city,
+        postalCode,
+        location,
       } = input;
       //Instead of generating random string here it would be better to do something else
       //This will probably collide  ~50k times before it does
@@ -82,6 +89,9 @@ export const careSessionRouter = router({
           sessionEndMinute,
           slug: slug(sessionId),
           userId: currentUserId,
+          city,
+          postalCode,
+          location,
         },
       });
       return careSession;
