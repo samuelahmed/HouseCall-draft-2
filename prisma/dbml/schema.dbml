@@ -42,6 +42,9 @@ Table CareSession {
   sessionStartMinute Int
   sessionEndHour Int
   sessionEndMinute Int
+  city String
+  postalCode String
+  location String
   createdAt DateTime [default: `now()`, not null]
   potentialCareSessions PotentialCareSession [not null]
 }

@@ -29,7 +29,6 @@ const CreateSession = () => {
     },
   });
 
-
   //maybe all this type definition is not necessary?
   type StartTime = {
     hour: number;
@@ -53,9 +52,6 @@ const CreateSession = () => {
     minute: 0,
     second: 0,
   });
-
-
-
 
   const [dateValue, setDateValue] = useState(today(getLocalTimeZone()));
 
@@ -84,16 +80,19 @@ const CreateSession = () => {
     sessionStartMinute: startTime.minute,
     sessionEndHour: endTime.hour,
     sessionEndMinute: endTime.minute,
-    
 
+    //location stuff
+    city: "",
+    postalCode: "",
+    location: "",
   });
   // console.log(startTime)
   // console.log(startTime.hour)
-  
+
   // console.log(inputs.sessionStartHour)
 
   useEffect(() => {
-    setInputs(inputs => ({
+    setInputs((inputs) => ({
       ...inputs,
       sessionDay: dateValue.day,
       sessionMonth: dateValue.month,
@@ -103,7 +102,13 @@ const CreateSession = () => {
       sessionEndHour: endTime.hour,
       sessionEndMinute: endTime.minute,
     }));
-  }, [dateValue, endTime.hour, endTime.minute, startTime.hour, startTime.minute]);
+  }, [
+    dateValue,
+    endTime.hour,
+    endTime.minute,
+    startTime.hour,
+    startTime.minute,
+  ]);
 
   useEffect(() => {
     // const hours = endTime && startTime ? endTime.hour - startTime.hour : 0;
@@ -147,7 +152,6 @@ const CreateSession = () => {
   const publish = () => {
     mutate(inputs);
   };
-
 
   return (
     <>
@@ -258,7 +262,13 @@ const CreateSession = () => {
                     className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
                     type="text"
                     id="firstName"
-                    defaultValue=""
+                    defaultValue={inputs.address}
+                    onChange={(e) =>
+                      setInputs((prev) => ({
+                        ...prev,
+                        address: e.target.value,
+                      }))
+                    }
                   />
                 </div>
 
@@ -271,8 +281,14 @@ const CreateSession = () => {
                       className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
                       type="text"
                       id="firstName"
-                      defaultValue=""
-                    />
+                      defaultValue={inputs.city}
+                      onChange={(e) =>
+                        setInputs((prev) => ({
+                          ...prev,
+                          city: e.target.value,
+                        }))
+                      }
+                    />                   
                   </div>
                   <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                     <Label.Root className="px-0.5" htmlFor="firstName">
@@ -282,7 +298,13 @@ const CreateSession = () => {
                       className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
                       type="text"
                       id="firstName"
-                      defaultValue=""
+                      defaultValue={inputs.postalCode}
+                      onChange={(e) =>
+                        setInputs((prev) => ({
+                          ...prev,
+                          postalCode: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                 </div>
@@ -296,12 +318,11 @@ const CreateSession = () => {
                     border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
                     // type="text"
                     id="firstName"
-                    defaultValue={inputs.medicalNotes}
-                    // value={inputs.medicalNotes}
+                    defaultValue={inputs.location}
                     onChange={(e) =>
                       setInputs((prev) => ({
                         ...prev,
-                        medicalNotes: e.target.value,
+                        location: e.target.value,
                       }))
                     }
                   />
@@ -333,7 +354,7 @@ const CreateSession = () => {
                       }}
                     />
                   </div>
-                  <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
+                  {/* <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                     <Label.Root className="px-0.5" htmlFor="firstName">
                       Number of Hours
                     </Label.Root>
@@ -351,7 +372,7 @@ const CreateSession = () => {
                       //   }));
                       // }}
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div className="  mx-4 mb-2 flex min-w-full flex-col pr-8 text-sm">
                   <Label.Root className="px-0.5" htmlFor="firstName">

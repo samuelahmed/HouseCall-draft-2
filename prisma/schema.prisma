@@ -57,6 +57,10 @@ model CareSession {
   sessionEndHour   Int?
   sessionEndMinute Int?
 
+  city             String?
+  postalCode      String?
+  location        String?
+
   createdAt DateTime @default(now())
 
   potentialCareSessions PotentialCareSession[]
