@@ -191,7 +191,7 @@ const NewEngine = () => {
                           Session Overview:&nbsp;
                         </span>
                         <textarea
-                          className="inline-block h-14 w-full border border-blue7
+                          className="inline-block h-16 w-full border border-blue7
                            bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
                           id="firstName"
                           defaultValue={overview || ""}
