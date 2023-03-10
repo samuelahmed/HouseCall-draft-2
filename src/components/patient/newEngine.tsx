@@ -19,6 +19,15 @@ const NewEngine = () => {
     totalHours: 0,
     totalCompensation: 0,
     careSessionStatus: "",
+    city: "",
+    postalCode: "",
+    sessionStartHour: 0,
+    sessionStartMinute: 0,
+    sessionEndHour: 0,
+    sessionEndMinute: 0,
+    sessionMonth: 0,
+    sessionDay: 0,
+    sessionYear: 0,
   });
 
   const selectedSession =
@@ -54,7 +63,32 @@ const NewEngine = () => {
                   totalHours,
                   totalCompensation,
                   careSessionStatus,
+                  city,
+                  postalCode,
+                  sessionStartHour,
+                  sessionStartMinute,
+                  sessionEndHour,
+                  sessionEndMinute,
+                  sessionMonth,
+                  sessionDay,
+                  sessionYear,
                 } = data;
+
+                const startTimeHour = sessionStartHour || 0;
+                const startTimeMinute = sessionStartMinute || 0;
+                const endTimeHour = sessionEndHour || 0;
+                const endTimeMinute = sessionEndMinute || 0;
+
+
+
+                let sessionDurationHours = endTimeHour - startTimeHour;
+                let sessionDurationMinutes = endTimeMinute - startTimeMinute;
+                if (sessionDurationMinutes < 0) {
+                  sessionDurationHours--;
+                  sessionDurationMinutes += 60;
+                }
+
+
                 return (
                   <li
                     key={id}
@@ -73,6 +107,16 @@ const NewEngine = () => {
                           sessionType: sessionType || "still loading",
                           careSessionStatus:
                             careSessionStatus || "still loading",
+                          city: city || "still loading",
+                          postalCode: postalCode || "still loading",
+                          sessionStartHour: startTimeHour,
+                          sessionStartMinute: startTimeMinute,
+                          sessionEndHour: endTimeHour,
+                          sessionEndMinute: endTimeMinute,
+                          sessionMonth: sessionMonth || 0,
+                          sessionDay: sessionDay || 0,
+                          sessionYear: sessionYear || 0,
+
                           hourlyRate: Number(data.hourlyRate) || 0,
                           totalHours: Number(data.totalHours) || 0,
                           totalCompensation:
@@ -81,33 +125,111 @@ const NewEngine = () => {
                               (Number(hourlyRate) || 0),
                         });
                       }}
-                      className="mb-8 text-sm"
+                      className="mb-1 text-sm"
                     >
                       <div className="pt-2 text-center text-lg font-semibold">
                         {title}
                       </div>
+                      <div className="grid grid-cols-2">
+                        <div className="col-span-1 text-left">
+                        <p className="">
+                              <span className=" font-semibold">
+                                Date:&nbsp;
+                              </span>
+                              {sessionMonth} / {sessionDay} / {sessionYear}
+                            </p>
+
+                          <p className="">
+                            <span className="font-semibold">
+                              Session Start:&nbsp;
+                            </span>
+                            {startTimeHour > 12
+                              ? startTimeHour - 12
+                              : startTimeHour}
+                            :
+                            {startTimeMinute < 10
+                              ? "0" + startTimeMinute
+                              : startTimeMinute}{" "}
+                            {startTimeMinute > 12 ? "PM" : "AM"}
+                          </p>
+
+                          <p className="">
+                            <span className="font-semibold">
+                              Session End:&nbsp;
+                            </span>
+                            {endTimeHour > 12 ? endTimeHour - 12 : endTimeHour}{" "}
+                            :{" "}
+                            {endTimeMinute < 10
+                              ? "0" + endTimeMinute
+                              : endTimeMinute}{" "}
+                            {endTimeHour > 12 ? "PM" : "AM"}
+                          </p>
+                        </div>
+
+                        <div className="col-span-1 text-left">
+                          <p className="">
+                            <span className="font-semibold">
+                              Address:&nbsp;
+                            </span>
+                            {address}
+                          </p>
+                          <p className="">
+                            <span className="font-semibold">City:&nbsp;</span>
+                            {city}
+                          </p>
+                          <p className="">
+                            <span className="font-semibold">
+                              Postal Code:&nbsp;
+                            </span>
+                            {postalCode}
+                          </p>
+                        </div>
+                      </div>
+
                       <p className="">
-                        <span className="font-semibold">Status:&nbsp;</span>
-                        {careSessionStatus}
-                      </p>
-                      <p className="">
-                        <span className="font-semibold">Name:&nbsp;</span>
-                        {name}
-                      </p>
-                      <p className="">
-                        <span className="font-semibold">Address:&nbsp;</span>
-                        {address}
-                      </p>
-                      <p className="">
-                        <span className="font-semibold">Overview:&nbsp;</span>
-                        {overview}
-                      </p>
-                      <p className="">
-                        <span className="font-semibold">
-                          Total Compensation:&nbsp;
+                        <span className=" font-semibold">
+                          Session Overview:&nbsp;
                         </span>
-                        ${totalCompensation}
+                        <textarea
+                          className="inline-block h-14 w-full border border-blue7
+                           bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
+                          id="firstName"
+                          defaultValue={overview || ""}
+                          readOnly={true}
+                        />
                       </p>
+                      <div className="grid grid-cols-2">
+                        <div className="col-span-1 text-left">
+
+                        <p className="">
+                              <span className=" font-semibold">
+                                Duration:&nbsp;
+                              </span>
+                              {sessionDurationHours} hours{" "}
+                              {sessionDurationMinutes} minutes
+                            </p>
+                            <p className="">
+                            <span className=" font-semibold">
+                              Compensation Per Hour:&nbsp;
+                            </span>
+                            ${hourlyRate}
+                          </p>
+
+                        </div>
+
+                        <div className="col-span-1 text-left">
+                          <p>
+                            &nbsp;
+                            {/* this paragraph is just for spacing - maybe find a cleaner way */}
+                          </p>
+                          <p className="">
+                            <span className="font-semibold">
+                              Total Compensation:&nbsp;
+                            </span>
+                            ${totalCompensation}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                     <div className="mb-4 flex flex-col items-center justify-center">
                       <button
