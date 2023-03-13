@@ -349,6 +349,9 @@ const Slug: NextPage = () => {
                               {endTimeHour > 12 ? "PM" : "AM"}
                             </p>
                           </div>
+
+
+                          
                         </div>
                         <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
                           <p className="">
@@ -367,6 +370,8 @@ const Slug: NextPage = () => {
                           </p>
                         </div>
                       </div>
+
+                      
                     </div>
 
                     <div className="col-span-1 flex flex-col space-y-2">

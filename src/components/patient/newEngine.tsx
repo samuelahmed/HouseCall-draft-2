@@ -35,6 +35,23 @@ const NewEngine = () => {
       id: inputs?.id || (data?.[data?.length - 1]?.id ?? "0"),
     });
 
+  const selectedStartTimeHour = selectedSession?.data?.sessionStartHour || 0;
+  const selectedStartTimeMinute =
+    selectedSession?.data?.sessionStartMinute || 0;
+  const selectedEndTimeHour = selectedSession?.data?.sessionEndHour || 0;
+  const selectedEndTimeMinute = selectedSession?.data?.sessionEndMinute || 0;
+
+  let currentSessionDurationHours =
+    (selectedSession?.data?.sessionEndHour || 0) -
+    (selectedSession?.data?.sessionStartHour || 0);
+  let currentSessionDurationMinutes =
+    (selectedSession?.data?.sessionEndMinute || 0) -
+    (selectedSession?.data?.sessionStartMinute || 0);
+  if (currentSessionDurationMinutes < 0) {
+    currentSessionDurationHours--;
+    currentSessionDurationMinutes += 60;
+  }
+
   return (
     <>
       <div
@@ -79,15 +96,12 @@ const NewEngine = () => {
                 const endTimeHour = sessionEndHour || 0;
                 const endTimeMinute = sessionEndMinute || 0;
 
-
-
                 let sessionDurationHours = endTimeHour - startTimeHour;
                 let sessionDurationMinutes = endTimeMinute - startTimeMinute;
                 if (sessionDurationMinutes < 0) {
                   sessionDurationHours--;
                   sessionDurationMinutes += 60;
                 }
-
 
                 return (
                   <li
@@ -116,7 +130,6 @@ const NewEngine = () => {
                           sessionMonth: sessionMonth || 0,
                           sessionDay: sessionDay || 0,
                           sessionYear: sessionYear || 0,
-
                           hourlyRate: Number(data.hourlyRate) || 0,
                           totalHours: Number(data.totalHours) || 0,
                           totalCompensation:
@@ -132,13 +145,10 @@ const NewEngine = () => {
                       </div>
                       <div className="grid grid-cols-2">
                         <div className="col-span-1 text-left">
-                        <p className="">
-                              <span className=" font-semibold">
-                                Date:&nbsp;
-                              </span>
-                              {sessionMonth} / {sessionDay} / {sessionYear}
-                            </p>
-
+                          <p className="">
+                            <span className=" font-semibold">Date:&nbsp;</span>
+                            {sessionMonth} / {sessionDay} / {sessionYear}
+                          </p>
                           <p className="">
                             <span className="font-semibold">
                               Session Start:&nbsp;
@@ -152,7 +162,6 @@ const NewEngine = () => {
                               : startTimeMinute}{" "}
                             {startTimeMinute > 12 ? "PM" : "AM"}
                           </p>
-
                           <p className="">
                             <span className="font-semibold">
                               Session End:&nbsp;
@@ -165,7 +174,6 @@ const NewEngine = () => {
                             {endTimeHour > 12 ? "PM" : "AM"}
                           </p>
                         </div>
-
                         <div className="col-span-1 text-left">
                           <p className="">
                             <span className="font-semibold">
@@ -185,7 +193,6 @@ const NewEngine = () => {
                           </p>
                         </div>
                       </div>
-
                       <p className="">
                         <span className=" font-semibold">
                           Session Overview:&nbsp;
@@ -200,28 +207,23 @@ const NewEngine = () => {
                       </p>
                       <div className="grid grid-cols-2">
                         <div className="col-span-1 text-left">
-
-                        <p className="">
-                              <span className=" font-semibold">
-                                Duration:&nbsp;
-                              </span>
-                              {sessionDurationHours} hours{" "}
-                              {sessionDurationMinutes} minutes
-                            </p>
-                            <p className="">
+                          <p className="">
+                            <span className=" font-semibold">
+                              Duration:&nbsp;
+                            </span>
+                            {sessionDurationHours} hours{" "}
+                            {sessionDurationMinutes} minutes
+                          </p>
+                          <p className="">
                             <span className=" font-semibold">
                               Compensation Per Hour:&nbsp;
                             </span>
                             ${hourlyRate}
                           </p>
-
                         </div>
 
                         <div className="col-span-1 text-left">
-                          <p>
-                            &nbsp;
-                            {/* this paragraph is just for spacing - maybe find a cleaner way */}
-                          </p>
+                          <p>&nbsp;</p>
                           <p className="">
                             <span className="font-semibold">
                               Total Compensation:&nbsp;
@@ -253,59 +255,158 @@ const NewEngine = () => {
       >
         {/* Right Table */}
         <div
-          className="mx-2 mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-sm border 
+          className="mx-2 flex max-h-full min-w-fit  flex-col justify-between overflow-auto rounded-sm border 
     border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1"
         >
           <div className={rightCard === 1 ? "" : "hidden"}>
-            <div className="mb-4 mr-4 ml-4 justify-center ">
-              <div className="mb-2 p-4 text-center text-2xl font-semibold">
-                {selectedSession?.data?.title || isLoading}
-              </div>
-              <div className="text-sm">
-                <p className="">
-                  <span className="font-semibold">Status:&nbsp;</span>
-                  {selectedSession?.data?.careSessionStatus || isLoading}
-                </p>
-                <p className="">
-                  <span className="font-semibold">Name:&nbsp;</span>
-                  {selectedSession?.data?.name || isLoading}
-                </p>
-                <p className="">
-                  <span className="font-semibold">Address:&nbsp;</span>
-                  {selectedSession?.data?.address || isLoading}
-                </p>
-                <p className="">
-                  <span className="font-semibold">Medical Notes:&nbsp;</span>
-                  {selectedSession?.data?.medicalNotes || isLoading}
-                </p>
-                <p className="">
-                  <span className="font-semibold">Overview:&nbsp;</span>
-                  {selectedSession?.data?.overview || isLoading}
-                </p>
-                <p className="">
-                  <span className="font-semibold">Hourly Rate:&nbsp;</span>$
-                  {selectedSession?.data?.hourlyRate || isLoading}
-                </p>
-                <p className="">
-                  <span className="font-semibold">Hours:&nbsp;</span>
-                  {selectedSession?.data?.totalHours || isLoading}
-                </p>
-                <p className="">
-                  <span className="font-semibold">Total:&nbsp;</span>$
-                  {selectedSession?.data?.totalCompensation || isLoading}
-                </p>
-                <div className="flex flex-col items-center justify-center">
-                  <button
-                    onClick={() =>
-                      router.push(`/careSession/${selectedSession.data?.slug}`)
-                    }
-                    className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
-                 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                  >
-                    Details
-                  </button>
+            <div className="mb-4 mr-4 ml-4 justify-center  ">
+              <div className=" mx-2 my-2 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
+                <h1 className="text-center text-lg font-extralight">
+                  Overview
+                </h1>
+                <div className="mb-2 p-4 text-center text-2xl font-semibold">
+                  {selectedSession?.data?.title || isLoading}
+                </div>
+                <div className="px-2">
+                  <div className="row-span-1 grid grid-cols-2">
+                    <div className="col-span-1 min-w-max">
+                      <p className=" min-w-max">
+                        <span className=" font-semibold">Name:&nbsp;</span>
+                        {selectedSession?.data?.name}
+                      </p>
+                    </div>
+                    <div className="col-span-1 min-w-max">
+                      <p className="">
+                        <span className=" font-semibold">Status:&nbsp;</span>
+                        {selectedSession?.data?.careSessionStatus}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="row-span-1 grid grid-cols-2">
+                    <p className="">
+                      <span className=" font-semibold">Date:&nbsp;</span>
+                      {selectedSession?.data?.sessionMonth} /{" "}
+                      {selectedSession?.data?.sessionMonth} /{" "}
+                      {selectedSession?.data?.sessionYear}
+                    </p>
+                    <p className="">
+                      <span className=" font-semibold">Duration:&nbsp;</span>
+                      {currentSessionDurationHours} hours{" "}
+                      {currentSessionDurationMinutes} minutes
+                    </p>
+                  </div>
+                  <div className="row-span-1 grid grid-cols-2">
+                    <p className="">
+                      <span className="font-semibold">
+                        Session Start:&nbsp;
+                      </span>
+                      {selectedStartTimeHour > 12
+                        ? selectedStartTimeHour - 12
+                        : selectedStartTimeHour}{" "}
+                      :{" "}
+                      {selectedStartTimeMinute < 10
+                        ? "0" + selectedStartTimeMinute
+                        : selectedStartTimeMinute}{" "}
+                      {selectedStartTimeHour > 12 ? "PM" : "AM"}
+                    </p>
+                    <p className="">
+                      <span className="font-semibold">Session End:&nbsp;</span>
+                      {selectedEndTimeHour > 12
+                        ? selectedEndTimeHour - 12
+                        : selectedEndTimeHour}{" "}
+                      :{" "}
+                      {selectedEndTimeMinute < 10
+                        ? "0" + selectedEndTimeMinute
+                        : selectedEndTimeMinute}{" "}
+                      {selectedEndTimeHour > 12 ? "PM" : "AM"}
+                    </p>
+                  </div>
+                  <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
+                    <p className="">
+                      <span className=" font-semibold">
+                        Session Overview:&nbsp;
+                      </span>
+                      <textarea
+                        className="inline-block h-32 w-full border border-blue7
+                           bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
+                        id="firstName"
+                        defaultValue={selectedSession?.data?.overview || ""}
+                        readOnly={true}
+                      />
+                    </p>
+                  </div>
+                </div>
+                <h1 className="text-center text-lg font-extralight">
+                  Location
+                </h1>
+                <div className="  mx-4 mb-2 flex min-w-full flex-col pr-8 text-sm">
+                  <p className="">
+                    <span className=" font-semibold">Address:&nbsp;</span>
+                    {selectedSession?.data?.address}
+                  </p>
+                </div>
+                <div className="flex-col-1 flex max-w-fit text-sm">
+                  <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
+                    <p className="">
+                      <span className=" font-semibold">City:&nbsp;</span>
+                      {selectedSession?.data?.city}
+                    </p>
+                  </div>
+                  <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
+                    <p className="">
+                      <span className=" font-semibold">Postal Code:&nbsp;</span>
+                      {selectedSession?.data?.postalCode}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
+                  <p className="">
+                    <span className=" font-semibold">Location:&nbsp;</span>
+                    <textarea
+                      className="inline-block h-24 w-full border border-blue7
+                       bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
+                      id="firstName"
+                      defaultValue={selectedSession?.data?.location || ""}
+                      readOnly={true}
+                    />
+                  </p>
+                </div>
+                <h1 className="text-center text-lg font-extralight">
+                  Compensation
+                </h1>
+                <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
+                  <p className="">
+                    <span className=" font-semibold">
+                      Compensation Per Hour:&nbsp;
+                    </span>
+                    ${selectedSession?.data?.hourlyRate}
+                  </p>
+                </div>
+                <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
+                  <p className="">
+                    <span className=" font-semibold">Hours:&nbsp;</span>
+                    {selectedSession?.data?.totalHours}
+                  </p>
+                </div>
+                <div className="  mx-4 mb-2 flex min-w-full flex-col pr-8 text-sm">
+                  <p className="">
+                    <span className=" font-semibold">Total:&nbsp;</span>$
+                    {selectedSession?.data?.totalCompensation}
+                  </p>
                 </div>
               </div>
+            </div>
+            <div className="mb-4 flex items-center justify-center first-letter:flex">
+              <button
+                onClick={() =>
+                  router.push(`/careSession/${selectedSession.data?.slug}`)
+                }
+                className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
+                 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+              >
+                Details
+              </button>
             </div>
           </div>
         </div>
