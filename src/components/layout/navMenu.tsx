@@ -87,45 +87,17 @@ const NavMenu = () => {
                 Create
               </Link>
               <Link
-                href={"/dashboard/patient/new"}
+                href={"/dashboard/patient/sessions"}
                 className="flex flex-row items-center"
               >
                 <FaceIcon className="mr-2" />
-                New
+                Sessions
               </Link>
               <Link
                 href={"/dashboard/patient/active"}
                 className="flex flex-row items-center"
               >
-                <IdCardIcon className="mr-2" />
-                Active
-              </Link>
-              <Link
-                href={"/dashboard/patient/scheduled"}
-                className="flex flex-row items-center"
-              >
-                <CalendarIcon className="mr-2" />
-                Scheduled
-              </Link>
-
-              <Link
-                href={"/dashboard/patient/completed"}
-                className="flex flex-row items-center"
-              >
-                <ArchiveIcon className="mr-2" />
-                Completed
-              </Link>
-              <Link
-                href={"/dashboard/patient/canceled"}
-                className="flex flex-row items-center"
-              >
-                <StopIcon className="mr-2" />
-                Canceled
-              </Link>
-              <Link
-                href={"/dashboard/messages"}
-                className="flex flex-row items-center"
-              >
+              
                 <ChatBubbleIcon className="mr-2" />
                 Messages
               </Link>

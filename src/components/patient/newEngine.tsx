@@ -10,20 +10,24 @@ const NewEngine = () => {
   const [selectedRole, setSelectedRole] = useState("New");
   let ApiDestination = trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
   if (selectedRole === "New") {
-   ApiDestination = trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery()
+    ApiDestination = trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
   } else if (selectedRole === "Active") {
-   ApiDestination = trpc.careSessionAPIs.readAllActiveSessionsByUser.useQuery()
+    ApiDestination =
+      trpc.careSessionAPIs.readAllActiveSessionsByUser.useQuery();
   } else if (selectedRole === "Scheduled") {
-    ApiDestination = trpc.careSessionAPIs.readAllScheduledSessionsByUser.useQuery()
+    ApiDestination =
+      trpc.careSessionAPIs.readAllScheduledSessionsByUser.useQuery();
   } else if (selectedRole === "Completed") {
     // This route still needs to be built
-    ApiDestination = trpc.careSessionAPIs.readAllCanceledSessionsByUser.useQuery()
+    ApiDestination =
+      trpc.careSessionAPIs.readAllCanceledSessionsByUser.useQuery();
   } else if (selectedRole === "Canceled") {
-    ApiDestination = trpc.careSessionAPIs.readAllCanceledSessionsByUser.useQuery()
-  } 
+    ApiDestination =
+      trpc.careSessionAPIs.readAllCanceledSessionsByUser.useQuery();
+  }
 
-  const { data, isLoading } = ApiDestination
- 
+  const { data, isLoading } = ApiDestination;
+
   const [inputs, setInputs] = useState({
     title: "",
     id: "",
