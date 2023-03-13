@@ -7,6 +7,7 @@ import {
   ChevronUpIcon,
 } from "@radix-ui/react-icons";
 
+
 const SelectSessionType = () => (
   <Select.Root>
     <Select.Trigger
@@ -28,7 +29,7 @@ const SelectSessionType = () => (
         </Select.ScrollUpButton>
         <Select.Viewport className="SelectViewport border-1 border bg-blue1 dark:bg-darkBlue1">
           <Select.Group>
-            <SelectItem value="Mobility Support">Mobility Support</SelectItem>
+            <SelectItem value="Mobility Support">New</SelectItem>
             <SelectItem value="Personal Care">Personal Care</SelectItem>
             <SelectItem value="Home Care">Home Care</SelectItem>
             <SelectItem value="Transportation">Transportation</SelectItem>
