@@ -94,7 +94,7 @@ const NavMenu = () => {
                 Sessions
               </Link>
               <Link
-                href={"/dashboard/patient/active"}
+                href={"/dashboard/messages"}
                 className="flex flex-row items-center"
               >
               
