@@ -5,8 +5,28 @@ import { useState } from "react";
 const NewEngine = () => {
   const router = useRouter();
   const [rightCard, setRightCard] = useState(1);
-  const { data, isLoading } =
-    trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
+
+  const roles = ["New", "Active", "Scheduled", "Completed", "Canceled"];
+  const [selectedRole, setSelectedRole] = useState("New");
+  let ApiDestination = trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
+  if (selectedRole === "New") {
+    ApiDestination = trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
+  } else if (selectedRole === "Active") {
+    ApiDestination =
+      trpc.careSessionAPIs.readAllActiveSessionsByUser.useQuery();
+  } else if (selectedRole === "Scheduled") {
+    ApiDestination =
+      trpc.careSessionAPIs.readAllScheduledSessionsByUser.useQuery();
+  } else if (selectedRole === "Completed") {
+    // This route still needs to be built
+    ApiDestination =
+      trpc.careSessionAPIs.readAllCanceledSessionsByUser.useQuery();
+  } else if (selectedRole === "Canceled") {
+    ApiDestination =
+      trpc.careSessionAPIs.readAllCanceledSessionsByUser.useQuery();
+  }
+
+  const { data, isLoading } = ApiDestination;
 
   const [inputs, setInputs] = useState({
     title: "",
@@ -58,6 +78,27 @@ const NewEngine = () => {
         className="col-span-2 max-h-85vh overflow-scroll  
      md:col-span-1"
       >
+        Session Status
+        {/* make simple pulldown with 3 options */}
+        <div>
+          <select
+            className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
+            value={selectedRole}
+            onChange={(e) => {
+              setSelectedRole(e.target.value);
+              setInputs((prev) => ({
+                ...prev,
+                role: e.target.value,
+              }));
+            }}
+          >
+            {roles.map((role) => (
+              <option value={role} key={role}>
+                {role}
+              </option>
+            ))}
+          </select>
+        </div>
         {/* Left Table */}
         <div
           className="mt-4"
