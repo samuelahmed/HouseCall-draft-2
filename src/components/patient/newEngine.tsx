@@ -103,7 +103,6 @@ const NewEngine = () => {
                   sessionDurationMinutes += 60;
                 }
 
-                console.log(currentSessionDurationHours);
                 return (
                   <li
                     key={id}
@@ -131,7 +130,6 @@ const NewEngine = () => {
                           sessionMonth: sessionMonth || 0,
                           sessionDay: sessionDay || 0,
                           sessionYear: sessionYear || 0,
-
                           hourlyRate: Number(data.hourlyRate) || 0,
                           totalHours: Number(data.totalHours) || 0,
                           totalCompensation:
@@ -151,7 +149,6 @@ const NewEngine = () => {
                             <span className=" font-semibold">Date:&nbsp;</span>
                             {sessionMonth} / {sessionDay} / {sessionYear}
                           </p>
-
                           <p className="">
                             <span className="font-semibold">
                               Session Start:&nbsp;
@@ -165,7 +162,6 @@ const NewEngine = () => {
                               : startTimeMinute}{" "}
                             {startTimeMinute > 12 ? "PM" : "AM"}
                           </p>
-
                           <p className="">
                             <span className="font-semibold">
                               Session End:&nbsp;
@@ -178,7 +174,6 @@ const NewEngine = () => {
                             {endTimeHour > 12 ? "PM" : "AM"}
                           </p>
                         </div>
-
                         <div className="col-span-1 text-left">
                           <p className="">
                             <span className="font-semibold">
@@ -198,7 +193,6 @@ const NewEngine = () => {
                           </p>
                         </div>
                       </div>
-
                       <p className="">
                         <span className=" font-semibold">
                           Session Overview:&nbsp;
@@ -229,10 +223,7 @@ const NewEngine = () => {
                         </div>
 
                         <div className="col-span-1 text-left">
-                          <p>
-                            &nbsp;
-                            {/* this paragraph is just for spacing - maybe find a cleaner way */}
-                          </p>
+                          <p>&nbsp;</p>
                           <p className="">
                             <span className="font-semibold">
                               Total Compensation:&nbsp;
@@ -284,7 +275,6 @@ const NewEngine = () => {
                         {selectedSession?.data?.name}
                       </p>
                     </div>
-
                     <div className="col-span-1 min-w-max">
                       <p className="">
                         <span className=" font-semibold">Status:&nbsp;</span>
@@ -292,7 +282,6 @@ const NewEngine = () => {
                       </p>
                     </div>
                   </div>
-
                   <div className="row-span-1 grid grid-cols-2">
                     <p className="">
                       <span className=" font-semibold">Date:&nbsp;</span>
@@ -300,14 +289,12 @@ const NewEngine = () => {
                       {selectedSession?.data?.sessionMonth} /{" "}
                       {selectedSession?.data?.sessionYear}
                     </p>
-
                     <p className="">
                       <span className=" font-semibold">Duration:&nbsp;</span>
                       {currentSessionDurationHours} hours{" "}
                       {currentSessionDurationMinutes} minutes
                     </p>
                   </div>
-
                   <div className="row-span-1 grid grid-cols-2">
                     <p className="">
                       <span className="font-semibold">
@@ -322,7 +309,6 @@ const NewEngine = () => {
                         : selectedStartTimeMinute}{" "}
                       {selectedStartTimeHour > 12 ? "PM" : "AM"}
                     </p>
-
                     <p className="">
                       <span className="font-semibold">Session End:&nbsp;</span>
                       {selectedEndTimeHour > 12
@@ -335,7 +321,6 @@ const NewEngine = () => {
                       {selectedEndTimeHour > 12 ? "PM" : "AM"}
                     </p>
                   </div>
-
                   <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
                     <p className="">
                       <span className=" font-semibold">
@@ -344,42 +329,31 @@ const NewEngine = () => {
                       <textarea
                         className="inline-block h-32 w-full border border-blue7
                            bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
-                        // type="text"
                         id="firstName"
-                        // defaultValue="select"
                         defaultValue={selectedSession?.data?.overview || ""}
                         readOnly={true}
                       />
                     </p>
                   </div>
                 </div>
-
-                {/* LOCATION  */}
-
                 <h1 className="text-center text-lg font-extralight">
                   Location
                 </h1>
-
                 <div className="  mx-4 mb-2 flex min-w-full flex-col pr-8 text-sm">
                   <p className="">
                     <span className=" font-semibold">Address:&nbsp;</span>
                     {selectedSession?.data?.address}
                   </p>
                 </div>
-
                 <div className="flex-col-1 flex max-w-fit text-sm">
                   <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                     <p className="">
-                      <span className=" font-semibold">
-                        {/* ADD TO DB */}
-                        City:&nbsp;
-                      </span>
+                      <span className=" font-semibold">City:&nbsp;</span>
                       {selectedSession?.data?.city}
                     </p>
                   </div>
                   <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                     <p className="">
-                      {/* ADD TO DB */}
                       <span className=" font-semibold">Postal Code:&nbsp;</span>
                       {selectedSession?.data?.postalCode}
                     </p>
@@ -388,24 +362,19 @@ const NewEngine = () => {
 
                 <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
                   <p className="">
-                    {/* ADD TO DB */}
                     <span className=" font-semibold">Location:&nbsp;</span>
                     <textarea
                       className="inline-block h-24 w-full border border-blue7
                        bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
-                      // type="text"
                       id="firstName"
-                      // defaultValue="select"
                       defaultValue={selectedSession?.data?.location || ""}
                       readOnly={true}
                     />
                   </p>
                 </div>
-
                 <h1 className="text-center text-lg font-extralight">
                   Compensation
                 </h1>
-
                 <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                   <p className="">
                     <span className=" font-semibold">
@@ -428,7 +397,6 @@ const NewEngine = () => {
                 </div>
               </div>
             </div>
-
             <div className="mb-4 flex items-center justify-center first-letter:flex">
               <button
                 onClick={() =>
