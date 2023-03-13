@@ -55,8 +55,8 @@ const NewEngine = () => {
   return (
     <>
       <div
-        className="col-span-2 max-h-85vh overflow-scroll border 
-  border-blue6 bg-blue2 dark:border-darkBlue6 dark:bg-darkBlue2 md:col-span-1"
+        className="col-span-2 max-h-85vh overflow-scroll  
+     md:col-span-1"
       >
         {/* Left Table */}
         <div
@@ -249,18 +249,12 @@ const NewEngine = () => {
           </ul>
         </div>
       </div>
-      <div
-        className="hidden max-h-85vh border border-blue6 bg-blue2 text-olive12 
-    dark:border-darkBlue6 dark:bg-darkBlue2 dark:text-darkOlive12 md:col-span-1 md:block"
-      >
+      <div className="hidden max-h-85vh  text-olive12  dark:text-darkOlive12 md:col-span-1 md:block">
         {/* Right Table */}
-        <div
-          className="mx-2 flex max-h-full min-w-fit  flex-col justify-between overflow-auto rounded-sm border 
-    border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1"
-        >
+        <div className="mx-2 mt-2 flex max-h-full min-w-fit  flex-col justify-between overflow-auto">
           <div className={rightCard === 1 ? "" : "hidden"}>
             <div className="mb-4 mr-4 ml-4 justify-center  ">
-              <div className=" mx-2 my-2 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
+              <div className=" mx-2 my-2 rounded-sm border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
                 <h1 className="text-center text-lg font-extralight">
                   Overview
                 </h1>
