@@ -95,8 +95,9 @@ const SideNav = () => {
                 Sessions
               </Link>
               <Link
-                href={"/dashboard/patient/active"}
+                href={"/dashboard/messages"}
                 className="flex flex-row items-center"
+                
               >
                 <ChatBubbleIcon className="mr-2" />
                 Messages
