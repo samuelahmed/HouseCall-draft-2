@@ -97,6 +97,7 @@ const SideNav = () => {
               <Link
                 href={"/dashboard/messages"}
                 className="flex flex-row items-center"
+                
               >
                 <ChatBubbleIcon className="mr-2" />
                 Messages
