@@ -5,63 +5,68 @@ import NavLayout from "@/components/layout/navLayout";
 import Image from "next/image";
 import DateEngine from "@/components/dateSelect/dateEngine";
 import { OverlayContainer } from "@react-aria/overlays";
-import Pusher from 'pusher-js';
+import Pusher from "pusher-js";
 import { trpc } from "@/utils/trpc";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Label from "@radix-ui/react-label";
 
 const Home: NextPage = () => {
+  // Enable pusher logging - don't include this in production
 
-      // Enable pusher logging - don't include this in production
-      Pusher.logToConsole = true;
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  // const Pusher = require("pusher");
+  useEffect(() => {
+    Pusher.logToConsole = true;
 
-      const pusher = new Pusher('c13caf6d2e7e0e3addce', {
-        cluster: 'us3'
-      });
-  
-      const channel = pusher.subscribe('my-channel');
-      channel.bind('my-event', function(data: any) {
-        // alert(JSON.stringify(data));
-      });
+    const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+      cluster: "us3",
+    });
 
-      // HOW IS THIS CONNECTING WITHOUT ANY ENV VARIABLES? 
-      //   PUSHER_APP_ID="1571069"
-      //   PUSHER_APP_KEY="c13caf6d2e7e0e3addce"
-      //   PUSHER_APP_SECRET="a157128c244e8950e7d3"
+    const channel = pusher.subscribe("my-channel");
 
+    channel.bind("my-event", function (pusherData: any) {
+      console.log(JSON.stringify(pusherData));
+    });
+  }, []);
 
+  // console.log('testData' + testData)
 
-      const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
-      const [inputs, setInputs] = useState({
-        senderId: data?.username || "",
-        message: "",
-      });
+  // console.log(pusherData)
 
+  // HOW IS THIS CONNECTING WITHOUT ANY ENV VARIABLES?
+  //   PUSHER_APP_ID="1571069"
+  //   PUSHER_APP_KEY="c13caf6d2e7e0e3addce"
+  //   PUSHER_APP_SECRET="a157128c244e8950e7d3"
 
-      // useEffect(() => {
-      //   setInputs((prev) => ({
-      //     ...prev,
-      //     name: data?.username || "",
-      //     address: data?.address || "",
-      //   }));
-      // }, [data?.username, data?.address]);
+  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
+  const [inputs, setInputs] = useState({
+    senderId: data?.username || "",
+    message: "",
+  });
 
-      const { data:readMessages } = trpc.messageAPIs.readMessages.useQuery();
+  // useEffect(() => {
+  //   setInputs((prev) => ({
+  //     ...prev,
+  //     name: data?.username || "",
+  //     address: data?.address || "",
+  //   }));
+  // }, [data?.username, data?.address]);
 
-      console.log(readMessages)
+  const { data: readMessages } = trpc.messageAPIs.readMessages.useQuery();
 
-      const { mutate } = trpc.messageAPIs.createMessage.useMutation({
-        
-        // onSuccess(newSession) {
-        //   alert("Meow! Session successfully created!");
-          // setItems((prev) => [...prev, newSession]);
-        //   router.push("/dashboard/patient/new");
-        // },
-      });
+  // console.log(readMessages)
 
-      const publish = () => {
-        mutate(inputs);
-      };
+  const { mutate } = trpc.messageAPIs.createMessage.useMutation({
+    // onSuccess(newSession) {
+    //   alert("Meow! Session successfully created!");
+    // setItems((prev) => [...prev, newSession]);
+    //   router.push("/dashboard/patient/new");
+    // },
+  });
+
+  const publish = () => {
+    mutate(inputs);
+  };
 
   return (
     <>
@@ -71,80 +76,72 @@ const Home: NextPage = () => {
       </Head>
       <NavLayout />
       <main className="flex min-h-screen flex-col items-center justify-center bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkBlue12">
-
-
         {/* PUSHER STUFF START */}
 
-
         <h1>Pusher Test</h1>
-  <p>
-    Try publishing an event to channel <code>my-channel</code>
-    with event name <code>my-event</code>.
-  </p>
-  <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    First name
-                  </Label.Root>
-                  <input
-                    className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                    type="text"
-                    id="firstName"
-                    defaultValue={data && data?.username ? data?.username : ""}
-                  />
-                </div>
+        <p>
+          Try publishing an event to channel <code>my-channel</code>
+          with event name <code>my-event</code>.
+        </p>
+        <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
+          <Label.Root className="px-0.5" htmlFor="firstName">
+            First name
+          </Label.Root>
+          <input
+            className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
+            type="text"
+            id="firstName"
+            defaultValue={data && data?.username ? data?.username : ""}
+          />
+        </div>
 
-  
-  <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    Create Message
-                  </Label.Root>
-                  <textarea
-                    className="inline-block h-32 w-full border
+        <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
+          <Label.Root className="px-0.5" htmlFor="firstName">
+            Create Message
+          </Label.Root>
+          <textarea
+            className="inline-block h-32 w-full border
                     border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
-                    // type="text"
-                    id="Message"
-                    defaultValue={inputs.message}
-                    onChange={(e) =>
-                      setInputs((prev) => ({
-                        ...prev,
-                        message: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
+            // type="text"
+            id="Message"
+            defaultValue={inputs.message}
+            onChange={(e) =>
+              setInputs((prev) => ({
+                ...prev,
+                message: e.target.value,
+              }))
+            }
+          />
+        </div>
 
-
-                <button
-                    type="button"
-                    onClick={() => {
-                      publish();
-                    }}
-                    className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
+        <button
+          type="button"
+          onClick={() => {
+            publish();
+          }}
+          className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
             dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                  >
-                    Create
-                  </button>
+        >
+          Create
+        </button>
 
-<div>
-{readMessages?.map((readMessages) => {
-  return (
-    <div key={readMessages.id}>
-      <p>{readMessages.content}</p>
-      </div>
-  );
-})}
+        <div>
+          
+        </div>
 
+        <div>{/* <p>{testData}</p> */}</div>
 
+        {/* <div>
+          {readMessages?.map((readMessages) => {
+            return (
+              <div key={readMessages.id}>
+                <p>{readMessages.content}</p>
+              </div>
+            );
+          })}
+        </div> */}
 
-</div>
-           
-
-
-
-
-
-
-{/* PUSHER STUFF END */}
+        {/* PUSHER STUFF END */}
 
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <div className="flex flex-row">

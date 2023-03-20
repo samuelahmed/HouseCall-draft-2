@@ -60,7 +60,14 @@ export const messageRouter = router({
      
                 },
         });
+        pusher.trigger("my-channel", "my-event", {
+            message: message
+            });
+
+
         return newMessage;
+
+
     }),
 
     
