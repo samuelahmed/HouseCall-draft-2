@@ -29,6 +29,8 @@ model User {
   potentialCareSessions PotentialCareSession[]
   sessions              Session[]
   careSessions          CareSession[]
+  messages      Message[] //added to support messages down below - part of pusher test
+
 }
 
 model CareSession {
@@ -92,4 +94,14 @@ model PotentialCareSession {
   @@unique([slug])
   @@index([caregiverId])
   @@index([careSessionId])
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  sender    User     @relation(fields: [senderId], references: [id])
+  senderId  String
+  content   String  
+  createdAt DateTime @default(now())
+
+  @@index([senderId])
 }
