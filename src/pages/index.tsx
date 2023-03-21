@@ -37,11 +37,12 @@ const Home: NextPage = () => {
     const channel = pusher.subscribe("my-channel");
 
     channel.bind("my-event", function (data: any) {
-      setMessages((prevMessages) => {
-        return [...prevMessages, data];
+      setMessages((prev) => {
+        return [data, ...prev];
       });
     });
   }, []);
+  
 
   //Add message to db and clear input
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
