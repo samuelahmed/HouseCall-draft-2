@@ -109,7 +109,9 @@ const Home: NextPage = () => {
         </div>
         <button
           type="button"
-          onClick={() => {
+          onClick={(e) => {
+                e.preventDefault();
+
             publish();
           }}
           className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
