@@ -40,27 +40,30 @@ const Home: NextPage = () => {
     message: "",
   });
 
-  const { data: readMessages, refetch } =
-  trpc.messageAPIs.readMessages.useQuery();
+  const { data: readMessages } = trpc.messageAPIs.readMessages.useQuery();
 
+  const [messages, setMessages] = useState<any[]>([]);
 
+  useEffect(() => {
+    if (readMessages) {
+      setMessages(readMessages);
+    }
+    console.log(readMessages);
+  }, [readMessages]);
 
-const [messages, setMessages] = useState<any[]>([]);
+  // console.log(readMessages)
 
-useEffect(() => {
-  const pusher = new Pusher("c13caf6d2e7e0e3addce", {
-    cluster: "us3",
-  });
+  useEffect(() => {
+    const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+      cluster: "us3",
+    });
 
-  const channel = pusher.subscribe("my-channel");
+    const channel = pusher.subscribe("my-channel");
 
-  channel.bind("my-event", function (data: any) {
-    setMessages((prevState) => [...prevState, data]);
-  });
-}, []);
-
-console.log(messages.map((message) => message.message ));
-
+    channel.bind("my-event", function (data: any) {
+      setMessages((prevState) => [...prevState, data]);
+    });
+  }, []);
 
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
     onSuccess() {
@@ -74,6 +77,8 @@ console.log(messages.map((message) => message.message ));
   const publish = () => {
     mutate(inputs);
   };
+
+  console.log(messages);
 
   return (
     <>
@@ -114,6 +119,8 @@ console.log(messages.map((message) => message.message ));
               setInputs((prev) => ({
                 ...prev,
                 message: e.target.value,
+                sender: data?.username || "",
+                senderId: data?.id || "",
               }))
             }
           />
@@ -128,18 +135,45 @@ console.log(messages.map((message) => message.message ));
         >
           Create
         </button>
-        <div>
-          
-        </div>
+        <div></div>
+        {/* PUSHER STUFF END */}
 
-        {messages.map((message) => {
+        {messages
+  ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+  .reverse()
+  .slice(0, 10)
+  .map((message) => {
+    return (
+      <div key={message.createdAt}>
+        <p>{message.message}</p>
+      </div>
+    );
+})}
+
+
+{messages
+  ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+  .slice(0, 10)
+  .map((message) => {
+    return (
+      <div key={message.createdAt}>
+<p>{message.content}</p>
+      </div>
+    );
+})}
+
+
+
+        {/* {messages
+          ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+          .slice(0, 10) // add this line to limit to 10 messages
+          .map((message) => {
           return (
-            <div key={message.id}>
-              <p>{message.message}</p>
+            <div key={message.createdAt}>
+              <p>{message.content}</p>
             </div>
           );
-        })}
-
+        })} */}
         {/* THIS ONE WORKS FOR DB
 
         {readMessages

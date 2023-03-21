@@ -71,7 +71,7 @@ Table PotentialCareSession {
 
 Table Message {
   id String [pk]
-  sender User [not null]
+  sender User
   senderId String [not null]
   content String [not null]
   createdAt DateTime [default: `now()`, not null]
