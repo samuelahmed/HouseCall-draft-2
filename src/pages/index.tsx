@@ -50,9 +50,6 @@ const Home: NextPage = () => {
         ...prev,
         message: "",
       }));
-      if (messages) {
-        setMessages(messages);
-      }
     },
   });
 
@@ -131,8 +128,8 @@ const Home: NextPage = () => {
             )
             .slice(0, 10)
             .map((message) => {
-              console.log(message);
-              console.log(message.message);
+              // console.log(message);
+              // console.log(message.message);
               const liveFormattedDatetime = new Date(
                 message.createdAt
               ).toLocaleString();
