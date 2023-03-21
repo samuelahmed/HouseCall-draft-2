@@ -48,8 +48,8 @@ const Home: NextPage = () => {
 
   //Add message to db and clear input
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
-    onSuccess() {
-      setMessages((prev) => [messages, ...prev]);
+    onSuccess(newMessage) {
+      setMessages(prevMessages => [newMessage, ...prevMessages]);
 
       setInputs((prev) => ({
         ...prev,
