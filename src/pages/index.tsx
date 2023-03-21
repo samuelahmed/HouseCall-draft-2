@@ -17,10 +17,10 @@ const Home: NextPage = () => {
   // const Pusher = require("pusher");
   // const [chats, setChats] = useState([]);
 
-  type Chat = {
-    username: string;
-    message: string;
-  };
+  // type Chat = {
+  //   username: string;
+  //   message: string;
+  // };
 
   // console.log(pusherData)
 
@@ -40,39 +40,26 @@ const Home: NextPage = () => {
     message: "",
   });
 
-
   const { data: readMessages, refetch } =
-    trpc.messageAPIs.readMessages.useQuery();
-    setInterval(() => {
-      refetch()
-    }, 5000)
-  
-
-
-    const [chats, setChats] = useState<Chat[]>([]);
-
-    const [messages, setMessages] = useState<any>([]);
-
-
-  // useEffect(() => {
-
-  //   const pusher = new Pusher("c13caf6d2e7e0e3addce", {
-  //     cluster: "us3",
-  //   });
-  //   const channel = pusher.subscribe("my-channel");
-
-  //   channel.bind(
-  //     "my-event",
-  //     function (dataTwo: { username: any; message: any }) {
-  //       const { username, message } = dataTwo;
-  //       setChats((prevState) => [...prevState, { username, message }]);
-  //     }
-  //   );
-  // }, []);
+  trpc.messageAPIs.readMessages.useQuery();
 
 
 
+const [messages, setMessages] = useState<any[]>([]);
 
+useEffect(() => {
+  const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+    cluster: "us3",
+  });
+
+  const channel = pusher.subscribe("my-channel");
+
+  channel.bind("my-event", function (data: any) {
+    setMessages((prevState) => [...prevState, data]);
+  });
+}, []);
+
+console.log(messages.map((message) => message.message ));
 
 
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
@@ -81,9 +68,6 @@ const Home: NextPage = () => {
         ...prev,
         message: "",
       }));
-      console.log("meoowoowoww");
-
-      refetch();
     },
   });
 
@@ -145,20 +129,18 @@ const Home: NextPage = () => {
           Create
         </button>
         <div>
-          {messages.map((message: any) => {
-            return (
-              <div key={message.id}>
-                <p>{message.content}</p>
-              </div>
-            );
-          }
-          )}
-
-
-
+          
         </div>
 
-{/* THIS ONE WORKS FOR DB
+        {messages.map((message) => {
+          return (
+            <div key={message.id}>
+              <p>{message.message}</p>
+            </div>
+          );
+        })}
+
+        {/* THIS ONE WORKS FOR DB
 
         {readMessages
   ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
@@ -170,11 +152,6 @@ const Home: NextPage = () => {
     );
     
   })} */}
-
-
-
-
-
         {/* // {chats.map((chat) => {
 //               return (  
 //               // <div key={chat.me}>
@@ -186,17 +163,7 @@ const Home: NextPage = () => {
 //               );
 //             }
 //               )} */}
-        {/* {console.log(chats)} */}
         Above here
-        {/* <div>
-          {readMessages?.map((readMessages) => {
-            return (
-              <div key={readMessages.id}>
-                <p>{readMessages.content}</p>
-              </div>
-            );
-          })}
-        </div> */}
         {/* PUSHER STUFF END */}
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <div className="flex flex-row">
