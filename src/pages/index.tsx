@@ -50,6 +50,9 @@ const Home: NextPage = () => {
         ...prev,
         message: "",
       }));
+      if (messages) {
+        setMessages(messages);
+      }
     },
   });
 
@@ -138,11 +141,15 @@ const Home: NextPage = () => {
                 <div className="min-w-40vw" key={message.id}>
                   <p>{liveFormattedDatetime}</p>
                   {/* sender changed when I completely logged out and logged into a second account. However the sender persisted after only logout and even in icognito window... */}
-                  <p>{message.senderId}</p>
+                  {/* <p>{message.senderId}</p> */}
                   {/* this will handle live messages through pusher channel */}
-                  <p className="font-bold">{message.message}</p>
+                  {message.message && (
+                    <p className="font-bold">{message.message}</p>
+                  )}
+                  {!message.message && (
+                    <p className="font-bold">{message.content}</p>
+                  )}
                   {/* this will handle past messages from db */}
-                  <p className="font-bold">{message.content}</p>
                 </div>
               );
             })}
