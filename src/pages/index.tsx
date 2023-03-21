@@ -3,56 +3,32 @@ import Head from "next/head";
 import Link from "next/link";
 import NavLayout from "@/components/layout/navLayout";
 import Image from "next/image";
-import DateEngine from "@/components/dateSelect/dateEngine";
-import { OverlayContainer } from "@react-aria/overlays";
 import Pusher from "pusher-js";
 import { trpc } from "@/utils/trpc";
 import { useEffect, useState } from "react";
 import * as Label from "@radix-ui/react-label";
 
 const Home: NextPage = () => {
-  // Enable pusher logging - don't include this in production
+  //Load current user and past messages
+  const { data: userData, isLoading } =
+    trpc.userAPIs.readCurrentUser.useQuery();
+  const { data: readMessages } = trpc.messageAPIs.readMessages.useQuery();
 
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  // const Pusher = require("pusher");
-  // const [chats, setChats] = useState([]);
-
-  // type Chat = {
-  //   username: string;
-  //   message: string;
-  // };
-
-  // console.log(pusherData)
-
-  // console.log('testData' + testData)
-
-  // console.log()
-  // console.log(channel)
-
-  // HOW IS THIS CONNECTING WITHOUT ANY ENV VARIABLES?
-  //   PUSHER_APP_ID="1571069"
-  //   PUSHER_APP_KEY="c13caf6d2e7e0e3addce"
-  //   PUSHER_APP_SECRET="a157128c244e8950e7d3"
-
-  const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
+  //Set state for messages and inputs
+  const [messages, setMessages] = useState<any[]>([]);
   const [inputs, setInputs] = useState({
-    senderId: data?.username || "",
+    senderId: userData?.username || "",
     message: "",
   });
 
-  const { data: readMessages } = trpc.messageAPIs.readMessages.useQuery();
-
-  const [messages, setMessages] = useState<any[]>([]);
-
+  //Add past messages to state on load
   useEffect(() => {
     if (readMessages) {
       setMessages(readMessages);
     }
-    console.log(readMessages);
   }, [readMessages]);
 
-  // console.log(readMessages)
-
+  //Connect to pusher channel and push new messages to it and state
   useEffect(() => {
     const pusher = new Pusher("c13caf6d2e7e0e3addce", {
       cluster: "us3",
@@ -65,6 +41,7 @@ const Home: NextPage = () => {
     });
   }, []);
 
+  //Add message to db and clear input
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
     onSuccess() {
       setInputs((prev) => ({
@@ -74,11 +51,12 @@ const Home: NextPage = () => {
     },
   });
 
+  //trigger mutation
   const publish = () => {
     mutate(inputs);
   };
 
-  console.log(messages);
+  // console.log(messages);
 
   return (
     <>
@@ -88,6 +66,8 @@ const Home: NextPage = () => {
       </Head>
       <NavLayout />
       <main className="flex min-h-screen flex-col items-center justify-center bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkBlue12">
+
+
         {/* PUSHER STUFF START */}
         <h1>Pusher Test</h1>
         <p>
@@ -102,7 +82,9 @@ const Home: NextPage = () => {
             className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
             type="text"
             id="firstName"
-            defaultValue={data && data?.username ? data?.username : ""}
+            defaultValue={
+              userData && userData?.username ? userData?.username : ""
+            }
           />
         </div>
         <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
@@ -119,8 +101,8 @@ const Home: NextPage = () => {
               setInputs((prev) => ({
                 ...prev,
                 message: e.target.value,
-                sender: data?.username || "",
-                senderId: data?.id || "",
+                sender: userData?.username || "",
+                senderId: userData?.id || "",
               }))
             }
           />
@@ -135,70 +117,41 @@ const Home: NextPage = () => {
         >
           Create
         </button>
-        <div></div>
-        {/* PUSHER STUFF END */}
+        
+        <div className="flex min-w-full flex-col items-center">
+          {messages
+            ?.sort(
+              (a, b) =>
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+            )
+            .slice(0, 10)
+            .map((message) => {
+              console.log(message);
+              console.log(message.message);
+              const liveFormattedDatetime = new Date(
+                message.createdAt
+              ).toLocaleString();
 
-        {messages
-  ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-  .reverse()
-  .slice(0, 10)
-  .map((message) => {
-    return (
-      <div key={message.createdAt}>
-        <p>{message.message}</p>
-      </div>
-    );
-})}
-
-
-{messages
-  ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-  .slice(0, 10)
-  .map((message) => {
-    return (
-      <div key={message.createdAt}>
-<p>{message.content}</p>
-      </div>
-    );
-})}
-
-
-
-        {/* {messages
-          ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-          .slice(0, 10) // add this line to limit to 10 messages
-          .map((message) => {
-          return (
-            <div key={message.createdAt}>
-              <p>{message.content}</p>
-            </div>
-          );
-        })} */}
-        {/* THIS ONE WORKS FOR DB
-
-        {readMessages
-  ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-  .map((message) => { 
-    return (
-      <div key={message.id}>
-        <p>{message.content}</p>
-      </div>
-    );
-    
-  })} */}
-        {/* // {chats.map((chat) => {
-//               return (  
-//               // <div key={chat.me}>
-
-//                   // <p>{chat.username}</p>
-//                   // eslint-disable-next-line react/jsx-key
-//                   <p>{chat.message}</p>
-//                 // </div> 
-//               );
-//             }
-//               )} */}
+              return (
+                <div className="min-w-40vw" key={message.id}>
+                  <p>{liveFormattedDatetime}</p>
+                  {/* sender changed when I completely logged out and logged into a second account. However the sender persisted after only logout and even in icognito window... */}
+                  <p>{message.senderId}</p>
+                  {/* this will handle live messages through pusher channel */}
+                  <p className="font-bold">{message.message}</p>
+                  {/* this will handle past messages from db */}
+                  <p className="font-bold">{message.content}</p>
+                </div>
+              );
+            })}
+        </div>
         Above here
         {/* PUSHER STUFF END */}
+
+
+
+        
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <div className="flex flex-row">
             <h1 className=" text-5xl font-extrabold tracking-tight sm:text-[5rem]">

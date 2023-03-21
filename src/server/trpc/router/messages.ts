@@ -30,7 +30,6 @@ export const messageRouter = router({
     .input(
       z.object({
         message: z.string(),
-
         senderId: z.string(),
       })
     )
@@ -38,13 +37,13 @@ export const messageRouter = router({
     .mutation(async ({ input, ctx }) => {
       const { message, senderId } = input;
 
-      const user = ctx.prisma.user.findFirst({
+      const currentUser = ctx.prisma.user.findFirst({
         where: {
-          id: ctx.session?.user?.id,
+          id: senderId
         },
       });
 
-      if (!user) {
+      if (!currentUser) {
         throw new Error("Meow! user not found.");
       }
 
@@ -54,6 +53,7 @@ export const messageRouter = router({
         data: {
           content: message,
           senderId: senderId,
+          createdAt: new Date(),
         },
       });
 
@@ -61,6 +61,7 @@ export const messageRouter = router({
       pusher.trigger("my-channel", "my-event", {
         message: message,
         senderId: senderId,
+        createdAt: new Date(),
         // sender: user,
       });
 
