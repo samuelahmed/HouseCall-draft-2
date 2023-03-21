@@ -42,6 +42,8 @@ const Home: NextPage = () => {
       });
     });
   }, []);
+
+
   
 
   //Add message to db and clear input
@@ -51,12 +53,16 @@ const Home: NextPage = () => {
         ...prev,
         message: "",
       }));
+      setMessages((prev) => [messages, ...prev]);
+
     },
+    
   });
 
   //trigger mutation
   const publish = () => {
     mutate(inputs);
+
   };
 
   // console.log(messages);
@@ -110,8 +116,8 @@ const Home: NextPage = () => {
         </div>
         <button
           type="button"
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={() => {
+            // e.preventDefault();
 
             publish();
           }}
@@ -143,9 +149,9 @@ const Home: NextPage = () => {
                   {/* this will handle live messages through pusher channel */}
                   <p className="font-bold">{message.message}</p>
 
-                  {message.message && (
+                  {/* {message.message && (
                     <p className="font-bold">{message.message}</p>
-                  )}
+                  )} */}
                   {!message.message && (
                     <p className="font-bold">{message.content}</p>
                   )}
