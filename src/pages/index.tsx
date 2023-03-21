@@ -37,7 +37,9 @@ const Home: NextPage = () => {
     const channel = pusher.subscribe("my-channel");
 
     channel.bind("my-event", function (data: any) {
-      setMessages((prevState) => [...prevState, data]);
+      setMessages((prevMessages) => {
+        return [...prevMessages, data];
+      });
     });
   }, []);
 
@@ -66,8 +68,6 @@ const Home: NextPage = () => {
       </Head>
       <NavLayout />
       <main className="flex min-h-screen flex-col items-center justify-center bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkBlue12">
-
-
         {/* PUSHER STUFF START */}
         <h1>Pusher Test</h1>
         <p>
@@ -110,7 +110,7 @@ const Home: NextPage = () => {
         <button
           type="button"
           onClick={(e) => {
-                e.preventDefault();
+            e.preventDefault();
 
             publish();
           }}
@@ -119,7 +119,6 @@ const Home: NextPage = () => {
         >
           Create
         </button>
-        
         <div className="flex min-w-full flex-col items-center">
           {messages
             ?.sort(
@@ -150,10 +149,6 @@ const Home: NextPage = () => {
         </div>
         Above here
         {/* PUSHER STUFF END */}
-
-
-
-        
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <div className="flex flex-row">
             <h1 className=" text-5xl font-extrabold tracking-tight sm:text-[5rem]">
