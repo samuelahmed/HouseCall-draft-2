@@ -43,8 +43,6 @@ const Home: NextPage = () => {
 
   const { data: readMessages, refetch } =
     trpc.messageAPIs.readMessages.useQuery();
-
-
     setInterval(() => {
       refetch()
     }, 5000)
@@ -53,22 +51,29 @@ const Home: NextPage = () => {
 
     const [chats, setChats] = useState<Chat[]>([]);
 
+    const [messages, setMessages] = useState<any>([]);
 
-  useEffect(() => {
 
-    const pusher = new Pusher("c13caf6d2e7e0e3addce", {
-      cluster: "us3",
-    });
-    const channel = pusher.subscribe("my-channel");
+  // useEffect(() => {
 
-    channel.bind(
-      "my-event",
-      function (dataTwo: { username: any; message: any }) {
-        const { username, message } = dataTwo;
-        setChats((prevState) => [...prevState, { username, message }]);
-      }
-    );
-  }, []);
+  //   const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+  //     cluster: "us3",
+  //   });
+  //   const channel = pusher.subscribe("my-channel");
+
+  //   channel.bind(
+  //     "my-event",
+  //     function (dataTwo: { username: any; message: any }) {
+  //       const { username, message } = dataTwo;
+  //       setChats((prevState) => [...prevState, { username, message }]);
+  //     }
+  //   );
+  // }, []);
+
+
+
+
+
 
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
     onSuccess() {
@@ -139,20 +144,37 @@ const Home: NextPage = () => {
         >
           Create
         </button>
-        <div></div>
-        {/* {console.log(messageArray[0])} */}
+        <div>
+          {messages.map((message: any) => {
+            return (
+              <div key={message.id}>
+                <p>{message.content}</p>
+              </div>
+            );
+          }
+          )}
+
+
+
+        </div>
+
+{/* THIS ONE WORKS FOR DB
+
         {readMessages
   ?.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
   .map((message) => { 
     return (
       <div key={message.id}>
-        {/* <p>{message.id}</p> */}
-        {/* <p>{message.createdAt}</p> */}
-        {/* <p>{message.senderId}</p> */}
         <p>{message.content}</p>
       </div>
     );
-  })}
+    
+  })} */}
+
+
+
+
+
         {/* // {chats.map((chat) => {
 //               return (  
 //               // <div key={chat.me}>
