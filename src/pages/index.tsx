@@ -9,7 +9,6 @@ import Pusher from "pusher-js";
 import { trpc } from "@/utils/trpc";
 import { useEffect, useState } from "react";
 import * as Label from "@radix-ui/react-label";
-import ChatList from "./chatList";
 
 const Home: NextPage = () => {
   // Enable pusher logging - don't include this in production
@@ -45,7 +44,7 @@ const Home: NextPage = () => {
   const { data: readMessages, refetch } =
     trpc.messageAPIs.readMessages.useQuery();
 
-    
+
     setInterval(() => {
       refetch()
     }, 5000)
