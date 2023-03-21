@@ -9,29 +9,26 @@ import Pusher from "pusher-js";
 import { trpc } from "@/utils/trpc";
 import { useEffect, useState } from "react";
 import * as Label from "@radix-ui/react-label";
+import ChatList from "./chatList";
 
 const Home: NextPage = () => {
   // Enable pusher logging - don't include this in production
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   // const Pusher = require("pusher");
-  useEffect(() => {
-    Pusher.logToConsole = true;
+  // const [chats, setChats] = useState([]);
 
-    const pusher = new Pusher("c13caf6d2e7e0e3addce", {
-      cluster: "us3",
-    });
+  type Chat = {
+    username: string;
+    message: string;
+  };
 
-    const channel = pusher.subscribe("my-channel");
-
-    channel.bind("my-event", function (pusherData: any) {
-      console.log(JSON.stringify(pusherData));
-    });
-  }, []);
+  // console.log(pusherData)
 
   // console.log('testData' + testData)
 
-  // console.log(pusherData)
+  // console.log()
+  // console.log(channel)
 
   // HOW IS THIS CONNECTING WITHOUT ANY ENV VARIABLES?
   //   PUSHER_APP_ID="1571069"
@@ -44,6 +41,44 @@ const Home: NextPage = () => {
     message: "",
   });
 
+  const { data: readMessages, refetch } =
+    trpc.messageAPIs.readMessages.useQuery();
+
+  // console.log(readMessages)
+  const [chats, setChats] = useState<Chat[]>([]);
+
+  // const messageArray = readMessages
+
+  // messageArray.push(readMessages)
+
+  useEffect(() => {
+    // Pusher.logToConsole = true;
+
+    const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+      cluster: "us3",
+    });
+    const channel = pusher.subscribe("my-channel");
+
+    // channel.bind("chat-update", function (chatData: { username: any; message: any; }) {
+    //   const {username, message} = chatData
+    //   setChats((prevState) => [
+    //     ...prevState,
+    //     { username, message },
+    //   ]);
+    // });
+    channel.bind(
+      "my-event",
+      function (dataTwo: { username: any; message: any }) {
+        const { username, message } = dataTwo;
+        setChats((prevState) => [...prevState, { username, message }]);
+      }
+    );
+  }, []);
+
+  // console.log(chats)
+
+  // console.log(messageArray)
+
   // useEffect(() => {
   //   setInputs((prev) => ({
   //     ...prev,
@@ -52,16 +87,18 @@ const Home: NextPage = () => {
   //   }));
   // }, [data?.username, data?.address]);
 
-  const { data: readMessages } = trpc.messageAPIs.readMessages.useQuery();
-
   // console.log(readMessages)
 
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
-    // onSuccess(newSession) {
-    //   alert("Meow! Session successfully created!");
-    // setItems((prev) => [...prev, newSession]);
-    //   router.push("/dashboard/patient/new");
-    // },
+    onSuccess() {
+      setInputs((prev) => ({
+        ...prev,
+        message: "",
+      }));
+      console.log("meoowoowoww");
+
+      refetch();
+    },
   });
 
   const publish = () => {
@@ -77,7 +114,6 @@ const Home: NextPage = () => {
       <NavLayout />
       <main className="flex min-h-screen flex-col items-center justify-center bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkBlue12">
         {/* PUSHER STUFF START */}
-
         <h1>Pusher Test</h1>
         <p>
           Try publishing an event to channel <code>my-channel</code>
@@ -94,7 +130,6 @@ const Home: NextPage = () => {
             defaultValue={data && data?.username ? data?.username : ""}
           />
         </div>
-
         <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
           <Label.Root className="px-0.5" htmlFor="firstName">
             Create Message
@@ -104,7 +139,7 @@ const Home: NextPage = () => {
                     border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
             // type="text"
             id="Message"
-            defaultValue={inputs.message}
+            value={inputs.message}
             onChange={(e) =>
               setInputs((prev) => ({
                 ...prev,
@@ -113,7 +148,6 @@ const Home: NextPage = () => {
             }
           />
         </div>
-
         <button
           type="button"
           onClick={() => {
@@ -124,13 +158,28 @@ const Home: NextPage = () => {
         >
           Create
         </button>
+        <div></div>
+        {/* {console.log(messageArray[0])} */}
+        {readMessages?.map((messageArray) => {
+          return (
+            <div key={messageArray.id}>
+              <p>{messageArray.content}</p>
+            </div>
+          );
+        })}
+        {/* // {chats.map((chat) => {
+//               return (  
+//               // <div key={chat.me}>
 
-        <div>
-          
-        </div>
-
-        <div>{/* <p>{testData}</p> */}</div>
-
+//                   // <p>{chat.username}</p>
+//                   // eslint-disable-next-line react/jsx-key
+//                   <p>{chat.message}</p>
+//                 // </div> 
+//               );
+//             }
+//               )} */}
+        {/* {console.log(chats)} */}
+        Above here
         {/* <div>
           {readMessages?.map((readMessages) => {
             return (
@@ -140,9 +189,7 @@ const Home: NextPage = () => {
             );
           })}
         </div> */}
-
         {/* PUSHER STUFF END */}
-
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <div className="flex flex-row">
             <h1 className=" text-5xl font-extrabold tracking-tight sm:text-[5rem]">
