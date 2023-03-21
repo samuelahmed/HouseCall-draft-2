@@ -140,6 +140,8 @@ const Home: NextPage = () => {
                   {/* sender changed when I completely logged out and logged into a second account. However the sender persisted after only logout and even in icognito window... */}
                   {/* <p>{message.senderId}</p> */}
                   {/* this will handle live messages through pusher channel */}
+                  <p className="font-bold">{message.message}</p>
+
                   {message.message && (
                     <p className="font-bold">{message.message}</p>
                   )}
