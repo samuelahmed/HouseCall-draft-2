@@ -48,8 +48,7 @@ const Home: NextPage = () => {
 
   //Add message to db and clear input
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
-    onSuccess(newMessage) {
-      setMessages(prevMessages => [newMessage, ...prevMessages]);
+    onSuccess() {
 
       setInputs((prev) => ({
         ...prev,
@@ -61,8 +60,13 @@ const Home: NextPage = () => {
     
   });
 
+  const updatePusher = (newMessage: any ) => {
+    setMessages(prevMessages => [newMessage, ...prevMessages]);
+  }
+
   //trigger mutation
   const publish = () => {
+    updatePusher(inputs);
     mutate(inputs);
 
   };
