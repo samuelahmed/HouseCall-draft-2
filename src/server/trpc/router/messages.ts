@@ -34,7 +34,7 @@ export const messageRouter = router({
       })
     )
 
-    .mutation(async ({ input, ctx }) => {
+    .mutation( ({ input, ctx }) => {
       const { message, senderId } = input;
 
       const currentUser = ctx.prisma.user.findFirst({
@@ -49,7 +49,7 @@ export const messageRouter = router({
 
       // console.log('USER' + user)
 
-      const newMessage = await ctx.prisma.message.create({
+      const newMessage =  ctx.prisma.message.create({
         data: {
           content: message,
           senderId: senderId,

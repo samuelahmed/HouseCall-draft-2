@@ -41,6 +41,8 @@ const Home: NextPage = () => {
         return [data, ...prev];
       });
     });
+
+
   }, []);
 
 
@@ -55,18 +57,31 @@ const Home: NextPage = () => {
         message: "",
       }));
       
-
     },
     
   });
 
-  const updatePusher = (newMessage: any ) => {
-    setMessages(prevMessages => [newMessage, ...prevMessages]);
-  }
+  // const updatePusher = (newMessage: any ) => {
+  //   setMessages(prevMessages => [newMessage, ...prevMessages]);
+  //   console.log(newMessage)
+  // }
+  const updatePusher = (newMessage: any) => {
+    const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+      cluster: "us3",
+    });
+    const channel = pusher.subscribe("my-channel");
+    channel.trigger("my-event", {
+      message: newMessage.message,
+      sender: newMessage.sender,
+      timestamp: Date.now(),
+    });
+    setMessages((prevMessages) => [newMessage, ...prevMessages]);
+  };
+
 
   //trigger mutation
   const publish = () => {
-    updatePusher(messages);
+    updatePusher;
     mutate(inputs);
 
   };
