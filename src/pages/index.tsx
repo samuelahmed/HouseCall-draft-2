@@ -51,20 +51,14 @@ const Home: NextPage = () => {
   //Add message to db and clear input
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
     onSuccess() {
-
       setInputs((prev) => ({
         ...prev,
         message: "",
       }));
-      
     },
-    
   });
 
-  // const updatePusher = (newMessage: any ) => {
-  //   setMessages(prevMessages => [newMessage, ...prevMessages]);
-  //   console.log(newMessage)
-  // }
+
   const updatePusher = (newMessage: any) => {
     const pusher = new Pusher("c13caf6d2e7e0e3addce", {
       cluster: "us3",
