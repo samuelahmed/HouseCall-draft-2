@@ -97,12 +97,12 @@ const Home: NextPage = () => {
       <NavLayout />
       <main className="flex min-h-screen flex-col items-center justify-center bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkBlue12">
         {/* PUSHER STUFF START */}
-        <h1>Pusher Test</h1>
-        <p>
+        <h1 className="font-bold">Pusher Test</h1>
+        {/* <p>
           Try publishing an event to channel <code>my-channel</code>
           with event name <code>my-event</code>.
-        </p>
-        <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
+        </p> */}
+        {/* <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
           <Label.Root className="px-0.5" htmlFor="firstName">
             First name
           </Label.Root>
@@ -114,13 +114,13 @@ const Home: NextPage = () => {
               userData && userData?.username ? userData?.username : ""
             }
           />
-        </div>
-        <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
+        </div> */}
+        <div className="mx-4 mb-2 flex flex-col  pt-2 pr-6 text-sm ">
           <Label.Root className="px-0.5" htmlFor="firstName">
             Create Message
           </Label.Root>
           <textarea
-            className="inline-block h-32 w-full border
+            className="inline-block h-32 max-w-lg border
                     border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
             // type="text"
             id="Message"
@@ -145,7 +145,7 @@ const Home: NextPage = () => {
           className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
             dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
         >
-          Create
+          Send
         </button>
         <div className="flex min-w-full flex-col items-center">
           {messages
@@ -181,7 +181,6 @@ const Home: NextPage = () => {
               );
             })}
         </div>
-        Above here
         {/* PUSHER STUFF END */}
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <div className="flex flex-row">
