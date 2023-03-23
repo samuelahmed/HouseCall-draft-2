@@ -35,15 +35,13 @@ export const messageRouter = router({
       return newPusherChannel;
     }),
 
-
-
   readAllCurrentUserPusherChannels: privateProcedure
     .input(
       z.object({
         userId: z.string(),
       })
     )
-    .query(({ input, ctx }) => {
+    .query(async ({ input, ctx }) => {
       const { userId } = input;
 
       const currentUserPusherChannels = ctx.prisma.pusherChannel.findMany({
@@ -52,7 +50,37 @@ export const messageRouter = router({
         },
       });
 
-      return currentUserPusherChannels;
+      const channelsWithNames = await Promise.all(
+        (
+          await currentUserPusherChannels
+        ).map(
+          async (channel: {
+            channelName: string;
+            caregiverId: string;
+            patientId: string;
+          }) => {
+            const caregiver = await ctx.prisma.user.findUnique({
+              where: {
+                id: channel.caregiverId,
+              },
+            });
+            const patient = await ctx.prisma.user.findUnique({
+              where: {
+                id: channel.patientId,
+              },
+            });
+
+            return {
+              ...channel,
+              caregiverName: caregiver?.username,
+              patientName: patient?.username,
+              channelName: channel.channelName,
+            };
+          }
+        )
+      );
+
+      return channelsWithNames;
     }),
 
   //this is getting all the messages from the database
@@ -63,9 +91,6 @@ export const messageRouter = router({
     const messages = ctx.prisma.message.findMany({});
     return messages;
   }),
-
-
-
 
   readMessagesByChannel: publicProcedure
     .input(
@@ -85,13 +110,32 @@ export const messageRouter = router({
       return messages;
     }),
 
+  //select a caregiver given a caregiverId
+  readCaregiverByCaregiverId: publicProcedure
+    .input(
+      z.object({
+        caregiverId: z.string(),
+      })
+    )
+    .query(({ input, ctx }) => {
+      const { caregiverId } = input;
+
+      const caregiver = ctx.prisma.user.findUnique({
+        where: {
+          id: caregiverId,
+        },
+      });
+
+      return caregiver;
+    }),
+
   //this is creating a new message in the database & sending it to the pusher channel
   createMessage: publicProcedure
     .input(
       z.object({
         message: z.string(),
         senderId: z.string(),
-        channelName: z.string()
+        channelName: z.string(),
       })
     )
     .mutation(({ input, ctx }) => {
@@ -108,7 +152,6 @@ export const messageRouter = router({
           createdAt: new Date(),
         },
       });
-      
 
       // this is sending data to the pusher channel
       // the channel is active as long as someone is subscribed to it
@@ -120,7 +163,7 @@ export const messageRouter = router({
         createdAt: new Date(),
       });
 
-      console.log(pusher)
+      console.log(pusher);
 
       return newMessage;
     }),
