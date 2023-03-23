@@ -170,17 +170,17 @@ useEffect(() => {
 
   //Connect to pusher channel and push new messages to it and state
   //this is to READ LIVE MESSAGES (I THINK)
-  useEffect(() => {
-    const pusher = new Pusher("c13caf6d2e7e0e3addce", {
-      cluster: "us3",
-    });
-    const channel = pusher.subscribe(selectedChannel?.channelName || "");
-    channel.bind("my-event", function (data: any) {
-      setMessages((prev) => {
-        return [data, ...prev];
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+  //     cluster: "us3",
+  //   });
+  //   const channel = pusher.subscribe(selectedChannel?.channelName || "");
+  //   channel.bind("my-event", function (data: any) {
+  //     setMessages((prev) => {
+  //       return [data, ...prev];
+  //     });
+  //   });
+  // }, []);
 
   //Add message to db and clear input
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
