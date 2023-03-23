@@ -29,6 +29,8 @@ model User {
   potentialCareSessions PotentialCareSession[]
   sessions              Session[]
   careSessions          CareSession[]
+  messages      Message[] //added to support messages down below - part of pusher test
+
 }
 
 model CareSession {
@@ -93,3 +95,22 @@ model PotentialCareSession {
   @@index([caregiverId])
   @@index([careSessionId])
 }
+
+model Message {
+  id        String   @id @default(cuid())
+  sender    User?     @relation(fields: [senderId], references: [id])
+  senderId  String
+  content   String  
+  channelName String
+  createdAt DateTime @default(now())
+
+  @@index([senderId])
+}
+
+  model PusherChannel {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    channelName String
+    caregiverId String
+    patientId String
+  }

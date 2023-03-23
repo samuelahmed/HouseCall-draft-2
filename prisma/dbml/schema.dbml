@@ -16,6 +16,7 @@ Table User {
   potentialCareSessions PotentialCareSession [not null]
   sessions Session [not null]
   careSessions CareSession [not null]
+  messages Message [not null]
 }
 
 Table CareSession {
@@ -68,6 +69,23 @@ Table PotentialCareSession {
   slug String [unique, not null]
 }
 
+Table Message {
+  id String [pk]
+  sender User
+  senderId String [not null]
+  content String [not null]
+  channelName String [not null]
+  createdAt DateTime [default: `now()`, not null]
+}
+
+Table PusherChannel {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  channelName String [not null]
+  caregiverId String [not null]
+  patientId String [not null]
+}
+
 Ref: CareSession.userId > User.id
 
 Ref: Session.userId > User.id [delete: Cascade]
@@ -75,3 +93,5 @@ Ref: Session.userId > User.id [delete: Cascade]
 Ref: PotentialCareSession.caregiverId > User.id
 
 Ref: PotentialCareSession.careSessionId > CareSession.id
+
+Ref: Message.senderId > User.id
