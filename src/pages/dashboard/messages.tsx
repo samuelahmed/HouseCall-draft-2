@@ -11,6 +11,7 @@ import * as Label from "@radix-ui/react-label";
 const Messages: NextPage = () => {
 
 
+  // TODO:Find and fix bug that is causing message to be sent twice
   
   //Load session
   const { data: session } = useSession();
@@ -195,29 +196,29 @@ useEffect(() => {
   //Push new message to pusher channel and state
   //Is there an issue having a new trigger and new pusher, etc. here?
   //I think this is to SEND LIVE MESSAGES
-  const updatePusher = (newMessage: any) => {
-    const pusher = new Pusher("c13caf6d2e7e0e3addce", {
-      cluster: "us3",
-    });
-    //need to make this DYNAMIC USER + CONNECTED USER
-    // (`channel-${userData?.id}-and-${userData?.id}`)
-    // caregiver     and    patient
+  // const updatePusher = (newMessage: any) => {
+  //   const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+  //     cluster: "us3",
+  //   });
+  //   //need to make this DYNAMIC USER + CONNECTED USER
+  //   // (`channel-${userData?.id}-and-${userData?.id}`)
+  //   // caregiver     and    patient
 
-    const channel = pusher.subscribe(selectedChannel?.channelName);
+  //   const channel = pusher.subscribe(selectedChannel?.channelName);
 
-    channel.trigger("my-event", {
-      message: newMessage.message,
-      sender: newMessage.sender,
-      timestamp: Date.now(),
-    });
-    setMessages((prevMessages) => [newMessage, ...prevMessages]);
-  };
+  //   channel.trigger("my-event", {
+  //     message: newMessage.message,
+  //     sender: newMessage.sender,
+  //     timestamp: Date.now(),
+  //   });
+  //   setMessages((prevMessages) => [newMessage, ...prevMessages]);
+  // };
 
 
 
   //trigger mutation
   const publish = () => {
-    updatePusher;
+    // updatePusher;
     mutate(inputs);
   };
 
