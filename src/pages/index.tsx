@@ -76,7 +76,7 @@ const Home: NextPage = () => {
   //trigger mutation
   const publish = () => {
     updatePusher;
-    mutate(inputs);
+    // mutate(inputs);
 
   };
 
