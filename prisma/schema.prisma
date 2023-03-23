@@ -101,15 +101,16 @@ model Message {
   sender    User?     @relation(fields: [senderId], references: [id])
   senderId  String
   content   String  
+  channelName String
   createdAt DateTime @default(now())
 
   @@index([senderId])
 }
 
-model PusherChannel {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  channelName String
-  caregiverId String
-  patientId String
-}
+  model PusherChannel {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    channelName String
+    caregiverId String
+    patientId String
+  }

@@ -74,6 +74,7 @@ Table Message {
   sender User
   senderId String [not null]
   content String [not null]
+  channelName String [not null]
   createdAt DateTime [default: `now()`, not null]
 }
 

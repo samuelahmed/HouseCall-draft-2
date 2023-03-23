@@ -37,7 +37,7 @@ export const messageRouter = router({
 
 
 
-    readAllCurrentUserPusherChannels: privateProcedure
+  readAllCurrentUserPusherChannels: privateProcedure
     .input(
       z.object({
         userId: z.string(),
@@ -45,25 +45,15 @@ export const messageRouter = router({
     )
     .query(({ input, ctx }) => {
       const { userId } = input;
-  
+
       const currentUserPusherChannels = ctx.prisma.pusherChannel.findMany({
         where: {
-          OR: [
-            { patientId: userId },
-            { caregiverId: userId }
-          ]
+          OR: [{ patientId: userId }, { caregiverId: userId }],
         },
       });
-  
+
       return currentUserPusherChannels;
     }),
-
-
-
-
-
-
-
 
   //this is getting all the messages from the database
   //this is being used to populate the history of messages on page load
@@ -74,17 +64,39 @@ export const messageRouter = router({
     return messages;
   }),
 
+
+
+
+  readMessagesByChannel: publicProcedure
+    .input(
+      z.object({
+        channelName: z.string(),
+      })
+    )
+    .query(({ input, ctx }) => {
+      const { channelName } = input;
+
+      const messages = ctx.prisma.message.findMany({
+        where: {
+          channelName: channelName,
+        },
+      });
+
+      return messages;
+    }),
+
   //this is creating a new message in the database & sending it to the pusher channel
   createMessage: publicProcedure
     .input(
       z.object({
         message: z.string(),
         senderId: z.string(),
+        channelName: z.string()
       })
     )
     .mutation(({ input, ctx }) => {
       //add receiverId & senderName & receiverName
-      const { message, senderId } = input;
+      const { message, senderId, channelName } = input;
 
       //this is creating a new message in the database
       //this is being used to populate the history of messages on page load
@@ -92,18 +104,23 @@ export const messageRouter = router({
         data: {
           content: message,
           senderId: senderId,
+          channelName: channelName,
           createdAt: new Date(),
         },
       });
+      
 
-      //this is sending data to the pusher channel
-      //the channel is active as long as someone is subscribed to it
-      //subscription occured on the front end
-      pusher.trigger("my-channel", "my-event", {
+      // this is sending data to the pusher channel
+      // the channel is active as long as someone is subscribed to it
+      // subscription occured on the front end
+      pusher.trigger(channelName, "my-event", {
         message: message,
         senderId: senderId,
+        channelName: channelName,
         createdAt: new Date(),
       });
+
+      console.log(pusher)
 
       return newMessage;
     }),
