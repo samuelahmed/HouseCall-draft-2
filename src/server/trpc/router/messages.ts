@@ -13,6 +13,58 @@ const pusher = new Pusher({
 });
 
 export const messageRouter = router({
+  //create a pusherChannel entry in db for the caregiver / patient
+  createPusherChannel: privateProcedure
+    .input(
+      z.object({
+        patientId: z.string(),
+        caregiverId: z.string(),
+      })
+    )
+    .mutation(({ input, ctx }) => {
+      const { patientId, caregiverId } = input;
+
+      const newPusherChannel = ctx.prisma.pusherChannel.create({
+        data: {
+          channelName: `${patientId}-${caregiverId}`,
+          patientId: patientId,
+          caregiverId: caregiverId,
+        },
+      });
+
+      return newPusherChannel;
+    }),
+
+
+
+    readAllCurrentUserPusherChannels: privateProcedure
+    .input(
+      z.object({
+        userId: z.string(),
+      })
+    )
+    .query(({ input, ctx }) => {
+      const { userId } = input;
+  
+      const currentUserPusherChannels = ctx.prisma.pusherChannel.findMany({
+        where: {
+          OR: [
+            { patientId: userId },
+            { caregiverId: userId }
+          ]
+        },
+      });
+  
+      return currentUserPusherChannels;
+    }),
+
+
+
+
+
+
+
+
   //this is getting all the messages from the database
   //this is being used to populate the history of messages on page load
   //this will need to be limited to current user and the user they are chatting with
@@ -31,7 +83,7 @@ export const messageRouter = router({
       })
     )
     .mutation(({ input, ctx }) => {
-      //need to add second userId to the input so that we can create a message to the correct pusher channel
+      //add receiverId & senderName & receiverName
       const { message, senderId } = input;
 
       //this is creating a new message in the database
@@ -51,7 +103,6 @@ export const messageRouter = router({
         message: message,
         senderId: senderId,
         createdAt: new Date(),
-        // sender: user,
       });
 
       return newMessage;

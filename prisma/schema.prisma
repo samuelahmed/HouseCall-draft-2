@@ -105,3 +105,11 @@ model Message {
 
   @@index([senderId])
 }
+
+model PusherChannel {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  channelName String
+  caregiverId String
+  patientId String
+}

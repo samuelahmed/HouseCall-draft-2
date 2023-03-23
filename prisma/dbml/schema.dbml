@@ -77,6 +77,14 @@ Table Message {
   createdAt DateTime [default: `now()`, not null]
 }
 
+Table PusherChannel {
+  id String [pk]
+  createdAt DateTime [default: `now()`, not null]
+  channelName String [not null]
+  caregiverId String [not null]
+  patientId String [not null]
+}
+
 Ref: CareSession.userId > User.id
 
 Ref: Session.userId > User.id [delete: Cascade]

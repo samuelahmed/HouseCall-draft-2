@@ -3,8 +3,9 @@ import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "@/components/layout/navLayout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Pusher from "pusher-js";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -111,6 +112,7 @@ const Slug: NextPage = () => {
         },
       }
     );
+
   const updateAllOtherPotentialCareSessions = () => {
     if (user && currentSession) {
       mutate3({
@@ -120,6 +122,18 @@ const Slug: NextPage = () => {
       });
     }
   };
+
+  //START OF PUSHER SETUP
+  //create a pusherChannel entry in db when the patient messages the caregiver
+  //TODO: make sure that multiple pusherChannels cannot be created for the same patient and caregiver
+  const { mutate: mutate4 } = trpc.messageAPIs.createPusherChannel.useMutation({});
+  const triggerCreatePusherChannel = () => {
+    mutate4({
+      patientId: user?.id || "",
+      caregiverId: potentialCaregiverInfo?.id || "",
+    });
+  };
+  //END OF PUSHER SETUP
 
   return (
     <>
@@ -139,7 +153,10 @@ const Slug: NextPage = () => {
             <button
               className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
                                 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-              onClick={() => router.push("/messages")}
+              onClick={() => {
+                triggerCreatePusherChannel();
+                // router.push("/messages");
+              }}
             >
               Message Caregiver
             </button>
