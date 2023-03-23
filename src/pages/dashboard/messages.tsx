@@ -8,13 +8,9 @@ import { useState, useEffect } from "react";
 import Pusher from "pusher-js";
 import * as Label from "@radix-ui/react-label";
 
-
-
 const Messages: NextPage = () => {
-
-
   // TODO:Find and fix bug that is causing message to be sent twice
-  
+
   //Load session
   const { data: session } = useSession();
 
@@ -27,9 +23,7 @@ const Messages: NextPage = () => {
   //Read past messages
   //Currently reads all messages, in future restrict to those related to user
 
-
-
-    //make a list of pusherchannel that have the userId
+  //make a list of pusherchannel that have the userId
   //then loop through the list and display the name of the other user in the channel
   //if the user clicks on a channel - then display the messages in that channel
 
@@ -39,8 +33,6 @@ const Messages: NextPage = () => {
       userId: userData?.id || "",
     });
 
-
-
   // console.log(readAllPusherChannels);
 
   // use the caregiverId and patientId to get the name of the other user in the channel
@@ -49,26 +41,19 @@ const Messages: NextPage = () => {
   //create variable that holds the currently selected channel
   const [selectedChannel, setSelectedChannel] = useState<any>(null);
 
-
-
-  const { data: readMessages } = trpc.messageAPIs.readMessagesByChannel.useQuery(
-    {
+  const { data: readMessages } =
+    trpc.messageAPIs.readMessagesByChannel.useQuery({
       channelName: selectedChannel?.channelName || "",
-    }
-  );
+    });
 
-console.log(readMessages)
+  console.log(readMessages);
 
-
-// console.log(selectedChannel)
+  // console.log(selectedChannel)
 
   //Set state for messages and inputs
   const [messages, setMessages] = useState<any[]>([]);
 
-
-
   // console.log(selectedChannel?.channelName || "")
-
 
   const [inputs, setInputs] = useState({
     senderId: userData?.username || "",
@@ -76,44 +61,10 @@ console.log(readMessages)
     channelName: selectedChannel?.channelName || "",
   });
 
+  // Subscribe to the specified Pusher channel
+  //there is an error without the channelName: string
 
-
-
-
-
-
-
-
-
-
-
-
-// Subscribe to the specified Pusher channel
-//there is an error without the channelName: string
-
-const subscribeToChannel = (channelName: string) => {
-  const pusher = new Pusher("c13caf6d2e7e0e3addce", {
-    cluster: "us3",
-  });
-  const channel = pusher.subscribe(selectedChannel.channelName);
-  channel.bind("my-event", function (data: any) {
-    setMessages((prev) => {
-      return [data, ...prev];
-    });
-  });
-};
-
-// Subscribe to the new Pusher channel whenever the selected channel changes
-useEffect(() => {
-  if (selectedChannel) {
-    subscribeToChannel(selectedChannel.channelName);
-  }
-}, [selectedChannel]);
-
-// Update the Pusher channel subscription whenever the selected channel changes
-useEffect(() => {
-  if (selectedChannel) {
-    const channelName = selectedChannel.channelName;
+  const subscribeToChannel = (channelName: string) => {
     const pusher = new Pusher("c13caf6d2e7e0e3addce", {
       cluster: "us3",
     });
@@ -123,44 +74,30 @@ useEffect(() => {
         return [data, ...prev];
       });
     });
-    return () => {
-      pusher.unsubscribe(channelName);
-    };
-  }
-}, [selectedChannel]);
+  };
+
+  // Subscribe to the new Pusher channel whenever the selected channel changes
+  useEffect(() => {
+    if (selectedChannel) {
+      subscribeToChannel(selectedChannel.channelName);
+    }
+  }, [selectedChannel]);
+
+  // Update the Pusher channel subscription whenever the selected channel changes
+  useEffect(() => {
+    if (selectedChannel) {
+      const channelName = selectedChannel.channelName;
+      const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+        cluster: "us3",
+      });
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      return () => {
+        pusher.unsubscribe(channelName);
+      };
+    }
+  }, [selectedChannel]);
 
   // console.log(inputs.channelName)
 
@@ -216,18 +153,14 @@ useEffect(() => {
   //   setMessages((prevMessages) => [newMessage, ...prevMessages]);
   // };
 
-
-
   //trigger mutation
   const publish = () => {
     // updatePusher;
     mutate(inputs);
   };
 
-
   // console.log(messages)
   // console.log(selectedChannel?.channelName || "")
-
 
   return (
     <>
@@ -251,9 +184,11 @@ useEffect(() => {
                     {/* make these clickable and then display the messages in that channel
                     when clicked it will update the selectedChannel variable */}
                     {readAllPusherChannels?.map((channel) => (
-                      <div className="mb-1 bg-yellow9" 
-                      onClick={() => setSelectedChannel(channel)}
-                      key={channel.id}>
+                      <div
+                        className="mb-1 bg-yellow9"
+                        onClick={() => setSelectedChannel(channel)}
+                        key={channel.id}
+                      >
                         {userData?.role === "Patient" && (
                           <div>{channel.caregiverId}</div>
                         )}
