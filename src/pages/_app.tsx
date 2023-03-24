@@ -11,22 +11,16 @@ const MyApp: AppType<{ session: Session | null }> = ({
   pageProps: { session, ...pageProps },
 }) => {
   return (
-
-
     <ThemeProvider attribute="class">
       <SessionProvider session={session}>
-
         {/* Added this <Head> to force propagate favicon to all pages.
         Make sure to review for better possible solution. */}
         <Head>
           <link rel="icon" href="/faviconLarge.png" />
         </Head>
-
         <Component {...pageProps} />
-
       </SessionProvider>
     </ThemeProvider>
-
   );
 };
 

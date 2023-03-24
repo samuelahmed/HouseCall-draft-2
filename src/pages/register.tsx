@@ -7,7 +7,6 @@ import NavMenu from "@/components/layout/navMenu";
 
 const Register: NextPage = () => {
   const { data: session } = useSession();
-
   return (
     <>
       <Head>
