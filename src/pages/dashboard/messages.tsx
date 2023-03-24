@@ -31,13 +31,12 @@ const Messages: NextPage = () => {
   const [selectedChannel, setSelectedChannel] = useState<any>(null);
 
   //read all messages for the currently selected channel
-      //since this is filling the data for message  maybe i should pull the username from backend and push to this? 
+  //since this is filling the data for message  maybe i should pull the username from backend and push to this?
 
   const { data: readMessages } =
     trpc.messageAPIs.readMessagesByChannel.useQuery({
       channelName: selectedChannel?.channelName || "",
     });
-
 
   //Set state for messages and inputs
   const [messages, setMessages] = useState<any[]>([]);
@@ -46,6 +45,7 @@ const Messages: NextPage = () => {
   const [inputs, setInputs] = useState({
     senderId: userData?.username || "",
     message: "",
+    senderName: userData?.username || "",
     channelName: selectedChannel?.channelName || "",
   });
 
@@ -140,6 +140,7 @@ const Messages: NextPage = () => {
                             message: e.target.value,
                             sender: userData?.username || "",
                             senderId: userData?.id || "",
+                            senderName: userData?.username || "",
                             channelName: selectedChannel?.channelName || "",
                           }))
                         }
@@ -167,15 +168,45 @@ const Messages: NextPage = () => {
                           const liveFormattedDatetime = new Date(
                             message.createdAt
                           ).toLocaleString();
-
                           return (
-                            <div className="min-w-40vw" key={message.id}>
-                              <p>{liveFormattedDatetime}</p>
-                              <p className="font-bold">{message.message}</p>
-                              {!message.message && (
-                                <p className="font-bold">{message.content}</p>
+                            <>
+                              {message.senderName === userData?.username && (
+                                <div
+                                  className="min-w-40vw border bg-yellow9"
+                                  key={message.id}
+                                >
+                                  <p className="text-blue10">
+                                    {message.senderName}
+                                  </p>
+                                  <p>{liveFormattedDatetime}</p>
+                                  <p className="font-bold">{message.message}</p>
+
+                                  {!message.message && (
+                                    <p className="font-bold">
+                                      {message.content}
+                                    </p>
+                                  )}
+                                </div>
                               )}
-                            </div>
+                              {message.senderName !== userData?.username && (
+                                <div
+                                  className="min-w-40vw border text-right "
+                                  key={message.id}
+                                >
+                                  <p className="text-blue10">
+                                    {message.senderName}
+                                  </p>
+                                  <p>{liveFormattedDatetime}</p>
+                                  <p className="font-bold">{message.message}</p>
+
+                                  {!message.message && (
+                                    <p className="font-bold">
+                                      {message.content}
+                                    </p>
+                                  )}
+                                </div>
+                              )}
+                            </>
                           );
                         })}
                     </div>

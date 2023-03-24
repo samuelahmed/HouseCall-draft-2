@@ -93,22 +93,37 @@ export const messageRouter = router({
   }),
 
   readMessagesByChannel: publicProcedure
-    .input(
-      z.object({
-        channelName: z.string(),
+  .input(
+    z.object({
+      channelName: z.string(),
+    })
+  )
+  .query(async ({ input, ctx }) => {
+    const { channelName } = input;
+
+    const messages = await ctx.prisma.message.findMany({
+      where: {
+        channelName: channelName,
+      },
+    });
+
+    const messagesWithSenderNames = await Promise.all(
+      messages.map(async (message) => {
+        const sender = await ctx.prisma.user.findUnique({
+          where: {
+            id: message.senderId,
+          },
+        });
+
+        return {
+          ...message,
+          senderName: sender?.username,
+        };
       })
-    )
-    .query(({ input, ctx }) => {
-      const { channelName } = input;
+    );
 
-      const messages = ctx.prisma.message.findMany({
-        where: {
-          channelName: channelName,
-        },
-      });
-
-      return messages;
-    }),
+    return messagesWithSenderNames;
+  }),
 
   //select a caregiver given a caregiverId
   readCaregiverByCaregiverId: publicProcedure
@@ -136,11 +151,12 @@ export const messageRouter = router({
         message: z.string(),
         senderId: z.string(),
         channelName: z.string(),
+        senderName: z.string()
       })
     )
     .mutation(({ input, ctx }) => {
       //add receiverId & senderName & receiverName
-      const { message, senderId, channelName } = input;
+      const { message, senderId, channelName, senderName } = input;
 
       //this is creating a new message in the database
       //this is being used to populate the history of messages on page load
@@ -161,6 +177,7 @@ export const messageRouter = router({
         senderId: senderId,
         channelName: channelName,
         createdAt: new Date(),
+        senderName: senderName
       });
 
       console.log(pusher);
