@@ -13,7 +13,6 @@ const pusher = new Pusher({
 });
 //!IMPORTANT!
 
-
 export const messageRouter = router({
   createPusherChannel: privateProcedure
     .input(
@@ -32,6 +31,35 @@ export const messageRouter = router({
         },
       });
       return newPusherChannel;
+    }),
+
+  createMessage: publicProcedure
+    .input(
+      z.object({
+        message: z.string(),
+        senderId: z.string(),
+        channelName: z.string(),
+        senderName: z.string(),
+      })
+    )
+    .mutation(({ input, ctx }) => {
+      const { message, senderId, channelName, senderName } = input;
+      const newMessage = ctx.prisma.message.create({
+        data: {
+          content: message,
+          senderId: senderId,
+          channelName: channelName,
+          createdAt: new Date(),
+        },
+      });
+      pusher.trigger(channelName, "my-event", {
+        message: message,
+        senderId: senderId,
+        channelName: channelName,
+        createdAt: new Date(),
+        senderName: senderName,
+      });
+      return newMessage;
     }),
 
   readAllCurrentUserPusherChannels: privateProcedure
@@ -106,34 +134,5 @@ export const messageRouter = router({
         })
       );
       return messagesWithSenderNames;
-    }),
-
-  createMessage: publicProcedure
-    .input(
-      z.object({
-        message: z.string(),
-        senderId: z.string(),
-        channelName: z.string(),
-        senderName: z.string(),
-      })
-    )
-    .mutation(({ input, ctx }) => {
-      const { message, senderId, channelName, senderName } = input;
-      const newMessage = ctx.prisma.message.create({
-        data: {
-          content: message,
-          senderId: senderId,
-          channelName: channelName,
-          createdAt: new Date(),
-        },
-      });
-      pusher.trigger(channelName, "my-event", {
-        message: message,
-        senderId: senderId,
-        channelName: channelName,
-        createdAt: new Date(),
-        senderName: senderName,
-      });
-      return newMessage;
     }),
 });
