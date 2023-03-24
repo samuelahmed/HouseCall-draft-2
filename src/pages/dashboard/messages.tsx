@@ -169,17 +169,44 @@ const Messages: NextPage = () => {
                             message.createdAt
                           ).toLocaleString();
                           return (
-                            <div className="min-w-40vw border" key={message.id}>
-                              <p className="text-blue10">
-                                {message.senderName}
-                              </p>
-                              <p>{liveFormattedDatetime}</p>
-                              <p className="font-bold">{message.message}</p>
+                            <>
+                              {message.senderName === userData?.username && (
+                                <div
+                                  className="min-w-40vw border bg-yellow9"
+                                  key={message.id}
+                                >
+                                  <p className="text-blue10">
+                                    {message.senderName}
+                                  </p>
+                                  <p>{liveFormattedDatetime}</p>
+                                  <p className="font-bold">{message.message}</p>
 
-                              {!message.message && (
-                                <p className="font-bold">{message.content}</p>
+                                  {!message.message && (
+                                    <p className="font-bold">
+                                      {message.content}
+                                    </p>
+                                  )}
+                                </div>
                               )}
-                            </div>
+                              {message.senderName !== userData?.username && (
+                                <div
+                                  className="min-w-40vw border text-right "
+                                  key={message.id}
+                                >
+                                  <p className="text-blue10">
+                                    {message.senderName}
+                                  </p>
+                                  <p>{liveFormattedDatetime}</p>
+                                  <p className="font-bold">{message.message}</p>
+
+                                  {!message.message && (
+                                    <p className="font-bold">
+                                      {message.content}
+                                    </p>
+                                  )}
+                                </div>
+                              )}
+                            </>
                           );
                         })}
                     </div>
