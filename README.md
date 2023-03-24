@@ -36,12 +36,8 @@
  ┃ ┃ ┣ 📜sideNav.tsx
  ┃ ┃ ┗ 📜themeManager.tsx
  ┃ ┣ 📂patient
- ┃ ┃ ┣ 📜activeEngine.tsx
- ┃ ┃ ┣ 📜canceledEngine.tsx
- ┃ ┃ ┣ 📜createCareSession copy.tsx
  ┃ ┃ ┣ 📜createCareSession.tsx
- ┃ ┃ ┣ 📜newEngine.tsx
- ┃ ┃ ┗ 📜patientScheduledEngine.tsx
+ ┃ ┃ ┗ 📜newEngine.tsx
  ┃ ┗ 📂timeSelect
 
  ┣ 📂env
@@ -68,13 +64,8 @@
  ┃ ┃ ┃ ┣ 📜history.tsx
  ┃ ┃ ┃ ┗ 📜scheduled.tsx
  ┃ ┃ ┣ 📂patient
- ┃ ┃ ┃ ┣ 📜active.tsx
- ┃ ┃ ┃ ┣ 📜canceled.tsx
- ┃ ┃ ┃ ┣ 📜completed.tsx
  ┃ ┃ ┃ ┣ 📜create.tsx
- ┃ ┃ ┃ ┣ 📜new.tsx
- ┃ ┃ ┃ ┣ 📜scheduled.tsx
- ┃ ┃ ┃ ┗ 📜test.tsx
+ ┃ ┃ ┃ ┗ 📜sessions.tsx
  ┃ ┃ ┣ 📜account.tsx
  ┃ ┃ ┗ 📜messages.tsx
  ┃ ┣ 📜_app.tsx
@@ -83,7 +74,7 @@
  ┃ ┣ 📜login.tsx
  ┃ ┣ 📜loginSuccess.tsx
  ┃ ┗ 📜register.tsx
-
+ 
  ┣ 📂server
  ┃ ┣ 📂common
  ┃ ┃ ┗ 📜get-server-auth-session.ts
@@ -94,10 +85,10 @@
  ┃ ┃ ┃ ┣ 📜_app.ts
  ┃ ┃ ┃ ┣ 📜auth.ts
  ┃ ┃ ┃ ┣ 📜careSessionRouter.ts
+ ┃ ┃ ┃ ┣ 📜messages.ts
  ┃ ┃ ┃ ┗ 📜userRouter.ts
  ┃ ┃ ┣ 📜context.ts
  ┃ ┃ ┗ 📜trpc.ts
-
  ┣ 📂styles
  ┃ ┗ 📜globals.css
  ┣ 📂types
