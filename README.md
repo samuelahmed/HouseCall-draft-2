@@ -99,6 +99,6 @@
  ┃ ┗ 📜auth.ts
  ```
 
-![db Schema](https://github.com/samuelahmed/HouseCall-draft-2/blob/2f0593251bf01309be4efa881d28aa6292c9002c/prisma/dbImg/march24_2023.png?raw=true "DB Schema")
+![db Schema](https://github.com/samuelahmed/HouseCall-draft-2/blob/3dce26e305aa9940e596845979d9ec0f6fd31587/prisma/dbImg/march24_2023.png?raw=true "DB Schema")
 
 
