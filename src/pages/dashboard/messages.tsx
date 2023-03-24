@@ -45,6 +45,7 @@ const Messages: NextPage = () => {
   const [inputs, setInputs] = useState({
     senderId: userData?.username || "",
     message: "",
+    senderName: userData?.username || "",
     channelName: selectedChannel?.channelName || "",
   });
 
