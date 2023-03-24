@@ -8,6 +8,7 @@ import LoginForm from "@/components/forms/loginForm";
 import AppliedEngine from "@/components/caregiver/appliedEngine";
 
 const Applied: NextPage = () => {
+  //TODO: combine all these pages into caregiver/sessions
   const { data: session } = useSession();
 
   return (
