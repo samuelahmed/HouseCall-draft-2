@@ -2,8 +2,8 @@ import { router, publicProcedure, privateProcedure } from "../trpc";
 import { z } from "zod";
 import Pusher from "pusher";
 
-//Create a pusher instance
-//Move this to env variables before deployment
+//!IMPORTANT!
+//Move this to env variables before deployment with new keys
 const pusher = new Pusher({
   appId: "1571069",
   key: "c13caf6d2e7e0e3addce",
@@ -11,9 +11,10 @@ const pusher = new Pusher({
   cluster: "us3",
   useTLS: true,
 });
+//!IMPORTANT!
+
 
 export const messageRouter = router({
-  //create a pusherChannel entry in db for the caregiver / patient
   createPusherChannel: privateProcedure
     .input(
       z.object({
@@ -23,7 +24,6 @@ export const messageRouter = router({
     )
     .mutation(({ input, ctx }) => {
       const { patientId, caregiverId } = input;
-
       const newPusherChannel = ctx.prisma.pusherChannel.create({
         data: {
           channelName: `${patientId}-${caregiverId}`,
@@ -31,7 +31,6 @@ export const messageRouter = router({
           caregiverId: caregiverId,
         },
       });
-
       return newPusherChannel;
     }),
 
@@ -49,7 +48,6 @@ export const messageRouter = router({
           OR: [{ patientId: userId }, { caregiverId: userId }],
         },
       });
-
       const channelsWithNames = await Promise.all(
         (
           await currentUserPusherChannels
@@ -69,7 +67,6 @@ export const messageRouter = router({
                 id: channel.patientId,
               },
             });
-
             return {
               ...channel,
               caregiverName: caregiver?.username,
@@ -79,87 +76,49 @@ export const messageRouter = router({
           }
         )
       );
-
       return channelsWithNames;
     }),
 
-  //this is getting all the messages from the database
-  //this is being used to populate the history of messages on page load
-  //this will need to be limited to current user and the user they are chatting with
-  //will I need to limit total message load (or is the limit on front end enough)
-  readMessages: publicProcedure.query(({ ctx }) => {
-    const messages = ctx.prisma.message.findMany({});
-    return messages;
-  }),
-
   readMessagesByChannel: publicProcedure
-  .input(
-    z.object({
-      channelName: z.string(),
-    })
-  )
-  .query(async ({ input, ctx }) => {
-    const { channelName } = input;
-
-    const messages = await ctx.prisma.message.findMany({
-      where: {
-        channelName: channelName,
-      },
-    });
-
-    const messagesWithSenderNames = await Promise.all(
-      messages.map(async (message) => {
-        const sender = await ctx.prisma.user.findUnique({
-          where: {
-            id: message.senderId,
-          },
-        });
-
-        return {
-          ...message,
-          senderName: sender?.username,
-        };
-      })
-    );
-
-    return messagesWithSenderNames;
-  }),
-
-  //select a caregiver given a caregiverId
-  readCaregiverByCaregiverId: publicProcedure
     .input(
       z.object({
-        caregiverId: z.string(),
+        channelName: z.string(),
       })
     )
-    .query(({ input, ctx }) => {
-      const { caregiverId } = input;
-
-      const caregiver = ctx.prisma.user.findUnique({
+    .query(async ({ input, ctx }) => {
+      const { channelName } = input;
+      const messages = await ctx.prisma.message.findMany({
         where: {
-          id: caregiverId,
+          channelName: channelName,
         },
       });
-
-      return caregiver;
+      const messagesWithSenderNames = await Promise.all(
+        messages.map(async (message) => {
+          const sender = await ctx.prisma.user.findUnique({
+            where: {
+              id: message.senderId,
+            },
+          });
+          return {
+            ...message,
+            senderName: sender?.username,
+          };
+        })
+      );
+      return messagesWithSenderNames;
     }),
 
-  //this is creating a new message in the database & sending it to the pusher channel
   createMessage: publicProcedure
     .input(
       z.object({
         message: z.string(),
         senderId: z.string(),
         channelName: z.string(),
-        senderName: z.string()
+        senderName: z.string(),
       })
     )
     .mutation(({ input, ctx }) => {
-      //add receiverId & senderName & receiverName
       const { message, senderId, channelName, senderName } = input;
-
-      //this is creating a new message in the database
-      //this is being used to populate the history of messages on page load
       const newMessage = ctx.prisma.message.create({
         data: {
           content: message,
@@ -168,20 +127,13 @@ export const messageRouter = router({
           createdAt: new Date(),
         },
       });
-
-      // this is sending data to the pusher channel
-      // the channel is active as long as someone is subscribed to it
-      // subscription occured on the front end
       pusher.trigger(channelName, "my-event", {
         message: message,
         senderId: senderId,
         channelName: channelName,
         createdAt: new Date(),
-        senderName: senderName
+        senderName: senderName,
       });
-
-      console.log(pusher);
-
       return newMessage;
     }),
 });
