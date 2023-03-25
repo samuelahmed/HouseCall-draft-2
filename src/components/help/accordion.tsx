@@ -5,9 +5,6 @@ const AccordionEngine = () => {
   return (
     <>
       <Accordion.Root
-        //max-w-md is not a good way to do this
-        //but it seems to breakout of the grid if I make it w-full
-        //this is defintely a terrible way to do this - it will look bad on some mobile devices.
         className="flex h-10 max-w-xs flex-col items-center text-xl md:max-w-lg"
         type="single"
         defaultValue="item-1"
