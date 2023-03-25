@@ -1,6 +1,5 @@
 import SelectSessionType from "./selectSessionType";
 
-
 const SearchEngine = () => {
   return (
     <>
@@ -24,10 +23,8 @@ const SearchEngine = () => {
               className="w-full rounded-sm border border-blue7 bg-blue1 text-center text-olive12 focus:border-blue8 focus:outline-none dark:border-darkBlue7 dark:bg-darkBlue1 dark:text-darkOlive12 dark:focus:border-darkBlue8"
               id="grid-city"
               type="text"
-              // placeholder="Search"
             />
           </div>
-
           <button
             className="ml-3 border border-solid border-blue7 
             bg-blue3 px-3 text-olive12 hover:border-blue8

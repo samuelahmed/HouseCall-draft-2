@@ -18,7 +18,7 @@ const NewEngine = () => {
     ApiDestination =
       trpc.careSessionAPIs.readAllScheduledSessionsByUser.useQuery();
   } else if (selectedRole === "Completed") {
-    // This route still needs to be built
+    // TODO: Build completed route
     ApiDestination =
       trpc.careSessionAPIs.readAllCanceledSessionsByUser.useQuery();
   } else if (selectedRole === "Canceled") {
@@ -79,7 +79,6 @@ const NewEngine = () => {
      md:col-span-1"
       >
         Session Status
-        {/* make simple pulldown with 3 options */}
         <div>
           <select
             className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
@@ -131,19 +130,16 @@ const NewEngine = () => {
                   sessionDay,
                   sessionYear,
                 } = data;
-
                 const startTimeHour = sessionStartHour || 0;
                 const startTimeMinute = sessionStartMinute || 0;
                 const endTimeHour = sessionEndHour || 0;
                 const endTimeMinute = sessionEndMinute || 0;
-
                 let sessionDurationHours = endTimeHour - startTimeHour;
                 let sessionDurationMinutes = endTimeMinute - startTimeMinute;
                 if (sessionDurationMinutes < 0) {
                   sessionDurationHours--;
                   sessionDurationMinutes += 60;
                 }
-
                 return (
                   <li
                     key={id}
@@ -262,7 +258,6 @@ const NewEngine = () => {
                             ${hourlyRate}
                           </p>
                         </div>
-
                         <div className="col-span-1 text-left">
                           <p>&nbsp;</p>
                           <p className="">
@@ -394,7 +389,6 @@ const NewEngine = () => {
                     </p>
                   </div>
                 </div>
-
                 <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
                   <p className="">
                     <span className=" font-semibold">Location:&nbsp;</span>

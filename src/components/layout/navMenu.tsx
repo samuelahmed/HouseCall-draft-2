@@ -9,7 +9,6 @@ import {
   EnterIcon,
   Pencil2Icon,
   PlusCircledIcon,
-  StopIcon,
 } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { trpc } from "@/utils/trpc";

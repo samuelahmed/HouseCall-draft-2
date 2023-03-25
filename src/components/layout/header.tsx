@@ -5,8 +5,6 @@ import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 import AuthShowcase from "./authShowcase";
 
-
-
 const Header = ({
   showNav,
   setShowNav,
@@ -18,8 +16,6 @@ const Header = ({
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
   const router = useRouter();
 
-  //Gets name of current pathname to set as header title
-  //This should be done in a better way
   const endRoute1 =
     router.pathname.split("/")[router.pathname.split("/").length - 1];
   const endRoute2 =

@@ -10,38 +10,25 @@ import * as Label from "@radix-ui/react-label";
 
 const Messages: NextPage = () => {
   // TODO: Make sure there are no duplicate connections from same user
-  // TODO: add username to clickable channel name
+  // TODO: review readCurrentUser API to make sure it's not returning sensitive data
 
-  //Load session
   const { data: session } = useSession();
-
-  //Load current user
-  //Prob don't want to use this because it has a lot of data
-  //Inlcuding the user's password
   const { data: userData, isLoading } =
     trpc.userAPIs.readCurrentUser.useQuery();
-
-  //read all pusher channels for the current user
   const { data: readAllPusherChannels } =
     trpc.messageAPIs.readAllCurrentUserPusherChannels.useQuery({
       userId: userData?.id || "",
     });
 
-  //create variable that holds the currently selected channel
   const [selectedChannel, setSelectedChannel] = useState<any>(null);
-
-  //read all messages for the currently selected channel
-  //since this is filling the data for message  maybe i should pull the username from backend and push to this?
 
   const { data: readMessages } =
     trpc.messageAPIs.readMessagesByChannel.useQuery({
       channelName: selectedChannel?.channelName || "",
     });
 
-  //Set state for messages and inputs
   const [messages, setMessages] = useState<any[]>([]);
-
-  //Manages the inputs for the message form
+  
   const [inputs, setInputs] = useState({
     senderId: userData?.username || "",
     message: "",
@@ -49,8 +36,6 @@ const Messages: NextPage = () => {
     channelName: selectedChannel?.channelName || "",
   });
 
-  // Subscribe to the specified Pusher channel
-  //there is an error without the strange the channelName: string at start
   const subscribeToChannel = (channelName: string) => {
     const pusher = new Pusher("c13caf6d2e7e0e3addce", {
       cluster: "us3",
@@ -63,21 +48,18 @@ const Messages: NextPage = () => {
     });
   };
 
-  // Subscribe to the current Pusher channel whenever the selected channel changes
   useEffect(() => {
     if (selectedChannel) {
       subscribeToChannel(selectedChannel.channelName);
     }
   }, [selectedChannel]);
 
-  //Add past messages to state on load
   useEffect(() => {
     if (readMessages) {
       setMessages(readMessages);
     }
   }, [readMessages]);
 
-  //On submit add message to db and clear input
   const { mutate } = trpc.messageAPIs.createMessage.useMutation({
     onSuccess() {
       setInputs((prev) => ({
@@ -87,7 +69,6 @@ const Messages: NextPage = () => {
     },
   });
 
-  //trigger mutation on submit
   const publish = () => {
     mutate(inputs);
   };

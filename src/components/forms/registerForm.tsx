@@ -2,7 +2,6 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useState } from "react";
-
 import { trpc } from "@/utils/trpc";
 import type { IRegister } from "@/validation/auth";
 
@@ -59,7 +58,6 @@ const RegisterForm = () => {
         {errors.password && (
           <p className="text-red-600 text-center">This field is required</p>
         )}
-
         <input
           type="submit"
           className="mt-2 cursor-pointer border border-solid border-blue7 bg-blue3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 

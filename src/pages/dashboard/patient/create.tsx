@@ -2,7 +2,6 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "../../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
-import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
 import CreateSession from "@/components/patient/createCareSession";
@@ -21,6 +20,7 @@ const Create: NextPage = () => {
       <div>
         {session && (
           <>
+            {/* TODO: fix the overlay container issue */}
             {/* this OverlayContainer is required for the calendar stuff
             It does have behaviors such as impacting the tab order of the page, etc. 
             Probably want to find a way to place the OverlayContainer closer to its actuall need

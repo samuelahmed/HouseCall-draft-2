@@ -3,9 +3,8 @@ import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import Head from "next/head";
 import NavLayout from "@/components/layout/navLayout";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSession } from "next-auth/react";
-import Pusher from "pusher-js";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -83,7 +82,6 @@ const Slug: NextPage = () => {
       alert("Something went wrong.");
     },
     onSuccess: () => {
-      //Trigger some notifications here?
       router.push("/dashboard/patient/scheduled");
       // router.reload();
     },
@@ -95,7 +93,6 @@ const Slug: NextPage = () => {
         alert("Something went wrong.");
       },
       onSuccess: () => {
-        //Trigger some notifications here?
         // router.reload();
       },
     });
@@ -107,7 +104,6 @@ const Slug: NextPage = () => {
           alert("Something went wrong.");
         },
         onSuccess: () => {
-          //Trigger some notifications here?
           // router.reload();
         },
       }
@@ -116,24 +112,21 @@ const Slug: NextPage = () => {
   const updateAllOtherPotentialCareSessions = () => {
     if (user && currentSession) {
       mutate3({
-        // careSessionId: currentSession.id,
         caregiverId: potentialCaregiverInfo?.id || "",
-        // status: "Canceled",
       });
     }
   };
 
-  //START OF PUSHER SETUP
-  //create a pusherChannel entry in db when the patient messages the caregiver
   //TODO: make sure that multiple pusherChannels cannot be created for the same patient and caregiver
-  const { mutate: mutate4 } = trpc.messageAPIs.createPusherChannel.useMutation({});
+  const { mutate: mutate4 } = trpc.messageAPIs.createPusherChannel.useMutation(
+    {}
+  );
   const triggerCreatePusherChannel = () => {
     mutate4({
       patientId: user?.id || "",
       caregiverId: potentialCaregiverInfo?.id || "",
     });
   };
-  //END OF PUSHER SETUP
 
   return (
     <>

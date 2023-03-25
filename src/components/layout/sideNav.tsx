@@ -11,7 +11,6 @@ import {
   QuestionMarkIcon,
   EnterIcon,
   Pencil2Icon,
-  StopIcon,
   PlusCircledIcon,
 } from "@radix-ui/react-icons";
 

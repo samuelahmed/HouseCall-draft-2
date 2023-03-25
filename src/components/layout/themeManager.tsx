@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
   //Jan 4 2023 - make sure to look into possible hydration error.
   //Feb 7 2023 - still have not looked into hydration error. Nor encountered it.
   //feb 23 2023 - still have not looked into hydration error. Nor encountered it.
+  //Mar 24 2023 - still have not looked into hydration error. Nor encountered it.
 
 const ThemeManager = () => {
   const { theme, setTheme } = useTheme();
