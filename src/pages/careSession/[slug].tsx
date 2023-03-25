@@ -6,8 +6,6 @@ import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import NavMenu from "@/components/layout/navMenu";
-import { TimeField } from "@/components/dateSelect/timeField";
-import { useEffect } from "react";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -34,7 +32,6 @@ const Slug: NextPage = () => {
   const [inputs, setInputs] = useState({
     currentUserId: "",
     id: currentSession?.id || "",
-    // status: "pending",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -102,7 +99,6 @@ const Slug: NextPage = () => {
       },
     });
 
-  //Time Data
   const startTimeHour = currentSession?.sessionStartHour || 0;
   const startTimeMinute = currentSession?.sessionStartMinute || 0;
   const endTimeHour = currentSession?.sessionEndHour || 0;
@@ -114,7 +110,6 @@ const Slug: NextPage = () => {
     sessionDurationHours--;
     sessionDurationMinutes += 60;
   }
-  //Date Data
   const sessionDay = currentSession?.sessionDay;
   const sessionMonth = currentSession?.sessionMonth;
   const sessionYear = currentSession?.sessionYear;
@@ -349,9 +344,6 @@ const Slug: NextPage = () => {
                               {endTimeHour > 12 ? "PM" : "AM"}
                             </p>
                           </div>
-
-
-                          
                         </div>
                         <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
                           <p className="">
@@ -370,16 +362,12 @@ const Slug: NextPage = () => {
                           </p>
                         </div>
                       </div>
-
-                      
                     </div>
-
                     <div className="col-span-1 flex flex-col space-y-2">
                       <div className="row-span-1 mx-4 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
                         <h1 className="text-center text-lg font-extralight">
                           Location
                         </h1>
-
                         <div className="  mx-4 mb-2 flex min-w-full flex-col pr-8 text-sm">
                           <p className="">
                             <span className=" font-semibold">
@@ -388,7 +376,6 @@ const Slug: NextPage = () => {
                             {currentSession?.address}
                           </p>
                         </div>
-
                         <div className="flex-col-1 flex max-w-fit text-sm">
                           <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                             <p className="">
@@ -409,7 +396,6 @@ const Slug: NextPage = () => {
                             </p>
                           </div>
                         </div>
-
                         <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
                           <p className="">
                             {/* ADD TO DB */}
@@ -428,12 +414,10 @@ const Slug: NextPage = () => {
                           </p>
                         </div>
                       </div>
-
                       <div className="row-span-1 mx-4 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
                         <h1 className="text-center text-lg font-extralight">
                           Compensation
                         </h1>
-
                         <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                           <p className="">
                             <span className=" font-semibold">
@@ -455,7 +439,6 @@ const Slug: NextPage = () => {
                           </p>
                         </div>
                       </div>
-
                       <div className="px-2 ">
                         <p className="text-center text-xl">Caregivers</p>
                         {potentialCaregivers?.length === 0 ? (
