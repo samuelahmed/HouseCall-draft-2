@@ -4,22 +4,14 @@ import { useState } from "react";
 import type { CareSession } from "@prisma/client";
 import { useRouter } from "next/router";
 import * as Label from "@radix-ui/react-label";
-import DateEngine from "../dateSelect/dateEngine";
-// import SessionStartTime from "../dateSelect/sessionStartTime";
-// import SessionEndTime from "../dateSelect/sessionEndTime";
 import { TimeField } from "../dateSelect/timeField";
-import { time } from "console";
-import { useTimeField } from "@react-aria/datepicker";
-import { Time } from "@internationalized/date";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { DatePicker } from "../dateSelect/datePicker";
 
-// turn off strict mode
 const CreateSession = () => {
   const [items, setItems] = useState<CareSession[]>([]);
   const router = useRouter();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
-  // let [value, setValue] = useState();
 
   const { mutate } = trpc.careSessionAPIs.createOneCareSession.useMutation({
     onSuccess(newSession) {
@@ -29,7 +21,6 @@ const CreateSession = () => {
     },
   });
 
-  //maybe all this type definition is not necessary?
   type StartTime = {
     hour: number;
     minute: number;
@@ -55,11 +46,6 @@ const CreateSession = () => {
 
   const [dateValue, setDateValue] = useState(today(getLocalTimeZone()));
 
-  // console.log(dateValue.day)
-  // console.log(dateValue.month)
-
-  // console.log(dateValue.day)
-
   const [inputs, setInputs] = useState({
     name: data?.username || "",
     address: data?.address || "",
@@ -71,8 +57,6 @@ const CreateSession = () => {
     totalCompensation: 20,
     acceptedCaregiverId: "",
     careSessionStatus: "",
-
-    //calendar stuff
     sessionDay: dateValue.day,
     sessionMonth: dateValue.month,
     sessionYear: dateValue.year,
@@ -80,16 +64,10 @@ const CreateSession = () => {
     sessionStartMinute: startTime.minute,
     sessionEndHour: endTime.hour,
     sessionEndMinute: endTime.minute,
-
-    //location stuff
     city: "",
     postalCode: "",
     location: "",
   });
-  // console.log(startTime)
-  // console.log(startTime.hour)
-
-  // console.log(inputs.sessionStartHour)
 
   useEffect(() => {
     setInputs((inputs) => ({
@@ -111,11 +89,6 @@ const CreateSession = () => {
   ]);
 
   useEffect(() => {
-    // const hours = endTime && startTime ? endTime.hour - startTime.hour : 0;
-    // const minutes =
-    //   endTime && startTime ? endTime.minute - startTime.minute : 0;
-    // const seconds =
-    //   endTime && startTime ? endTime.second - startTime.second : 0;
     const totalHours = Math.ceil(
       endTime.hour +
         endTime.minute / 60 -
@@ -155,9 +128,6 @@ const CreateSession = () => {
 
   return (
     <>
-      {/* <div  className=" max-h-fit overflow-scroll border 
-  border-blue6 bg-blue2 dark:border-darkBlue6 dark:bg-darkBlue2 md:col-span-1"
-      > */}
       <div className="  py-4">
         <div className="my-4  overflow-auto bg-blue2 text-olive12 dark:bg-darkBlue2 dark:text-darkOlive12">
           <div className="grid grid-cols-1 space-y-2 md:grid-cols-2  md:space-x-4 md:space-y-0">
@@ -166,7 +136,6 @@ const CreateSession = () => {
                 <h1 className="text-center text-lg font-extralight">
                   Overview
                 </h1>
-
                 <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
                   <Label.Root className="px-0.5" htmlFor="firstName">
                     Session Type
@@ -188,7 +157,6 @@ const CreateSession = () => {
                     <option>Other</option>
                   </select>
                 </div>
-
                 <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
                   <Label.Root className="px-0.5" htmlFor="firstName">
                     First name
@@ -200,7 +168,6 @@ const CreateSession = () => {
                     defaultValue={data && data?.username ? data?.username : ""}
                   />
                 </div>
-
                 <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
                   <div className="max-w-lg text-olive12 dark:text-darkOlive12">
                     <DatePicker
@@ -211,21 +178,18 @@ const CreateSession = () => {
                     />
                   </div>
                 </div>
-
                 <div className="  mx-4 mb-2 flex max-w-fit flex-row space-x-4 text-sm">
                   <TimeField
                     label="Session Start"
                     defaultValue={startTime}
                     onChange={setStartTime}
                   />
-
                   <TimeField
                     label="Session End"
                     defaultValue={endTime}
                     onChange={setEndTime}
                   />
                 </div>
-
                 <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
                   <Label.Root className="px-0.5" htmlFor="firstName">
                     Describe Session
@@ -247,13 +211,11 @@ const CreateSession = () => {
                 </div>
               </div>
             </div>
-
             <div className="col-span-1 grid min-h-88vh grid-rows-4 space-y-2">
               <div className="row-span-2 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
                 <h1 className="text-center text-lg font-extralight">
                   Location
                 </h1>
-
                 <div className="  mx-4 mb-2 flex min-w-full flex-col pr-8 text-sm">
                   <Label.Root className="px-0.5" htmlFor="firstName">
                     Address
@@ -271,7 +233,6 @@ const CreateSession = () => {
                     }
                   />
                 </div>
-
                 <div className="flex-col-1 flex max-w-fit text-sm">
                   <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                     <Label.Root className="px-0.5" htmlFor="firstName">
@@ -308,7 +269,6 @@ const CreateSession = () => {
                     />
                   </div>
                 </div>
-
                 <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
                   <Label.Root className="px-0.5" htmlFor="firstName">
                     Describe Location
@@ -328,12 +288,10 @@ const CreateSession = () => {
                   />
                 </div>
               </div>
-
               <div className="row-span-2 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
                 <h1 className="text-center text-lg font-extralight">
                   Compensation
                 </h1>
-
                 <div className=" max-w-fit text-sm">
                   <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                     <Label.Root className="px-0.5" htmlFor="firstName">
@@ -354,32 +312,12 @@ const CreateSession = () => {
                       }}
                     />
                   </div>
-                  {/* <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
-                    <Label.Root className="px-0.5" htmlFor="firstName">
-                      Number of Hours
-                    </Label.Root>
-                    <input
-                      className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                      id="firstName"
-                      type="number"
-                      defaultValue={inputs.totalHours}
-                      // onChange={(e) => {
-                      //   setInputs((prev) => ({
-                      //     ...prev,
-                      //     totalHours: parseFloat(e.target.value),
-                      //     totalCompensation:
-                      //       prev.hourlyRate * parseFloat(e.target.value),
-                      //   }));
-                      // }}
-                    />
-                  </div> */}
                 </div>
                 <div className="  mx-4 mb-2 flex min-w-full flex-col pr-8 text-sm">
                   <Label.Root className="px-0.5" htmlFor="firstName">
                     Total: ${totalComp}
                   </Label.Root>
                 </div>
-
                 <div className="flex items-center justify-center">
                   <button
                     type="button"
@@ -398,9 +336,6 @@ const CreateSession = () => {
         </div>
         <div></div>
       </div>
-      {/* </div>  */}
-
-      {/* </div> */}
     </>
   );
 };
