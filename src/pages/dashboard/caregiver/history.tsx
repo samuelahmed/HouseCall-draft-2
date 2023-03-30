@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../../../components/layout/navLayout";
+// import NavLayout from "../../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
@@ -15,7 +15,7 @@ const History: NextPage = () => {
       <Head>
         <title>History</title>
       </Head>
-      <NavLayout />
+      {/* <NavLayout /> */}
       <div>
         {session && (
           <>

@@ -1,11 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../../../components/layout/navLayout";
+// import NavLayout from "../../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
 import AppliedEngine from "@/components/caregiver/appliedEngine";
+import Header from "@/components/layout/header";
 
 const Applied: NextPage = () => {
   //TODO: combine all these pages into caregiver/sessions
@@ -16,7 +17,8 @@ const Applied: NextPage = () => {
       <Head>
         <title>Applied</title>
       </Head>
-      <NavLayout />
+      {/* <NavLayout /> */}
+      <Header />
       <div>
         {session && (
           <>
