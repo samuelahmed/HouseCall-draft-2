@@ -84,7 +84,7 @@ const SideNav = () => {
                 className="flex flex-row items-center"
               >
                 <PlusCircledIcon className="mr-2" />
-                Create
+                Create asdfasf
               </Link>
               <Link
                 href={"/dashboard/patient/sessions"}
