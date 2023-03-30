@@ -11,7 +11,7 @@ const ThemeManager = () => {
   const { theme, setTheme } = useTheme();
   return (
     <button
-      className="rounded-md bg-blue12 py-1 px-2 font-semibold text-yellow9 dark:bg-blue12 dark:text-olive2"
+      className="rounded-md bg-blue12 py-1 px-2 font-semibold text-olive2 dark:bg-blue12 dark:text-olive2"
       onClick={() => {
         setTheme(theme === "light" ? "dark" : "light");
       }}
