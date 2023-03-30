@@ -83,7 +83,7 @@ const NavMenu = () => {
                 className="flex flex-row items-center"
               >
                 <PlusCircledIcon className="mr-2" />
-                Create
+                this menu is old and will be removed shortly
               </Link>
               <Link
                 href={"/dashboard/patient/sessions"}

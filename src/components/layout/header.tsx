@@ -8,6 +8,9 @@ import AuthShowcase from "./authShowcase";
 import Link from "next/link";
 import SideNav from "./sideNav";
 import { useState } from "react";
+// import { roboto_mono } from './fonts';
+
+
 
 const Header = () => {
 
@@ -55,8 +58,10 @@ const Header = () => {
             {data?.role === "Patient" && (
               <div
                 onClick={() => router.push("/dashboard/patient/create")}
-                className="hidden text-xl md:block"
+                className="hidden text-xl md:block font-robotoSlab"
               >
+                                {/* <p className="font-robotoSlab"> asdfasfasdf </p> */}
+
                 House Call
               </div>
             )}
@@ -162,10 +167,10 @@ const Header = () => {
         )}
         {data?.role === "Patient" && (
           <div className="flex flex-row  items-center space-x-4">
-            <MenuIcon
+            {/* <MenuIcon
               className="h-8 w-8 cursor-pointer text-darkOlive12"
               onClick={() => setShowNav(!showNav)}
-            />
+            /> */}
             <div className="" onClick={() => setShowNav(!showNav)}>
               Sessions
             </div>
