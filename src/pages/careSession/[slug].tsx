@@ -2,10 +2,11 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "@/components/layout/navLayout";
+// import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import NavMenu from "@/components/layout/navMenu";
+import Header from "@/components/layout/header";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -119,7 +120,8 @@ const Slug: NextPage = () => {
       <Head>
         <title>Session: {currentSession?.slug}</title>
       </Head>
-      <NavLayout />
+      {/* <NavLayout /> */}
+      <Header />
       {/***********************
        *      CAREGIVER       *
        **********************/}
