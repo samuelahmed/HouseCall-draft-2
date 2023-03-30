@@ -77,14 +77,14 @@ const SideNav = () => {
       )}
       {session && user?.role === "Patient" && (
         <>
-          <div className="fixed col-span-1 min-h-95vh min-w-40vw max-w-sm bg-slate12 text-olive2 lg:block">
+          <div className="col-span-1 max-w-sm bg-blue11 text-olive2 lg:block z-50 absolute">
             <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
               <Link
                 href={"/dashboard/patient/create"}
                 className="flex flex-row items-center"
               >
                 <PlusCircledIcon className="mr-2" />
-                Create asdfasf
+                Create
               </Link>
               <Link
                 href={"/dashboard/patient/sessions"}

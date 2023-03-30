@@ -1,9 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../components/layout/navLayout";
+// import NavLayout from "../components/layout/navLayout";
 import RegisterForm from "@/components/forms/registerForm";
 import { useSession } from "next-auth/react";
 import NavMenu from "@/components/layout/navMenu";
+import Header from "@/components/layout/header";
 
 const Register: NextPage = () => {
   const { data: session } = useSession();
@@ -12,7 +13,9 @@ const Register: NextPage = () => {
       <Head>
         <title>Register</title>
       </Head>
-      <NavLayout />
+      {/* <NavLayout /> */}
+      < Header />
+
       <div>
         {session && (
           <>

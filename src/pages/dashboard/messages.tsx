@@ -1,12 +1,13 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../../components/layout/navLayout";
+// import NavLayout from "../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import NavMenu from "@/components/layout/navMenu";
 import { trpc } from "@/utils/trpc";
 import { useState, useEffect } from "react";
 import Pusher from "pusher-js";
 import * as Label from "@radix-ui/react-label";
+import Header from "@/components/layout/header";
 
 const Messages: NextPage = () => {
   // TODO: Make sure there are no duplicate connections from same user
@@ -78,7 +79,8 @@ const Messages: NextPage = () => {
       <Head>
         <title>Messages</title>
       </Head>
-      <NavLayout />
+      < Header />
+      {/* <NavLayout /> */}
       <div>
         {session && (
           <>

@@ -6,14 +6,16 @@ import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 import AuthShowcase from "./authShowcase";
 import Link from "next/link";
+import SideNav from "./sideNav";
+import { useState } from "react";
 
-const Header = ({
-  showNav,
-  setShowNav,
-}: {
-  showNav: boolean;
-  setShowNav: any;
-}) => {
+const Header = () => {
+
+
+  const [showNav, setShowNav] = useState(false);
+
+
+
   const { data: session } = useSession();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
   const router = useRouter();
@@ -33,7 +35,7 @@ const Header = ({
   return (
     <>
       {/* TODO: Fix the mobile so that it reaches across entire screen not only 2/3rds */}
-      <div className="flex-cols-3 flex items-center justify-between bg-blue12 py-1 md:grid md:grid-cols-3">
+      <div className="flex-cols-3 flex items-center justify-between bg-blue12 py-1 dark:bg-darkBlue1 md:grid md:grid-cols-3">
         <div className="flex justify-start">
           <div className="md:hidden md:pl-0 ">
             <MenuIcon
@@ -105,7 +107,7 @@ const Header = ({
       </div>
 
       {/* NAV BAR (MIDDLE BLUE) OF HEADER */}
-      <div className="min-w-full bg-blue11 py-1 pl-4 text-olive2">
+      <div className="min-w-full bg-blue11 py-1 pl-4 text-olive2 dark:bg-darkBlue2">
         {data?.role === "Caregiver" && (
           <div className="flex flex-row items-baseline space-x-3">
             <Link
@@ -159,7 +161,7 @@ const Header = ({
           </div>
         )}
         {data?.role === "Patient" && (
-          <div className="flex flex-row  space-x-4 items-center">
+          <div className="flex flex-row  items-center space-x-4">
             <MenuIcon
               className="h-8 w-8 cursor-pointer text-darkOlive12"
               onClick={() => setShowNav(!showNav)}
@@ -189,11 +191,16 @@ const Header = ({
         )}
       </div>
       {/* BOTTOM BLUE OF HEADER */}
+      <div className={`${showNav ? "" : "hidden"}`}>
+        <SideNav />
+      </div>
       <div className="min-w-full bg-blue2">
-        <div className="flex justify-center px-1 py-1 text-xl capitalize text-olive12 dark:bg-darkBlue2 dark:text-darkOlive12">
+        <div className="flex justify-center px-1 py-1 text-xl capitalize text-olive12 dark:bg-darkBlue3 dark:text-darkOlive12">
           {currentRoute}
         </div>
       </div>
+
+
     </>
   );
 };

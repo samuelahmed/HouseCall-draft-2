@@ -3,9 +3,10 @@ import Head from "next/head";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { trpc } from "@/utils/trpc";
-import NavLayout from "@/components/layout/navLayout";
+// import NavLayout from "@/components/layout/navLayout";
 import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
+import Header from "@/components/layout/header";
 
 const LoginSuccess: NextPage = () => {
   const { data: session } = useSession();
@@ -16,7 +17,8 @@ const LoginSuccess: NextPage = () => {
       <Head>
         <title>Login Success</title>
       </Head>
-      <NavLayout />
+      {/* <NavLayout /> */}
+      <Header />
       {session && (
         <main className="grid grid-cols-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12 md:grid-cols-6">
           <NavMenu />

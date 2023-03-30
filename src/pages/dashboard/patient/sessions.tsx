@@ -1,11 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../../../components/layout/navLayout";
+// import NavLayout from "../../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
 import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
 import NewEngine from "@/components/patient/newEngine";
+import Header from "@/components/layout/header";
 
 const Pending: NextPage = () => {
   const { data: session } = useSession();
@@ -15,7 +16,8 @@ const Pending: NextPage = () => {
       <Head>
         <title>Sessions</title>
       </Head>
-      <NavLayout />
+      {/* <NavLayout />  */}
+      < Header />
       <div>
         {session && (
           <>
