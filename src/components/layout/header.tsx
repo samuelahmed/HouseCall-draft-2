@@ -58,7 +58,7 @@ const Header = () => {
             {data?.role === "Patient" && (
               <div
                 onClick={() => router.push("/dashboard/patient/create")}
-                className="hidden text-xl md:block font-robotoSlab"
+                className="hidden text-xl md:block"
               >
                                 {/* <p className="font-robotoSlab"> asdfasfasdf </p> */}
 
