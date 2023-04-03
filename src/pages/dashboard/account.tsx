@@ -3,7 +3,6 @@ import Head from "next/head";
 // import NavLayout from "../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
 import SearchEngine from "@/components/engines/searchEngine";
-import NavMenu from "@/components/layout/navMenu";
 import AccountEditModal from "@/components/account/accountEditModal";
 import Header from "@/components/layout/header";
 
@@ -22,7 +21,6 @@ const Account: NextPage = () => {
         {session && (
           <>
             <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-              <NavMenu />
               <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
                 <div className="h-10 mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12">
                   {/* <SearchEngine /> */}

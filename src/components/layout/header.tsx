@@ -111,7 +111,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* NAV BAR (MIDDLE BLUE) OF HEADER */}
+      {/* HORIZONTAL NAV BAR (MIDDLE BLUE) OF HEADER */}
       <div className="min-w-full bg-blue11 py-1 pl-4 text-olive2 dark:bg-darkBlue2">
         {data?.role === "Caregiver" && (
           <div className="flex flex-row items-baseline space-x-3">

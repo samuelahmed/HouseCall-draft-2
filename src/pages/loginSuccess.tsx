@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { trpc } from "@/utils/trpc";
 // import NavLayout from "@/components/layout/navLayout";
-import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
 import Header from "@/components/layout/header";
 
@@ -21,7 +20,6 @@ const LoginSuccess: NextPage = () => {
       <Header />
       {session && (
         <main className="grid grid-cols-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12 md:grid-cols-6">
-          <NavMenu />
           <div className="col-span-5 flex min-h-screen flex-col items-center justify-center">
             <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
               <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
@@ -66,7 +64,6 @@ const LoginSuccess: NextPage = () => {
       )}
       {!session && (
         <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-          <NavMenu />
           <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
             <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
               <LoginForm />
