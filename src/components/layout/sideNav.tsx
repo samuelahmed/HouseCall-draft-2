@@ -77,40 +77,45 @@ const SideNav = () => {
       )}
       {session && user?.role === "Patient" && (
         <>
-          <div className="col-span-1 max-w-sm bg-blue11 text-olive2 lg:block z-50 absolute">
-            <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
-              <Link
-                href={"/dashboard/patient/create"}
-                className="flex flex-row items-center"
-              >
-                <PlusCircledIcon className="mr-2" />
-                Create
-              </Link> 
-              <Link
-                href={"/dashboard/patient/sessions"}
-                className="flex flex-row items-center"
-              >
-                <FaceIcon className="mr-2" />
-                Sessions
-              </Link>
+          <div className="absolute z-50 col-span-1 bg-blue11 dark:bg-darkBlue2 text-olive2 lg:block">
+            <div className="flex flex-col items-baseline divide-y border border-1 border-t-0 w-28">
+
+
+                <Link
+                  href={"/dashboard/patient/create"}
+                  className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                >
+                  {/* <PlusCircledIcon className="mr-2" /> */}
+                  Create
+                </Link>
+
+                <Link
+                  href={"/dashboard/patient/sessions"}
+                  className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                >
+                  {/* <FaceIcon className="mr-2" /> */}
+                  New
+                </Link>
+
               <Link
                 href={"/dashboard/messages"}
-                className="flex flex-row items-center"
-                
-              >
-                <ChatBubbleIcon className="mr-2" />
-                Messages
+                className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                >
+                {/* <ChatBubbleIcon className="mr-2" /> */}
+                Scheduled
               </Link>
               <Link
                 href={"/dashboard/account"}
-                className="flex flex-row items-center"
-              >
-                <PersonIcon className="mr-2" />
-                Account
+                className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                >
+                {/* <PersonIcon className="mr-2" /> */}
+                Completed
               </Link>
-              <Link href={"/help"} className="flex flex-row items-center">
-                <QuestionMarkIcon className="mr-2" />
-                Help
+              <Link href={"/help"} 
+                  className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                  >
+                {/* <QuestionMarkIcon className="mr-2" /> */}
+                Canceled
               </Link>
             </div>
           </div>

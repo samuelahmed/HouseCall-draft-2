@@ -10,14 +10,8 @@ import SideNav from "./sideNav";
 import { useState } from "react";
 // import { roboto_mono } from './fonts';
 
-
-
 const Header = () => {
-
-
   const [showNav, setShowNav] = useState(false);
-
-
 
   const { data: session } = useSession();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
@@ -60,8 +54,7 @@ const Header = () => {
                 onClick={() => router.push("/dashboard/patient/create")}
                 className="hidden text-xl md:block"
               >
-                                {/* <p className="font-robotoSlab"> asdfasfasdf </p> */}
-
+                {/* <p className="font-robotoSlab"> asdfasfasdf </p> */}
                 House Call
               </div>
             )}
@@ -112,7 +105,7 @@ const Header = () => {
       </div>
 
       {/* HORIZONTAL NAV BAR (MIDDLE BLUE) OF HEADER */}
-      <div className="min-w-full bg-blue11 py-1 pl-4 text-olive2 dark:bg-darkBlue2">
+      <div className="min-w-full bg-blue11  text-olive2 dark:bg-darkBlue2">
         {data?.role === "Caregiver" && (
           <div className="flex flex-row items-baseline space-x-3">
             <Link
@@ -166,30 +159,27 @@ const Header = () => {
           </div>
         )}
         {data?.role === "Patient" && (
-          <div className="flex flex-row  items-center space-x-4">
-            {/* <MenuIcon
-              className="h-8 w-8 cursor-pointer text-darkOlive12"
+          <div className="flex flex-row items-center divide-x overflow-auto">
+            <div
+              className="flex flex-row items-center hover:bg-blue10 dark:hover:bg-darkBlue5 py-1 px-4 w-28 cursor-pointer "
               onClick={() => setShowNav(!showNav)}
-            /> */}
-            <div className="" onClick={() => setShowNav(!showNav)}>
-              Sessions
-            </div>
-            <Link
-              href={"/dashboard/messages"}
-              className="flex flex-row items-center"
             >
-              {/* <ChatBubbleIcon className="mr-2" /> */}
+              Sessions
+
+            </div>
+            <Link href={"/dashboard/messages"} 
+            className="px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+            >
               Messages
             </Link>
-            <Link
-              href={"/dashboard/account"}
-              className="flex flex-row items-center"
+            <Link href={"/dashboard/account"} 
+            className="px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
             >
-              {/* <QuestionMarkIcon className="mr-2" /> */}
               Account
             </Link>
-            <Link href={"/help"} className="flex flex-row items-center">
-              {/* <QuestionMarkIcon className="mr-2" /> */}
+            <Link href={"/help"} 
+            className="px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+            >
               Help
             </Link>
           </div>
@@ -204,8 +194,6 @@ const Header = () => {
           {currentRoute}
         </div>
       </div>
-
-
     </>
   );
 };
