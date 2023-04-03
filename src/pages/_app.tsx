@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-page-custom-font */
-//TODO: review font import for a better solution - rn next/font is not working
 import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
