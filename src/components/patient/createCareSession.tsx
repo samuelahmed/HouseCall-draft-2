@@ -128,21 +128,21 @@ const CreateSession = () => {
 
   return (
     <>
-      <div className="grid min-h-screen grid-cols-1 border font-roboto md:grid-cols-2 ">
-        <div className="col-span-1 border px-4 py-4 ">
-          <p className="pb-4">
+      <div className="grid min-h-screen grid-cols-1  font-roboto md:grid-cols-2 ">
+        <div className="col-span-1  border px-4 py-4">
+          <p className="py-2">
             Fill out the information on this page and click submit to create
             your session. Caregivers in your area can discover and apply to your
             session. When a caregiver applies, you can chat with them and decide
             if they are a good fit for your needs.
           </p>
 
-          <h1 className="text-center text-lg">Overview</h1>
+          <h1 className="py-2 text-center text-xl">Overview</h1>
 
-          <div className="grid grid-cols-2 border">
+          <div className="grid grid-cols-2 ">
             <div className="col-span-1">
               <div className="mx-4 mb-2 flex max-w-fit flex-col">
-                <Label.Root className="" htmlFor="Session Type">
+                <Label.Root className="px-0.5" htmlFor="Session Type">
                   Session Type
                 </Label.Root>
                 <select
@@ -166,258 +166,182 @@ const CreateSession = () => {
 
             <div className="col-span-1">
               {/* TODO: add a picker for time select and make focus ring work */}
-              <Label.Root className="" htmlFor="Session Type">
+              <Label.Root className="px-0.5" htmlFor="Session Start Time">
                 Session Start
               </Label.Root>
-              <TimeField
-                defaultValue={startTime}
-                onChange={setStartTime}
+              <TimeField defaultValue={startTime} onChange={setStartTime} />
+            </div>
+
+            <div className="col-span-1">
+              <div className="mx-4 mb-2 flex max-w-fit flex-col">
+                <Label.Root className="px-0.5" htmlFor="Name">
+                  Name
+                </Label.Root>
+                <input
+                  className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                  type="text"
+                  id="firstName"
+                  defaultValue={data && data?.username ? data?.username : ""}
+                />
+              </div>
+            </div>
+
+            <div className="col-span-1">
+              <Label.Root className="px-0.5" htmlFor="Session End Time">
+                Session End
+              </Label.Root>
+              <TimeField defaultValue={endTime} onChange={setEndTime} />
+            </div>
+
+            <div className="col-span-1">
+              <div className="mx-4 mb-2 flex flex-col ">
+                <Label.Root className="px-0.5" htmlFor="Session Date">
+                  Session Date
+                </Label.Root>
+
+                <DatePicker
+                  minValue={today(getLocalTimeZone())}
+                  defaultValue={dateValue}
+                  onChange={setDateValue}
+                />
+              </div>
+            </div>
+
+            <div className="col-span-1">
+              {/* currently empty - space for new input */}
+            </div>
+          </div>
+
+          <div className="flex flex-col px-4  py-2  ">
+            <Label.Root className="px-0.5" htmlFor="firstName">
+              Describe Desired Session
+            </Label.Root>
+            <textarea
+              className="inline-block h-64 w-full border px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11"
+              id="firstName"
+              defaultValue={inputs.overview}
+              onChange={(e) =>
+                setInputs((prev) => ({
+                  ...prev,
+                  overview: e.target.value,
+                }))
+              }
+            />
+          </div>
+        </div>
+
+        <div className="col-span-1 border px-4 py-4 ">
+          <h1 className="py-2 text-center text-xl">Location</h1>
+          <div className="flex min-w-full max-w-fit flex-col px-4 pb-2">
+            <Label.Root className="px-0.5" htmlFor="firstName">
+              Address
+            </Label.Root>
+            <input
+              className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+              type="text"
+              id="firstName"
+              defaultValue={inputs.address}
+              onChange={(e) =>
+                setInputs((prev) => ({
+                  ...prev,
+                  address: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div className="grid grid-cols-2 ">
+            <div className="col-span-1 mx-4 mb-2 ">
+              <Label.Root className="" htmlFor="firstName">
+                City
+              </Label.Root>
+              <input
+                className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                type="text"
+                id="firstName"
+                defaultValue={inputs.city}
+                onChange={(e) =>
+                  setInputs((prev) => ({
+                    ...prev,
+                    city: e.target.value,
+                  }))
+                }
+              />
+            </div>
+            <div className="col-span-1 mx-4 mb-2">
+              <Label.Root className="px-0.5" htmlFor="firstName">
+                Postal Code
+              </Label.Root>
+              <input
+                className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                type="text"
+                id="firstName"
+                defaultValue={inputs.postalCode}
+                onChange={(e) =>
+                  setInputs((prev) => ({
+                    ...prev,
+                    postalCode: e.target.value,
+                  }))
+                }
+              />
+            </div>
+          </div>
+          <div className="flex flex-col px-4  py-2  ">
+            <Label.Root className="" htmlFor="firstName">
+              Describe Location
+            </Label.Root>
+            <textarea
+              className="h-18 inline-block w-full border px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11"
+              id="firstName"
+              defaultValue={inputs.location}
+              onChange={(e) =>
+                setInputs((prev) => ({
+                  ...prev,
+                  location: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <h1 className="pt-4 text-center text-xl">Compensation</h1>
+          <div className="grid grid-cols-2 ">
+            <div className="col-span-1 mx-4 mb-2">
+              <Label.Root className="px-0.5" htmlFor="firstName">
+                Hourly Rate
+              </Label.Root>
+              <input
+                className="block  border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                id="firstName"
+                type="number"
+                defaultValue={inputs.hourlyRate}
+                onChange={(e) => {
+                  setInputs((prev) => ({
+                    ...prev,
+                    hourlyRate: parseFloat(e.target.value),
+                    totalCompensation:
+                      parseFloat(e.target.value) * prev.totalHours,
+                  }));
+                }}
               />
             </div>
 
-            <div className="col-span-1">
-            
-            <div className="mx-4 mb-2 flex max-w-fit flex-col">
-                  <Label.Root className="px-0.5" htmlFor="Name">
-                    Name
-                  </Label.Root>
-                  <input
-                  className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
-                  type="text"
-                    id="firstName"
-                    defaultValue={data && data?.username ? data?.username : ""}
-                  />
-                </div>
-
-            
-            
-            </div>
-
-
-
-
-
-            <div className="col-span-1">right 2</div>
-
-            <div className="col-span-1">left 3</div>
-            <div className="col-span-1">right 3</div>
-          </div>
-        </div>
-
-        <div className="col-span-1 border ">two</div>
-      </div>
-
-      <div className="min-h-screen bg-yellow9 text-center">
-        spacer all should be above
-      </div>
-
-      <div className="">
-        <div className="overflow-auto bg-blue2 text-olive12 dark:bg-darkBlue2 dark:text-darkOlive12">
-          <div className="grid grid-cols-1 space-y-2 md:grid-cols-2  md:space-x-4 md:space-y-0">
-            <div className="col-span-1">
-              <div className=" min-h-88vh border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
-                <h1 className="text-center text-lg font-extralight">
-                  Overview
-                </h1>
-                {/* <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    Session Type
-                  </Label.Root>
-                  <select
-                    value={inputs.title}
-                    onChange={(e) =>
-                      setInputs((prev) => ({
-                        ...prev,
-                        title: e.target.value,
-                      }))
-                    }
-                    className="min-w-max border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                  >
-                    <option>Mobility Support </option>
-                    <option>Personal Care</option>
-                    <option>Home Care</option>
-                    <option>Transportation</option>
-                    <option>Other</option>
-                  </select>
-                </div> */}
-                {/* <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    First name
-                  </Label.Root>
-                  <input
-                    className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                    type="text"
-                    id="firstName"
-                    defaultValue={data && data?.username ? data?.username : ""}
-                  />
-                </div> */}
-                <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
-                  <div className="max-w-lg text-olive12 dark:text-darkOlive12">
-                    <DatePicker
-                      label="Appointment date"
-                      minValue={today(getLocalTimeZone())}
-                      defaultValue={dateValue}
-                      onChange={setDateValue}
-                    />
-                  </div>
-                </div>
-                <div className="  mx-4 mb-2 flex max-w-fit flex-row space-x-4 text-sm">
-                  {/* <TimeField
-                    label="Session Start"
-                    defaultValue={startTime}
-                    onChange={setStartTime}
-                  /> */}
-                  <TimeField
-                    label="Session End"
-                    defaultValue={endTime}
-                    onChange={setEndTime}
-                  />
-                </div>
-                <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    Describe Session
-                  </Label.Root>
-                  <textarea
-                    className="inline-block h-96 w-full border border-blue7
-                    bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
-                    // type="text"
-                    id="firstName"
-                    // defaultValue="select"
-                    defaultValue={inputs.overview}
-                    onChange={(e) =>
-                      setInputs((prev) => ({
-                        ...prev,
-                        overview: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-span-1 grid min-h-88vh grid-rows-4 space-y-2">
-              <div className="row-span-2 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
-                <h1 className="text-center text-lg font-extralight">
-                  Location
-                </h1>
-                <div className="  mx-4 mb-2 flex min-w-full flex-col pr-8 text-sm">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    Address
-                  </Label.Root>
-                  <input
-                    className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                    type="text"
-                    id="firstName"
-                    defaultValue={inputs.address}
-                    onChange={(e) =>
-                      setInputs((prev) => ({
-                        ...prev,
-                        address: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-                <div className="flex-col-1 flex max-w-fit text-sm">
-                  <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
-                    <Label.Root className="px-0.5" htmlFor="firstName">
-                      City
-                    </Label.Root>
-                    <input
-                      className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                      type="text"
-                      id="firstName"
-                      defaultValue={inputs.city}
-                      onChange={(e) =>
-                        setInputs((prev) => ({
-                          ...prev,
-                          city: e.target.value,
-                        }))
-                      }
-                    />
-                  </div>
-                  <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
-                    <Label.Root className="px-0.5" htmlFor="firstName">
-                      Postal Code
-                    </Label.Root>
-                    <input
-                      className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                      type="text"
-                      id="firstName"
-                      defaultValue={inputs.postalCode}
-                      onChange={(e) =>
-                        setInputs((prev) => ({
-                          ...prev,
-                          postalCode: e.target.value,
-                        }))
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="mx-4 mb-2 flex w-full flex-col  pt-2 pr-6 text-sm ">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    Describe Location
-                  </Label.Root>
-                  <textarea
-                    className="inline-block h-32 w-full border
-                    border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
-                    // type="text"
-                    id="firstName"
-                    defaultValue={inputs.location}
-                    onChange={(e) =>
-                      setInputs((prev) => ({
-                        ...prev,
-                        location: e.target.value,
-                      }))
-                    }
-                  />
-                </div>
-              </div>
-              <div className="row-span-2 border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
-                <h1 className="text-center text-lg font-extralight">
-                  Compensation
-                </h1>
-                <div className=" max-w-fit text-sm">
-                  <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
-                    <Label.Root className="px-0.5" htmlFor="firstName">
-                      Hourly Rate
-                    </Label.Root>
-                    <input
-                      className="border border-blue7 bg-blue1 px-1 py-1 dark:border-darkBlue7 dark:bg-darkBlue1"
-                      id="firstName"
-                      type="number"
-                      defaultValue={inputs.hourlyRate}
-                      onChange={(e) => {
-                        setInputs((prev) => ({
-                          ...prev,
-                          hourlyRate: parseFloat(e.target.value),
-                          totalCompensation:
-                            parseFloat(e.target.value) * prev.totalHours,
-                        }));
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="  mx-4 mb-2 flex min-w-full flex-col pr-8 text-sm">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    Total: ${totalComp}
-                  </Label.Root>
-                </div>
-                <div className="flex items-center justify-center">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      publish();
-                    }}
-                    className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
-            dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                  >
-                    Create
-                  </button>
-                </div>
-              </div>
+            <div className="px-4 pt-6  align-bottom  ">
+              <Label.Root className="" htmlFor="firstName">
+                Total: $ {totalComp}
+              </Label.Root>
             </div>
           </div>
+          <div className="flex items-center justify-center">
+            <button
+              type="button"
+              onClick={() => {
+                publish();
+              }}
+              className="mt-8 cursor-pointer border border-solid border-blue7 bg-blue3 px-10 py-3 text-lg text-olive12 hover:border-blue8 hover:bg-blue4 
+                     dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+            >
+              Create
+            </button>
+          </div>
         </div>
-        <div></div>
       </div>
     </>
   );
