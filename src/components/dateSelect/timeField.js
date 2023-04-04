@@ -16,13 +16,14 @@ export function TimeField(props) {
 
   return (
     <div className="flex flex-col items-start">
-      <span {...labelProps} className="text-sm text-gray-800">
+      <span {...labelProps} className="text-sm">
         {props.label}
       </span>
       <div
         {...fieldProps}
         ref={ref}
-        className="flex bg-blue1 dark:bg-darkBlue1 border border-blue7 dark:border-darkBlue7 hover:border-blue8 dark:hover:border-blue8 pr-4 p-1"
+        className="flex border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+
       >
         {state.segments.map((segment, i) => (
           <DateSegment key={i} segment={segment} state={state} />

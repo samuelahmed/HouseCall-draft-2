@@ -141,40 +141,67 @@ const CreateSession = () => {
 
           <div className="grid grid-cols-2 border">
             <div className="col-span-1">
-            left
-            </div>
-            <div className="col-span-1">
-            right
+              <div className="mx-4 mb-2 flex max-w-fit flex-col">
+                <Label.Root className="" htmlFor="Session Type">
+                  Session Type
+                </Label.Root>
+                <select
+                  value={inputs.title}
+                  onChange={(e) =>
+                    setInputs((prev) => ({
+                      ...prev,
+                      title: e.target.value,
+                    }))
+                  }
+                  className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                >
+                  <option>Mobility Support </option>
+                  <option>Personal Care</option>
+                  <option>Home Care</option>
+                  <option>Transportation</option>
+                  <option>Other</option>
+                </select>
+              </div>
             </div>
 
             <div className="col-span-1">
-            left 2
-            </div>
-            <div className="col-span-1">
-            right 2 
+              {/* TODO: add a picker for time select and make focus ring work */}
+              <Label.Root className="" htmlFor="Session Type">
+                Session Start
+              </Label.Root>
+              <TimeField
+                defaultValue={startTime}
+                onChange={setStartTime}
+              />
             </div>
 
             <div className="col-span-1">
-            left 3
+            
+            <div className="mx-4 mb-2 flex max-w-fit flex-col">
+                  <Label.Root className="px-0.5" htmlFor="Name">
+                    Name
+                  </Label.Root>
+                  <input
+                  className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                  type="text"
+                    id="firstName"
+                    defaultValue={data && data?.username ? data?.username : ""}
+                  />
+                </div>
+
+            
+            
             </div>
-            <div className="col-span-1">
-            right 3
-            </div>
-             
 
 
 
+
+
+            <div className="col-span-1">right 2</div>
+
+            <div className="col-span-1">left 3</div>
+            <div className="col-span-1">right 3</div>
           </div>
-
-
-
-
-
-
-
-
-
-
         </div>
 
         <div className="col-span-1 border ">two</div>
@@ -192,7 +219,7 @@ const CreateSession = () => {
                 <h1 className="text-center text-lg font-extralight">
                   Overview
                 </h1>
-                <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
+                {/* <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
                   <Label.Root className="px-0.5" htmlFor="firstName">
                     Session Type
                   </Label.Root>
@@ -212,8 +239,8 @@ const CreateSession = () => {
                     <option>Transportation</option>
                     <option>Other</option>
                   </select>
-                </div>
-                <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
+                </div> */}
+                {/* <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
                   <Label.Root className="px-0.5" htmlFor="firstName">
                     First name
                   </Label.Root>
@@ -223,7 +250,7 @@ const CreateSession = () => {
                     id="firstName"
                     defaultValue={data && data?.username ? data?.username : ""}
                   />
-                </div>
+                </div> */}
                 <div className="  mx-4 mb-2 flex max-w-fit flex-col text-sm">
                   <div className="max-w-lg text-olive12 dark:text-darkOlive12">
                     <DatePicker
@@ -235,11 +262,11 @@ const CreateSession = () => {
                   </div>
                 </div>
                 <div className="  mx-4 mb-2 flex max-w-fit flex-row space-x-4 text-sm">
-                  <TimeField
+                  {/* <TimeField
                     label="Session Start"
                     defaultValue={startTime}
                     onChange={setStartTime}
-                  />
+                  /> */}
                   <TimeField
                     label="Session End"
                     defaultValue={endTime}
