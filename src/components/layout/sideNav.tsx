@@ -78,44 +78,51 @@ const SideNav = () => {
       {session && user?.role === "Patient" && (
         <>
           <div className="absolute z-50 col-span-1 bg-blue11 dark:bg-darkBlue2 text-olive2 lg:block">
-            <div className="flex flex-col items-baseline divide-y border border-1 border-t-0 w-28">
+            <div className="flex flex-col items-baseline divide-y border border-1 border-t-0 border-blue12 dark:border-darkBlue1">
 
 
                 <Link
                   href={"/dashboard/patient/create"}
-                  className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                  className="flex flex-row items-center w-full px-1 py-1"
                 >
                   {/* <PlusCircledIcon className="mr-2" /> */}
+                  <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
                   Create
+              </div>    
+                  
                 </Link>
 
                 <Link
                   href={"/dashboard/patient/sessions"}
-                  className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                  className="flex flex-row items-center w-full px-1 py-1"
                 >
-                  {/* <FaceIcon className="mr-2" /> */}
+                  <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
                   New
+              </div>    
                 </Link>
 
               <Link
                 href={"/dashboard/messages"}
-                className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                className="flex flex-row items-center w-full px-1 py-1"
                 >
-                {/* <ChatBubbleIcon className="mr-2" /> */}
+                <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
                 Scheduled
+              </div>    
               </Link>
               <Link
                 href={"/dashboard/account"}
-                className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                className="flex flex-row items-center w-full px-1 py-1"
                 >
-                {/* <PersonIcon className="mr-2" /> */}
+                <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
                 Completed
+              </div>    
               </Link>
               <Link href={"/help"} 
-                  className="flex flex-row items-center w-full px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
+                  className="flex flex-row items-center w-full px-1 py-1"
                   >
-                {/* <QuestionMarkIcon className="mr-2" /> */}
+                <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
                 Canceled
+              </div>    
               </Link>
             </div>
           </div>

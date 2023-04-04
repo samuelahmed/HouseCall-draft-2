@@ -159,28 +159,28 @@ const Header = () => {
           </div>
         )}
         {data?.role === "Patient" && (
-          <div className="flex flex-row items-center divide-x overflow-auto">
+          <div className="pl-1 flex flex-row items-center divide-x overflow-auto border border-t-0 border-r-0 border-l-0 border-blue12 dark:border-darkBlue1">
             <div
-              className="flex flex-row items-center hover:bg-blue10 dark:hover:bg-darkBlue5 py-1 px-4 w-28 cursor-pointer "
+              className=" flex cursor-pointer flex-row items-center py-1 px-1"
               onClick={() => setShowNav(!showNav)}
             >
-              Sessions
-
-            </div>
-            <Link href={"/dashboard/messages"} 
-            className="px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
-            >
-              Messages
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4">
+                Sessions
+              </div>            </div>
+            <Link href={"/dashboard/messages"} className="px-1 py-1 ">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4">
+                Messages
+              </div>
             </Link>
-            <Link href={"/dashboard/account"} 
-            className="px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
-            >
-              Account
+            <Link href={"/dashboard/account"} className="px-1 py-1">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4">
+                Account
+              </div>
             </Link>
-            <Link href={"/help"} 
-            className="px-4 py-1 hover:bg-blue10 dark:hover:bg-darkBlue5"
-            >
-              Help
+            <Link href={"/help"} className="px-1 py-1">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4">
+                Help
+              </div>
             </Link>
           </div>
         )}
