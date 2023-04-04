@@ -32,12 +32,11 @@ const Header = () => {
       {/* TODO: Fix the mobile so that it reaches across entire screen not only 2/3rds */}
       <div className="flex-cols-3 flex items-center justify-between bg-blue12 py-1 dark:bg-darkBlue1 md:grid md:grid-cols-3">
         <div className="flex justify-start">
-
           <div className="ml-4 flex items-center pr-4 text-darkOlive12">
             {data?.role === "Caregiver" && (
               <div
                 onClick={() => router.push("/dashboard/caregiver/discover")}
-                className="hidden text-sm md:text-xl  md:block"
+                className="hidden cursor-pointer text-sm md:block md:text-xl"
               >
                 House Call
               </div>
@@ -45,7 +44,7 @@ const Header = () => {
             {data?.role === "Patient" && (
               <div
                 onClick={() => router.push("/dashboard/patient/create")}
-                className="text-xs md:text-xl  md:block"
+                className="cursor-pointer text-xs md:block md:text-xl"
               >
                 House Call
               </div>
@@ -150,27 +149,47 @@ const Header = () => {
             </Link>
           </div>
         )}
-        {data?.role === "Patient" && (
-          <div className="pl-1 flex flex-row items-center divide-x overflow-auto border border-t-0 border-r-0 border-l-0 border-blue12 dark:border-darkBlue1">
+        {session && data?.role === "Patient" && (
+          <div className="flex flex-row items-center divide-x overflow-auto border border-t-0 border-r-0 border-l-0 border-blue12 pl-1 dark:border-darkBlue1">
             <div
               className=" flex cursor-pointer flex-row items-center py-1 px-1"
               onClick={() => setShowNav(!showNav)}
             >
               <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Sessions
-              </div>            </div>
+              </div>{" "}
+            </div>
             <Link href={"/dashboard/messages"} className="px-1 py-1 ">
-            <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Messages
               </div>
             </Link>
             <Link href={"/dashboard/account"} className="px-1 py-1">
-            <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Account
               </div>
             </Link>
             <Link href={"/help"} className="px-1 py-1">
-            <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+                Help
+              </div>
+            </Link>
+          </div>
+        )}
+        {!session && (
+          <div className="flex flex-row items-center divide-x overflow-auto border border-t-0 border-r-0 border-l-0 border-blue12 pl-1 dark:border-darkBlue1">
+            <Link href={"/login"} className="px-1 py-1 ">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+                Login
+              </div>
+            </Link>
+            <Link href={"/register"} className="px-1 py-1 ">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+                Register
+              </div>
+            </Link>
+            <Link href={"/help"} className="px-1 py-1">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Help
               </div>
             </Link>

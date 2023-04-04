@@ -77,76 +77,57 @@ const SideNav = () => {
       )}
       {session && user?.role === "Patient" && (
         <>
-          <div className="absolute z-50 col-span-1 bg-blue11 dark:bg-darkBlue2 text-olive2 lg:block">
-            <div className="flex flex-col items-baseline divide-y border border-1 border-t-0 border-blue12 dark:border-darkBlue1">
-
-
-                <Link
-                  href={"/dashboard/patient/create"}
-                  className="flex flex-row items-center w-full px-1 py-1"
-                >
-                  {/* <PlusCircledIcon className="mr-2" /> */}
-                  <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
+          <div className="absolute z-50 col-span-1 bg-blue11 text-olive2 dark:bg-darkBlue2 lg:block">
+            <div className="border-1 flex flex-col items-baseline divide-y border border-t-0 border-blue12 dark:border-darkBlue1">
+              <Link
+                href={"/dashboard/patient/create"}
+                className="flex w-full flex-row items-center px-1 py-1"
+              >
+                {/* <PlusCircledIcon className="mr-2" /> */}
+                <div className="w-full px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                   Create
-              </div>    
-                  
-                </Link>
+                </div>
+              </Link>
 
-                <Link
-                  href={"/dashboard/patient/sessions"}
-                  className="flex flex-row items-center w-full px-1 py-1"
-                >
-                  <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
+              <Link
+                href={"/dashboard/patient/sessions"}
+                className="flex w-full flex-row items-center px-1 py-1"
+              >
+                <div className="w-full px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                   New
-              </div>    
-                </Link>
+                </div>
+              </Link>
 
               <Link
                 href={"/dashboard/messages"}
-                className="flex flex-row items-center w-full px-1 py-1"
-                >
-                <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
-                Scheduled
-              </div>    
+                className="flex w-full flex-row items-center px-1 py-1"
+              >
+                <div className="w-full px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+                  Scheduled
+                </div>
               </Link>
               <Link
                 href={"/dashboard/account"}
-                className="flex flex-row items-center w-full px-1 py-1"
-                >
-                <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
-                Completed
-              </div>    
+                className="flex w-full flex-row items-center px-1 py-1"
+              >
+                <div className="hover:outline-blue w-full px-2 hover:outline hover:outline-2 active:bg-blue5 active:text-darkOlive2">
+                  Completed
+                </div>
               </Link>
-              <Link href={"/help"} 
-                  className="flex flex-row items-center w-full px-1 py-1"
-                  >
-                <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 w-full">
-                Canceled
-              </div>    
+              <Link
+                href={"/help"}
+                className="flex w-full flex-row items-center px-1 py-1"
+              >
+                <div className="w-full px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+                  Canceled
+                </div>
               </Link>
             </div>
           </div>
         </>
       )}
       {!session && (
-        <>
-          <div className="fixed col-span-1 min-h-full min-w-40vw max-w-sm bg-slate12 text-olive2 lg:block">
-            <div className="flex flex-col items-baseline space-y-2 pl-8 pt-4 text-lg">
-              <Link href={"/login"} className="flex flex-row items-center">
-                <EnterIcon className="mr-2" />
-                Login
-              </Link>
-              <Link href={"/register"} className="flex flex-row items-center">
-                <Pencil2Icon className="mr-2" />
-                Register
-              </Link>
-              <Link href={"/help"} className="flex flex-row items-center">
-                <QuestionMarkIcon className="mr-2" />
-                Help
-              </Link>
-            </div>
-          </div>
-        </>
+        <>{/* if user has no session they cannot access this menu */}</>
       )}
     </>
   );

@@ -128,8 +128,8 @@ const CreateSession = () => {
 
   return (
     <>
-      <div className="  py-4">
-        <div className="my-4  overflow-auto bg-blue2 text-olive12 dark:bg-darkBlue2 dark:text-darkOlive12">
+      <div className="">
+        <div className="overflow-auto bg-blue2 text-olive12 dark:bg-darkBlue2 dark:text-darkOlive12">
           <div className="grid grid-cols-1 space-y-2 md:grid-cols-2  md:space-x-4 md:space-y-0">
             <div className="col-span-1">
               <div className=" min-h-88vh border border-blue7 bg-blue1 dark:border-darkBlue7 dark:bg-darkBlue1">
