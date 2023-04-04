@@ -128,6 +128,62 @@ const CreateSession = () => {
 
   return (
     <>
+      <div className="grid min-h-screen grid-cols-1 border font-roboto md:grid-cols-2 ">
+        <div className="col-span-1 border px-4 py-4 ">
+          <p className="pb-4">
+            Fill out the information on this page and click submit to create
+            your session. Caregivers in your area can discover and apply to your
+            session. When a caregiver applies, you can chat with them and decide
+            if they are a good fit for your needs.
+          </p>
+
+          <h1 className="text-center text-lg">Overview</h1>
+
+          <div className="grid grid-cols-2 border">
+            <div className="col-span-1">
+            left
+            </div>
+            <div className="col-span-1">
+            right
+            </div>
+
+            <div className="col-span-1">
+            left 2
+            </div>
+            <div className="col-span-1">
+            right 2 
+            </div>
+
+            <div className="col-span-1">
+            left 3
+            </div>
+            <div className="col-span-1">
+            right 3
+            </div>
+             
+
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <div className="col-span-1 border ">two</div>
+      </div>
+
+      <div className="min-h-screen bg-yellow9 text-center">
+        spacer all should be above
+      </div>
+
       <div className="">
         <div className="overflow-auto bg-blue2 text-olive12 dark:bg-darkBlue2 dark:text-darkOlive12">
           <div className="grid grid-cols-1 space-y-2 md:grid-cols-2  md:space-x-4 md:space-y-0">
@@ -249,7 +305,7 @@ const CreateSession = () => {
                           city: e.target.value,
                         }))
                       }
-                    />                   
+                    />
                   </div>
                   <div className="col-span-1 mx-4 flex max-w-fit flex-col text-sm">
                     <Label.Root className="px-0.5" htmlFor="firstName">
