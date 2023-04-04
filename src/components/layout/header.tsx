@@ -1,14 +1,12 @@
 import { useSession } from "next-auth/react";
 import ThemeManager from "./themeManager";
 import { MenuIcon } from "@heroicons/react/outline";
-import { SearchIcon } from "@heroicons/react/outline";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 import AuthShowcase from "./authShowcase";
 import Link from "next/link";
 import SideNav from "./sideNav";
 import { useState } from "react";
-// import { roboto_mono } from './fonts';
 
 const Header = () => {
   const [showNav, setShowNav] = useState(false);
@@ -34,17 +32,12 @@ const Header = () => {
       {/* TODO: Fix the mobile so that it reaches across entire screen not only 2/3rds */}
       <div className="flex-cols-3 flex items-center justify-between bg-blue12 py-1 dark:bg-darkBlue1 md:grid md:grid-cols-3">
         <div className="flex justify-start">
-          <div className="md:hidden md:pl-0 ">
-            <MenuIcon
-              className="h-8 w-8 cursor-pointer text-darkOlive12"
-              onClick={() => setShowNav(!showNav)}
-            />
-          </div>
+
           <div className="ml-4 flex items-center pr-4 text-darkOlive12">
             {data?.role === "Caregiver" && (
               <div
                 onClick={() => router.push("/dashboard/caregiver/discover")}
-                className="hidden text-xl md:block"
+                className="hidden text-sm md:text-xl  md:block"
               >
                 House Call
               </div>
@@ -52,9 +45,8 @@ const Header = () => {
             {data?.role === "Patient" && (
               <div
                 onClick={() => router.push("/dashboard/patient/create")}
-                className="hidden text-xl md:block"
+                className="text-xs md:text-xl  md:block"
               >
-                {/* <p className="font-robotoSlab"> asdfasfasdf </p> */}
                 House Call
               </div>
             )}
@@ -164,21 +156,21 @@ const Header = () => {
               className=" flex cursor-pointer flex-row items-center py-1 px-1"
               onClick={() => setShowNav(!showNav)}
             >
-              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Sessions
               </div>            </div>
             <Link href={"/dashboard/messages"} className="px-1 py-1 ">
-              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4">
+            <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Messages
               </div>
             </Link>
             <Link href={"/dashboard/account"} className="px-1 py-1">
-              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4">
+            <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Account
               </div>
             </Link>
             <Link href={"/help"} className="px-1 py-1">
-              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4">
+            <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Help
               </div>
             </Link>
