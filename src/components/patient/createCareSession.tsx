@@ -23,7 +23,7 @@ const CreateSession = () => {
     onSuccess(newSession) {
       alert("Meow! Session successfully created!");
       setItems((prev) => [...prev, newSession]);
-      router.push("/dashboard/patient/new");
+      // router.push("/dashboard/patient/new");
     },
   });
 
@@ -139,6 +139,9 @@ const CreateSession = () => {
           if (startTimeSelect) {
             setStartTimeSelect(false);
           }
+          if (endTimeSelect) {
+            setEndTimeSelect(false);
+          }
         }}
         className="grid min-h-screen grid-cols-1  font-roboto md:grid-cols-2 "
       >
@@ -183,28 +186,35 @@ const CreateSession = () => {
                 Session Start
               </Label.Root>
 
+              {/* START TIME SELECT  */}
               {startTimeSelect && (
                 <div onClick={(e) => e.stopPropagation()}>
-                  <div className="absolute flex flex-row border bg-yellow9">
+                  <div className="absolute flex flex-row border  bg-blue1  px-2 py-2 items-center space-x-1">
+                    <p className="text-sm">
                     Hour
+
+                    </p>
                     <select
                       value={startTime.hour}
                       onChange={(e) => {
-                        console.log(e.target.value);
+                        // console.log(e.target.value);
 
                         setStartTime((prev) => ({
                           ...prev,
                           hour: parseInt(e.target.value),
                         }));
                       }}
-                      className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                      className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 = "
                     >
                       {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
                         <option key={hour}>{hour}</option>
                       ))}
                     </select>
+                    <p className="text-sm">
                     Minute
-                    <select
+
+                    </p> 
+                                       <select
                       value={startTime.minute}
                       onChange={(e) => {
                         console.log(e.target.value);
@@ -214,31 +224,33 @@ const CreateSession = () => {
                           minute: parseInt(e.target.value),
                         }));
                       }}
-                      className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                      className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11  "
                     >
                       {Array.from({ length: 60 }, (_, i) => i).map((minute) => (
                         <option key={minute}>{minute}</option>
                       ))}
                     </select>
-                    <div
+                    {/* <div
                       onClick={() => {
-                        console.log("meow");
+                        // console.log("meow");
                         setStartTimeSelect(false);
                       }}
                     >
                       x
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               )}
 
-              <div className="flex flex-row">
+              {/* END TIME SELECT  */}
+
+              <div className="flex flex-row items-center">
                 <TimeField value={startTime} onChange={setStartTime} />
                 <ClockIcon
                   onClick={() => {
                     setStartTimeSelect(true);
                   }}
-                  className="h-8 w-8 items-center"
+                  className="ml-1 h-5 w-5"
                 />
               </div>
             </div>
@@ -262,7 +274,73 @@ const CreateSession = () => {
                 Session End
               </Label.Root>
 
-              <TimeField defaultValue={endTime} onChange={setEndTime} />
+              {/* START TIME SELECT  */}
+              {endTimeSelect && (
+                <div onClick={(e) => e.stopPropagation()}>
+                     <div className="absolute flex flex-row border  bg-blue1  px-2 py-2 items-center space-x-1">
+                    <p className="text-sm">
+                    Hour
+
+                    </p>
+                    <select
+                      value={endTime.hour}
+                      onChange={(e) => {
+                        // console.log(e.target.value);
+
+                        setEndTime((prev) => ({
+                          ...prev,
+                          hour: parseInt(e.target.value),
+                        }));
+                      }}
+                      className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                    >
+                      {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
+                        <option key={hour}>{hour}</option>
+                      ))}
+                    </select>
+                    <p className="text-sm">
+                    Minute
+
+                    </p> 
+                                        <select
+                      value={endTime.minute}
+                      onChange={(e) => {
+                        // console.log(e.target.value);
+
+                        setEndTime((prev) => ({
+                          ...prev,
+                          minute: parseInt(e.target.value),
+                        }));
+                      }}
+                      className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                    >
+                      {Array.from({ length: 60 }, (_, i) => i).map((minute) => (
+                        <option key={minute}>{minute}</option>
+                      ))}
+                    </select>
+                    <div
+                      onClick={() => {
+                        // console.log("meow");
+                        setEndTimeSelect(false);
+                      }}
+                    >
+                      x
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* END TIME SELECT  */}
+
+              <div className="flex flex-row items-center">
+                <TimeField value={endTime} onChange={setEndTime} />
+                <ClockIcon
+                  onClick={() => {
+                    setEndTimeSelect(true);
+                  }}
+                  className="ml-1 h-5 w-5"
+                />
+              </div>
             </div>
 
             <div className="col-span-1">
@@ -405,9 +483,9 @@ const CreateSession = () => {
             <div className="bg-blue10 py-1 px-1">
               <button
                 type="button"
-                // onClick={() => {
-                //   publish();
-                // }}
+                onClick={() => {
+                  publish();
+                }}
                 className=" cursor-pointer  bg-blue10 px-10 py-3 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2"
               >
                 Create
