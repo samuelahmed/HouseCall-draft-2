@@ -7,9 +7,15 @@ import * as Label from "@radix-ui/react-label";
 import { TimeField } from "../dateSelect/timeField";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { DatePicker } from "../dateSelect/datePicker";
+import { ClockIcon } from "@heroicons/react/outline";
 
 const CreateSession = () => {
   const [items, setItems] = useState<CareSession[]>([]);
+
+  //new temp
+  const [startTimeSelect, setStartTimeSelect] = useState(false);
+  const [endTimeSelect, setEndTimeSelect] = useState(false);
+
   const router = useRouter();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
 
@@ -128,9 +134,16 @@ const CreateSession = () => {
 
   return (
     <>
-      <div className="grid min-h-screen grid-cols-1  font-roboto md:grid-cols-2 ">
-        <div className="col-span-1  border px-4 py-4">
-          <p className="py-2">
+      <div
+        onClick={() => {
+          if (startTimeSelect) {
+            setStartTimeSelect(false);
+          }
+        }}
+        className="grid min-h-screen grid-cols-1  font-roboto md:grid-cols-2 "
+      >
+        <div className="col-span-1 px-4 py-4">
+          <p className="py-2 px-4">
             Fill out the information on this page and click submit to create
             your session. Caregivers in your area can discover and apply to your
             session. When a caregiver applies, you can chat with them and decide
@@ -164,12 +177,70 @@ const CreateSession = () => {
               </div>
             </div>
 
-            <div className="col-span-1">
+            <div className="col-span-1  ">
               {/* TODO: add a picker for time select and make focus ring work */}
               <Label.Root className="px-0.5" htmlFor="Session Start Time">
                 Session Start
               </Label.Root>
-              <TimeField defaultValue={startTime} onChange={setStartTime} />
+
+              {startTimeSelect && (
+                <div onClick={(e) => e.stopPropagation()}>
+                  <div className="absolute flex flex-row border bg-yellow9">
+                    Hour
+                    <select
+                      value={startTime.hour}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+
+                        setStartTime((prev) => ({
+                          ...prev,
+                          hour: parseInt(e.target.value),
+                        }));
+                      }}
+                      className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                    >
+                      {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
+                        <option key={hour}>{hour}</option>
+                      ))}
+                    </select>
+                    Minute
+                    <select
+                      value={startTime.minute}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+
+                        setStartTime((prev) => ({
+                          ...prev,
+                          minute: parseInt(e.target.value),
+                        }));
+                      }}
+                      className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                    >
+                      {Array.from({ length: 60 }, (_, i) => i).map((minute) => (
+                        <option key={minute}>{minute}</option>
+                      ))}
+                    </select>
+                    <div
+                      onClick={() => {
+                        console.log("meow");
+                        setStartTimeSelect(false);
+                      }}
+                    >
+                      x
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="flex flex-row">
+                <TimeField value={startTime} onChange={setStartTime} />
+                <ClockIcon
+                  onClick={() => {
+                    setStartTimeSelect(true);
+                  }}
+                  className="h-8 w-8 items-center"
+                />
+              </div>
             </div>
 
             <div className="col-span-1">
@@ -190,6 +261,7 @@ const CreateSession = () => {
               <Label.Root className="px-0.5" htmlFor="Session End Time">
                 Session End
               </Label.Root>
+
               <TimeField defaultValue={endTime} onChange={setEndTime} />
             </div>
 
@@ -230,7 +302,7 @@ const CreateSession = () => {
           </div>
         </div>
 
-        <div className="col-span-1 border px-4 py-4 ">
+        <div className="col-span-1 px-4 py-4 ">
           <h1 className="py-2 text-center text-xl">Location</h1>
           <div className="flex min-w-full max-w-fit flex-col px-4 pb-2">
             <Label.Root className="px-0.5" htmlFor="firstName">
@@ -329,17 +401,18 @@ const CreateSession = () => {
               </Label.Root>
             </div>
           </div>
-          <div className="flex items-center justify-center">
-            <button
-              type="button"
-              onClick={() => {
-                publish();
-              }}
-              className="mt-8 cursor-pointer border border-solid border-blue7 bg-blue3 px-10 py-3 text-lg text-olive12 hover:border-blue8 hover:bg-blue4 
-                     dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-            >
-              Create
-            </button>
+          <div className="my-16 flex items-center justify-center">
+            <div className="bg-blue10 py-1 px-1">
+              <button
+                type="button"
+                // onClick={() => {
+                //   publish();
+                // }}
+                className=" cursor-pointer  bg-blue10 px-10 py-3 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2"
+              >
+                Create
+              </button>
+            </div>
           </div>
         </div>
       </div>
