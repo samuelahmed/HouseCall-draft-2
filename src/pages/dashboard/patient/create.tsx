@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 // import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
-import CreateSession from "@/components/patient/createCareSession";
+import CreateSession from "@/components/patient/createSession";
 import { OverlayContainer } from "@react-aria/overlays";
 // import DateEngine from "@/components/dateSelect/dateEngine";
 import Header from "@/components/layout/header";
