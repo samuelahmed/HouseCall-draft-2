@@ -142,7 +142,7 @@ const CreateSession = () => {
               setEndTimeSelect(false);
             }
           }}
-          className="grid min-h-screen grid-cols-1 font-roboto md:grid-cols-2"
+          className="grid min-h-screen grid-cols-1 bg-white font-roboto dark:bg-black md:grid-cols-2"
         >
           <div className="col-span-1 px-4 py-4">
             <p className="py-2 px-4">
@@ -166,7 +166,7 @@ const CreateSession = () => {
                         title: e.target.value,
                       }))
                     }
-                    className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                    className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                   >
                     <option>Mobility Support </option>
                     <option>Personal Care</option>
@@ -182,7 +182,7 @@ const CreateSession = () => {
                 </Label.Root>
                 {startTimeSelect && (
                   <div onClick={(e) => e.stopPropagation()}>
-                    <div className="absolute flex flex-row items-center space-x-1 border bg-white px-2 py-2">
+                    <div className="absolute flex flex-row items-center space-x-1 border bg-white px-2 py-2 dark:bg-black">
                       <p className="text-sm">Hour</p>
                       <select
                         value={startTime.hour}
@@ -234,7 +234,7 @@ const CreateSession = () => {
                     Name
                   </Label.Root>
                   <input
-                    className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                    className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                     type="text"
                     defaultValue={data && data?.username ? data?.username : ""}
                   />
@@ -246,7 +246,7 @@ const CreateSession = () => {
                 </Label.Root>
                 {endTimeSelect && (
                   <div onClick={(e) => e.stopPropagation()}>
-                    <div className="absolute flex flex-row items-center space-x-1 border bg-white px-2 py-2">
+                    <div className="absolute flex flex-row items-center space-x-1 border bg-white px-2 py-2 dark:bg-black">
                       <p className="text-sm">Hour</p>
                       <select
                         value={endTime.hour}
@@ -311,7 +311,7 @@ const CreateSession = () => {
                 Describe Desired Session
               </Label.Root>
               <textarea
-                className="inline-block h-64 w-full border px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11"
+                className="inline-block h-64 w-full border bg-white px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                 defaultValue={inputs.overview}
                 onChange={(e) =>
                   setInputs((prev) => ({
@@ -329,7 +329,7 @@ const CreateSession = () => {
                 Address
               </Label.Root>
               <input
-                className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                 type="text"
                 defaultValue={inputs.address}
                 onChange={(e) =>
@@ -346,7 +346,7 @@ const CreateSession = () => {
                   City
                 </Label.Root>
                 <input
-                  className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                  className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                   type="text"
                   defaultValue={inputs.city}
                   onChange={(e) =>
@@ -362,7 +362,7 @@ const CreateSession = () => {
                   Postal Code
                 </Label.Root>
                 <input
-                  className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                  className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                   type="text"
                   defaultValue={inputs.postalCode}
                   onChange={(e) =>
@@ -379,7 +379,7 @@ const CreateSession = () => {
                 Describe Location
               </Label.Root>
               <textarea
-                className="h-18 inline-block w-full border px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11"
+                className="h-18 inline-block w-full border bg-white px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                 defaultValue={inputs.location}
                 onChange={(e) =>
                   setInputs((prev) => ({
@@ -396,7 +396,7 @@ const CreateSession = () => {
                   Hourly Rate
                 </Label.Root>
                 <input
-                  className="block border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                  className="block border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                   type="number"
                   defaultValue={inputs.hourlyRate}
                   onChange={(e) => {
@@ -428,13 +428,13 @@ const CreateSession = () => {
               </div>
             </div>
             <div className="my-16 flex items-center justify-center">
-              <div className="bg-blue10 py-1 px-1">
+              <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
                 <button
                   type="button"
                   onClick={() => {
                     publish();
                   }}
-                  className="cursor-pointer bg-blue10 px-10 py-3 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2"
+                  className="cursor-pointer bg-blue10 px-10 py-3 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
                 >
                   Submit
                 </button>
