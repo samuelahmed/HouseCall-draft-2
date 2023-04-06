@@ -192,7 +192,7 @@ const CreateSession = () => {
                             hour: parseInt(e.target.value),
                           }));
                         }}
-                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 "
+                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                       >
                         {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
                           <option key={hour}>{hour}</option>
@@ -207,7 +207,7 @@ const CreateSession = () => {
                             minute: parseInt(e.target.value),
                           }));
                         }}
-                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11  "
+                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                       >
                         {Array.from({ length: 60 }, (_, i) => i).map(
                           (minute) => (
@@ -234,7 +234,7 @@ const CreateSession = () => {
                     Name
                   </Label.Root>
                   <input
-                    className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 "
+                    className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                     type="text"
                     defaultValue={data && data?.username ? data?.username : ""}
                   />
@@ -409,7 +409,7 @@ const CreateSession = () => {
                   }}
                 />
               </div>
-              <div className=" flex flex-col px-4 pt-6 align-bottom">
+              <div className="flex flex-col px-4 pt-6 align-bottom">
                 <Label.Root className="" htmlFor="Session Duration">
                   {inputs.totalHours >= 0 && (
                     <div>Duration: {inputs.totalHours} hours</div>
