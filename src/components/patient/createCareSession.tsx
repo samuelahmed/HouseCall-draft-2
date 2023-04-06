@@ -1,7 +1,7 @@
 import { trpc } from "@/utils/trpc";
 import { useEffect } from "react";
 import { useState } from "react";
-import type { CareSession } from "@prisma/client";
+// import type { CareSession } from "@prisma/client";
 import { useRouter } from "next/router";
 import * as Label from "@radix-ui/react-label";
 import { TimeField } from "../dateSelect/timeField";
@@ -10,19 +10,15 @@ import { DatePicker } from "../dateSelect/datePicker";
 import { ClockIcon } from "@heroicons/react/outline";
 
 const CreateSession = () => {
-  const [items, setItems] = useState<CareSession[]>([]);
-
-  //new temp
   const [startTimeSelect, setStartTimeSelect] = useState(false);
   const [endTimeSelect, setEndTimeSelect] = useState(false);
-
+  const [dateValue, setDateValue] = useState(today(getLocalTimeZone()));
   const router = useRouter();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
 
   const { mutate } = trpc.careSessionAPIs.createOneCareSession.useMutation({
-    onSuccess(newSession) {
+    onSuccess() {
       alert("Meow! Session successfully created!");
-      setItems((prev) => [...prev, newSession]);
       // router.push("/dashboard/patient/new");
     },
   });
@@ -44,13 +40,12 @@ const CreateSession = () => {
     minute: number;
     second: number;
   };
+  
   const [endTime, setEndTime] = useState<EndTime>({
     hour: 0,
     minute: 0,
     second: 0,
   });
-
-  const [dateValue, setDateValue] = useState(today(getLocalTimeZone()));
 
   const [inputs, setInputs] = useState({
     name: data?.username || "",
@@ -152,9 +147,7 @@ const CreateSession = () => {
             session. When a caregiver applies, you can chat with them and decide
             if they are a good fit for your needs.
           </p>
-
           <h1 className="py-2 text-center text-xl">Overview</h1>
-
           <div className="grid grid-cols-2 ">
             <div className="col-span-1">
               <div className="mx-4 mb-2 flex max-w-fit flex-col">
@@ -179,42 +172,30 @@ const CreateSession = () => {
                 </select>
               </div>
             </div>
-
             <div className="col-span-1  ">
-              {/* TODO: add a picker for time select and make focus ring work */}
               <Label.Root className="px-0.5" htmlFor="Session Start Time">
                 Session Start
               </Label.Root>
-
-              {/* START TIME SELECT  */}
               {startTimeSelect && (
                 <div onClick={(e) => e.stopPropagation()}>
-                  <div className="absolute flex flex-row border  bg-blue1  px-2 py-2 items-center space-x-1">
-                    <p className="text-sm">
-                    Hour
-
-                    </p>
+                  <div className="absolute flex flex-row items-center  space-x-1  border bg-blue1 px-2 py-2">
+                    <p className="text-sm">Hour</p>
                     <select
                       value={startTime.hour}
                       onChange={(e) => {
-                        // console.log(e.target.value);
-
                         setStartTime((prev) => ({
                           ...prev,
                           hour: parseInt(e.target.value),
                         }));
                       }}
-                      className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 = "
+                      className="= block w-full border px-1  py-1 focus:outline-none focus:ring-1 focus:ring-blue11 "
                     >
                       {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
                         <option key={hour}>{hour}</option>
                       ))}
                     </select>
-                    <p className="text-sm">
-                    Minute
-
-                    </p> 
-                                       <select
+                    <p className="text-sm">Minute</p>
+                    <select
                       value={startTime.minute}
                       onChange={(e) => {
                         console.log(e.target.value);
@@ -230,20 +211,9 @@ const CreateSession = () => {
                         <option key={minute}>{minute}</option>
                       ))}
                     </select>
-                    {/* <div
-                      onClick={() => {
-                        // console.log("meow");
-                        setStartTimeSelect(false);
-                      }}
-                    >
-                      x
-                    </div> */}
                   </div>
                 </div>
               )}
-
-              {/* END TIME SELECT  */}
-
               <div className="flex flex-row items-center">
                 <TimeField value={startTime} onChange={setStartTime} />
                 <ClockIcon
@@ -254,7 +224,6 @@ const CreateSession = () => {
                 />
               </div>
             </div>
-
             <div className="col-span-1">
               <div className="mx-4 mb-2 flex max-w-fit flex-col">
                 <Label.Root className="px-0.5" htmlFor="Name">
@@ -268,25 +237,17 @@ const CreateSession = () => {
                 />
               </div>
             </div>
-
             <div className="col-span-1">
               <Label.Root className="px-0.5" htmlFor="Session End Time">
                 Session End
               </Label.Root>
-
-              {/* START TIME SELECT  */}
               {endTimeSelect && (
                 <div onClick={(e) => e.stopPropagation()}>
-                     <div className="absolute flex flex-row border  bg-blue1  px-2 py-2 items-center space-x-1">
-                    <p className="text-sm">
-                    Hour
-
-                    </p>
+                  <div className="absolute flex flex-row items-center  space-x-1  border bg-blue1 px-2 py-2">
+                    <p className="text-sm">Hour</p>
                     <select
                       value={endTime.hour}
                       onChange={(e) => {
-                        // console.log(e.target.value);
-
                         setEndTime((prev) => ({
                           ...prev,
                           hour: parseInt(e.target.value),
@@ -298,15 +259,10 @@ const CreateSession = () => {
                         <option key={hour}>{hour}</option>
                       ))}
                     </select>
-                    <p className="text-sm">
-                    Minute
-
-                    </p> 
-                                        <select
+                    <p className="text-sm">Minute</p>
+                    <select
                       value={endTime.minute}
                       onChange={(e) => {
-                        // console.log(e.target.value);
-
                         setEndTime((prev) => ({
                           ...prev,
                           minute: parseInt(e.target.value),
@@ -320,7 +276,6 @@ const CreateSession = () => {
                     </select>
                     <div
                       onClick={() => {
-                        // console.log("meow");
                         setEndTimeSelect(false);
                       }}
                     >
@@ -329,9 +284,6 @@ const CreateSession = () => {
                   </div>
                 </div>
               )}
-
-              {/* END TIME SELECT  */}
-
               <div className="flex flex-row items-center">
                 <TimeField value={endTime} onChange={setEndTime} />
                 <ClockIcon
@@ -342,13 +294,11 @@ const CreateSession = () => {
                 />
               </div>
             </div>
-
             <div className="col-span-1">
               <div className="mx-4 mb-2 flex flex-col ">
                 <Label.Root className="px-0.5" htmlFor="Session Date">
                   Session Date
                 </Label.Root>
-
                 <DatePicker
                   minValue={today(getLocalTimeZone())}
                   defaultValue={dateValue}
@@ -356,12 +306,8 @@ const CreateSession = () => {
                 />
               </div>
             </div>
-
-            <div className="col-span-1">
-              {/* currently empty - space for new input */}
-            </div>
+            <div className="col-span-1"></div>
           </div>
-
           <div className="flex flex-col px-4  py-2  ">
             <Label.Root className="px-0.5" htmlFor="firstName">
               Describe Desired Session
@@ -379,7 +325,6 @@ const CreateSession = () => {
             />
           </div>
         </div>
-
         <div className="col-span-1 px-4 py-4 ">
           <h1 className="py-2 text-center text-xl">Location</h1>
           <div className="flex min-w-full max-w-fit flex-col px-4 pb-2">
@@ -472,7 +417,7 @@ const CreateSession = () => {
                 }}
               />
             </div>
-
+            {/* add total hours */}
             <div className="px-4 pt-6  align-bottom  ">
               <Label.Root className="" htmlFor="firstName">
                 Total: $ {totalComp}
@@ -488,7 +433,7 @@ const CreateSession = () => {
                 }}
                 className=" cursor-pointer  bg-blue10 px-10 py-3 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2"
               >
-                Create
+                Submit
               </button>
             </div>
           </div>
