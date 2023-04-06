@@ -132,6 +132,7 @@ const CreateSession = () => {
 
   return (
     <>
+    {/* TODO: Fix darkmode in calendar & time picker */}
       <OverlayContainer>
         <div
           onClick={() => {
