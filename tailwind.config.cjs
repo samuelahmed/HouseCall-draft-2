@@ -46,6 +46,10 @@ module.exports = {
       // Red - error 
       red11: "#c30007d4",
 
+      //White - overlay
+      white: "#ffffffff",
+
+
     },
     extend: {
       height: {

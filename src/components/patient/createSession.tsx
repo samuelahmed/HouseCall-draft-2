@@ -98,11 +98,6 @@ const CreateSession = () => {
         endTime.minute / 60 -
         (startTime.hour + startTime.minute / 60)
     );
-    //TODO: Make a better solution and block on backend too.
-    // if (totalHours < 0) {
-    //   totalHours = 0
-    // }
-
     const totalCompensation = totalHours * inputs.hourlyRate;
     setInputs((prevInputs) => ({
       ...prevInputs,
@@ -147,7 +142,7 @@ const CreateSession = () => {
               setEndTimeSelect(false);
             }
           }}
-          className="grid min-h-screen grid-cols-1  font-roboto md:grid-cols-2 "
+          className="grid min-h-screen grid-cols-1 font-roboto md:grid-cols-2"
         >
           <div className="col-span-1 px-4 py-4">
             <p className="py-2 px-4">
@@ -157,7 +152,7 @@ const CreateSession = () => {
               decide if they are a good fit for your needs.
             </p>
             <h1 className="py-2 text-center text-xl">Overview</h1>
-            <div className="grid grid-cols-2 ">
+            <div className="grid grid-cols-2">
               <div className="col-span-1">
                 <div className="mx-4 mb-2 flex max-w-fit flex-col">
                   <Label.Root className="px-0.5" htmlFor="Session Type">
@@ -171,7 +166,7 @@ const CreateSession = () => {
                         title: e.target.value,
                       }))
                     }
-                    className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                    className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                   >
                     <option>Mobility Support </option>
                     <option>Personal Care</option>
@@ -181,13 +176,13 @@ const CreateSession = () => {
                   </select>
                 </div>
               </div>
-              <div className="col-span-1  ">
+              <div className="col-span-1">
                 <Label.Root className="px-0.5" htmlFor="Session Start Time">
                   Session Start
                 </Label.Root>
                 {startTimeSelect && (
                   <div onClick={(e) => e.stopPropagation()}>
-                    <div className="absolute flex flex-row items-center  space-x-1  border bg-blue1 px-2 py-2">
+                    <div className="absolute flex flex-row items-center space-x-1 border bg-white px-2 py-2">
                       <p className="text-sm">Hour</p>
                       <select
                         value={startTime.hour}
@@ -197,7 +192,7 @@ const CreateSession = () => {
                             hour: parseInt(e.target.value),
                           }));
                         }}
-                        className="= block w-full border px-1  py-1 focus:outline-none focus:ring-1 focus:ring-blue11 "
+                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 "
                       >
                         {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
                           <option key={hour}>{hour}</option>
@@ -207,14 +202,12 @@ const CreateSession = () => {
                       <select
                         value={startTime.minute}
                         onChange={(e) => {
-                          console.log(e.target.value);
-
                           setStartTime((prev) => ({
                             ...prev,
                             minute: parseInt(e.target.value),
                           }));
                         }}
-                        className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11  "
+                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11  "
                       >
                         {Array.from({ length: 60 }, (_, i) => i).map(
                           (minute) => (
@@ -241,9 +234,8 @@ const CreateSession = () => {
                     Name
                   </Label.Root>
                   <input
-                    className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                    className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 "
                     type="text"
-                    id="firstName"
                     defaultValue={data && data?.username ? data?.username : ""}
                   />
                 </div>
@@ -254,7 +246,7 @@ const CreateSession = () => {
                 </Label.Root>
                 {endTimeSelect && (
                   <div onClick={(e) => e.stopPropagation()}>
-                    <div className="absolute flex flex-row items-center  space-x-1  border bg-blue1 px-2 py-2">
+                    <div className="absolute flex flex-row items-center space-x-1 border bg-white px-2 py-2">
                       <p className="text-sm">Hour</p>
                       <select
                         value={endTime.hour}
@@ -264,7 +256,7 @@ const CreateSession = () => {
                             hour: parseInt(e.target.value),
                           }));
                         }}
-                        className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                       >
                         {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
                           <option key={hour}>{hour}</option>
@@ -279,7 +271,7 @@ const CreateSession = () => {
                             minute: parseInt(e.target.value),
                           }));
                         }}
-                        className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                       >
                         {Array.from({ length: 60 }, (_, i) => i).map(
                           (minute) => (
@@ -301,7 +293,7 @@ const CreateSession = () => {
                 </div>
               </div>
               <div className="col-span-1">
-                <div className="mx-4 mb-2 flex flex-col ">
+                <div className="mx-4 mb-2 flex flex-col">
                   <Label.Root className="px-0.5" htmlFor="Session Date">
                     Session Date
                   </Label.Root>
@@ -314,13 +306,12 @@ const CreateSession = () => {
               </div>
               <div className="col-span-1"></div>
             </div>
-            <div className="flex flex-col px-4  py-2  ">
-              <Label.Root className="px-0.5" htmlFor="firstName">
+            <div className="flex flex-col px-4 py-2">
+              <Label.Root className="px-0.5" htmlFor="Session Description">
                 Describe Desired Session
               </Label.Root>
               <textarea
                 className="inline-block h-64 w-full border px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11"
-                id="firstName"
                 defaultValue={inputs.overview}
                 onChange={(e) =>
                   setInputs((prev) => ({
@@ -334,13 +325,12 @@ const CreateSession = () => {
           <div className="col-span-1 px-4 py-4 ">
             <h1 className="py-2 text-center text-xl">Location</h1>
             <div className="flex min-w-full max-w-fit flex-col px-4 pb-2">
-              <Label.Root className="px-0.5" htmlFor="firstName">
+              <Label.Root className="px-0.5" htmlFor="Address">
                 Address
               </Label.Root>
               <input
-                className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                 type="text"
-                id="firstName"
                 defaultValue={inputs.address}
                 onChange={(e) =>
                   setInputs((prev) => ({
@@ -350,15 +340,14 @@ const CreateSession = () => {
                 }
               />
             </div>
-            <div className="grid grid-cols-2 ">
-              <div className="col-span-1 mx-4 mb-2 ">
-                <Label.Root className="" htmlFor="firstName">
+            <div className="grid grid-cols-2">
+              <div className="col-span-1 mx-4 mb-2">
+                <Label.Root className="" htmlFor="City">
                   City
                 </Label.Root>
                 <input
-                  className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                  className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                   type="text"
-                  id="firstName"
                   defaultValue={inputs.city}
                   onChange={(e) =>
                     setInputs((prev) => ({
@@ -369,13 +358,12 @@ const CreateSession = () => {
                 />
               </div>
               <div className="col-span-1 mx-4 mb-2">
-                <Label.Root className="px-0.5" htmlFor="firstName">
+                <Label.Root className="px-0.5" htmlFor="Postal Code">
                   Postal Code
                 </Label.Root>
                 <input
-                  className="block w-full border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
+                  className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                   type="text"
-                  id="firstName"
                   defaultValue={inputs.postalCode}
                   onChange={(e) =>
                     setInputs((prev) => ({
@@ -386,13 +374,12 @@ const CreateSession = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col px-4  py-2  ">
-              <Label.Root className="" htmlFor="firstName">
+            <div className="flex flex-col px-4 py-2">
+              <Label.Root className="" htmlFor="Describe Location">
                 Describe Location
               </Label.Root>
               <textarea
                 className="h-18 inline-block w-full border px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11"
-                id="firstName"
                 defaultValue={inputs.location}
                 onChange={(e) =>
                   setInputs((prev) => ({
@@ -403,14 +390,13 @@ const CreateSession = () => {
               />
             </div>
             <h1 className="pt-4 text-center text-xl">Compensation</h1>
-            <div className="grid grid-cols-2 ">
+            <div className="grid grid-cols-2">
               <div className="col-span-1 mx-4 mb-2">
-                <Label.Root className="px-0.5" htmlFor="firstName">
+                <Label.Root className="px-0.5" htmlFor="Hourly Rate">
                   Hourly Rate
                 </Label.Root>
                 <input
-                  className="block  border px-1 py-1  focus:outline-none focus:ring-1 focus:ring-blue11 "
-                  id="firstName"
+                  className="block border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
                   type="number"
                   defaultValue={inputs.hourlyRate}
                   onChange={(e) => {
@@ -423,8 +409,8 @@ const CreateSession = () => {
                   }}
                 />
               </div>
-              <div className=" flex flex-col px-4 pt-6  align-bottom  ">
-                <Label.Root className="" htmlFor="firstName">
+              <div className=" flex flex-col px-4 pt-6 align-bottom">
+                <Label.Root className="" htmlFor="Session Duration">
                   {inputs.totalHours >= 0 && (
                     <div>Duration: {inputs.totalHours} hours</div>
                   )}
@@ -435,7 +421,7 @@ const CreateSession = () => {
                   )}
                 </Label.Root>
                 {totalComp >= 0 && (
-                  <Label.Root className="" htmlFor="firstName">
+                  <Label.Root className="" htmlFor="Total Cost">
                     Total: ${totalComp}
                   </Label.Root>
                 )}
@@ -448,7 +434,7 @@ const CreateSession = () => {
                   onClick={() => {
                     publish();
                   }}
-                  className=" cursor-pointer  bg-blue10 px-10 py-3 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2"
+                  className="cursor-pointer bg-blue10 px-10 py-3 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2"
                 >
                   Submit
                 </button>
