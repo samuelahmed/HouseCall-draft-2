@@ -1,7 +1,6 @@
 import { trpc } from "@/utils/trpc";
 import { useEffect } from "react";
 import { useState } from "react";
-// import type { CareSession } from "@prisma/client";
 import { useRouter } from "next/router";
 import * as Label from "@radix-ui/react-label";
 import { TimeField } from "../dateSelect/timeField";
@@ -40,7 +39,7 @@ const CreateSession = () => {
     minute: number;
     second: number;
   };
-  
+
   const [endTime, setEndTime] = useState<EndTime>({
     hour: 0,
     minute: 0,
@@ -274,13 +273,6 @@ const CreateSession = () => {
                         <option key={minute}>{minute}</option>
                       ))}
                     </select>
-                    <div
-                      onClick={() => {
-                        setEndTimeSelect(false);
-                      }}
-                    >
-                      x
-                    </div>
                   </div>
                 </div>
               )}
@@ -417,8 +409,10 @@ const CreateSession = () => {
                 }}
               />
             </div>
-            {/* add total hours */}
-            <div className="px-4 pt-6  align-bottom  ">
+            <div className=" flex flex-col px-4 pt-6  align-bottom  ">
+              <Label.Root className="" htmlFor="firstName">
+                Duration: {inputs.totalHours} hours
+              </Label.Root>
               <Label.Root className="" htmlFor="firstName">
                 Total: $ {totalComp}
               </Label.Root>
