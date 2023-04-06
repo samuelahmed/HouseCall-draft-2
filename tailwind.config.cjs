@@ -23,9 +23,7 @@ module.exports = {
       darkBlue2: "#0f1b2d",
       darkBlue3: "#10243e",
       darkBlue4: "#102a4c",
-
       darkBlue5: "#0f3058",
-
       darkBlue6: "#0d3868",
       darkBlue7: "#0a4481",
       darkBlue8: "#0954a5",
@@ -45,6 +43,9 @@ module.exports = {
       slate12: "#11181c",
       // Yellow - Sun
       yellow9: "#f5d90a",
+      // Red - error 
+      red11: "#c30007d4",
+
     },
     extend: {
       height: {
