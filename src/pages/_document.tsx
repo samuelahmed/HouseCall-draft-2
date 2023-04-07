@@ -1,6 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
-
 //At the moment this is managing the font and favicon 4/3/2023
 export default function Document() {
   return (
