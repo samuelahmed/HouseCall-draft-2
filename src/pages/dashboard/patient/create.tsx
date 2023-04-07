@@ -208,7 +208,7 @@ const Create: NextPage = () => {
                                   hour: parseInt(e.target.value),
                                 }));
                               }}
-                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                             >
                               {Array.from({ length: 24 }, (_, i) => i).map(
                                 (hour) => (
@@ -225,7 +225,7 @@ const Create: NextPage = () => {
                                   minute: parseInt(e.target.value),
                                 }));
                               }}
-                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                             >
                               {Array.from({ length: 60 }, (_, i) => i).map(
                                 (minute) => (
@@ -276,7 +276,7 @@ const Create: NextPage = () => {
                                   hour: parseInt(e.target.value),
                                 }));
                               }}
-                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                             >
                               {Array.from({ length: 24 }, (_, i) => i).map(
                                 (hour) => (
@@ -293,7 +293,7 @@ const Create: NextPage = () => {
                                   minute: parseInt(e.target.value),
                                 }));
                               }}
-                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
+                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
                             >
                               {Array.from({ length: 60 }, (_, i) => i).map(
                                 (minute) => (
