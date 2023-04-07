@@ -9,9 +9,6 @@ import {
   IdCardIcon,
   ArchiveIcon,
   QuestionMarkIcon,
-  EnterIcon,
-  Pencil2Icon,
-  PlusCircledIcon,
 } from "@radix-ui/react-icons";
 
 const SideNav = () => {
