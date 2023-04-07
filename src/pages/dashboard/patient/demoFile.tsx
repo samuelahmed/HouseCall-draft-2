@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import LoginForm from "@/components/forms/loginForm";
 import Header from "@/components/layout/header";
+import UnderConstruction from "@/components/pages/underConstruction";
 
 //example minimal page.
 const Create: NextPage = () => {
@@ -17,7 +18,8 @@ const Create: NextPage = () => {
       <div>
         {session && (
           <>
-            <div>{/* add stuff here */}</div>
+          < UnderConstruction />
+
           </>
         )}
         {!session && (
