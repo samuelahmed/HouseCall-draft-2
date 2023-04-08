@@ -28,7 +28,7 @@ const Messages: NextPage = () => {
     });
 
   const [messages, setMessages] = useState<any[]>([]);
-  
+
   const [inputs, setInputs] = useState({
     senderId: userData?.username || "",
     message: "",
@@ -78,7 +78,7 @@ const Messages: NextPage = () => {
       <Head>
         <title>Messages</title>
       </Head>
-      < Header />
+      <Header />
       {/* <NavLayout /> */}
       <div>
         {session && (
@@ -105,14 +105,12 @@ const Messages: NextPage = () => {
                         )}
                       </div>
                     ))}
-
                     <div className="mx-4 mb-2 flex flex-col  pt-2 pr-6 text-sm ">
                       <Label.Root className="px-0.5" htmlFor="firstName">
                         Create Message
                       </Label.Root>
                       <textarea
-                        className="inline-block h-32 max-w-lg border
-                    border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
+                        className="inline-block h-32 max-w-lg border border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
                         id="Message"
                         value={inputs.message}
                         onChange={(e) =>
@@ -132,8 +130,7 @@ const Messages: NextPage = () => {
                       onClick={() => {
                         publish();
                       }}
-                      className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
-            dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                      className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4  dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
                     >
                       Send
                     </button>
