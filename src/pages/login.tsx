@@ -5,13 +5,13 @@ import { useSession } from "next-auth/react";
 import LoginForm from "@/components/forms/loginForm";
 import Header from "@/components/layout/header";
 
-const Account: NextPage = () => {
+const Login: NextPage = () => {
   const { data: session } = useSession();
 
   return (
     <>
       <Head>
-        <title>Account</title>
+        <title>Login</title>
       </Head>
       {/* <NavLayout /> */}
       < Header />
@@ -44,4 +44,4 @@ const Account: NextPage = () => {
   );
 };
 
-export default Account;
+export default Login;

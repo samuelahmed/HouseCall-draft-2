@@ -96,7 +96,7 @@ const SideNav = () => {
               </Link>
 
               <Link
-                href={"/dashboard/messages"}
+                href={"/dashboard/patient/scheduled"}
                 className="flex w-full flex-row items-center px-1 py-1"
               >
                 <div className="w-full px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
@@ -104,7 +104,7 @@ const SideNav = () => {
                 </div>
               </Link>
               <Link
-                href={"/dashboard/account"}
+                href={"/dashboard/patient/completed"}
                 className="flex w-full flex-row items-center px-1 py-1"
               >
                 <div className="hover:outline-blue w-full px-2 hover:outline hover:outline-2 active:bg-blue5 active:text-darkOlive2">
@@ -112,7 +112,7 @@ const SideNav = () => {
                 </div>
               </Link>
               <Link
-                href={"/help"}
+                href={"/dashboard/patient/canceled"}
                 className="flex w-full flex-row items-center px-1 py-1"
               >
                 <div className="w-full px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
