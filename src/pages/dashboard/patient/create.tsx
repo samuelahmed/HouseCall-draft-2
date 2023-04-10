@@ -154,7 +154,7 @@ const Create: NextPage = () => {
                     setEndTimeSelect(false);
                   }
                 }}
-                className="grid min-h-screen grid-cols-1 bg-white font-roboto dark:bg-black md:grid-cols-2"
+                className="grid min-h-screen grid-cols-1 font-roboto md:grid-cols-2"
               >
                 <div className="col-span-1 px-4 py-4">
                   <p className="py-2 px-4">
@@ -179,7 +179,7 @@ const Create: NextPage = () => {
                               title: e.target.value,
                             }))
                           }
-                          className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                         >
                           <option>Mobility Support </option>
                           <option>Personal Care</option>
@@ -198,7 +198,7 @@ const Create: NextPage = () => {
                       </Label.Root>
                       {startTimeSelect && (
                         <div onClick={(e) => e.stopPropagation()}>
-                          <div className="absolute flex flex-row items-center space-x-1 border bg-white px-2 py-2 dark:bg-black">
+                          <div className="absolute flex flex-row items-center space-x-1 border px-2 py-2 dark:bg-darkBg">
                             <p className="text-sm">Hour</p>
                             <select
                               value={startTime.hour}
@@ -208,7 +208,7 @@ const Create: NextPage = () => {
                                   hour: parseInt(e.target.value),
                                 }));
                               }}
-                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                             >
                               {Array.from({ length: 24 }, (_, i) => i).map(
                                 (hour) => (
@@ -225,7 +225,7 @@ const Create: NextPage = () => {
                                   minute: parseInt(e.target.value),
                                 }));
                               }}
-                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                             >
                               {Array.from({ length: 60 }, (_, i) => i).map(
                                 (minute) => (
@@ -252,7 +252,7 @@ const Create: NextPage = () => {
                           Name
                         </Label.Root>
                         <input
-                          className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                           type="text"
                           defaultValue={
                             data && data?.username ? data?.username : ""
@@ -266,7 +266,7 @@ const Create: NextPage = () => {
                       </Label.Root>
                       {endTimeSelect && (
                         <div onClick={(e) => e.stopPropagation()}>
-                          <div className="absolute flex flex-row items-center space-x-1 border bg-white px-2 py-2 dark:bg-black">
+                          <div className="absolute flex flex-row items-center space-x-1 border px-2 py-2 dark:bg-darkBg">
                             <p className="text-sm">Hour</p>
                             <select
                               value={endTime.hour}
@@ -276,7 +276,7 @@ const Create: NextPage = () => {
                                   hour: parseInt(e.target.value),
                                 }));
                               }}
-                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                             >
                               {Array.from({ length: 24 }, (_, i) => i).map(
                                 (hour) => (
@@ -293,7 +293,7 @@ const Create: NextPage = () => {
                                   minute: parseInt(e.target.value),
                                 }));
                               }}
-                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                              className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                             >
                               {Array.from({ length: 60 }, (_, i) => i).map(
                                 (minute) => (
@@ -336,7 +336,7 @@ const Create: NextPage = () => {
                       Describe Desired Session
                     </Label.Root>
                     <textarea
-                      className="inline-block h-64 w-full border bg-white px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                      className="inline-block h-64 w-full border px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                       defaultValue={inputs.overview}
                       onChange={(e) =>
                         setInputs((prev) => ({
@@ -354,7 +354,7 @@ const Create: NextPage = () => {
                       Address
                     </Label.Root>
                     <input
-                      className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                      className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                       type="text"
                       defaultValue={inputs.address}
                       onChange={(e) =>
@@ -371,7 +371,7 @@ const Create: NextPage = () => {
                         City
                       </Label.Root>
                       <input
-                        className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                         type="text"
                         defaultValue={inputs.city}
                         onChange={(e) =>
@@ -387,7 +387,7 @@ const Create: NextPage = () => {
                         Postal Code
                       </Label.Root>
                       <input
-                        className="block w-full border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                        className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                         type="text"
                         defaultValue={inputs.postalCode}
                         onChange={(e) =>
@@ -404,7 +404,7 @@ const Create: NextPage = () => {
                       Describe Location
                     </Label.Root>
                     <textarea
-                      className="h-18 inline-block w-full border bg-white px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                      className="h-18 inline-block w-full border px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                       defaultValue={inputs.location}
                       onChange={(e) =>
                         setInputs((prev) => ({
@@ -421,7 +421,7 @@ const Create: NextPage = () => {
                         Hourly Rate
                       </Label.Root>
                       <input
-                        className="block border bg-white px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-black"
+                        className="block border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                         type="number"
                         defaultValue={inputs.hourlyRate}
                         onChange={(e) => {

@@ -83,12 +83,12 @@ const Messages: NextPage = () => {
       <div>
         {session && (
           <>
-            <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-              <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
-                <div className="mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12">
+            <main className="grid grid-cols-1 md:grid-cols-6">
+              <div className="col-span-5 min-w-fit">
+                <div className="mt-4 mb-1 flex items-center px-4 text-olive12 dark:text-darkOlive12">
                   {/* <SearchEngine /> */}
                 </div>
-                <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
+                <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1">
                   {/* DYNAMIC PART OF DASHBOARD */}
                   <div>
                     {readAllPusherChannels?.map((channel) => (
@@ -110,7 +110,7 @@ const Messages: NextPage = () => {
                         Create Message
                       </Label.Root>
                       <textarea
-                        className="inline-block h-32 max-w-lg border border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
+                        className="inline-block h-32 max-w-lg border border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBg"
                         id="Message"
                         value={inputs.message}
                         onChange={(e) =>

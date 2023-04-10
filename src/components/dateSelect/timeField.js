@@ -8,7 +8,7 @@ export function TimeField(props) {
   let { locale } = useLocale();
   let state = useTimeFieldState({
     ...props,
-    locale
+    locale,
   });
 
   let ref = useRef();
@@ -23,14 +23,10 @@ export function TimeField(props) {
         {...fieldProps}
         ref={ref}
         className="flex border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11"
-
       >
-        
-        
         {state.segments.map((segment, i) => (
           <DateSegment key={i} segment={segment} state={state} />
         ))}
-        
       </div>
     </div>
   );

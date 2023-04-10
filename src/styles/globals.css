@@ -5,8 +5,7 @@
 /* Current colors: tailwind.config.cjs */
 /* New colors: https://www.radix-ui.com/colors */
 
-/* https://www.radix-ui.com/docs/primitives/components/switch */
-@import '@radix-ui/colors/blackA.css';
+  
 
 
 /* .redA {
@@ -54,6 +53,10 @@
   --blackA11: hsla(0, 0%, 0%, 0.565);
   --blackA12: #00000000;
 } */
+
+
+/* https://www.radix-ui.com/docs/primitives/components/switch */
+@import '@radix-ui/colors/blackA.css';
 
 button {
     all: unset;

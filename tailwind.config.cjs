@@ -49,7 +49,7 @@ module.exports = {
       //White / Black - overlay
       white: "#ffffff",
       black: "#000000",
-
+      darkBg: "#121212",
 
 
     },
