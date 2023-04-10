@@ -95,7 +95,7 @@ const Header = () => {
 
       {/* HORIZONTAL NAV BAR (MIDDLE BLUE) OF HEADER */}
       <div className="min-w-full bg-blue11  text-olive2 dark:bg-darkBlue2">
-        {data?.role === "Caregiver" && (
+        {session && data?.role === "Caregiver" && (
           <div className="flex flex-row items-center divide-x overflow-auto border border-t-0 border-r-0 border-l-0 border-blue12 pl-1 dark:border-darkBlue1">
             <div
               className=" flex cursor-pointer flex-row items-center py-1 px-1"
