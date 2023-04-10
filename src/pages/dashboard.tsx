@@ -14,28 +14,32 @@ const LoginSuccess: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Login Success</title>
+        <title>Dashboard</title>
       </Head>
       {/* <NavLayout /> */}
       <Header />
       {session && (
-        <main className="grid grid-cols-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12 md:grid-cols-6">
-          <div className="col-span-5 flex min-h-screen flex-col items-center justify-center">
-            <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-              <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-                Hello{" "}
-                <span className="text-blue9">
+        <>
+        {/* // <main className="grid grid-cols-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12 md:grid-cols-6">
+        //   <div className="col-span-5 flex min-h-screen flex-col items-center justify-center"> */}
+      <div className="  flex  min-h-70vh items-center justify-center text-5xl">
+        <div className="px-2 text-olive12">
+        Hello
+
+        </div>
+                <span className="text-blue10">
                   {isLoading || (
-                      <span className="text-blue9">
+                      <span className="">
                         {data && data?.username}
                       </span>
-                    ) || <span className="text-red-600">Meow! No Name</span>}
+                    ) || <span className="text-red11">Meow! No Name</span>}
                 </span>
-              </h1>
-            </div>
+              </div>
+
+
             {!data?.address && (
               <div className="flex flex-col items-center">
-                <span className="text-red-700">
+                <span className="text-red11">
                   Your account needs an address
                 </span>
                 <Link
@@ -49,7 +53,7 @@ const LoginSuccess: NextPage = () => {
             )}
             {!data?.role && (
               <div className="mt-6 flex flex-col items-center">
-                <span className="text-red-700">Your account needs a role</span>
+                <span className="text-red11">Your account needs a role</span>
                 <Link
                   href={"/dashboard/account"}
                   className="mt-2 cursor-pointer border border-solid border-blue7 bg-blue3 px-1.5 py-1.5 text-center text-olive12 hover:border-blue8 hover:bg-blue4 
@@ -59,8 +63,9 @@ const LoginSuccess: NextPage = () => {
                 </Link>
               </div>
             )}
-          </div>
-        </main>
+        {/* //   </div>
+        // </main> */}
+        </>
       )}
       {!session && (
         <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">

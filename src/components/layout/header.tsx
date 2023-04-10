@@ -35,7 +35,7 @@ const Header = () => {
           <div className="ml-4 flex items-center pr-4 text-darkOlive12">
             {data?.role === "Caregiver" && (
               <div
-                onClick={() => router.push("/dashboard/caregiver/discover")}
+                onClick={() => router.push("/dashboard")}
                 className="hidden cursor-pointer text-sm md:block md:text-xl"
               >
                 House Call
@@ -43,7 +43,7 @@ const Header = () => {
             )}
             {data?.role === "Patient" && (
               <div
-                onClick={() => router.push("/dashboard/patient/create")}
+                onClick={() => router.push("/dashboard")}
                 className="cursor-pointer text-xs md:block md:text-xl"
               >
                 House Call
