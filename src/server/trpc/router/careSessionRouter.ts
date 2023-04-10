@@ -15,7 +15,7 @@ export const careSessionRouter = router({
         overview: z.string(),
         title: z.string(),
         hourlyRate: z.number(),
-        totalHours: z.number(),
+        totalHours: z.number().nonnegative(),
         totalCompensation: z.number(),
         acceptedCaregiverId: z.string(),
         careSessionStatus: z.string(),

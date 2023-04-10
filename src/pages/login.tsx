@@ -1,24 +1,24 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../components/layout/navLayout";
+// import NavLayout from "../components/layout/navLayout";
 import { useSession } from "next-auth/react";
-import NavMenu from "@/components/layout/navMenu";
 import LoginForm from "@/components/forms/loginForm";
+import Header from "@/components/layout/header";
 
-const Account: NextPage = () => {
+const Login: NextPage = () => {
   const { data: session } = useSession();
 
   return (
     <>
       <Head>
-        <title>Account</title>
+        <title>Login</title>
       </Head>
-      <NavLayout />
+      {/* <NavLayout /> */}
+      < Header />
       <div>
         {session && (
           <>
             <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-              <NavMenu />
               <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
                 <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
                   {/* display nothing here since user is already logged in */}
@@ -31,7 +31,6 @@ const Account: NextPage = () => {
         {!session && (
           <>
             <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-              <NavMenu />
               <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
                 <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
                   <LoginForm />
@@ -45,4 +44,4 @@ const Account: NextPage = () => {
   );
 };
 
-export default Account;
+export default Login;

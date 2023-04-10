@@ -1,22 +1,22 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
-import AccountEditModal from "@/components/account/accountEditModal";
 import Header from "@/components/layout/header";
+import UnderConstruction from "@/components/layout/underConstruction";
 
-const Account: NextPage = () => {
+const PatientHistory: NextPage = () => {
   const { data: session } = useSession();
 
   return (
     <>
       <Head>
-        <title>Account</title>
+        <title>Completed</title>
       </Head>
       <Header />
       <div>
         {session && (
           <>
-            <AccountEditModal />
+            <UnderConstruction />
           </>
         )}
         {!session && <></>}
@@ -25,4 +25,4 @@ const Account: NextPage = () => {
   );
 };
 
-export default Account;
+export default PatientHistory;

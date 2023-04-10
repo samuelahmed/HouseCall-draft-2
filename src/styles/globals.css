@@ -5,12 +5,58 @@
 /* Current colors: tailwind.config.cjs */
 /* New colors: https://www.radix-ui.com/colors */
 
+  
+
+
+/* .redA {
+  --redA1: hsla(0, 100%, 51.0%, 0.012);
+  --redA2: hsla(0, 100%, 51.0%, 0.032);
+  --redA3: hsla(0, 100%, 50.2%, 0.063);
+  --redA4: hsla(0, 100%, 50.0%, 0.102);
+  --redA5: hsla(0, 99.9%, 47.5%, 0.153);
+  --redA6: hsla(0, 99.5%, 44.9%, 0.224);
+  --redA7: hsla(359, 99.7%, 42.7%, 0.318);
+  --redA8: hsla(359, 99.6%, 41.1%, 0.436);
+  --redA9: hsla(358, 99.9%, 42.9%, 0.718);
+  --redA10: hsla(358, 99.9%, 41.0%, 0.761);
+  --redA11: #c30007d4;
+  --redA12: hsla(355, 99.3%, 7.9%, 0.926);
+} */
+
+/* .whiteA {
+  --whiteA1: hsla(0, 0%, 100%, 0);
+  --whiteA2: hsla(0, 0%, 100%, 0.013);
+  --whiteA3: hsla(0, 0%, 100%, 0.034);
+  --whiteA4: hsla(0, 0%, 100%, 0.056);
+  --whiteA5: hsla(0, 0%, 100%, 0.086);
+  --whiteA6: hsla(0, 0%, 100%, 0.124);
+  --whiteA7: hsla(0, 0%, 100%, 0.176);
+  --whiteA8: hsla(0, 0%, 100%, 0.249);
+  --whiteA9: hsla(0, 0%, 100%, 0.386);
+  --whiteA10: hsla(0, 0%, 100%, 0.446);
+  --whiteA11: hsla(0, 0%, 100%, 0.592);
+  --whiteA12: #ffffffeb;
+} */
+
+
+/* .blackA {
+  --blackA1: hsla(0, 0%, 0%, 0.012);
+  --blackA2: hsla(0, 0%, 0%, 0.027);
+  --blackA3: hsla(0, 0%, 0%, 0.047);
+  --blackA4: hsla(0, 0%, 0%, 0.071);
+  --blackA5: hsla(0, 0%, 0%, 0.090);
+  --blackA6: hsla(0, 0%, 0%, 0.114);
+  --blackA7: hsla(0, 0%, 0%, 0.141);
+  --blackA8: hsla(0, 0%, 0%, 0.220);
+  --blackA9: hsla(0, 0%, 0%, 0.439);
+  --blackA10: hsla(0, 0%, 0%, 0.478);
+  --blackA11: hsla(0, 0%, 0%, 0.565);
+  --blackA12: #00000000;
+} */
+
+
 /* https://www.radix-ui.com/docs/primitives/components/switch */
 @import '@radix-ui/colors/blackA.css';
-
-
-
-
 
 button {
     all: unset;

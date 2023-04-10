@@ -27,7 +27,7 @@ export function DatePicker(props) {
         {props.label}
       </span>
       <div {...groupProps} ref={ref} className="group flex">
-        <div className="relative flex items-center border border-blue7 bg-blue1 p-1 pr-10 group-focus-within:border-blue8 dark:border-darkBlue7 dark:bg-darkBlue1 dark:group-focus-within:border-darkBlue8">
+        <div className="relative flex items-center border p-1 pr-1">
           <DateField {...fieldProps} />
           {state.validationState === "invalid" && (
             <ExclamationIcon className="absolute right-1 h-6 w-6" />

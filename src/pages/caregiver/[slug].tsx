@@ -2,9 +2,10 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "@/components/layout/navLayout";
+// import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import Header from "@/components/layout/header";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -133,7 +134,8 @@ const Slug: NextPage = () => {
       <Head>
         <title>PotentialCaregiver: {potentialCareSession?.caregiverId}</title>
       </Head>
-      <NavLayout />
+      {/* <NavLayout /> */}
+      <Header />
       {/***********************
        *       PATIENT        *
        **********************/}

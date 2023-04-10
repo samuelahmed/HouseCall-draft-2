@@ -1,12 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "../../components/layout/navLayout";
+// import NavLayout from "../../components/layout/navLayout";
 import { useSession } from "next-auth/react";
-import NavMenu from "@/components/layout/navMenu";
 import { trpc } from "@/utils/trpc";
 import { useState, useEffect } from "react";
 import Pusher from "pusher-js";
 import * as Label from "@radix-ui/react-label";
+import Header from "@/components/layout/header";
 
 const Messages: NextPage = () => {
   // TODO: Make sure there are no duplicate connections from same user
@@ -28,7 +28,7 @@ const Messages: NextPage = () => {
     });
 
   const [messages, setMessages] = useState<any[]>([]);
-  
+
   const [inputs, setInputs] = useState({
     senderId: userData?.username || "",
     message: "",
@@ -78,17 +78,17 @@ const Messages: NextPage = () => {
       <Head>
         <title>Messages</title>
       </Head>
-      <NavLayout />
+      <Header />
+      {/* <NavLayout /> */}
       <div>
         {session && (
           <>
-            <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-              <NavMenu />
-              <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
-                <div className="mx-4 mt-4 mb-1 flex items-center text-olive12 dark:text-darkOlive12">
+            <main className="grid grid-cols-1 md:grid-cols-6">
+              <div className="col-span-5 min-w-fit">
+                <div className="mt-4 mb-1 flex items-center px-4 text-olive12 dark:text-darkOlive12">
                   {/* <SearchEngine /> */}
                 </div>
-                <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1 bg-blue1 dark:bg-darkBlue1">
+                <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1">
                   {/* DYNAMIC PART OF DASHBOARD */}
                   <div>
                     {readAllPusherChannels?.map((channel) => (
@@ -105,14 +105,12 @@ const Messages: NextPage = () => {
                         )}
                       </div>
                     ))}
-
                     <div className="mx-4 mb-2 flex flex-col  pt-2 pr-6 text-sm ">
                       <Label.Root className="px-0.5" htmlFor="firstName">
                         Create Message
                       </Label.Root>
                       <textarea
-                        className="inline-block h-32 max-w-lg border
-                    border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBlue1"
+                        className="inline-block h-32 max-w-lg border border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBg"
                         id="Message"
                         value={inputs.message}
                         onChange={(e) =>
@@ -132,8 +130,7 @@ const Messages: NextPage = () => {
                       onClick={() => {
                         publish();
                       }}
-                      className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
-            dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                      className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4  dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
                     >
                       Send
                     </button>

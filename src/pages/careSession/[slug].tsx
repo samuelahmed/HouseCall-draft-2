@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import Head from "next/head";
-import NavLayout from "@/components/layout/navLayout";
+// import NavLayout from "@/components/layout/navLayout";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import NavMenu from "@/components/layout/navMenu";
+import Header from "@/components/layout/header";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -119,14 +119,14 @@ const Slug: NextPage = () => {
       <Head>
         <title>Session: {currentSession?.slug}</title>
       </Head>
-      <NavLayout />
+      {/* <NavLayout /> */}
+      <Header />
       {/***********************
        *      CAREGIVER       *
        **********************/}
       {session && user?.role === "Caregiver" && (
         <>
           <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-            <NavMenu />
             <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
               <div className=" grid min-h-88vh grid-cols-1 gap-x-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12">
                 {/* DYNAMIC PART OF DASHBOARD */}
@@ -261,7 +261,6 @@ const Slug: NextPage = () => {
       {session && user?.role === "Patient" && (
         <>
           <main className="grid grid-cols-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12 md:grid-cols-6">
-            <NavMenu />
             <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
               <div className="grid min-h-88vh grid-cols-1 gap-x-1 bg-blue1 dark:bg-darkBlue1">
                 {/* DYNAMIC PART OF DASHBOARD */}
