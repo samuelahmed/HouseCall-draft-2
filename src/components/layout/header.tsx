@@ -73,7 +73,6 @@ const Header = () => {
                 </svg>
               </div>
               <input
-                // type="search"
                 id="default-search"
                 className="block w-full border  bg-blue2 p-1.5 pl-4 text-sm text-olive12 focus:outline-none focus:ring-1 focus:ring-blue11 "
                 placeholder="Search Sessions"
@@ -97,80 +96,31 @@ const Header = () => {
       {/* HORIZONTAL NAV BAR (MIDDLE BLUE) OF HEADER */}
       <div className="min-w-full bg-blue11  text-olive2 dark:bg-darkBlue2">
         {data?.role === "Caregiver" && (
-
-<div className="flex flex-row items-center divide-x overflow-auto border border-t-0 border-r-0 border-l-0 border-blue12 pl-1 dark:border-darkBlue1">
-<div
-  className=" flex cursor-pointer flex-row items-center py-1 px-1"
-  onClick={() => setShowNav(!showNav)}
->
-  <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
-    Sessions
-  </div>{" "}
-</div>
-<Link href={"/dashboard/messages"} className="px-1 py-1 ">
-  <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
-    Messages
-  </div>
-</Link>
-<Link href={"/dashboard/account"} className="px-1 py-1">
-  <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
-    Account
-  </div>
-</Link>
-<Link href={"/help"} className="px-1 py-1">
-  <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
-    Help
-  </div>
-</Link>
-</div>
-
-
-
-
-
-          // <div className="flex flex-row items-baseline space-x-3">
-          //   <Link
-          //     href={"/dashboard/caregiver/discover"}
-          //     className="flex flex-row items-center"
-          //   >
-          //     Discover
-          //   </Link>
-          //   <Link
-          //     href={"/dashboard/caregiver/applied"}
-          //     className="flex flex-row items-center"
-          //   >
-          //     Applied
-          //   </Link>
-
-          //   <Link
-          //     href={"/dashboard/caregiver/scheduled"}
-          //     className="flex flex-row items-center"
-          //   >
-          //     Scheduled
-          //   </Link>
-
-          //   <Link
-          //     href={"/dashboard/caregiver/history"}
-          //     className="flex flex-row items-center"
-          //   >
-          //     History
-          //   </Link>
-          //   <Link
-          //     href={"/dashboard/messages"}
-          //     className="flex flex-row items-center"
-          //   >
-          //     Messages
-          //   </Link>
-          //   <Link
-          //     href={"/dashboard/account"}
-          //     className="flex flex-row items-center"
-          //   >
-          //     Account
-          //   </Link>
-          //   <Link href={"/help"} className="flex flex-row items-center">
-          //     Help
-          //   </Link>
-          // </div>
+          <div className="flex flex-row items-center divide-x overflow-auto border border-t-0 border-r-0 border-l-0 border-blue12 pl-1 dark:border-darkBlue1">
+            <div
+              className=" flex cursor-pointer flex-row items-center py-1 px-1"
+              onClick={() => setShowNav(!showNav)}
+            >
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+                Sessions
+              </div>
+            </div>
+            <Link href={"/dashboard/messages"} className="px-1 py-1 ">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+                Messages
+              </div>
+            </Link>
+            <Link href={"/dashboard/account"} className="px-1 py-1">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+                Account
+              </div>
+            </Link>
+            <Link href={"/help"} className="px-1 py-1">
+              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
+                Help
+              </div>
+            </Link>
+          </div>
         )}
         {session && data?.role === "Patient" && (
           <div className="flex flex-row items-center divide-x overflow-auto border border-t-0 border-r-0 border-l-0 border-blue12 pl-1 dark:border-darkBlue1">
