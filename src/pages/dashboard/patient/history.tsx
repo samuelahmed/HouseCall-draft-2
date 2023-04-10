@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import Header from "@/components/layout/header";
 import UnderConstruction from "@/components/layout/underConstruction";
 
-const PatientCompleted: NextPage = () => {
+const PatientHistory: NextPage = () => {
   const { data: session } = useSession();
 
   return (
@@ -25,4 +25,4 @@ const PatientCompleted: NextPage = () => {
   );
 };
 
-export default PatientCompleted;
+export default PatientHistory;
