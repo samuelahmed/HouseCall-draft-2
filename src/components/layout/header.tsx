@@ -1,6 +1,5 @@
 import { useSession } from "next-auth/react";
 import ThemeManager from "./themeManager";
-import { MenuIcon } from "@heroicons/react/outline";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 import AuthShowcase from "./authShowcase";
@@ -103,14 +102,12 @@ const Header = () => {
               href={"/dashboard/caregiver/discover"}
               className="flex flex-row items-center"
             >
-              {/* <FaceIcon className="mr-2" /> */}
               Discover
             </Link>
             <Link
               href={"/dashboard/caregiver/applied"}
               className="flex flex-row items-center"
             >
-              {/* <IdCardIcon className="mr-2" /> */}
               Applied
             </Link>
 
@@ -118,7 +115,6 @@ const Header = () => {
               href={"/dashboard/caregiver/scheduled"}
               className="flex flex-row items-center"
             >
-              {/* <CalendarIcon className="mr-2" /> */}
               Scheduled
             </Link>
 
@@ -126,25 +122,21 @@ const Header = () => {
               href={"/dashboard/caregiver/history"}
               className="flex flex-row items-center"
             >
-              {/* <ArchiveIcon className="mr-2" /> */}
               History
             </Link>
             <Link
               href={"/dashboard/messages"}
               className="flex flex-row items-center"
             >
-              {/* <ChatBubbleIcon className="mr-2" /> */}
               Messages
             </Link>
             <Link
               href={"/dashboard/account"}
               className="flex flex-row items-center"
             >
-              {/* <PersonIcon className="mr-2" /> */}
               Account
             </Link>
             <Link href={"/help"} className="flex flex-row items-center">
-              {/* <QuestionMarkIcon className="mr-2" /> */}
               Help
             </Link>
           </div>
