@@ -18,8 +18,8 @@ const Dashboard: NextPage = () => {
       <Header />
       {session && (
         <>
-          <div className="  flex  min-h-70vh items-center justify-center text-5xl bg-yellow9">
-            <div className="px-2 text-olive12">Hello</div>
+          <div className="flex min-h-70vh items-center justify-center text-5xl">
+            <div className="px-2 text-olive12 dark:text-darkOlive12">Hello</div>
             <span className="text-blue10">
               {isLoading || (
                   <span className="">{data && data?.username}</span>
