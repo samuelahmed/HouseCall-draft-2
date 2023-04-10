@@ -17,7 +17,7 @@ const LoginForm = () => {
   const onSubmit: SubmitHandler<ILogin> = async (data) => {
     await signIn("credentials", {
       ...data,
-      callbackUrl: "/loginSuccess" as string,
+      callbackUrl: "/dashboard" as string,
     });
   };
   return (
