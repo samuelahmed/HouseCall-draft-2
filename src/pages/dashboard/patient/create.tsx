@@ -198,7 +198,7 @@ const Create: NextPage = () => {
                       </Label.Root>
                       {startTimeSelect && (
                         <div onClick={(e) => e.stopPropagation()}>
-                          <div className="absolute flex flex-row items-center space-x-1 border px-2 py-2 dark:bg-darkBg">
+                          <div className="absolute flex flex-row items-center space-x-1 border px-2 py-2 bg-white dark:bg-darkBg">
                             <p className="text-sm">Hour</p>
                             <select
                               value={startTime.hour}
@@ -266,7 +266,7 @@ const Create: NextPage = () => {
                       </Label.Root>
                       {endTimeSelect && (
                         <div onClick={(e) => e.stopPropagation()}>
-                          <div className="absolute flex flex-row items-center space-x-1 border px-2 py-2 dark:bg-darkBg">
+                          <div className="absolute flex flex-row items-center space-x-1 border px-2 py-2 bg-white dark:bg-darkBg">
                             <p className="text-sm">Hour</p>
                             <select
                               value={endTime.hour}
