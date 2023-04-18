@@ -14,25 +14,11 @@ const New: NextPage = () => {
 
   const roles = ["New", "Active", "Scheduled", "Completed", "Canceled"];
   const [selectedRole, setSelectedRole] = useState("New");
-  let ApiDestination = trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
-  if (selectedRole === "New") {
-    ApiDestination = trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
-  } else if (selectedRole === "Active") {
-    ApiDestination =
-      trpc.careSessionAPIs.readAllActiveSessionsByUser.useQuery();
-  } else if (selectedRole === "Scheduled") {
-    ApiDestination =
-      trpc.careSessionAPIs.readAllScheduledSessionsByUser.useQuery();
-  } else if (selectedRole === "Completed") {
-    // TODO: Build completed route
-    ApiDestination =
-      trpc.careSessionAPIs.readAllCanceledSessionsByUser.useQuery();
-  } else if (selectedRole === "Canceled") {
-    ApiDestination =
-      trpc.careSessionAPIs.readAllCanceledSessionsByUser.useQuery();
-  }
 
-  const { data, isLoading } = ApiDestination;
+
+
+
+  const { data: readAllNewSessionsByUser, isLoading } =  trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
 
   const [inputs, setInputs] = useState({
     title: "",
@@ -58,7 +44,7 @@ const New: NextPage = () => {
 
   const selectedSession =
     trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
-      id: inputs?.id || (data?.[data?.length - 1]?.id ?? "0"),
+      id: inputs?.id || (readAllNewSessionsByUser?.[readAllNewSessionsByUser?.length - 1]?.id ?? "0"),
     });
 
   const selectedStartTimeHour = selectedSession?.data?.sessionStartHour || 0;
@@ -123,7 +109,7 @@ const New: NextPage = () => {
                   }}
                 >
                   <ul>
-                    {data
+                    {readAllNewSessionsByUser
                       ?.map((data) => {
                         const {
                           id,
