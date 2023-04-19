@@ -12,6 +12,7 @@ const New: NextPage = () => {
   const { data: readAllNewSessionsByUser, isLoading } =
     trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
 
+  //to get the current date and month to make sure displayed sessions are not in the past
   const day = new Date().getDate();
   const month = new Date().getMonth() + 1;
 

@@ -130,7 +130,7 @@ const Header = () => {
             >
               <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Sessions
-              </div>{" "}
+              </div>
             </div>
             <Link href={"/dashboard/messages"} className="px-1 py-1 ">
               <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
