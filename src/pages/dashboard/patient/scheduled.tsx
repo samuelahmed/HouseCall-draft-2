@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import Header from "@/components/layout/header";
 import UnderConstruction from "@/components/layout/underConstruction";
+import LoginForm from "@/components/forms/loginForm";
 
 const PatientScheduled: NextPage = () => {
   const { data: session } = useSession();
@@ -17,9 +18,22 @@ const PatientScheduled: NextPage = () => {
         {session && (
           <>
             <UnderConstruction />
+
+
+
+
+
+
+
+
+
+
           </>
         )}
-        {!session && <></>}
+        {!session && <>
+          <LoginForm />
+
+        </>}
       </div>
     </>
   );

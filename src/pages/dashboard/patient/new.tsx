@@ -31,7 +31,7 @@ const New: NextPage = () => {
                   This page displays your newly created sessions. Local
                   caregivers can see these sessions and apply. When caregivers
                   apply you will be able to chat and accept the caregiver that
-                  meets your needs.
+                  meets your needs. Sessions that are not scheduled will automatically expire and be removed from this page when their date passes.
                 </p>
               </div>
               <div className="max-h-screen overflow-scroll ">
@@ -106,8 +106,8 @@ const New: NextPage = () => {
                                   <span className="">Session End:&nbsp;</span>
                                   {endTimeHour > 12
                                     ? endTimeHour - 12
-                                    : endTimeHour}{" "}
-                                  :{" "}
+                                    : endTimeHour}
+                                  :
                                   {endTimeMinute < 10
                                     ? "0" + endTimeMinute
                                     : endTimeMinute}{" "}
