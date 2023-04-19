@@ -12,9 +12,9 @@ const New: NextPage = () => {
   const { data: readAllNewSessionsByUser, isLoading } =
     trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
 
-  //to get the current date and month to make sure displayed sessions are not in the past
-  const day = new Date().getDate();
-  const month = new Date().getMonth() + 1;
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1;
+  const currentDay = new Date().getDate();
 
   return (
     <>
@@ -40,9 +40,36 @@ const New: NextPage = () => {
                 <div className="mt-4">
                   <ul>
                     {readAllNewSessionsByUser
+                      ?.filter((data) => {
+                        const { sessionMonth, sessionDay, sessionYear } = data;
+                        if (sessionYear && sessionYear < currentYear) {
+                          return false;
+                        }
+                        if (sessionYear && sessionYear > currentYear) {
+                          return true;
+                        }
+                        if (sessionMonth && sessionMonth < currentMonth) {
+                          return false;
+                        }
+                        if (sessionMonth && sessionMonth > currentMonth) {
+                          return true;
+                        }
+                        if (sessionDay && sessionDay < currentDay) {
+                          return false;
+                        }
+                        return true;
+                      })
                       ?.sort((a, b) => {
-                        const aDate = new Date(a.sessionDay || 0);
-                        const bDate = new Date(b.sessionDay || 0);
+                        const aDate = new Date(
+                          a.sessionYear || 0,
+                          a.sessionMonth || 0,
+                          a.sessionDay || 0
+                        );
+                        const bDate = new Date(
+                          b.sessionYear || 0,
+                          b.sessionMonth || 0,
+                          b.sessionDay || 0
+                        );
                         return bDate.getTime() - aDate.getTime();
                       })
                       ?.map((data) => {
@@ -74,16 +101,6 @@ const New: NextPage = () => {
                           sessionDurationHours--;
                           sessionDurationMinutes += 60;
                         }
-
-                        //Make sure the session is not in the past
-                        //TODO: make sure this is working as intetended
-                        if (sessionMonth && sessionMonth < month) {
-                          return null;
-                        }
-                        if (sessionDay && sessionDay < day) {
-                          return null;
-                        }
-
                         return (
                           <li
                             key={id}
