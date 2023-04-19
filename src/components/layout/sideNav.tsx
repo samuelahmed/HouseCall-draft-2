@@ -60,7 +60,7 @@ const SideNav = () => {
                 </div>
               </Link>
               <Link
-                href={"/dashboard/patient/sessions"}
+                href={"/dashboard/patient/new"}
                 className="flex w-full flex-row items-center px-1 py-1"
               >
                 <div className="w-full px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
