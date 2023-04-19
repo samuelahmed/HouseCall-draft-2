@@ -12,6 +12,9 @@ const New: NextPage = () => {
   const { data: readAllNewSessionsByUser, isLoading } =
     trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
 
+  const day = new Date().getDate();
+  const month = new Date().getMonth() + 1;
+
   return (
     <>
       <Head>
@@ -38,14 +41,10 @@ const New: NextPage = () => {
                         const {
                           id,
                           title,
-                          name,
                           address,
                           overview,
-                          sessionType,
                           hourlyRate,
-                          totalHours,
                           totalCompensation,
-                          careSessionStatus,
                           city,
                           postalCode,
                           sessionStartHour,
@@ -67,6 +66,16 @@ const New: NextPage = () => {
                           sessionDurationHours--;
                           sessionDurationMinutes += 60;
                         }
+
+                        //Make sure the session is not in the past
+                        //TODO: make sure this is working as intetended
+                        if (sessionMonth && sessionMonth < month) {
+                          return null;
+                        }
+                        if (sessionDay && sessionDay < day) {
+                          return null;
+                        }
+
                         return (
                           <li
                             key={id}
