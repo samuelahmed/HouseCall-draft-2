@@ -10,7 +10,7 @@ const New: NextPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const { data: readAllNewSessionsByUser, isLoading } =
-    trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
+    trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
 
   //to get the current date and month to make sure displayed sessions are not in the past
   const day = new Date().getDate();
@@ -31,13 +31,20 @@ const New: NextPage = () => {
                   This page displays your newly created sessions. Local
                   caregivers can see these sessions and apply. When caregivers
                   apply you will be able to chat and accept the caregiver that
-                  meets your needs. Sessions that are not scheduled will automatically expire and be removed from this page when their date passes.
+                  meets your needs. Sessions that are not scheduled will
+                  automatically expire and be removed from this page when their
+                  date passes.
                 </p>
               </div>
               <div className="max-h-screen overflow-scroll ">
                 <div className="mt-4">
                   <ul>
                     {readAllNewSessionsByUser
+                      ?.sort((a, b) => {
+                        const aDate = new Date(a.sessionDay || 0);
+                        const bDate = new Date(b.sessionDay || 0);
+                        return bDate.getTime() - aDate.getTime();
+                      })
                       ?.map((data) => {
                         const {
                           id,
