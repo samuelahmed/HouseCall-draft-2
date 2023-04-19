@@ -10,7 +10,11 @@ const New: NextPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const { data: readAllNewSessionsByUser, isLoading } =
-    trpc.careSessionAPIs.readAllNewSessionsByUser.useQuery();
+    trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
+
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1;
+  const currentDay = new Date().getDate();
 
   return (
     <>
@@ -27,25 +31,55 @@ const New: NextPage = () => {
                   This page displays your newly created sessions. Local
                   caregivers can see these sessions and apply. When caregivers
                   apply you will be able to chat and accept the caregiver that
-                  meets your needs.
+                  meets your needs. Sessions that are not scheduled will
+                  automatically expire and be removed from this page when their
+                  date passes.
                 </p>
               </div>
               <div className="max-h-screen overflow-scroll ">
                 <div className="mt-4">
                   <ul>
                     {readAllNewSessionsByUser
+                      ?.filter((data) => {
+                        const { sessionMonth, sessionDay, sessionYear } = data;
+                        if (sessionYear && sessionYear < currentYear) {
+                          return false;
+                        }
+                        if (sessionYear && sessionYear > currentYear) {
+                          return true;
+                        }
+                        if (sessionMonth && sessionMonth < currentMonth) {
+                          return false;
+                        }
+                        if (sessionMonth && sessionMonth > currentMonth) {
+                          return true;
+                        }
+                        if (sessionDay && sessionDay < currentDay) {
+                          return false;
+                        }
+                        return true;
+                      })
+                      ?.sort((a, b) => {
+                        const aDate = new Date(
+                          a.sessionYear || 0,
+                          a.sessionMonth || 0,
+                          a.sessionDay || 0
+                        );
+                        const bDate = new Date(
+                          b.sessionYear || 0,
+                          b.sessionMonth || 0,
+                          b.sessionDay || 0
+                        );
+                        return bDate.getTime() - aDate.getTime();
+                      })
                       ?.map((data) => {
                         const {
                           id,
                           title,
-                          name,
                           address,
                           overview,
-                          sessionType,
                           hourlyRate,
-                          totalHours,
                           totalCompensation,
-                          careSessionStatus,
                           city,
                           postalCode,
                           sessionStartHour,
@@ -96,8 +130,8 @@ const New: NextPage = () => {
                                   <span className="">Session End:&nbsp;</span>
                                   {endTimeHour > 12
                                     ? endTimeHour - 12
-                                    : endTimeHour}{" "}
-                                  :{" "}
+                                    : endTimeHour}
+                                  :
                                   {endTimeMinute < 10
                                     ? "0" + endTimeMinute
                                     : endTimeMinute}{" "}
