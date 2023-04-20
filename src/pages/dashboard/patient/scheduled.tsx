@@ -36,7 +36,7 @@ const PatientScheduled: NextPage = () => {
               </div>
 
               <div className="px-4">
-              <span className="text-2xl"> This Week</span>
+                <span className="text-xl">Upcoming This Week</span>
                 <div className="mt-4 max-h-96 overflow-scroll">
                   <ul>
                     {readAllScheduledSessionsByUser
@@ -199,7 +199,7 @@ const PatientScheduled: NextPage = () => {
                 </div>
               </div>
               <div className="px-4 py-4">
-                <span className="text-2xl"> Future</span>
+                <span className="text-xl"> Next Week and Beyond</span>
                 <div className="mt-4 max-h-96 overflow-scroll">
                   <ul>
                     {readAllScheduledSessionsByUser
