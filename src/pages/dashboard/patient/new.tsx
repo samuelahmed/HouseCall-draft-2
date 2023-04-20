@@ -33,7 +33,7 @@ const New: NextPage = () => {
                   apply you will be able to chat and accept the caregiver that
                   meets your needs. Sessions that are not scheduled will
                   automatically expire and be removed from this page when their
-                  date passes.
+                  date passes. Sessions are ordered chronologically by event date.
                 </p>
               </div>
               <div className="max-h-screen overflow-scroll ">
