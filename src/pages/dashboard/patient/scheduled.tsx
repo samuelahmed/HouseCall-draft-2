@@ -31,7 +31,7 @@ const PatientScheduled: NextPage = () => {
                 <p className="py-2 px-4">
                   This page displays scheduled sessions, which means you have
                   accepted a caregiver and they will be meeting you at your
-                  address at the agreed date and time.
+                  address at the agreed date and time. The first upcoming session is displayed at the top.
                 </p>
               </div>
 
@@ -49,6 +49,9 @@ const PatientScheduled: NextPage = () => {
                           return false;
                         }
                         if (sessionDay && sessionDay <= currentDay - 7) {
+                          return false;
+                        }
+                        if (sessionDay && sessionDay < currentDay) {
                           return false;
                         }
                         return true;
