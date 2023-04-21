@@ -33,7 +33,8 @@ const New: NextPage = () => {
                   apply you will be able to chat and accept the caregiver that
                   meets your needs. Sessions that are not scheduled will
                   automatically expire and be removed from this page when their
-                  date passes. Sessions are ordered chronologically by event date.
+                  date passes. Sessions are ordered chronologically by event
+                  date.
                 </p>
               </div>
               <div className="max-h-screen overflow-scroll ">
@@ -89,6 +90,7 @@ const New: NextPage = () => {
                           sessionMonth,
                           sessionDay,
                           sessionYear,
+                          careSessionStatus,
                         } = data;
                         const startTimeHour = sessionStartHour || 0;
                         const startTimeMinute = sessionStartMinute || 0;
@@ -111,6 +113,10 @@ const New: NextPage = () => {
                             </div>
                             <div className="grid grid-cols-2">
                               <div className="col-span-1 text-left">
+                                <p className="">
+                                  <span className="">Status:&nbsp;</span>
+                                  {careSessionStatus}
+                                </p>
                                 <p className="">
                                   <span className="">Date:&nbsp;</span>
                                   {sessionMonth} / {sessionDay} / {sessionYear}
@@ -169,6 +175,7 @@ const New: NextPage = () => {
                                   {sessionDurationHours} hours{" "}
                                   {sessionDurationMinutes} minutes
                                 </p>
+
                                 <p className="">
                                   <span className=" ">
                                     Compensation Per Hour:&nbsp;

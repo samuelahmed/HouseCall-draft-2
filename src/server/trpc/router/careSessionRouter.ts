@@ -321,6 +321,29 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
+  readAllCompletedSessionsByUser: privateProcedure.query(({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      return null;
+    }
+    const careSessions = ctx.prisma.careSession.findMany({
+      where: {
+        userId: ctx.session.user.id,
+        careSessionStatus: "Completed",
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            role: true,
+          },
+        },
+      },
+    });
+    return careSessions;
+  }),
+
+
   readAllCanceledSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       return null;
