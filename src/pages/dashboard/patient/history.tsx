@@ -30,6 +30,13 @@ const PatientHistory: NextPage = () => {
       <div>
         {session && (
           <>
+            <div>
+              <p className="py-2 px-4 font-roboto">
+                This page provides a history of all your sessions. Note that new
+                sessions are not included until they are scheduled or expire and
+                are automatically canceled.
+              </p>
+            </div>
             <div className="grid min-h-screen grid-cols-1 font-roboto md:grid-cols-3 ">
               <div className="col-span-1">
                 <div className="px-4">
