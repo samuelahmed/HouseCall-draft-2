@@ -2,14 +2,15 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import Header from "@/components/layout/header";
-// import UnderConstruction from "@/components/layout/underConstruction";
 import LoginForm from "@/components/forms/loginForm";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 
 const PatientScheduled: NextPage = () => {
   const router = useRouter();
+
   const { data: session } = useSession();
+
   const { data: readAllScheduledSessionsByUser, isLoading } =
     trpc.careSessionAPIs.readAllScheduledSessionsByUser.useQuery();
 
@@ -31,7 +32,8 @@ const PatientScheduled: NextPage = () => {
                 <p className="py-2 px-4">
                   This page displays scheduled sessions, which means you have
                   accepted a caregiver and they will be meeting you at your
-                  address at the agreed date and time. The first upcoming session is displayed at the top.
+                  address at the agreed date and time. The first upcoming
+                  session is displayed at the top.
                 </p>
               </div>
 
@@ -86,6 +88,7 @@ const PatientScheduled: NextPage = () => {
                           sessionMonth,
                           sessionDay,
                           sessionYear,
+                          careSessionStatus,
                         } = data;
                         const startTimeHour = sessionStartHour || 0;
                         const startTimeMinute = sessionStartMinute || 0;
@@ -108,6 +111,11 @@ const PatientScheduled: NextPage = () => {
                             </div>
                             <div className="grid grid-cols-2">
                               <div className="col-span-1 text-left">
+                                <p className="">
+                                  <span className="">Status:&nbsp;</span>
+                                  {careSessionStatus}
+                                </p>
+
                                 <p className="">
                                   <span className="">Date:&nbsp;</span>
                                   {sessionMonth} / {sessionDay} / {sessionYear}
@@ -248,6 +256,7 @@ const PatientScheduled: NextPage = () => {
                           sessionMonth,
                           sessionDay,
                           sessionYear,
+                          careSessionStatus,
                         } = data;
                         const startTimeHour = sessionStartHour || 0;
                         const startTimeMinute = sessionStartMinute || 0;
@@ -270,6 +279,10 @@ const PatientScheduled: NextPage = () => {
                             </div>
                             <div className="grid grid-cols-2">
                               <div className="col-span-1 text-left">
+                                <p className="">
+                                  <span className="">Status:&nbsp;</span>
+                                  {careSessionStatus}
+                                </p>
                                 <p className="">
                                   <span className="">Date:&nbsp;</span>
                                   {sessionMonth} / {sessionDay} / {sessionYear}
