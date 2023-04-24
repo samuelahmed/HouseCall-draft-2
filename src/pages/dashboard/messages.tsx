@@ -36,6 +36,15 @@ const Messages: NextPage = () => {
     channelName: selectedChannel?.channelName || "",
   });
 
+
+
+
+  const [state, setState] = useState(-1);
+
+
+
+
+
   const subscribeToChannel = (channelName: string) => {
     const pusher = new Pusher("c13caf6d2e7e0e3addce", {
       cluster: "us3",
@@ -72,6 +81,7 @@ const Messages: NextPage = () => {
   const publish = () => {
     mutate(inputs);
   };
+  
 
   return (
     <>
@@ -83,6 +93,37 @@ const Messages: NextPage = () => {
       <div>
         {session && (
           <>
+            <div className="grid min-h-screen grid-cols-5 border">
+              <div className="col-span-1 border">
+                <div className="pt-2 text-center text-xl">Contacts</div>
+                {readAllPusherChannels?.map((channel, index) => (
+                  <div
+                    className={
+                      state === index
+                        ? " mb-1 border px-2 py-2 text-lg bg-yellow9"
+                        : "mb-1 border px-2 py-2 text-lg bg-blue4"
+                    }
+                    onClick={() => {
+                      setState(index);
+                      setSelectedChannel(channel);
+                    }}
+
+
+                    key={channel.channelName}
+                  >
+                    {userData?.role === "Patient" && (
+                      <div>{channel.caregiverName}</div>
+                    )}
+                    {userData?.role === "Caregiver" && (
+                      <div>{channel.patientName}</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* OLD STUFF */}
+
             <main className="grid grid-cols-1 md:grid-cols-6">
               <div className="col-span-5 min-w-fit">
                 <div className="mt-4 mb-1 flex items-center px-4 text-olive12 dark:text-darkOlive12">
@@ -91,7 +132,7 @@ const Messages: NextPage = () => {
                 <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1">
                   {/* DYNAMIC PART OF DASHBOARD */}
                   <div>
-                    {readAllPusherChannels?.map((channel) => (
+                    {/* {readAllPusherChannels?.map((channel) => (
                       <div
                         className="mb-1 bg-yellow9"
                         onClick={() => setSelectedChannel(channel)}
@@ -104,7 +145,7 @@ const Messages: NextPage = () => {
                           <div>{channel.patientName}</div>
                         )}
                       </div>
-                    ))}
+                    ))} */}
                     <div className="mx-4 mb-2 flex flex-col  pt-2 pr-6 text-sm ">
                       <Label.Root className="px-0.5" htmlFor="firstName">
                         Create Message

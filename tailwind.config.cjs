@@ -52,6 +52,10 @@ module.exports = {
       darkBg: "#121212",
 
 
+      //gray for messaging - current user message
+      gray3: "#f3f3f3",
+      gray4: "#ededed",
+
     },
     extend: {
       height: {
