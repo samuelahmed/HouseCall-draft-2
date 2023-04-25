@@ -63,6 +63,8 @@ module.exports = {
       },
       maxHeight: {
         "5vh": "5vh",
+        "50vh": "50vh",
+        "60vh": "60vh",
         "70vh": "70vh",
         "75vh": "75vh",
         "78vh": "78vh",
@@ -87,6 +89,8 @@ module.exports = {
       },
       maxWidth: {
         "5vw": "5vw",
+        "30vw": "30vw",
+        "40vw": "40vw",
       },
       minWidth: {
         "40vw": "40vw",

@@ -36,14 +36,8 @@ const Messages: NextPage = () => {
     channelName: selectedChannel?.channelName || "",
   });
 
-
-
-
   const [state, setState] = useState(-1);
-
-
-
-
+  const [contactName, setContactName] = useState("");
 
   const subscribeToChannel = (channelName: string) => {
     const pusher = new Pusher("c13caf6d2e7e0e3addce", {
@@ -81,7 +75,6 @@ const Messages: NextPage = () => {
   const publish = () => {
     mutate(inputs);
   };
-  
 
   return (
     <>
@@ -89,26 +82,26 @@ const Messages: NextPage = () => {
         <title>Messages</title>
       </Head>
       <Header />
-      {/* <NavLayout /> */}
       <div>
         {session && (
           <>
-            <div className="grid min-h-screen grid-cols-5 border">
+            <div className="grid min-h-screen grid-cols-5 border font-roboto">
               <div className="col-span-1 border">
-                <div className="pt-2 text-center text-xl">Contacts</div>
+                <div className="py-2 text-center text-xl">Contacts</div>
                 {readAllPusherChannels?.map((channel, index) => (
                   <div
                     className={
                       state === index
-                        ? " mb-1 border px-2 py-2 text-lg bg-yellow9"
-                        : "mb-1 border px-2 py-2 text-lg bg-blue4"
+                        ? " mb-1 border bg-blue3 px-2 py-2 text-lg dark:bg-darkBlue3"
+                        : "mb-1 border px-2 py-2 text-lg"
                     }
                     onClick={() => {
                       setState(index);
                       setSelectedChannel(channel);
+                      setContactName(
+                        channel.caregiverName || channel.patientName || ""
+                      );
                     }}
-
-
                     key={channel.channelName}
                   >
                     {userData?.role === "Patient" && (
@@ -120,119 +113,102 @@ const Messages: NextPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
 
-            {/* OLD STUFF */}
+              <div className="col-span-4">
+                <div className="py-2 text-center text-xl">{contactName}</div>
+                <div className="max-h-60vh overflow-scroll">
+                  {messages
 
-            <main className="grid grid-cols-1 md:grid-cols-6">
-              <div className="col-span-5 min-w-fit">
-                <div className="mt-4 mb-1 flex items-center px-4 text-olive12 dark:text-darkOlive12">
-                  {/* <SearchEngine /> */}
-                </div>
-                <div className="mx-4 grid min-h-88vh grid-cols-2 gap-x-1">
-                  {/* DYNAMIC PART OF DASHBOARD */}
-                  <div>
-                    {/* {readAllPusherChannels?.map((channel) => (
-                      <div
-                        className="mb-1 bg-yellow9"
-                        onClick={() => setSelectedChannel(channel)}
-                        key={channel.channelName}
-                      >
-                        {userData?.role === "Patient" && (
-                          <div>{channel.caregiverName}</div>
-                        )}
-                        {userData?.role === "Caregiver" && (
-                          <div>{channel.patientName}</div>
-                        )}
-                      </div>
-                    ))} */}
-                    <div className="mx-4 mb-2 flex flex-col  pt-2 pr-6 text-sm ">
-                      <Label.Root className="px-0.5" htmlFor="firstName">
-                        Create Message
-                      </Label.Root>
-                      <textarea
-                        className="inline-block h-32 max-w-lg border border-blue7 bg-blue1 px-1 py-1 align-text-top dark:border-darkBlue7 dark:bg-darkBg"
-                        id="Message"
-                        value={inputs.message}
-                        onChange={(e) =>
-                          setInputs((prev) => ({
-                            ...prev,
-                            message: e.target.value,
-                            sender: userData?.username || "",
-                            senderId: userData?.id || "",
-                            senderName: userData?.username || "",
-                            channelName: selectedChannel?.channelName || "",
-                          }))
-                        }
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        publish();
-                      }}
-                      className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4  dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                    >
-                      Send
-                    </button>
-                    <div className="flex min-w-full flex-col items-center">
-                      {messages
-                        ?.sort(
-                          (a, b) =>
-                            new Date(b.createdAt).getTime() -
-                            new Date(a.createdAt).getTime()
-                        )
-                        .slice(0, 10)
-                        .map((message) => {
-                          const liveFormattedDatetime = new Date(
-                            message.createdAt
-                          ).toLocaleString();
-                          return (
-                            <>
-                              {message.senderName === userData?.username && (
-                                <div
-                                  className="min-w-40vw border bg-yellow9"
-                                  key={message.id}
-                                >
-                                  <p className="text-blue10">
-                                    {message.senderName}
-                                  </p>
+                    ?.sort(
+                      (a, b) =>
+                        new Date(b.createdAt).getTime() -
+                        new Date(a.createdAt).getTime()
+                    )
+                    // .slice(0, 100)
+                    .map((message) => {
+                      const liveFormattedDatetime = new Date(
+                        message.createdAt
+                      ).toLocaleString();
+
+                      return (
+                        <>
+                          {message.senderName === userData?.username && (
+                            <div className="grid">
+                              <div
+                                className="mb-1 flex min-w-40vw max-w-40vw flex-row border border-gray4 bg-gray3"
+                                key={message.id}
+                              >
+                                <div className="w-16 border border-gray4 text-xs">
                                   <p>{liveFormattedDatetime}</p>
-                                  <p className="font-bold">{message.message}</p>
-
-                                  {!message.message && (
-                                    <p className="font-bold">
-                                      {message.content}
-                                    </p>
-                                  )}
                                 </div>
-                              )}
-                              {message.senderName !== userData?.username && (
-                                <div
-                                  className="min-w-40vw border text-right "
-                                  key={message.id}
-                                >
-                                  <p className="text-blue10">
-                                    {message.senderName}
+
+                                {/* wtf do I have two of these? */}
+                                <p className="">{message.message}</p>
+                                {!message.message && (
+                                  <p className="">{message.content}</p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                          {message.senderName !== userData?.username && (
+                            // TODO: GET THESE ON THE SAME LINE WHILE KEEPING THE JUSTIFY SELF END FOR THE DATETIME
+                            <div className="grid">
+                              <div
+                                className="grid  min-w-40vw max-w-40vw justify-self-end border border-blue3 bg-blue3 "
+                                key={message.id}
+                              >
+                                <p className="justify-self-start ">
+                                  {message.message}
+                                </p>
+
+                                {!message.message && (
+                                  <p className="justify-self-start ">
+                                    {message.content}
                                   </p>
+                                )}
+                                <div className="w-16 justify-self-end border border-blue4 text-xs">
                                   <p>{liveFormattedDatetime}</p>
-                                  <p className="font-bold">{message.message}</p>
-
-                                  {!message.message && (
-                                    <p className="font-bold">
-                                      {message.content}
-                                    </p>
-                                  )}
                                 </div>
-                              )}
-                            </>
-                          );
-                        })}
-                    </div>
-                  </div>
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      );
+                    })}
                 </div>
+
+                {/* fix this  */}
+                <div className="">
+                  <Label.Root className="px-0.5" htmlFor="firstName">
+                    Create Message
+                  </Label.Root>
+                  <textarea
+                    className="border"
+                    id="Message"
+                    value={inputs.message}
+                    onChange={(e) =>
+                      setInputs((prev) => ({
+                        ...prev,
+                        message: e.target.value,
+                        sender: userData?.username || "",
+                        senderId: userData?.id || "",
+                        senderName: userData?.username || "",
+                        channelName: selectedChannel?.channelName || "",
+                      }))
+                    }
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    publish();
+                  }}
+                  className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4  dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                >
+                  Send
+                </button>
               </div>
-            </main>
+            </div>
           </>
         )}
         {!session && <></>}
