@@ -5,8 +5,8 @@ import { useSession } from "next-auth/react";
 import { trpc } from "@/utils/trpc";
 import { useState, useEffect } from "react";
 import Pusher from "pusher-js";
-import * as Label from "@radix-ui/react-label";
 import Header from "@/components/layout/header";
+import LoginForm from "@/components/forms/loginForm";
 
 const Messages: NextPage = () => {
   // TODO: Make sure there are no duplicate connections from same user
@@ -85,8 +85,8 @@ const Messages: NextPage = () => {
       <div>
         {session && (
           <>
-            <div className="grid min-h-screen grid-cols-5 border font-roboto">
-              <div className="col-span-1 border">
+            <div className="grid min-h-screen grid-cols-5  font-roboto">
+              <div className="col-span-1">
                 <div className="py-2 text-center text-xl">Contacts</div>
                 {readAllPusherChannels?.map((channel, index) => (
                   <div
@@ -116,7 +116,7 @@ const Messages: NextPage = () => {
 
               <div className="col-span-4">
                 <div className="py-2 text-center text-xl">{contactName}</div>
-                <div className="max-h-60vh overflow-scroll">
+                <div className="mx-2 max-h-60vh min-h-60vh overflow-scroll">
                   {messages
 
                     ?.sort(
@@ -176,14 +176,9 @@ const Messages: NextPage = () => {
                       );
                     })}
                 </div>
-
-                {/* fix this  */}
-                <div className="">
-                  <Label.Root className="px-0.5" htmlFor="firstName">
-                    Create Message
-                  </Label.Root>
+                <div className="mt- mr-2 ml-2">
                   <textarea
-                    className="border"
+                    className="inline-block h-12 w-full border px-1 py-1 align-text-top focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                     id="Message"
                     value={inputs.message}
                     onChange={(e) =>
@@ -198,20 +193,26 @@ const Messages: NextPage = () => {
                     }
                   />
                 </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    publish();
-                  }}
-                  className="cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4  dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                >
-                  Send
-                </button>
+                <div className="mr-2 ml-2 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      publish();
+                    }}
+                    className=" mt-2 cursor-pointer bg-blue10 px-5 py-1 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                  >
+                    Send
+                  </button>
+                </div>
               </div>
             </div>
           </>
         )}
-        {!session && <></>}
+        {!session && (
+          <>
+            <LoginForm />
+          </>
+        )}
       </div>
     </>
   );
