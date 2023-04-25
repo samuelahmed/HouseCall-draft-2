@@ -54,6 +54,21 @@
   --blackA12: #00000000;
 } */
 
+/* .gray {
+  --gray1: hsl(0, 0%, 99.0%);
+  --gray2: hsl(0, 0%, 97.3%);
+  --gray3: #f3f3f3;
+  --gray4: #ededed;
+  --gray5: hsl(0, 0%, 90.9%);
+  --gray6: hsl(0, 0%, 88.7%);
+  --gray7: hsl(0, 0%, 85.8%);
+  --gray8: hsl(0, 0%, 78.0%);
+  --gray9: hsl(0, 0%, 56.1%);
+  --gray10: hsl(0, 0%, 52.3%);
+  --gray11: hsl(0, 0%, 43.5%);
+  --gray12: hsl(0, 0%, 9.0%);
+} */
+
 
 /* https://www.radix-ui.com/docs/primitives/components/switch */
 @import '@radix-ui/colors/blackA.css';

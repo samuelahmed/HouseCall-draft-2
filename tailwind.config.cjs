@@ -52,6 +52,10 @@ module.exports = {
       darkBg: "#121212",
 
 
+      //gray for messaging - current user message
+      gray3: "#f3f3f3",
+      gray4: "#ededed",
+
     },
     extend: {
       height: {
@@ -59,6 +63,8 @@ module.exports = {
       },
       maxHeight: {
         "5vh": "5vh",
+        "50vh": "50vh",
+        "60vh": "60vh",
         "70vh": "70vh",
         "75vh": "75vh",
         "78vh": "78vh",
@@ -71,6 +77,7 @@ module.exports = {
       },
       minHeight: {
         "5vh": "5vh",
+        "60vh": "60vh",
         "70vh": "70vh",
         "78vh": "78vh",
         "85vh": "85vh",
@@ -83,6 +90,8 @@ module.exports = {
       },
       maxWidth: {
         "5vw": "5vw",
+        "30vw": "30vw",
+        "40vw": "40vw",
       },
       minWidth: {
         "40vw": "40vw",
