@@ -77,14 +77,14 @@ const Messages: NextPage = () => {
   };
 
   return (
-    <div className="font-roboto">
+    <>
       <Head>
         <title>Messages</title>
       </Head>
       <Header />
       <div>
         {session && (
-          <>
+          <div className="font-roboto">
             <div>
               <p className="py-2 px-4">
                 It is considered best practice to discuss what will happen in a
@@ -212,7 +212,7 @@ const Messages: NextPage = () => {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
         {!session && (
           <>
@@ -220,7 +220,7 @@ const Messages: NextPage = () => {
           </>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
