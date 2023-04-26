@@ -85,6 +85,12 @@ const Messages: NextPage = () => {
       <div>
         {session && (
           <>
+            <div>
+              <p className="py-2 px-4">
+                It is considered best practice to discuss what will happen in a
+                care session before meeting in person for the first time.
+              </p>
+            </div>
             <div className="grid min-h-screen grid-cols-5  font-roboto">
               <div className="col-span-1">
                 <div className="py-2 text-center text-xl">Contacts</div>
