@@ -33,17 +33,21 @@ export const userRouter = router({
         email: z.string().email(),
         password: z.string(),
         address: z.string(),
+        city: z.string(),
+        postalCode: z.string(),
         role: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { username, email, password, address, role } = input;
+      const { username, email, city, postalCode, password, address, role } = input;
       const updatedUser = await ctx.prisma.user.upsert({
         create: {
           username,
           email,
           password,
           address,
+          city,
+          postalCode,
           role,
         },
         update: {
@@ -51,6 +55,8 @@ export const userRouter = router({
           email,
           password,
           address,
+          city,
+          postalCode,
           role,
         },
         where: {

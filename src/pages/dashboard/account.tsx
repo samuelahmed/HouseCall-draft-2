@@ -21,9 +21,7 @@ const Account: NextPage = () => {
           <div className="font-roboto">
             <div>
               <p className="py-2 px-4">
-                It is considered best practice to discuss what will happen in a
-                care session before meeting in person for the first time.
-              </p>
+              This page displays your account information. Use the edit account button to update your information.               </p>
             </div>
             <div className="grid min-h-screen grid-cols-1">
               <div className="col-span-1 px-2">

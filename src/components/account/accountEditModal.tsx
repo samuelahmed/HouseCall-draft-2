@@ -13,6 +13,8 @@ const AccountEditModal = () => {
     password: "",
     role: "",
     address: "",
+    city: "",
+    postalCode: "",
   });
 
   const [selectedRole, setSelectedRole] = useState(inputs.role);
@@ -36,6 +38,8 @@ const AccountEditModal = () => {
         password: dbTest.data.password || "",
         role: dbTest.data.role || "",
         address: dbTest.data.address || "",
+        city: dbTest.data.city || "",
+        postalCode: dbTest.data.postalCode || "",
       });
     }
   }, [dbTest.data]);
@@ -100,6 +104,40 @@ const AccountEditModal = () => {
                             setInputs((prev) => ({
                               ...prev,
                               address: e.target.value,
+                            }))
+                          }
+                          type="text"
+                          name="text"
+                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
+                          placeholder=""
+                        />
+                      </div>
+                      {/* City */}
+                      <div className="mt-2 flex flex-row items-center px-2">
+                        <p className="mr-2 w-28 text-lg"> City </p>
+                        <input
+                          value={inputs.city}
+                          onChange={(e) =>
+                            setInputs((prev) => ({
+                              ...prev,
+                              city: e.target.value,
+                            }))
+                          }
+                          type="text"
+                          name="text"
+                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
+                          placeholder=""
+                        />
+                      </div>
+                      {/* POSTAL CODE */}
+                      <div className="mt-2 flex flex-row items-center px-2">
+                        <p className="mr-2 w-28 text-lg"> Postal Code </p>
+                        <input
+                          value={inputs.postalCode}
+                          onChange={(e) =>
+                            setInputs((prev) => ({
+                              ...prev,
+                              postalCode: e.target.value,
                             }))
                           }
                           type="text"
