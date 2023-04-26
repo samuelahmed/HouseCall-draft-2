@@ -56,6 +56,10 @@ module.exports = {
       gray3: "#f3f3f3",
       gray4: "#ededed",
 
+
+      darkGray3: "#232323",
+      darkGray4: "#282828",
+
     },
     extend: {
       height: {

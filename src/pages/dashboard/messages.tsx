@@ -85,6 +85,12 @@ const Messages: NextPage = () => {
       <div>
         {session && (
           <>
+            <div>
+              <p className="py-2 px-4">
+                It is considered best practice to discuss what will happen in a
+                care session before meeting in person for the first time.
+              </p>
+            </div>
             <div className="grid min-h-screen grid-cols-5  font-roboto">
               <div className="col-span-1">
                 <div className="py-2 text-center text-xl">Contacts</div>
@@ -135,10 +141,10 @@ const Messages: NextPage = () => {
                           {message.senderName === userData?.username && (
                             <div className="grid">
                               <div
-                                className="mb-1 flex min-w-40vw max-w-40vw flex-row border border-gray4 bg-gray3"
+                                className="mb-1 flex min-w-40vw max-w-40vw flex-row border border-gray4 bg-gray3 dark:border-darkGray4 dark:bg-darkGray3"
                                 key={message.id}
                               >
-                                <div className="w-16 border border-gray4 text-xs">
+                                <div className="w-16 border border-gray4 dark:border-darkGray4 text-xs">
                                   <p>{liveFormattedDatetime}</p>
                                 </div>
 
@@ -154,7 +160,7 @@ const Messages: NextPage = () => {
                             // TODO: GET THESE ON THE SAME LINE WHILE KEEPING THE JUSTIFY SELF END FOR THE DATETIME
                             <div className="grid">
                               <div
-                                className="grid  min-w-40vw max-w-40vw justify-self-end border border-blue3 bg-blue3 "
+                                className="grid  min-w-40vw max-w-40vw justify-self-end border border-blue3 bg-blue3 dark:bg-darkBlue3 dark:border-darkBlue4"
                                 key={message.id}
                               >
                                 <p className="justify-self-start ">
@@ -166,7 +172,7 @@ const Messages: NextPage = () => {
                                     {message.content}
                                   </p>
                                 )}
-                                <div className="w-16 justify-self-end border border-blue4 text-xs">
+                                <div className="w-16 justify-self-end border border-blue4 dark:border-darkBlue4 text-xs">
                                   <p>{liveFormattedDatetime}</p>
                                 </div>
                               </div>
