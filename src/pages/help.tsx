@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import AccordionEngine from "@/components/help/accordion";
 import Header from "@/components/layout/header";
+import UnderConstruction from "@/components/layout/underConstruction";
 
 const Help: NextPage = () => {
   const { data: session } = useSession();
@@ -18,12 +19,12 @@ const Help: NextPage = () => {
       <div>
         {session && (
           <div>
-            <AccordionEngine />
+            <UnderConstruction />
           </div>
         )}
         {!session && (
           <div>
-            <AccordionEngine />
+            <UnderConstruction />
           </div>
         )}
       </div>
