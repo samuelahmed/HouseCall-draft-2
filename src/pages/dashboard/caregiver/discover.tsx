@@ -55,7 +55,15 @@ const Discover: NextPage = () => {
       <Header />
       <div>
         {session && (
-          <>
+          <div className="font-roboto">
+            <div>
+              <p className="py-2 px-4">
+                Use this page to discover new sessions created by nearby
+                patients. When you select a session, you can click details to
+                get more information and apply to be the caregiver. When you
+                apply a patient will have the option to message and accept you.
+              </p>
+            </div>
             <div className="grid min-h-screen grid-cols-1 md:grid-cols-2   ">
               <div className="col-span-1 max-h-screen overflow-scroll">
                 <div
@@ -84,7 +92,6 @@ const Discover: NextPage = () => {
                           sessionMonth,
                           sessionDay,
                           sessionYear,
-
                           sessionStartHour,
                           sessionStartMinute,
                           sessionEndHour,
@@ -105,7 +112,7 @@ const Discover: NextPage = () => {
                           <li
                             key={id}
                             //re-add color when hoever & active
-                            className="mx-2 mb-2 border bg-yellow9 px-2 md:cursor-pointer"
+                            className="mx-2 mb-2 border px-2 md:cursor-pointer"
                           >
                             <div
                               className=""
@@ -130,7 +137,6 @@ const Discover: NextPage = () => {
                                   sessionDay: sessionDay || 0,
                                   sessionMonth: sessionMonth || 0,
                                   sessionYear: sessionYear || 0,
-
                                   startTimeHour: sessionStartHour || 0,
                                   startTimeMinute: sessionStartMinute || 0,
                                   endTimeHour: sessionEndHour || 0,
@@ -205,14 +211,16 @@ const Discover: NextPage = () => {
 
                             {/* update to new button style */}
                             <div className="mb-4 flex flex-col items-center justify-center">
-                              <button
-                                onClick={() =>
-                                  router.push(`/careSession/${data.slug}`)
-                                }
-                                className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4 md:hidden"
-                              >
-                                Details
-                              </button>
+                              <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2 md:hidden">
+                                <button
+                                  onClick={() =>
+                                    router.push(`/careSession/${data.slug}`)
+                                  }
+                                  className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2 md:hidden"
+                                >
+                                  Details
+                                </button>
+                              </div>
                             </div>
                           </li>
                         );
@@ -222,7 +230,7 @@ const Discover: NextPage = () => {
                 </div>
               </div>
 
-              <div className="col-span-1 hidden md:block">
+              <div className="col-span-1 mr-2 hidden md:block">
                 <div className="mt-2 flex min-h-full flex-col justify-between border">
                   <div className={rightCard === 1 ? "" : "hidden"}>
                     <div className="mb-4 mr-4 ml-4 justify-center ">
@@ -272,17 +280,18 @@ const Discover: NextPage = () => {
                           {selectedSession?.data?.sessionYear || isLoading}
                         </p>
                         <div className="flex flex-col items-center justify-center">
-                          <button
-                            onClick={() =>
-                              router.push(
-                                `/careSession/${selectedSession.data?.slug}`
-                              )
-                            }
-                            className="ml-3 cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
-                 dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                          >
-                            Details
-                          </button>
+                          <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                            <button
+                              onClick={() =>
+                                router.push(
+                                  `/careSession/${selectedSession.data?.slug}`
+                                )
+                              }
+                              className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                            >
+                              Details
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -290,7 +299,7 @@ const Discover: NextPage = () => {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
         {!session && (
           <>

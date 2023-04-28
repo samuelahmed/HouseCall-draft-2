@@ -106,7 +106,7 @@ const New: NextPage = () => {
                         return (
                           <li
                             key={id}
-                            className="mx-4 mb-4 items-center justify-around border-2 px-2"
+                            className="mx-4 mb-4 items-center justify-around border px-2"
                           >
                             <div className="pt-2 text-center text-lg ">
                               {title}
@@ -132,6 +132,7 @@ const New: NextPage = () => {
                                     : startTimeMinute}{" "}
                                   {startTimeMinute > 12 ? "PM" : "AM"}
                                 </p>
+                                
                                 <p className="">
                                   <span className="">Session End:&nbsp;</span>
                                   {endTimeHour > 12
