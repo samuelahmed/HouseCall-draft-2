@@ -38,6 +38,8 @@ const Discover: NextPage = () => {
     endTimeHour: 0,
     endTimeMinute: 0,
 
+    createdAt: new Date(),
+
     // startTimeHour: "",
     // sessionEnd: "",
   });
@@ -96,6 +98,7 @@ const Discover: NextPage = () => {
                           sessionStartMinute,
                           sessionEndHour,
                           sessionEndMinute,
+                          createdAt,
                         } = data;
                         const startTimeHour = sessionStartHour || 0;
                         const startTimeMinute = sessionStartMinute || 0;
@@ -141,6 +144,7 @@ const Discover: NextPage = () => {
                                   startTimeMinute: sessionStartMinute || 0,
                                   endTimeHour: sessionEndHour || 0,
                                   endTimeMinute: sessionEndMinute || 0,
+                                  createdAt: createdAt || new Date(),
                                 });
                               }}
                             >
@@ -154,7 +158,9 @@ const Discover: NextPage = () => {
                                       <span className="">Status:&nbsp;</span>
                                       {careSessionStatus}
                                     </p>
-                                    <span className="">Date:&nbsp;</span>
+                                    <span className="">
+                                      Session Date:&nbsp;
+                                    </span>
                                     {sessionMonth} / {sessionDay} /{" "}
                                     {sessionYear}
                                   </p>
@@ -279,6 +285,13 @@ const Discover: NextPage = () => {
                           {selectedSession?.data?.sessionMonth || isLoading} /{" "}
                           {selectedSession?.data?.sessionYear || isLoading}
                         </p>
+
+                        <p className="text-sm">
+                          <span className="">Session Created:&nbsp;</span>
+                          {selectedSession?.data?.createdAt.toDateString() ||
+                            isLoading}
+                        </p>
+
                         <div className="flex flex-col items-center justify-center">
                           <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
                             <button
