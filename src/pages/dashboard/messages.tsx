@@ -98,7 +98,7 @@ const Messages: NextPage = () => {
                   <div
                     className={
                       state === index
-                        ? " mb-1 border bg-blue3 px-2 py-2 text-lg dark:bg-darkBlue3"
+                        ? "mb-1 border bg-blue4 px-2 py-2 text-lg dark:bg-darkBlue4"
                         : "mb-1 border px-2 py-2 text-lg"
                     }
                     onClick={() => {

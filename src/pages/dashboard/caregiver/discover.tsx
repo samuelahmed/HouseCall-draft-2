@@ -12,6 +12,8 @@ const Discover: NextPage = () => {
 
   const { data: session } = useSession();
   const [rightCard, setRightCard] = useState(1);
+  const [clickedSession, setClickedSession] = useState(-1);
+
   const { data, isLoading } =
     trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
 
@@ -77,7 +79,7 @@ const Discover: NextPage = () => {
                 >
                   <ul>
                     {data
-                      ?.map((data) => {
+                      ?.map((data, clickedSessionTriggered) => {
                         const {
                           id,
                           title,
@@ -111,15 +113,23 @@ const Discover: NextPage = () => {
                           sessionDurationHours--;
                           sessionDurationMinutes += 60;
                         }
+                        
                         return (
                           <li
                             key={id}
                             //re-add color when hoever & active
-                            className="mx-2 mb-2 border px-2 md:cursor-pointer"
+                            className=
+                            {
+                              clickedSession === clickedSessionTriggered
+                                ? "mx-2 mb-2 border px-2 md:cursor-pointer bg-blue4 dark:bg-darkBlue4"
+                                : "mx-2 mb-2 border px-2 md:cursor-pointer"
+                            }
                           >
                             <div
                               className=""
                               onClick={() => {
+                                setClickedSession(clickedSessionTriggered);
+
                                 setInputs({
                                   id: id,
                                   title: title || "still loading",
