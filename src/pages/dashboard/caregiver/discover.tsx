@@ -121,8 +121,8 @@ const Discover: NextPage = () => {
                             className=
                             {
                               clickedSession === clickedSessionTriggered
-                                ? "mx-2 mb-2 border px-2 md:cursor-pointer bg-blue4 dark:bg-darkBlue4"
-                                : "mx-2 mb-2 border px-2 md:cursor-pointer"
+                                ? "mx-2 mb-2 border px-2 md:cursor-pointer bg-blue4 dark:bg-darkBlue4 "
+                                : "mx-2 mb-2 border px-2 md:cursor-pointer hover:bg-blue4 dark:hover:bg-darkBlue4"
                             }
                           >
                             <div

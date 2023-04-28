@@ -99,7 +99,7 @@ const Messages: NextPage = () => {
                     className={
                       state === index
                         ? "mb-1 border bg-blue4 px-2 py-2 text-lg dark:bg-darkBlue4"
-                        : "mb-1 border px-2 py-2 text-lg"
+                        : "mb-1 border px-2 py-2 text-lg hover:bg-blue4 dark:hover:bg-darkBlue4"
                     }
                     onClick={() => {
                       setState(index);
