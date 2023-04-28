@@ -4,27 +4,27 @@ import { useState } from "react";
 
 const DiscoverEngine = () => {
   const router = useRouter();
-  const [rightCard, setRightCard] = useState(1);
-  const { data, isLoading } =
-    trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
+  // const [rightCard, setRightCard] = useState(1);
+  // const { data, isLoading } =
+  //   trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
 
-  const [inputs, setInputs] = useState({
-    title: "",
-    id: "",
-    name: "",
-    address: "",
-    overview: "",
-    sessionType: "",
-    hourlyRate: 0,
-    totalHours: 0,
-    totalCompensation: 0,
-    careSessionStatus: "",
-  });
+  // const [inputs, setInputs] = useState({
+  //   title: "",
+  //   id: "",
+  //   name: "",
+  //   address: "",
+  //   overview: "",
+  //   sessionType: "",
+  //   hourlyRate: 0,
+  //   totalHours: 0,
+  //   totalCompensation: 0,
+  //   careSessionStatus: "",
+  // });
 
-  const selectedSession =
-    trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
-      id: inputs?.id || (data?.[data?.length - 1]?.id ?? "0"),
-    });
+  // const selectedSession =
+  //   trpc.careSessionAPIs.readOneSessionBySessionId.useQuery({
+  //     id: inputs?.id || (data?.[data?.length - 1]?.id ?? "0"),
+  //   });
 
   return (
     <>
@@ -33,7 +33,7 @@ const DiscoverEngine = () => {
   border-blue6 bg-blue2 dark:border-darkBlue6 dark:bg-darkBlue2 md:col-span-1"
       >
         {/* Left Table */}
-        <div
+        {/* <div
           className="mt-4"
           onClick={(e) => {
             e.preventDefault();
@@ -128,11 +128,21 @@ const DiscoverEngine = () => {
       <div
         className="hidden max-h-85vh border border-blue6 bg-blue2 text-olive12 
     dark:border-darkBlue6 dark:bg-darkBlue2 dark:text-darkOlive12 md:col-span-1 md:block"
-      >
+      > */}
+
+
+
+
+
+
+
+
+
+
         {/* Right Table */}
-        <div
+        {/* <div
           className="mx-2 mt-4 flex min-h-80vh min-w-max flex-col justify-between rounded-sm border 
-    border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1"
+             border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1"
         >
           <div className={rightCard === 1 ? "" : "hidden"}>
             <div className="mb-4 mr-4 ml-4 justify-center ">
@@ -186,7 +196,7 @@ const DiscoverEngine = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

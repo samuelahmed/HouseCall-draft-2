@@ -4,7 +4,7 @@
 
 Table User {
   id String [pk]
-  username String [unique]
+  username String
   email String [unique]
   emailVerified DateTime
   password String [not null]
