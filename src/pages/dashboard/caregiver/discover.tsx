@@ -28,22 +28,14 @@ const Discover: NextPage = () => {
     totalHours: 0,
     totalCompensation: 0,
     careSessionStatus: "",
-
-    //new inputs
-
     sessionMonth: 0,
     sessionDay: 0,
     sessionYear: 0,
-
     startTimeHour: 0,
     startTimeMinute: 0,
     endTimeHour: 0,
     endTimeMinute: 0,
-
     createdAt: new Date(),
-
-    // startTimeHour: "",
-    // sessionEnd: "",
   });
 
   const selectedSession =
@@ -91,8 +83,6 @@ const Discover: NextPage = () => {
                           totalHours,
                           totalCompensation,
                           careSessionStatus,
-
-                          //new data
                           sessionMonth,
                           sessionDay,
                           sessionYear,
@@ -113,7 +103,6 @@ const Discover: NextPage = () => {
                           sessionDurationHours--;
                           sessionDurationMinutes += 60;
                         }
-
                         return (
                           <li
                             key={id}
@@ -128,7 +117,6 @@ const Discover: NextPage = () => {
                               className=""
                               onClick={() => {
                                 setClickedSession(clickedSessionTriggered);
-
                                 setInputs({
                                   id: id,
                                   title: title || "still loading",
@@ -144,8 +132,6 @@ const Discover: NextPage = () => {
                                     Number(data.totalCompensation) ||
                                     (Number(totalHours) || 0) *
                                       (Number(hourlyRate) || 0),
-
-                                  //new data
                                   sessionDay: sessionDay || 0,
                                   sessionMonth: sessionMonth || 0,
                                   sessionYear: sessionYear || 0,
@@ -186,7 +172,6 @@ const Discover: NextPage = () => {
                                       : startTimeMinute}{" "}
                                     {startTimeMinute > 12 ? "PM" : "AM"}
                                   </p>
-
                                   <p className="">
                                     <span className="">Session End:&nbsp;</span>
                                     {endTimeHour > 12
@@ -199,7 +184,6 @@ const Discover: NextPage = () => {
                                     {endTimeHour > 12 ? "PM" : "AM"}
                                   </p>
                                 </div>
-
                                 <div className="col-span-1">
                                   <p className="">
                                     <span className="">City:&nbsp;</span>
@@ -218,14 +202,11 @@ const Discover: NextPage = () => {
                                   </p>
                                 </div>
                               </div>
-
                               <p className="">
                                 <span className="">Overview:&nbsp;</span>
                                 {overview}
                               </p>
                             </div>
-
-                            {/* update to new button style */}
                             <div className="mb-4 flex flex-col items-center justify-center">
                               <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2 md:hidden">
                                 <button
@@ -245,14 +226,12 @@ const Discover: NextPage = () => {
                   </ul>
                 </div>
               </div>
-
               <div className="col-span-1 mr-2 hidden md:block">
                 <div className="mt-2  min-h-full justify-center border">
                   <div className={rightCard === 1 ? "" : "hidden"}>
                     <div className="text-center text-2xl  ">
                       {selectedSession?.data?.title || isLoading}
                     </div>
-
                     {/* INTERNAL BOX */}
                     <div className="grid grid-cols-2 justify-center ">
                       {/* TOP LEFT */}
@@ -277,7 +256,6 @@ const Discover: NextPage = () => {
                           {selectedSession?.data?.sessionYear || isLoading}
                         </p>
                       </div>
-
                       {/* TOP RIGHT */}
                       <div className="col-span-1 px-2 py-2">
                         {/* SESSION START  */}
@@ -323,7 +301,6 @@ const Discover: NextPage = () => {
                                 : "AM"}
                             </p>
                           )}
-
                         {/* SESSION DURATION  */}
                         <p className="">
                           {selectedSession?.data?.sessionEndHour !== null &&
@@ -353,9 +330,8 @@ const Discover: NextPage = () => {
                         </p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-1 justify-center mx-2 ">
+                    <div className="mx-2 grid grid-cols-1 justify-center ">
                       {/* MIDDLE BOX FOR OVERVIEW */}
-
                       <p className="">
                         <span className="">Overview:&nbsp;</span>
                         <textarea
@@ -366,26 +342,23 @@ const Discover: NextPage = () => {
                         />
                       </p>
                     </div>
-
                     {/* MIDDLE BOX SPLIT */}
                     <div className="grid grid-cols-2 justify-center ">
+                      {/* MIDDLE LEFT */}
                       <div className="col-span-1  px-2 py-2">
-                        {/* MIDDLE LEFT */}
                         {/* ADDRESS */}
                         <p className="">
                           <span className="">Address:&nbsp;</span>
                           {selectedSession?.data?.address || isLoading}
                         </p>
                       </div>
-
-                      <div className="col-span-1  px-2 py-2">
-                        {/* MIDDLE RIGHT */}
+                      {/* MIDDLE RIGHT */}
+                      <div className="col-span-1 px-2 py-2">
                         {/* CITY */}
                         <p className="">
                           <span className="">City:&nbsp;</span>
                           {selectedSession?.data?.city || isLoading}
                         </p>
-
                         {/* POSTAL CODE */}
                         <p className="">
                           <span className="">Postal Code:&nbsp;</span>
@@ -393,9 +366,8 @@ const Discover: NextPage = () => {
                         </p>
                       </div>
                     </div>
-
-                    <div className="grid grid-cols-1 justify-center mx-2">
-                      {/* MIDDLE BOX FOR LOCATION */}
+                    {/* MIDDLE BOX FOR LOCATION */}
+                    <div className="mx-2 grid grid-cols-1 justify-center">
                       <p className="">
                         <span className="">Location:&nbsp;</span>
                         <textarea
@@ -406,27 +378,22 @@ const Discover: NextPage = () => {
                         />
                       </p>
                     </div>
-
-                    <div className="grid grid-cols-2 justify-center ">
-                      <div className="col-span-1  px-2 py-2">
-                        {/* BOTTOM LEFT */}
-
+                    <div className="grid grid-cols-2 justify-center">
+                      {/* BOTTOM LEFT */}
+                      <div className="col-span-1 px-2 py-2">
                         {/* HOURLY RATE */}
                         <p className="">
                           <span className="">Hourly Rate:&nbsp;</span>$
                           {selectedSession?.data?.hourlyRate || isLoading}
                         </p>
-
                         {/* HOURS */}
                         <p className="">
                           <span className="">Hours:&nbsp;</span>
                           {selectedSession?.data?.totalHours || isLoading}
                         </p>
                       </div>
-
+                      {/* BOTTOM RIGHT */}
                       <div className="col-span-1 px-2 py-2">
-                        {/* BOTTOM RIGHT */}
-
                         {/* TOTAL COMPENSATION */}
                         <p className="">
                           <span className="">Total:&nbsp;</span>$
@@ -435,14 +402,12 @@ const Discover: NextPage = () => {
                         </p>
                       </div>
                     </div>
-
                     {/* SESSION CREATED */}
-                    <p className="text-sm px-2 py-2">
+                    <p className="px-2 py-2 text-sm">
                       <span className="">Session Created:&nbsp;</span>
                       {selectedSession?.data?.createdAt.toDateString() ||
                         isLoading}
                     </p>
-
                     <div className="flex flex-col items-center justify-center">
                       <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
                         <button
