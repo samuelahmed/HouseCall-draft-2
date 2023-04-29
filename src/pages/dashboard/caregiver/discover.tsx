@@ -113,16 +113,15 @@ const Discover: NextPage = () => {
                           sessionDurationHours--;
                           sessionDurationMinutes += 60;
                         }
-                        
+
                         return (
                           <li
                             key={id}
                             //re-add color when hoever & active
-                            className=
-                            {
+                            className={
                               clickedSession === clickedSessionTriggered
-                                ? "mx-2 mb-2 border px-2 md:cursor-pointer bg-blue4 dark:bg-darkBlue4 "
-                                : "mx-2 mb-2 border px-2 md:cursor-pointer hover:bg-blue4 dark:hover:bg-darkBlue4"
+                                ? "mx-2 mb-2 border bg-blue4 px-2 dark:bg-darkBlue4 md:cursor-pointer "
+                                : "mx-2 mb-2 border px-2 hover:bg-blue4 dark:hover:bg-darkBlue4 md:cursor-pointer"
                             }
                           >
                             <div
@@ -187,6 +186,7 @@ const Discover: NextPage = () => {
                                       : startTimeMinute}{" "}
                                     {startTimeMinute > 12 ? "PM" : "AM"}
                                   </p>
+
                                   <p className="">
                                     <span className="">Session End:&nbsp;</span>
                                     {endTimeHour > 12
@@ -247,47 +247,30 @@ const Discover: NextPage = () => {
               </div>
 
               <div className="col-span-1 mr-2 hidden md:block">
-                <div className="mt-2 flex min-h-full flex-col justify-between border">
+                <div className="mt-2  min-h-full justify-center border">
                   <div className={rightCard === 1 ? "" : "hidden"}>
-                    <div className="mb-4 mr-4 ml-4 justify-center ">
-                      <div className="mb-2 p-4 text-center text-2xl ">
-                        {selectedSession?.data?.title || isLoading}
-                      </div>
-                      <div className="">
+                    <div className="text-center text-2xl  ">
+                      {selectedSession?.data?.title || isLoading}
+                    </div>
+
+                    
+                    {/* INTERNAL BOX */}
+                    <div className="grid grid-cols-2 justify-center border">
+
+                      {/* TOP LEFT */}
+                      <div className="col-span-1 border bg-yellow9 px-2 py-2">
+                        {/* STATUS */}
                         <p className="">
                           <span className="">Status:&nbsp;</span>
                           {selectedSession?.data?.careSessionStatus ||
                             isLoading}
                         </p>
+                        {/* NAME */}
                         <p className="">
                           <span className="">Name:&nbsp;</span>
                           {selectedSession?.data?.name || isLoading}
                         </p>
-                        <p className="">
-                          <span className="">Address:&nbsp;</span>
-                          {selectedSession?.data?.address || isLoading}
-                        </p>
-                        <p className="">
-                          <span className="">Medical Notes:&nbsp;</span>
-                          {selectedSession?.data?.medicalNotes || isLoading}
-                        </p>
-                        <p className="">
-                          <span className="">Overview:&nbsp;</span>
-                          {selectedSession?.data?.overview || isLoading}
-                        </p>
-                        <p className="">
-                          <span className="">Hourly Rate:&nbsp;</span>$
-                          {selectedSession?.data?.hourlyRate || isLoading}
-                        </p>
-                        <p className="">
-                          <span className="">Hours:&nbsp;</span>
-                          {selectedSession?.data?.totalHours || isLoading}
-                        </p>
-                        <p className="">
-                          <span className="">Total:&nbsp;</span>$
-                          {selectedSession?.data?.totalCompensation ||
-                            isLoading}
-                        </p>
+                        {/* DATE */}
                         <p className="">
                           <span className="">Date:&nbsp;</span>
                           {selectedSession?.data?.sessionDay ||
@@ -295,27 +278,179 @@ const Discover: NextPage = () => {
                           {selectedSession?.data?.sessionMonth || isLoading} /{" "}
                           {selectedSession?.data?.sessionYear || isLoading}
                         </p>
+                      </div>
 
-                        <p className="text-sm">
-                          <span className="">Session Created:&nbsp;</span>
-                          {selectedSession?.data?.createdAt.toDateString() ||
-                            isLoading}
+                      {/* TOP RIGHT */}
+                      <div className="col-span-1 border bg-blue5 px-2 py-2">
+                        {/* SESSION START  */}
+                        {selectedSession?.data?.sessionStartHour !== null &&
+                          selectedSession?.data?.sessionStartHour !==
+                            undefined &&
+                          selectedSession?.data?.sessionStartMinute !== null &&
+                          selectedSession?.data?.sessionStartMinute !==
+                            undefined && (
+                            <p className="">
+                              <span className="">Session Start:&nbsp;</span>
+                              {selectedSession?.data?.sessionStartHour > 12
+                                ? selectedSession?.data?.sessionStartHour - 12
+                                : selectedSession?.data?.sessionStartHour}
+                              :
+                              {selectedSession?.data?.sessionStartMinute < 10
+                                ? "0" +
+                                  selectedSession?.data?.sessionStartMinute
+                                : selectedSession?.data
+                                    ?.sessionStartMinute}{" "}
+                              {selectedSession?.data?.sessionStartMinute > 12
+                                ? "PM"
+                                : "AM"}
+                            </p>
+                          )}
+                        {/* SESSION END  */}
+                        {selectedSession?.data?.sessionEndHour !== null &&
+                          selectedSession?.data?.sessionEndHour !== undefined &&
+                          selectedSession?.data?.sessionEndMinute !== null &&
+                          selectedSession?.data?.sessionEndMinute !==
+                            undefined && (
+                            <p className="">
+                              <span className="">Session End:&nbsp;</span>
+                              {selectedSession?.data?.sessionEndHour > 12
+                                ? selectedSession?.data?.sessionEndHour - 12
+                                : selectedSession?.data?.sessionEndHour}
+                              :
+                              {selectedSession?.data?.sessionEndMinute < 10
+                                ? "0" + selectedSession?.data?.sessionEndMinute
+                                : selectedSession?.data?.sessionEndMinute}{" "}
+                              {selectedSession?.data?.sessionEndHour > 12
+                                ? "PM"
+                                : "AM"}
+                            </p>
+                          )}
+                      </div>
+
+
+                      {/* MIDDLE BOX FOR OVERVIEW */}
+
+
+                      {/* MIDDLE LEFT */}
+
+
+                      {/* MIDDLE RIGHT */}
+
+
+
+                      {/* MIDDLE BOX FOR LOCATION */}
+
+                      {/* BOTTOM LEFT */}
+
+                      {/* BOTTOM RIGHT */}
+
+
+                    </div>
+
+
+                                        {/* 
+                        OVERVIEW AS TEXTAREA in own div so it goes full width
+   
+                        <p className="">
+                          <span className="">Overview:&nbsp;</span>
+                          <textarea className="w-full h-32">
+
+                          {selectedSession?.data?.overview || isLoading}
+                          </textarea>
                         </p>
+                        */}
 
-                        <div className="flex flex-col items-center justify-center">
-                          <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
-                            <button
-                              onClick={() =>
-                                router.push(
-                                  `/careSession/${selectedSession.data?.slug}`
-                                )
-                              }
-                              className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
-                            >
-                              Details
-                            </button>
-                          </div>
-                        </div>
+
+
+
+                        {/* SESSION DURATION  */}
+                    <p className="">
+                      {selectedSession?.data?.sessionEndHour !== null &&
+                        selectedSession?.data?.sessionEndHour !== undefined &&
+                        selectedSession?.data?.sessionEndMinute !== null &&
+                        selectedSession?.data?.sessionEndMinute !== undefined &&
+                        selectedSession?.data?.sessionStartHour !== null &&
+                        selectedSession?.data?.sessionStartHour !== undefined &&
+                        selectedSession?.data?.sessionStartMinute !== null &&
+                        selectedSession?.data?.sessionStartMinute !==
+                          undefined && (
+                          <p>
+                            <span className=" ">Duration:&nbsp;</span>
+                            {selectedSession?.data?.sessionEndHour -
+                              selectedSession?.data?.sessionStartHour}{" "}
+                            hours{" "}
+                            {selectedSession?.data?.sessionEndMinute -
+                              selectedSession?.data?.sessionStartMinute}{" "}
+                            minutes{" "}
+                          </p>
+                        )}
+                    </p>
+
+                    {/* ADDRESS */}
+                    <p className="">
+                      <span className="">Address:&nbsp;</span>
+                      {selectedSession?.data?.address || isLoading}
+                    </p>
+
+                    {/* CITY */}
+                    <p className="">
+                      <span className="">City:&nbsp;</span>
+                      {selectedSession?.data?.city || isLoading}
+                    </p>
+
+                    {/* POSTAL CODE */}
+                    <p className="">
+                      <span className="">Postal Code:&nbsp;</span>
+                      {selectedSession?.data?.postalCode || isLoading}
+                    </p>
+
+
+                    {/* HOURLY RATE */}
+                    <p className="">
+                      <span className="">Hourly Rate:&nbsp;</span>$
+                      {selectedSession?.data?.hourlyRate || isLoading}
+                    </p>
+
+                    {/* HOURS */}
+                    <p className="">
+                      <span className="">Hours:&nbsp;</span>
+                      {selectedSession?.data?.totalHours || isLoading}
+                    </p>
+
+                    {/* TOTAL COMPENSATION */}
+                    <p className="">
+                      <span className="">Total:&nbsp;</span>$
+                      {selectedSession?.data?.totalCompensation || isLoading}
+                    </p>
+
+                    {/* SESSION CREATED */}
+                    <p className="text-sm">
+                      <span className="">Session Created:&nbsp;</span>
+                      {selectedSession?.data?.createdAt.toDateString() ||
+                        isLoading}
+                    </p>
+
+
+
+
+
+
+
+
+
+
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                        <button
+                          onClick={() =>
+                            router.push(
+                              `/careSession/${selectedSession.data?.slug}`
+                            )
+                          }
+                          className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                        >
+                          Details
+                        </button>
                       </div>
                     </div>
                   </div>
