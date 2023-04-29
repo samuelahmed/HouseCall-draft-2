@@ -254,9 +254,9 @@ const Discover: NextPage = () => {
                     </div>
 
                     {/* INTERNAL BOX */}
-                    <div className="grid grid-cols-2 justify-center border">
+                    <div className="grid grid-cols-2 justify-center ">
                       {/* TOP LEFT */}
-                      <div className="col-span-1 border bg-yellow9 px-2 py-2">
+                      <div className="col-span-1 px-2 py-2">
                         {/* STATUS */}
                         <p className="">
                           <span className="">Status:&nbsp;</span>
@@ -279,7 +279,7 @@ const Discover: NextPage = () => {
                       </div>
 
                       {/* TOP RIGHT */}
-                      <div className="col-span-1 border bg-blue5 px-2 py-2">
+                      <div className="col-span-1 px-2 py-2">
                         {/* SESSION START  */}
                         {selectedSession?.data?.sessionStartHour !== null &&
                           selectedSession?.data?.sessionStartHour !==
@@ -323,9 +323,37 @@ const Discover: NextPage = () => {
                                 : "AM"}
                             </p>
                           )}
+
+                        {/* SESSION DURATION  */}
+                        <p className="">
+                          {selectedSession?.data?.sessionEndHour !== null &&
+                            selectedSession?.data?.sessionEndHour !==
+                              undefined &&
+                            selectedSession?.data?.sessionEndMinute !== null &&
+                            selectedSession?.data?.sessionEndMinute !==
+                              undefined &&
+                            selectedSession?.data?.sessionStartHour !== null &&
+                            selectedSession?.data?.sessionStartHour !==
+                              undefined &&
+                            selectedSession?.data?.sessionStartMinute !==
+                              null &&
+                            selectedSession?.data?.sessionStartMinute !==
+                              undefined && (
+                              <p>
+                                <span className=" ">Duration:&nbsp;</span>
+                                {selectedSession?.data?.sessionEndHour -
+                                  selectedSession?.data?.sessionStartHour}{" "}
+                                hours{" "}
+                                {selectedSession?.data?.sessionEndMinute -
+                                  selectedSession?.data
+                                    ?.sessionStartMinute}{" "}
+                                minutes{" "}
+                              </p>
+                            )}
+                        </p>
                       </div>
                     </div>
-                    <div className="grid grid-cols-1 justify-center border">
+                    <div className="grid grid-cols-1 justify-center mx-2 ">
                       {/* MIDDLE BOX FOR OVERVIEW */}
 
                       <p className="">
@@ -340,19 +368,33 @@ const Discover: NextPage = () => {
                     </div>
 
                     {/* MIDDLE BOX SPLIT */}
-                    <div className="grid grid-cols-2 justify-center border">
-                      <div className="col-span-1 border bg-yellow9 px-2 py-2">
+                    <div className="grid grid-cols-2 justify-center ">
+                      <div className="col-span-1  px-2 py-2">
                         {/* MIDDLE LEFT */}
-                        ADDRESS AND LOCATION
+                        {/* ADDRESS */}
+                        <p className="">
+                          <span className="">Address:&nbsp;</span>
+                          {selectedSession?.data?.address || isLoading}
+                        </p>
                       </div>
 
-                      <div className="col-span-1 border bg-blue3 px-2 py-2">
+                      <div className="col-span-1  px-2 py-2">
                         {/* MIDDLE RIGHT */}
-                        CITY AND POSTAL CODE
+                        {/* CITY */}
+                        <p className="">
+                          <span className="">City:&nbsp;</span>
+                          {selectedSession?.data?.city || isLoading}
+                        </p>
+
+                        {/* POSTAL CODE */}
+                        <p className="">
+                          <span className="">Postal Code:&nbsp;</span>
+                          {selectedSession?.data?.postalCode || isLoading}
+                        </p>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 justify-center border">
+                    <div className="grid grid-cols-1 justify-center mx-2">
                       {/* MIDDLE BOX FOR LOCATION */}
                       <p className="">
                         <span className="">Location:&nbsp;</span>
@@ -365,79 +407,37 @@ const Discover: NextPage = () => {
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-2 justify-center border">
-                      <div className="col-span-1 border bg-yellow9 px-2 py-2">
+                    <div className="grid grid-cols-2 justify-center ">
+                      <div className="col-span-1  px-2 py-2">
                         {/* BOTTOM LEFT */}
-                        COMPENSATION
+
+                        {/* HOURLY RATE */}
+                        <p className="">
+                          <span className="">Hourly Rate:&nbsp;</span>$
+                          {selectedSession?.data?.hourlyRate || isLoading}
+                        </p>
+
+                        {/* HOURS */}
+                        <p className="">
+                          <span className="">Hours:&nbsp;</span>
+                          {selectedSession?.data?.totalHours || isLoading}
+                        </p>
                       </div>
 
-                      <div className="col-span-1 border bg-blue3 px-2 py-2">
+                      <div className="col-span-1 px-2 py-2">
                         {/* BOTTOM RIGHT */}
-                        TOTAL
+
+                        {/* TOTAL COMPENSATION */}
+                        <p className="">
+                          <span className="">Total:&nbsp;</span>$
+                          {selectedSession?.data?.totalCompensation ||
+                            isLoading}
+                        </p>
                       </div>
                     </div>
 
-                    {/* SESSION DURATION  */}
-                    <p className="">
-                      {selectedSession?.data?.sessionEndHour !== null &&
-                        selectedSession?.data?.sessionEndHour !== undefined &&
-                        selectedSession?.data?.sessionEndMinute !== null &&
-                        selectedSession?.data?.sessionEndMinute !== undefined &&
-                        selectedSession?.data?.sessionStartHour !== null &&
-                        selectedSession?.data?.sessionStartHour !== undefined &&
-                        selectedSession?.data?.sessionStartMinute !== null &&
-                        selectedSession?.data?.sessionStartMinute !==
-                          undefined && (
-                          <p>
-                            <span className=" ">Duration:&nbsp;</span>
-                            {selectedSession?.data?.sessionEndHour -
-                              selectedSession?.data?.sessionStartHour}{" "}
-                            hours{" "}
-                            {selectedSession?.data?.sessionEndMinute -
-                              selectedSession?.data?.sessionStartMinute}{" "}
-                            minutes{" "}
-                          </p>
-                        )}
-                    </p>
-
-                    {/* ADDRESS */}
-                    <p className="">
-                      <span className="">Address:&nbsp;</span>
-                      {selectedSession?.data?.address || isLoading}
-                    </p>
-
-                    {/* CITY */}
-                    <p className="">
-                      <span className="">City:&nbsp;</span>
-                      {selectedSession?.data?.city || isLoading}
-                    </p>
-
-                    {/* POSTAL CODE */}
-                    <p className="">
-                      <span className="">Postal Code:&nbsp;</span>
-                      {selectedSession?.data?.postalCode || isLoading}
-                    </p>
-
-                    {/* HOURLY RATE */}
-                    <p className="">
-                      <span className="">Hourly Rate:&nbsp;</span>$
-                      {selectedSession?.data?.hourlyRate || isLoading}
-                    </p>
-
-                    {/* HOURS */}
-                    <p className="">
-                      <span className="">Hours:&nbsp;</span>
-                      {selectedSession?.data?.totalHours || isLoading}
-                    </p>
-
-                    {/* TOTAL COMPENSATION */}
-                    <p className="">
-                      <span className="">Total:&nbsp;</span>$
-                      {selectedSession?.data?.totalCompensation || isLoading}
-                    </p>
-
                     {/* SESSION CREATED */}
-                    <p className="text-sm">
+                    <p className="text-sm px-2 py-2">
                       <span className="">Session Created:&nbsp;</span>
                       {selectedSession?.data?.createdAt.toDateString() ||
                         isLoading}
