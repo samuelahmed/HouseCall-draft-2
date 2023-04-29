@@ -253,10 +253,8 @@ const Discover: NextPage = () => {
                       {selectedSession?.data?.title || isLoading}
                     </div>
 
-                    
                     {/* INTERNAL BOX */}
                     <div className="grid grid-cols-2 justify-center border">
-
                       {/* TOP LEFT */}
                       <div className="col-span-1 border bg-yellow9 px-2 py-2">
                         {/* STATUS */}
@@ -326,44 +324,60 @@ const Discover: NextPage = () => {
                             </p>
                           )}
                       </div>
-
-
+                    </div>
+                    <div className="grid grid-cols-1 justify-center border">
                       {/* MIDDLE BOX FOR OVERVIEW */}
 
-
-                      {/* MIDDLE LEFT */}
-
-
-                      {/* MIDDLE RIGHT */}
-
-
-
-                      {/* MIDDLE BOX FOR LOCATION */}
-
-                      {/* BOTTOM LEFT */}
-
-                      {/* BOTTOM RIGHT */}
-
-
+                      <p className="">
+                        <span className="">Overview:&nbsp;</span>
+                        <textarea
+                          className="inline-block h-16 w-full border px-1 py-1 align-text-top focus:outline-none dark:bg-darkBg "
+                          id="firstName"
+                          defaultValue={selectedSession?.data?.overview || ""}
+                          readOnly={true}
+                        />
+                      </p>
                     </div>
 
+                    {/* MIDDLE BOX SPLIT */}
+                    <div className="grid grid-cols-2 justify-center border">
+                      <div className="col-span-1 border bg-yellow9 px-2 py-2">
+                        {/* MIDDLE LEFT */}
+                        ADDRESS AND LOCATION
+                      </div>
 
-                                        {/* 
-                        OVERVIEW AS TEXTAREA in own div so it goes full width
-   
-                        <p className="">
-                          <span className="">Overview:&nbsp;</span>
-                          <textarea className="w-full h-32">
+                      <div className="col-span-1 border bg-blue3 px-2 py-2">
+                        {/* MIDDLE RIGHT */}
+                        CITY AND POSTAL CODE
+                      </div>
+                    </div>
 
-                          {selectedSession?.data?.overview || isLoading}
-                          </textarea>
-                        </p>
-                        */}
+                    <div className="grid grid-cols-1 justify-center border">
+                      {/* MIDDLE BOX FOR LOCATION */}
+                      <p className="">
+                        <span className="">Location:&nbsp;</span>
+                        <textarea
+                          className="inline-block h-16 w-full border px-1 py-1 align-text-top focus:outline-none dark:bg-darkBg "
+                          id="firstName"
+                          defaultValue={selectedSession?.data?.location || ""}
+                          readOnly={true}
+                        />
+                      </p>
+                    </div>
 
+                    <div className="grid grid-cols-2 justify-center border">
+                      <div className="col-span-1 border bg-yellow9 px-2 py-2">
+                        {/* BOTTOM LEFT */}
+                        COMPENSATION
+                      </div>
 
+                      <div className="col-span-1 border bg-blue3 px-2 py-2">
+                        {/* BOTTOM RIGHT */}
+                        TOTAL
+                      </div>
+                    </div>
 
-
-                        {/* SESSION DURATION  */}
+                    {/* SESSION DURATION  */}
                     <p className="">
                       {selectedSession?.data?.sessionEndHour !== null &&
                         selectedSession?.data?.sessionEndHour !== undefined &&
@@ -404,7 +418,6 @@ const Discover: NextPage = () => {
                       {selectedSession?.data?.postalCode || isLoading}
                     </p>
 
-
                     {/* HOURLY RATE */}
                     <p className="">
                       <span className="">Hourly Rate:&nbsp;</span>$
@@ -429,15 +442,6 @@ const Discover: NextPage = () => {
                       {selectedSession?.data?.createdAt.toDateString() ||
                         isLoading}
                     </p>
-
-
-
-
-
-
-
-
-
 
                     <div className="flex flex-col items-center justify-center">
                       <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
