@@ -5,12 +5,13 @@ import LoginForm from "@/components/forms/loginForm";
 import Header from "@/components/layout/header";
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
+import NoSessionFound from "@/components/layout/noSessionFound";
 
 const New: NextPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const { data: readAllNewSessionsByUser, isLoading } =
-    trpc.careSessionAPIs.readAllSessionsWithStatusNew.useQuery();
+    trpc.careSessionAPIs.readAllCurrentUserSessionsWithStatusNew.useQuery();
 
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
@@ -25,7 +26,7 @@ const New: NextPage = () => {
       <div>
         {session && (
           <>
-            <div className="grid min-h-screen grid-cols-1 font-roboto">
+            <div className="min-h-screen grid-cols-1 font-roboto">
               <div>
                 <p className="py-2 px-4">
                   This page displays your newly created sessions. Local
@@ -39,6 +40,12 @@ const New: NextPage = () => {
               </div>
               <div className="max-h-screen overflow-scroll ">
                 <div className="mt-4">
+                  {readAllNewSessionsByUser?.length === 0 && (
+                  <div className="mt-20">
+                  <NoSessionFound />
+                </div>
+
+                  )}
                   <ul>
                     {readAllNewSessionsByUser
                       ?.filter((data) => {
@@ -132,7 +139,7 @@ const New: NextPage = () => {
                                     : startTimeMinute}{" "}
                                   {startTimeMinute > 12 ? "PM" : "AM"}
                                 </p>
-                                
+
                                 <p className="">
                                   <span className="">Session End:&nbsp;</span>
                                   {endTimeHour > 12

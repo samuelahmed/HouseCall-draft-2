@@ -276,12 +276,38 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
+  //used for discover page
   readAllSessionsWithStatusNew: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       return null;
     }
     const careSessions = ctx.prisma.careSession.findMany({
       where: {
+        careSessionStatus: {
+          in: ["New", "Active"],
+        },
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            role: true,
+          },
+        },
+      },
+    });
+    return careSessions;
+  }),
+
+  //used for patient-new page
+  readAllCurrentUserSessionsWithStatusNew: privateProcedure.query(({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      return null;
+    }
+    const careSessions = ctx.prisma.careSession.findMany({
+      where: {
+        userId: ctx.session.user.id,
         careSessionStatus: {
           in: ["New", "Active"],
         },
