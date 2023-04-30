@@ -156,8 +156,7 @@ const Discover: NextPage = () => {
                                     <span className="">
                                       Session Date:&nbsp;
                                     </span>
-                                    {sessionMonth} / {sessionDay} /{" "}
-                                    {sessionYear}
+                                    {sessionMonth} / {sessionDay} / {sessionYear}
                                   </p>
                                   <p className="">
                                     <span className="">
@@ -250,9 +249,10 @@ const Discover: NextPage = () => {
                         {/* DATE */}
                         <p className="">
                           <span className="">Date:&nbsp;</span>
+                          {selectedSession?.data?.sessionMonth || isLoading} /{" "}
+
                           {selectedSession?.data?.sessionDay ||
                             isLoading} /{" "}
-                          {selectedSession?.data?.sessionMonth || isLoading} /{" "}
                           {selectedSession?.data?.sessionYear || isLoading}
                         </p>
                       </div>

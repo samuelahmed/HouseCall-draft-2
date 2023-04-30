@@ -5,6 +5,7 @@ import Header from "@/components/layout/header";
 import LoginForm from "@/components/forms/loginForm";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
+import NoSessionFound from "@/components/layout/noSessionFound";
 
 const PatientScheduled: NextPage = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const PatientScheduled: NextPage = () => {
       <div>
         {session && (
           <>
-            <div className="grid min-h-screen grid-cols-1 font-roboto">
+            <div className="min-h-screen grid-cols-1 font-roboto">
               <div>
                 <p className="py-2 px-4">
                   This page displays scheduled sessions, which means you have
@@ -40,6 +41,8 @@ const PatientScheduled: NextPage = () => {
               <div className="px-4">
                 <span className="text-xl">Upcoming This Week</span>
                 <div className="mt-4 max-h-96 overflow-scroll">
+                {readAllScheduledSessionsByUser?.length === 0 && <NoSessionFound />}
+
                   <ul>
                     {readAllScheduledSessionsByUser
                       ?.filter((data) => {
