@@ -140,60 +140,84 @@ const Slug: NextPage = () => {
        *       PATIENT        *
        **********************/}
       {session && user?.role === "Patient" && (
-        <div className="flex min-h-screen flex-col items-center justify-center bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12">
-          <h1 className="text-3xl ">{potentialCaregiverInfo?.username}</h1>
-          <h1 className="text-1xl">{potentialCaregiverInfo?.email}</h1>
-          <h1 className="text-1xl ">{potentialCaregiverInfo?.address}</h1>
-          <div className="mt-2 mb-2 space-x-2 ">
-            <button
-              className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
-                                dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-              onClick={() => {
-                triggerCreatePusherChannel();
-                // router.push("/messages");
-              }}
-            >
-              Message Caregiver
-            </button>
-            {/* In the future make sure that once a session is called it cannot just be reopened.
-            However for testing at the moment is fine. */}
-            {(potentialCareSession?.status === "Applied" ||
-              potentialCareSession?.status === "Closed") && (
-              <button
-                className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
-              dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                onClick={() => {
-                  setInputs({
-                    careSessionId: currentSession?.id || "",
-                    acceptedCaregiverId:
-                      potentialCareSession?.caregiverId || "",
-                    careSessionStatus: "Active",
-                  });
-                  acceptedSession();
-                  updateThisPotentialCareSession();
-                  updateAllOtherPotentialCareSessions();
-                }}
-              >
-                Accept Caregiver
-              </button>
-            )}
-            {currentSession?.careSessionStatus === "Scheduled" && (
-              <button
-                className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
-              dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                onClick={() => {
-                  setInputs({
-                    careSessionId: currentSession?.id || "",
-                    acceptedCaregiverId: "",
-                    careSessionStatus: "Canceled",
-                  });
-                  cancelSession();
-                  closeThisPotentialCareSession();
-                }}
-              >
-                Cancel Session
-              </button>
-            )}
+        <div className="font-roboto">
+          <div>
+            <p className="py-2 px-4">
+              This page displays information about a potential caregiver, you
+              can send them a message from here, and if they meet you needs
+              accept them for you session.{" "}
+            </p>
+          </div>
+
+          <div className="min-h-screen">
+            <div className="grid grid-cols-2 py-4 px-4 md:px-20">
+              <div className="col-span-1">
+                Caregiver Name: {potentialCaregiverInfo?.username}
+              </div>
+
+              <div className="col-span-1">
+                Caregiver City: {potentialCaregiverInfo?.city}
+              </div>
+
+              <div className="col-span-2 justify-self-center">
+                <div className="mt-2 mb-2 flex space-x-2">
+                  <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                    <button
+                      className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                      onClick={() => {
+                        // NEED TO FIGURE OUT HOW TO CHECK IF THERE IS A PUSHER CHANNEL AND IF THERE IS DO NOT CREATE A NEW ONE
+                        triggerCreatePusherChannel();
+                        // router.push("/dashboard/messages");
+                      }}
+                    >
+                      Message Caregiver
+                    </button>
+                  </div>
+
+                  {/* In the future make sure that once a session is called it cannot just be reopened.
+                         However for testing at the moment is fine. */}
+                  {(potentialCareSession?.status === "Applied" ||
+                    potentialCareSession?.status === "Closed") && (
+                    <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                      <button
+                        className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                        onClick={() => {
+                          setInputs({
+                            careSessionId: currentSession?.id || "",
+                            acceptedCaregiverId:
+                              potentialCareSession?.caregiverId || "",
+                            careSessionStatus: "Active",
+                          });
+                          acceptedSession();
+                          updateThisPotentialCareSession();
+                          updateAllOtherPotentialCareSessions();
+                        }}
+                      >
+                        Accept Caregiver
+                      </button>
+                    </div>
+                  )}
+                  {currentSession?.careSessionStatus === "Scheduled" && (
+                    <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                      <button
+                        className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                        onClick={() => {
+                          setInputs({
+                            careSessionId: currentSession?.id || "",
+                            acceptedCaregiverId: "",
+                            careSessionStatus: "Canceled",
+                          });
+                          cancelSession();
+                          closeThisPotentialCareSession();
+                        }}
+                      >
+                        Cancel Session
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
