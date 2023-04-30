@@ -2,7 +2,6 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import LoginForm from "@/components/forms/loginForm";
-import AppliedEngine from "@/components/caregiver/appliedEngine";
 import Header from "@/components/layout/header";
 import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";

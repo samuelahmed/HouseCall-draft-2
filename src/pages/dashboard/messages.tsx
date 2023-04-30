@@ -103,10 +103,12 @@ const Messages: NextPage = () => {
                     }
                     onClick={() => {
                       setState(index);
-                      setSelectedChannel(channel);
-                      setContactName(
-                        channel.caregiverName || channel.patientName || ""
-                      );
+                      if (!selectedChannel) {
+                        setSelectedChannel(channel);
+                        setContactName(
+                          channel.caregiverName || channel.patientName || ""
+                        );
+                      }
                     }}
                     key={channel.channelName}
                   >
@@ -124,12 +126,12 @@ const Messages: NextPage = () => {
                 <div className="py-2 text-center text-xl">{contactName}</div>
                 <div className="mx-2 max-h-60vh min-h-60vh overflow-scroll">
                   {messages
-
                     ?.sort(
                       (a, b) =>
                         new Date(b.createdAt).getTime() -
                         new Date(a.createdAt).getTime()
                     )
+                    .reverse()
                     // .slice(0, 100)
                     .map((message) => {
                       const liveFormattedDatetime = new Date(
