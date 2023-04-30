@@ -1,14 +1,8 @@
 
 ```
 📦src
+
  ┣ 📂pages
- ┃ ┣ 📂api
- ┃ ┃ ┣ 📂auth
- ┃ ┃ ┃ ┗ 📜[...nextauth].ts
- ┃ ┃ ┣ 📂trpc
- ┃ ┃ ┃ ┗ 📜[trpc].ts
- ┃ ┃ ┣ 📜examples.ts
- ┃ ┃ ┗ 📜restricted.ts
  ┃ ┣ 📂careSession
  ┃ ┃ ┗ 📜[slug].tsx
  ┃ ┣ 📂caregiver
@@ -48,7 +42,6 @@
  ┃ ┃ ┃ ┗ 📜userRouter.ts
  ┃ ┃ ┣ 📜context.ts
  ┃ ┃ ┗ 📜trpc.ts
-
 
  ```
 
