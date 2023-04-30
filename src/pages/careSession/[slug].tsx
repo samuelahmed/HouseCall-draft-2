@@ -125,110 +125,198 @@ const Slug: NextPage = () => {
        *      CAREGIVER       *
        **********************/}
       {session && user?.role === "Caregiver" && (
-        <>
-          <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-            <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
-              <div className=" grid min-h-88vh grid-cols-1 gap-x-1 bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkOlive12">
-                {/* DYNAMIC PART OF DASHBOARD */}
-                <div className="flex h-screen items-center justify-center  bg-blue2 dark:bg-darkBlue2">
-                  <div className="h-4/6 w-1/2 rounded-sm border border-blue6 bg-blue1 dark:border-darkBlue6 dark:bg-darkBlue1">
-                    <div className="mb-4 mr-4 ml-4">
-                      <div className=" mb-2 mr-4 ml-4 mt-4 p-4 text-center text-xl">
-                        {currentSession?.title}
-                      </div>
-                      <div className="text-sm">
-                        <p className="">
-                          <span className="font-semibold">Name:&nbsp;</span>
-                          {currentSession?.name}
-                        </p>
-                        <p className="">
-                          <span className="font-semibold">
-                            Session Start Hour:&nbsp;
-                          </span>
-                          {currentSession?.sessionStartHour}
-                        </p>
-                        <p className="">
-                          <span className="font-semibol d">Address:&nbsp;</span>
-                          {currentSession?.address}
-                        </p>
-                        <p className="">
-                          <span className="font-semibold">
-                            Medical Notes:&nbsp;
-                          </span>
-                          {currentSession?.medicalNotes}
-                        </p>
-                        <p className="">
-                          <span className="font-semibold">Overview:&nbsp;</span>
-                          {currentSession?.overview}
-                        </p>
-                        <p className="">
-                          <span className=" font-semibold">
-                            Compensation Per Hour:&nbsp;
-                          </span>
-                          ${currentSession?.hourlyRate}
-                        </p>
-                        <p className="">
-                          <span className=" font-semibold">Hours:&nbsp;</span>
-                          {currentSession?.totalHours}
-                        </p>
-                        <p className="">
-                          <span className=" font-semibold">Total:&nbsp;</span>$
-                          {currentSession?.totalCompensation}
-                        </p>
-                        <p className="">
-                          <span className=" font-semibold">Status:&nbsp;</span>
-                          {currentSession?.careSessionStatus}
-                        </p>
-                      </div>
+        <div className="font-roboto">
+          <div>
+            <p className="py-2 px-4">
+              This page display a session. If you think you would be a good
+              caregiver for this patient, click apply. The patient will be able
+              to message and accept you as their caregiver.
+            </p>
+          </div>
+          <div className="min-h-screen px-4 py-4">
+            <div className="text-center text-2xl  ">
+              {currentSession?.title}
+            </div>
+            {/* INTERNAL BOX */}
+            <div className="grid grid-cols-2 justify-center ">
+              {/* TOP LEFT */}
+              <div className="col-span-1 px-2 py-2">
+                {/* STATUS */}
+                <p className="">
+                  <span className="">Status:&nbsp;</span>
+                  {currentSession?.careSessionStatus}
+                </p>
+                {/* NAME */}
+                <p className="">
+                  <span className="">Name:&nbsp;</span>
+                  {currentSession?.name}
+                </p>
+                {/* DATE */}
+                <p className="">
+                  <span className="">Date:&nbsp;</span>
+                  {sessionMonth}/{sessionDay}/{sessionYear}
+                </p>
+              </div>
+              {/* TOP RIGHT */}
+              <div className="col-span-1 px-2 py-2">
+                {/* SESSION START  */}
+                {currentSession?.sessionStartHour !== null &&
+                  currentSession?.sessionStartHour !== undefined &&
+                  currentSession?.sessionStartMinute !== null &&
+                  currentSession?.sessionStartMinute !== undefined && (
+                    <p className="">
+                      <span className="">Session Start:&nbsp;</span>
+                      {currentSession?.sessionStartHour > 12
+                        ? currentSession?.sessionStartHour - 12
+                        : currentSession?.sessionStartHour}
+                      :
+                      {currentSession?.sessionStartMinute < 10
+                        ? "0" + currentSession?.sessionStartMinute
+                        : currentSession?.sessionStartMinute}{" "}
+                      {currentSession?.sessionStartMinute > 12 ? "PM" : "AM"}
+                    </p>
+                  )}
+                {/* SESSION END  */}
+                {currentSession?.sessionEndHour !== null &&
+                  currentSession?.sessionEndHour !== undefined &&
+                  currentSession?.sessionEndMinute !== null &&
+                  currentSession?.sessionEndMinute !== undefined && (
+                    <p className="">
+                      <span className="">Session End:&nbsp;</span>
+                      {currentSession?.sessionEndHour > 12
+                        ? currentSession?.sessionEndHour - 12
+                        : currentSession?.sessionEndHour}
+                      :
+                      {currentSession?.sessionEndMinute < 10
+                        ? "0" + currentSession?.sessionEndMinute
+                        : currentSession?.sessionEndMinute}{" "}
+                      {currentSession?.sessionEndHour > 12 ? "PM" : "AM"}
+                    </p>
+                  )}
+                {/* SESSION DURATION  */}
+                <p className="">
+                  {currentSession?.sessionEndHour !== null &&
+                    currentSession?.sessionEndHour !== undefined &&
+                    currentSession?.sessionEndMinute !== null &&
+                    currentSession?.sessionEndMinute !== undefined &&
+                    currentSession?.sessionStartHour !== null &&
+                    currentSession?.sessionStartHour !== undefined &&
+                    currentSession?.sessionStartMinute !== null &&
+                    currentSession?.sessionStartMinute !== undefined && (
+                      <p>
+                        <span className=" ">Duration:&nbsp;</span>
+                        {currentSession?.sessionEndHour -
+                          currentSession?.sessionStartHour}{" "}
+                        hours{" "}
+                        {currentSession?.sessionEndMinute -
+                          currentSession?.sessionStartMinute}{" "}
+                        minutes{" "}
+                      </p>
+                    )}
+                </p>
+              </div>
+            </div>
+            <div className="mx-2 grid grid-cols-1 justify-center ">
+              {/* MIDDLE BOX FOR OVERVIEW */}
+              <p className="">
+                <span className="">Overview:&nbsp;</span>
+                <textarea
+                  className="inline-block h-16 w-full border px-1 py-1 align-text-top focus:outline-none dark:bg-darkBg "
+                  id="firstName"
+                  defaultValue={currentSession?.overview || ""}
+                  readOnly={true}
+                />
+              </p>
+            </div>
+            {/* MIDDLE BOX SPLIT */}
+            <div className="grid grid-cols-2 justify-center ">
+              {/* MIDDLE LEFT */}
+              <div className="col-span-1  px-2 py-2">
+                {/* ADDRESS */}
+                <p className="">
+                  <span className="">Address:&nbsp;</span>
+                  {currentSession?.address}
+                </p>
+              </div>
+              {/* MIDDLE RIGHT */}
+              <div className="col-span-1 px-2 py-2">
+                {/* CITY */}
+                <p className="">
+                  <span className="">City:&nbsp;</span>
+                  {currentSession?.city}
+                </p>
+                {/* POSTAL CODE */}
+                <p className="">
+                  <span className="">Postal Code:&nbsp;</span>
+                  {currentSession?.postalCode}
+                </p>
+              </div>
+            </div>
+            {/* MIDDLE BOX FOR LOCATION */}
+            <div className="mx-2 grid grid-cols-1 justify-center">
+              <p className="">
+                <span className="">Location:&nbsp;</span>
+                <textarea
+                  className="inline-block h-16 w-full border px-1 py-1 align-text-top focus:outline-none dark:bg-darkBg "
+                  id="firstName"
+                  defaultValue={currentSession?.location || ""}
+                  readOnly={true}
+                />
+              </p>
+            </div>
+            <div className="grid grid-cols-2 justify-center">
+              {/* BOTTOM LEFT */}
+              <div className="col-span-1 px-2 py-2">
+                {/* HOURLY RATE */}
+                <p className="">
+                  <span className="">Hourly Rate:&nbsp;</span>$
+                  {currentSession?.hourlyRate}
+                </p>
+                {/* HOURS */}
+                <p className="">
+                  <span className="">Hours:&nbsp;</span>
+                  {currentSession?.totalHours}
+                </p>
+              </div>
+              {/* BOTTOM RIGHT */}
+              <div className="col-span-1 px-2 py-2">
+                {/* TOTAL COMPENSATION */}
+                <p className="">
+                  <span className="">Total:&nbsp;</span>$
+                  {currentSession?.totalCompensation}
+                </p>
+              </div>
+            </div>
+            {/* SESSION CREATED */}
+            <p className="px-2 py-2 text-sm">
+              <span className="">Session Created:&nbsp;</span>
+              {currentSession?.createdAt.toDateString()}
+            </p>
+            <div className="flex flex-col items-center justify-center py-4">
+              {potentialCaregiver?.caregiverId !== user.id && (
+                <>
+                  {potentialCaregiver?.caregiverId !== user.id && (
+                    <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                      <button
+                        className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                        onClick={() => {
+                          setInputs({
+                            currentUserId: user?.id,
+                            id: currentSession?.id || "",
+                          });
+                          publish();
+                          updateCareSessionStatusToApplied();
+                        }}
+                      >
+                        Apply
+                      </button>
                     </div>
-                    <div className="mt- mb-12 flex justify-center ">
-                      {potentialCaregiver?.caregiverId !== user.id && (
-                        <>
-                          {potentialCaregiver?.caregiverId !== user.id && (
-                            <button
-                              className=" cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
-                            dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                              onClick={() => {
-                                setInputs({
-                                  currentUserId: user?.id,
-                                  id: currentSession?.id || "",
-                                });
-                                publish();
-                                updateCareSessionStatusToApplied();
-                              }}
-                            >
-                              Apply
-                            </button>
-                          )}
-                          {potentialCaregiver?.caregiverId === user.id &&
-                            potentialCaregiver?.status !== "Closed" && (
-                              <button
-                                className=" cursor-pointer border border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
-                              dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-                                onClick={() => {
-                                  setInputs({
-                                    currentUserId: user?.id || "",
-                                    id: currentSession?.id || "",
-                                  });
-                                  removeCaregiver();
-                                }}
-                              >
-                                Cancel Application
-                              </button>
-                            )}
-                          <div>
-                            {errorMessage && (
-                              <p className="text-red-600 text-center">
-                                Meow! You already applied to this session.
-                              </p>
-                            )}
-                          </div>
-                        </>
-                      )}
-                      {potentialCaregiver?.caregiverId === user.id && (
+                  )}
+                  {potentialCaregiver?.caregiverId === user.id &&
+                    potentialCaregiver?.status !== "Closed" && (
+                      <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
                         <button
-                          className=" cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
-                        dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                          className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
                           onClick={() => {
                             setInputs({
                               currentUserId: user?.id || "",
@@ -239,21 +327,43 @@ const Slug: NextPage = () => {
                         >
                           Cancel Application
                         </button>
-                      )}
-                    </div>
-                    <div>
-                      {errorMessage && (
-                        <p className="text-red-600 text-center">
-                          Meow! You already applied to this session.
-                        </p>
-                      )}
-                    </div>
+                      </div>
+                    )}
+                  <div>
+                    {errorMessage && (
+                      <p className="text-red-600 text-center">
+                        Meow! You already applied to this session.
+                      </p>
+                    )}
                   </div>
+                </>
+              )}
+              {potentialCaregiver?.caregiverId === user.id && (
+                <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                  <button
+                    className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                    onClick={() => {
+                      setInputs({
+                        currentUserId: user?.id || "",
+                        id: currentSession?.id || "",
+                      });
+                      removeCaregiver();
+                    }}
+                  >
+                    Cancel Application
+                  </button>
                 </div>
-              </div>
+              )}
             </div>
-          </main>
-        </>
+            <div>
+              {errorMessage && (
+                <p className="text-red-600 text-center">
+                  Meow! You already applied to this session.
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
       )}
       {/***********************
        *       PATIENT        *
