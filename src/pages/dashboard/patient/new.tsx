@@ -41,10 +41,9 @@ const New: NextPage = () => {
               <div className="max-h-screen overflow-scroll ">
                 <div className="mt-4">
                   {readAllNewSessionsByUser?.length === 0 && (
-                  <div className="mt-20">
-                  <NoSessionFound />
-                </div>
-
+                    <div className="mt-20">
+                      <NoSessionFound />
+                    </div>
                   )}
                   <ul>
                     {readAllNewSessionsByUser
@@ -110,6 +109,13 @@ const New: NextPage = () => {
                           sessionDurationHours--;
                           sessionDurationMinutes += 60;
                         }
+                        {
+                          readAllNewSessionsByUser?.length === 0 && (
+                            <div className="mt-20">
+                              <NoSessionFound />
+                            </div>
+                          );
+                        }
                         return (
                           <li
                             key={id}
@@ -139,7 +145,6 @@ const New: NextPage = () => {
                                     : startTimeMinute}{" "}
                                   {startTimeMinute > 12 ? "PM" : "AM"}
                                 </p>
-
                                 <p className="">
                                   <span className="">Session End:&nbsp;</span>
                                   {endTimeHour > 12

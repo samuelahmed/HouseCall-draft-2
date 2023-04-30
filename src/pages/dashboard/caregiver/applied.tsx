@@ -13,7 +13,7 @@ const Applied: NextPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
 
-  const { data, isLoading } =
+  const { data: readAllAppliedPotentialSessionsByUser, isLoading } =
     trpc.careSessionAPIs.readAllAppliedPotentialSessionsByUser.useQuery();
 
   const currentYear = new Date().getFullYear();
@@ -40,15 +40,15 @@ const Applied: NextPage = () => {
               </div>
               <div className="max-h-screen overflow-scroll ">
                 <div className="mt-4">
-                  {data?.length === 0 && (
+                  {readAllAppliedPotentialSessionsByUser?.length === 0 && (
                     <div className="mt-20">
                       <NoSessionFound />
                     </div>
                   )}
-                  {data?.length !== 0 && (
+                  {readAllAppliedPotentialSessionsByUser?.length !== 0 && (
                     <>
                       <ul>
-                        {data
+                        {readAllAppliedPotentialSessionsByUser
                           ?.filter((data) => {
                             const { sessionMonth, sessionDay, sessionYear } =
                               data;
@@ -112,6 +112,13 @@ const Applied: NextPage = () => {
                             if (sessionDurationMinutes < 0) {
                               sessionDurationHours--;
                               sessionDurationMinutes += 60;
+                            }
+                            {
+                              readAllAppliedPotentialSessionsByUser?.length === 0 && (
+                                <div className="mt-20">
+                                  <NoSessionFound />
+                                </div>
+                              );
                             }
                             return (
                               <li
