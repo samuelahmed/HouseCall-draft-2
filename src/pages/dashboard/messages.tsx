@@ -104,11 +104,11 @@ const Messages: NextPage = () => {
                     onClick={() => {
                       setState(index);
                       if (!selectedChannel) {
-                      setSelectedChannel(channel);
-                      } 
-                      setContactName(
-                        channel.caregiverName || channel.patientName || ""
-                      );
+                        setSelectedChannel(channel);
+                        setContactName(
+                          channel.caregiverName || channel.patientName || ""
+                        );
+                      }
                     }}
                     key={channel.channelName}
                   >
