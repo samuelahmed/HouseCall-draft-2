@@ -40,7 +40,12 @@ const New: NextPage = () => {
               </div>
               <div className="max-h-screen overflow-scroll ">
                 <div className="mt-4">
-                  {readAllNewSessionsByUser?.length === 0 && <NoSessionFound />}
+                  {readAllNewSessionsByUser?.length === 0 && (
+                  <div className="mt-20">
+                  <NoSessionFound />
+                </div>
+
+                  )}
                   <ul>
                     {readAllNewSessionsByUser
                       ?.filter((data) => {
