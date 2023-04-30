@@ -16,9 +16,9 @@ const Applied: NextPage = () => {
   trpc.careSessionAPIs.readAllAppliedPotentialSessionsByUser.useQuery();
 
 
-  // const currentYear = new Date().getFullYear();
-  // const currentMonth = new Date().getMonth() + 1;
-  // const currentDay = new Date().getDate();
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1;
+  const currentDay = new Date().getDate();
   return (
     <>
       <Head>
@@ -28,7 +28,7 @@ const Applied: NextPage = () => {
       <div>
         {session && (
           <>
-  
+
 
 
 <div className="grid min-h-screen grid-cols-1 font-roboto">
@@ -42,25 +42,25 @@ const Applied: NextPage = () => {
                 <div className="mt-4">
                   <ul>
                     {data
-                      // ?.filter((data) => {
-                      //   const { sessionMonth, sessionDay, sessionYear } = data;
-                      //   if (sessionYear && sessionYear < currentYear) {
-                      //     return false;
-                      //   }
-                      //   if (sessionYear && sessionYear > currentYear) {
-                      //     return true;
-                      //   }
-                      //   if (sessionMonth && sessionMonth < currentMonth) {
-                      //     return false;
-                      //   }
-                      //   if (sessionMonth && sessionMonth > currentMonth) {
-                      //     return true;
-                      //   }
-                      //   if (sessionDay && sessionDay < currentDay) {
-                      //     return false;
-                      //   }
-                      //   return true;
-                      // })
+                      ?.filter((data) => {
+                        const { sessionMonth, sessionDay, sessionYear } = data;
+                        if (sessionYear && sessionYear < currentYear) {
+                          return false;
+                        }
+                        if (sessionYear && sessionYear > currentYear) {
+                          return true;
+                        }
+                        if (sessionMonth && sessionMonth < currentMonth) {
+                          return false;
+                        }
+                        if (sessionMonth && sessionMonth > currentMonth) {
+                          return true;
+                        }
+                        if (sessionDay && sessionDay < currentDay) {
+                          return false;
+                        }
+                        return true;
+                      })
                       ?.sort((a, b) => {
                         const aDate = new Date(
                           a.sessionYear || 0,

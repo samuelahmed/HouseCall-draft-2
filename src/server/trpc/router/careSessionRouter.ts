@@ -282,6 +282,7 @@ export const careSessionRouter = router({
     }
     const careSessions = ctx.prisma.careSession.findMany({
       where: {
+        userId: ctx.session.user.id,
         careSessionStatus: {
           in: ["New", "Active"],
         },
