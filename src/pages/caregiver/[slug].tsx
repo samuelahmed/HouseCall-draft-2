@@ -134,11 +134,7 @@ const Slug: NextPage = () => {
       <Head>
         <title>PotentialCaregiver: {potentialCareSession?.caregiverId}</title>
       </Head>
-      {/* <NavLayout /> */}
       <Header />
-      {/***********************
-       *       PATIENT        *
-       **********************/}
       {session && user?.role === "Patient" && (
         <div className="font-roboto">
           <div>
