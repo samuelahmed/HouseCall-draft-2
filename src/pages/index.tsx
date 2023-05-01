@@ -28,7 +28,7 @@ const Home: NextPage = () => {
               width={0}
               height={0}
               sizes="100vw"
-              style={{ width: "100%", height: "auto" }} 
+              style={{ width: "100%", height: "auto" }}
             />
             <Image
               src="/housecalloption4.jpeg"
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
               width={0}
               height={0}
               sizes="100vw"
-              style={{ width: "100%", height: "auto" }} 
+              style={{ width: "100%", height: "auto" }}
             />
             <Image
               src="/housecalloption5.jpeg"
@@ -44,12 +44,12 @@ const Home: NextPage = () => {
               width={0}
               height={0}
               sizes="100vw"
-              style={{ width: "100%", height: "auto" }} 
+              style={{ width: "100%", height: "auto" }}
             />
           </div>
         </div>
         <div className="relative z-10 flex h-screen flex-col items-center justify-center">
-          <div className=" flex flex-col items-center justify-center border bg-white  px-4 py-4">
+          <div className=" flex flex-col items-center justify-center border bg-white  px-4 py-4 dark:bg-darkBg">
             <div className="flex flex-row">
               <h1 className=" text-5xl font-extrabold tracking-tight sm:text-[5rem]">
                 House <span className="text-blue9">Call</span>
@@ -63,7 +63,9 @@ const Home: NextPage = () => {
               ></Image>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <p className="text-3xl">Care in the comfort of your home</p>
+              <p className="justify-center text-center text-3xl">
+                Care in the comfort of your home
+              </p>
             </div>
           </div>
         </div>
