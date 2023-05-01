@@ -181,6 +181,13 @@ const Header = () => {
       <div className={`${showNav ? "" : "hidden"}`}>
         <SideNav />
       </div>
+      {session && (
+        <div className="min-w-full bg-blue2">
+          <div className="flex justify-center px-1 py-1 text-xl capitalize text-olive12 dark:bg-darkBlue3 dark:text-darkOlive12">
+            {currentRoute}
+          </div>
+        </div>
+      )}
     </>
   );
 };
