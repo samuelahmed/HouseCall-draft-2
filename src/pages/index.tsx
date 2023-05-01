@@ -1,7 +1,5 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-// import NavLayout from "@/components/layout/navLayout";
 import Image from "next/image";
 import Header from "@/components/layout/header";
 
@@ -12,84 +10,64 @@ const Home: NextPage = () => {
         <title>House Call</title>
         <meta name="description" content="Care in the comfort of your home" />
       </Head>
-      {/* <NavLayout /> */}
       <Header />
-
       <div className="relative h-screen">
-            <div className="absolute inset-0">
-                <Image
-                    src="/housecalloptions2.jpg"
-                    alt="background image"
-                    fill
-                />
-            </div>
-            <div className="relative z-10 flex flex-col items-center justify-center h-full">
-            <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <div className="flex flex-row">
-            <h1 className=" text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-              House <span className="text-blue9">Call</span>
-            </h1>
+        <div className="absolute inset-0">
+          <div className="grid min-h-full grid-cols-2">
             <Image
-              className="ml-6 self-center"
-              src="/faviconLarge.png"
-              alt="me"
-              // fill
-              width="64"
-              height="64"
-
-            >
-            </Image>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-3xl">Care in the comfort of your home</p>
-          </div>
-        </div> 
-            </div>
-        </div>
-
-      {/* TODO: make this standard page with user auth state */}
-
-      {/* <main className="flex min-h-screen flex-col items-center justify-center bg-blue1 text-olive12 dark:bg-darkBlue1 dark:text-darkBlue12 "> */}
-{/* 
-        <div className="relative min-h-screen">
-        <Image
-              className="ml-6 self-center"
-              src="/faviconLarge.png"
-              alt="me"
-              fill
-              // width="64"
-              // height="64"
-
-            >
-
-            </Image>
-
-
-        </div>
-
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <div className="flex flex-row">
-            <h1 className=" text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-              House <span className="text-blue9">Call</span>
-            </h1>
+              src="/housecalloption2.jpeg"
+              alt="background image"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }}
+            />
             <Image
-              className="ml-6 self-center"
-              src="/faviconLarge.png"
-              alt="me"
-              // fill
-              width="64"
-              height="64"
-
-            >
-            </Image>
+              src="/housecalloption6.jpeg"
+              alt="background image"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }} 
+            />
+            <Image
+              src="/housecalloption4.jpeg"
+              alt="background image"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }} 
+            />
+            <Image
+              src="/housecalloption5.jpeg"
+              alt="background image"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }} 
+            />
           </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-3xl">Care in the comfort of your home</p>
+        </div>
+        <div className="relative z-10 flex h-screen flex-col items-center justify-center">
+          <div className=" flex flex-col items-center justify-center border bg-white  px-4 py-4">
+            <div className="flex flex-row">
+              <h1 className=" text-5xl font-extrabold tracking-tight sm:text-[5rem]">
+                House <span className="text-blue9">Call</span>
+              </h1>
+              <Image
+                className="ml-6 self-center"
+                src="/faviconLarge.png"
+                alt="me"
+                width="64"
+                height="64"
+              ></Image>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <p className="text-3xl">Care in the comfort of your home</p>
+            </div>
           </div>
-        </div> */}
-      {/* </main> */}
-
-
+        </div>
+      </div>
     </>
   );
 };
