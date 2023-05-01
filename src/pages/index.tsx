@@ -5,7 +5,7 @@ import Header from "@/components/layout/header";
 
 const Home: NextPage = () => {
   return (
-    <>
+    <div className="font-robotoSlab">
       <Head>
         <title>House Call</title>
         <meta name="description" content="Care in the comfort of your home" />
@@ -50,7 +50,7 @@ const Home: NextPage = () => {
         </div>
         <div className="relative z-10 flex h-screen flex-col items-center justify-center">
           <div className=" flex flex-col items-center justify-center border bg-white  px-4 py-4 dark:bg-darkBg">
-            <div className="flex flex-row">
+            <div className="flex flex-row py-2">
               <h1 className=" text-5xl font-extrabold tracking-tight sm:text-[5rem]">
                 House <span className="text-blue9">Call</span>
               </h1>
@@ -62,7 +62,7 @@ const Home: NextPage = () => {
                 height="64"
               ></Image>
             </div>
-            <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-col items-center">
               <p className="justify-center text-center text-3xl">
                 Care in the comfort of your home
               </p>
@@ -70,7 +70,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
