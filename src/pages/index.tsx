@@ -13,23 +13,43 @@ const Home: NextPage = () => {
       <Header />
       <div className="relative h-screen">
         <div className="absolute inset-0">
-          <div className="grid min-h-full grid-cols-2 bg-yellow9">
-            <div className="relative col-span-1 bg-blue1">
-              <Image src="/housecalloption2.jpeg" alt="background image" fill />
-            </div>
-            <div className="relative col-span-1 bg-blue1">
-              <Image src="/housecalloption1.jpeg" alt="background image" fill />
-            </div>
-            <div className="relative col-span-1 bg-blue1">
-              <Image src="/housecalloption4.jpeg" alt="background image" fill />
-            </div>
-            <div className="relative col-span-1 bg-blue1">
-              <Image src="/housecalloption5.jpeg" alt="background image" fill />
-            </div>
+          <div className="grid min-h-full grid-cols-2">
+            <Image
+              src="/housecalloption2.jpeg"
+              alt="background image"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }}
+            />
+            <Image
+              src="/housecalloption6.jpeg"
+              alt="background image"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }} 
+            />
+            <Image
+              src="/housecalloption4.jpeg"
+              alt="background image"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }} 
+            />
+            <Image
+              src="/housecalloption5.jpeg"
+              alt="background image"
+              width={0}
+              height={0}
+              sizes="100vw"
+              style={{ width: "100%", height: "auto" }} 
+            />
           </div>
         </div>
         <div className="relative z-10 flex h-screen flex-col items-center justify-center">
-          <div className=" flex flex-col items-center justify-center bg-white px-4  py-4 border">
+          <div className=" flex flex-col items-center justify-center border bg-white  px-4 py-4">
             <div className="flex flex-row">
               <h1 className=" text-5xl font-extrabold tracking-tight sm:text-[5rem]">
                 House <span className="text-blue9">Call</span>
