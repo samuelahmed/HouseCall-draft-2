@@ -32,7 +32,7 @@ const Header = () => {
       <div className="flex-cols-3 flex items-center justify-between bg-blue12 py-1 dark:bg-darkBlue1 md:grid md:grid-cols-3">
         <div className="flex justify-start">
           <div className="ml-4 flex items-center pr-4 text-darkOlive12">
-            {data?.role === "Caregiver" && (
+            {session && data?.role === "Caregiver" && (
               <div
                 onClick={() => router.push("/dashboard")}
                 className="hidden cursor-pointer text-sm md:block md:text-xl"
@@ -40,9 +40,17 @@ const Header = () => {
                 House Call
               </div>
             )}
-            {data?.role === "Patient" && (
+            {session && data?.role === "Patient" && (
               <div
                 onClick={() => router.push("/dashboard")}
+                className="cursor-pointer text-xs md:block md:text-xl"
+              >
+                House Call
+              </div>
+            )}
+            {!session && (
+              <div
+                onClick={() => router.push("/")}
                 className="cursor-pointer text-xs md:block md:text-xl"
               >
                 House Call
@@ -173,11 +181,13 @@ const Header = () => {
       <div className={`${showNav ? "" : "hidden"}`}>
         <SideNav />
       </div>
-      <div className="min-w-full bg-blue2">
-        <div className="flex justify-center px-1 py-1 text-xl capitalize text-olive12 dark:bg-darkBlue3 dark:text-darkOlive12">
-          {currentRoute}
+      {session && (
+        <div className="min-w-full bg-blue2">
+          <div className="flex justify-center px-1 py-1 text-xl capitalize text-olive12 dark:bg-darkBlue3 dark:text-darkOlive12">
+            {currentRoute}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
