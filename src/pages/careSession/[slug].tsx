@@ -71,7 +71,7 @@ const Slug: NextPage = () => {
         setErrorMessage(error.message);
       },
       onSuccess: () => {
-        alert("Meow! You have successfully applied to this care session.");
+        alert("You have successfully applied to this care session.");
         // router.reload();
       },
     });
@@ -82,7 +82,7 @@ const Slug: NextPage = () => {
         setErrorMessage(error.message);
       },
       onSuccess: () => {
-        alert("Meow! You have removed yourself from this care session.");
+        alert("You have removed yourself from this care session.");
         // router.reload();
       },
     });
@@ -93,7 +93,7 @@ const Slug: NextPage = () => {
         setErrorMessage(error.message);
       },
       onSuccess: () => {
-        alert("Meow! The Care Session status has been automatically updated.");
+        alert("The Care Session status has been automatically updated.");
         // router.reload();
       },
     });
@@ -330,8 +330,8 @@ const Slug: NextPage = () => {
                     )}
                   <div>
                     {errorMessage && (
-                      <p className="text-red-600 text-center">
-                        Meow! You already applied to this session.
+                      <p className="text-red11 text-center">
+                        You already applied to this session.
                       </p>
                     )}
                   </div>
@@ -356,8 +356,8 @@ const Slug: NextPage = () => {
             </div>
             <div>
               {errorMessage && (
-                <p className="text-red-600 text-center">
-                  Meow! You already applied to this session.
+                <p className="text-red11 text-center">
+                  You already applied to this session.
                 </p>
               )}
             </div>

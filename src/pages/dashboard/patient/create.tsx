@@ -23,11 +23,11 @@ const Create: NextPage = () => {
 
   const { mutate } = trpc.careSessionAPIs.createOneCareSession.useMutation({
     onSuccess() {
-      alert("Meow! Session successfully created!");
+      alert("Session successfully created!");
       // router.push("/dashboard/patient/new");
     },
     onError() {
-      alert("Meow, there was an error.");
+      alert("Error, there was an error.");
     },
   });
 
