@@ -26,43 +26,46 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 bg-blue1 dark:bg-darkBlue1">
+    <div className="flex flex-col items-center gap-2 font-roboto">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         {errorMessage && (
           <p className="text-red-600 text-center">{errorMessage}</p>
         )}
         <label>Username</label>
         <input
-          className="w-full rounded-sm border border-blue7 bg-blue1 px-1 text-left text-olive12 focus:border-blue8 focus:outline-none dark:border-darkBlue7 dark:bg-darkBlue1 dark:text-darkOlive12 dark:focus:border-darkBlue8"
+          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
           type="username"
           {...register("username", { required: true })}
         />
         {errors.username && (
-          <p className="text-red-600 text-center">This field is required</p>
+          <p className="text-red11 text-center">Error! This field is required</p>
         )}
         <label>Email</label>
         <input
-          className="w-full rounded-sm border border-blue7 bg-blue1 px-1 text-left text-olive12 focus:border-blue8 focus:outline-none dark:border-darkBlue7 dark:bg-darkBlue1 dark:text-darkOlive12 dark:focus:border-darkBlue8"
+          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
           type="text"
           {...register("email", { required: true })}
         />
         {errors.email && (
-          <p className="text-red-600 text-center">This field is required</p>
+          <p className="text-red11 text-center">Error! This field is required</p>
         )}
         <label>Password</label>
         <input
-          className="w-full rounded-sm border border-blue7 bg-blue1 px-1 text-left text-olive12 focus:border-blue8 focus:outline-none dark:border-darkBlue7 dark:bg-darkBlue1 dark:text-darkOlive12 dark:focus:border-darkBlue8"
+          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
           type="password"
           {...register("password", { required: true })}
         />
         {errors.password && (
-          <p className="text-red-600 text-center">This field is required</p>
+          <p className="text-red11 text-center">Error! This field is required</p>
         )}
-        <input
-          type="submit"
-          className="mt-2 cursor-pointer border border-solid border-blue7 bg-blue3 text-base text-olive12 hover:border-blue8 hover:bg-blue4 
-          dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
-        />
+        <div className="my-4 flex justify-center">
+          <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
+            <input
+              type="submit"
+              className="cursor-pointer bg-blue10 px-2 py-1 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
+            />
+          </div>
+        </div>
       </form>
     </div>
   );
