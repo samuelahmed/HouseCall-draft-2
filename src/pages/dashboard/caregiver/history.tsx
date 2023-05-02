@@ -220,7 +220,7 @@ const { data: readAllCanceledSessionsByUser } =
                                   </div>
                                 </div>
                                 <div className="my-4 flex items-center justify-center">
-                                  <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                                  <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
                                     <button
                                       type="button"
                                       onClick={() => {
@@ -228,7 +228,7 @@ const { data: readAllCanceledSessionsByUser } =
                                           `/careSession/${data.slug}`
                                         );
                                       }}
-                                      className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                                      className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                                     >
                                       Details
                                     </button>
@@ -395,7 +395,7 @@ const { data: readAllCanceledSessionsByUser } =
                                   </div>
                                 </div>
                                 <div className="my-4 flex items-center justify-center">
-                                  <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                                  <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
                                     <button
                                       type="button"
                                       onClick={() => {
@@ -403,7 +403,7 @@ const { data: readAllCanceledSessionsByUser } =
                                           `/careSession/${data.slug}`
                                         );
                                       }}
-                                      className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                                      className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                                     >
                                       Details
                                     </button>
@@ -570,7 +570,7 @@ const { data: readAllCanceledSessionsByUser } =
                                   </div>
                                 </div>
                                 <div className="my-4 flex items-center justify-center">
-                                  <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                                  <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
                                     <button
                                       type="button"
                                       onClick={() => {
@@ -578,7 +578,7 @@ const { data: readAllCanceledSessionsByUser } =
                                           `/careSession/${data.slug}`
                                         );
                                       }}
-                                      className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                                      className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                                     >
                                       Details
                                     </button>
