@@ -17,7 +17,10 @@ const Register: NextPage = () => {
         {session && <></>}
         {!session && (
           <>
-            <div className="flex min-h-screen items-center justify-center">
+            <div className="flex min-h-screen flex-col items-center justify-center">
+              <h1 className="py-10 text-center font-robotoSlab text-3xl font-bold">
+                Create your Account
+              </h1>
               <RegisterForm />
             </div>
           </>

@@ -30,7 +30,10 @@ const Login: NextPage = () => {
         )}
         {!session && (
           <>
-            <div className="flex min-h-screen items-center justify-center">
+            <div className="flex flex-col min-h-screen items-center justify-center">
+            <h1 className="py-10 text-3xl font-bold text-center font-robotoSlab">
+                Login to your Account
+              </h1>
               <LoginForm />
             </div>
           </>
