@@ -13,25 +13,13 @@ const Login: NextPage = () => {
       <Head>
         <title>Login</title>
       </Head>
-      {/* <NavLayout /> */}
       <Header />
       <div>
-        {session && (
-          <>
-            <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-              <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
-                <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
-                  {/* display nothing here since user is already logged in */}
-                  {/* maybe add a logout button in the future */}
-                </div>
-              </div>
-            </main>
-          </>
-        )}
+        {session && <></>}
         {!session && (
           <>
-            <div className="flex flex-col min-h-screen items-center justify-center">
-            <h1 className="py-10 text-3xl font-bold text-center font-robotoSlab">
+            <div className="flex min-h-screen flex-col items-center justify-center">
+              <h1 className="py-10 text-center font-robotoSlab text-3xl font-bold">
                 Login to your Account
               </h1>
               <LoginForm />

@@ -113,7 +113,8 @@ const Applied: NextPage = () => {
                               sessionDurationMinutes += 60;
                             }
                             {
-                              readAllAppliedPotentialSessionsByUser?.length === 0 && (
+                              readAllAppliedPotentialSessionsByUser?.length ===
+                                0 && (
                                 <div className="mt-20">
                                   <NoSessionFound />
                                 </div>
@@ -248,7 +249,12 @@ const Applied: NextPage = () => {
         )}
         {!session && (
           <>
-            <LoginForm />
+            <div className="flex min-h-screen flex-col items-center justify-center">
+              <h1 className="py-10 text-center font-robotoSlab text-3xl font-bold">
+                Login to your Account
+              </h1>
+              <LoginForm />
+            </div>
           </>
         )}
       </div>
