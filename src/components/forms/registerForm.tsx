@@ -29,7 +29,7 @@ const RegisterForm = () => {
     <div className="flex flex-col items-center gap-2 font-roboto">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
         {errorMessage && (
-          <p className="text-red-600 text-center">{errorMessage}</p>
+          <p className="text-red11 text-center">Error! Please input complete information</p>
         )}
         <label>Username</label>
         <input
