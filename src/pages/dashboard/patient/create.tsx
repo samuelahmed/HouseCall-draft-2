@@ -459,7 +459,7 @@ const Create: NextPage = () => {
                         onClick={() => {
                           publish();
                         }}
-                        className="cursor-pointer bg-blue10 px-10 py-3 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
+                        className="cursor-pointer bg-blue10 px-2 py-1 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                       >
                         Submit
                       </button>
