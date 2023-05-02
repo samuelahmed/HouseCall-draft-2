@@ -14,7 +14,7 @@ const Login: NextPage = () => {
         <title>Login</title>
       </Head>
       {/* <NavLayout /> */}
-      < Header />
+      <Header />
       <div>
         {session && (
           <>
@@ -30,13 +30,9 @@ const Login: NextPage = () => {
         )}
         {!session && (
           <>
-            <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-              <div className="col-span-5 min-w-fit bg-blue1 dark:bg-darkBlue1">
-                <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
-                  <LoginForm />
-                </div>
-              </div>
-            </main>
+            <div className="flex min-h-screen items-center justify-center">
+              <LoginForm />
+            </div>
           </>
         )}
       </div>
