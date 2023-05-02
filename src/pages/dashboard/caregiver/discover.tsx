@@ -207,12 +207,12 @@ const Discover: NextPage = () => {
                               </p>
                             </div>
                             <div className="mb-4 flex flex-col items-center justify-center">
-                              <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2 md:hidden">
+                              <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7 md:hidden">
                                 <button
                                   onClick={() =>
                                     router.push(`/careSession/${data.slug}`)
                                   }
-                                  className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2 md:hidden"
+                                  className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7 md:hidden"
                                 >
                                   Details
                                 </button>
@@ -409,14 +409,14 @@ const Discover: NextPage = () => {
                         isLoading}
                     </p>
                     <div className="flex flex-col items-center justify-center">
-                      <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                      <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
                         <button
                           onClick={() =>
                             router.push(
                               `/careSession/${selectedSession.data?.slug}`
                             )
                           }
-                          className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                          className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                         >
                           Details
                         </button>
