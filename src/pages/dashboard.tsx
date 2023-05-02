@@ -23,7 +23,7 @@ const Dashboard: NextPage = () => {
             <span className="text-blue10">
               {isLoading || (
                   <span className="">{data && data?.username}</span>
-                ) || <span className="text-red11 ">Meow! No Name</span>}
+                ) || <span className="text-red11 ">Error! No Name</span>}
             </span>
           </div>
 

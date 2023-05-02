@@ -93,7 +93,7 @@ const Header = () => {
           <div className="hidden items-center text-darkOlive12 md:flex">
             {session &&
               (isLoading || (data && data?.username) || (
-                <span className="">Meow! No Name</span>
+                <span className="text-red11">Error! No Name</span>
               ))}
           </div>
           <ThemeManager />
