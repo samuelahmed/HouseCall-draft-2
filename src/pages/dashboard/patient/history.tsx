@@ -5,6 +5,7 @@ import Header from "@/components/layout/header";
 import { trpc } from "@/utils/trpc";
 import { useRouter } from "next/router";
 import NoSessionFound from "@/components/layout/noSessionFound";
+import LoginForm from "@/components/forms/loginForm";
 
 const PatientHistory: NextPage = () => {
   const router = useRouter();
@@ -599,7 +600,16 @@ const PatientHistory: NextPage = () => {
             </div>
           </>
         )}
-        {!session && <></>}
+        {!session && (
+          <>
+            <div className="flex min-h-screen flex-col items-center justify-center">
+              <h1 className="py-10 text-center font-robotoSlab text-3xl font-bold">
+                Login to your Account
+              </h1>
+              <LoginForm />
+            </div>
+          </>
+        )}
       </div>
     </>
   );

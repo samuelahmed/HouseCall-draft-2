@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import AccountEditModal from "@/components/account/accountEditModal";
 import Header from "@/components/layout/header";
 import { trpc } from "@/utils/trpc";
+import LoginForm from "@/components/forms/loginForm";
 
 const Account: NextPage = () => {
   const { data: session } = useSession();
@@ -21,7 +22,9 @@ const Account: NextPage = () => {
           <div className="font-roboto">
             <div>
               <p className="py-2 px-4">
-              This page displays your account information. Use the edit account button to update your information.               </p>
+                This page displays your account information. Use the edit
+                account button to update your information.{" "}
+              </p>
             </div>
             <div className="grid min-h-screen grid-cols-1">
               <div className="col-span-1 px-2">
@@ -45,7 +48,16 @@ const Account: NextPage = () => {
             </div>
           </div>
         )}
-        {!session && <></>}
+        {!session && (
+          <>
+            <div className="flex min-h-screen flex-col items-center justify-center">
+              <h1 className="py-10 text-center font-robotoSlab text-3xl font-bold">
+                Login to your Account
+              </h1>
+              <LoginForm />
+            </div>
+          </>
+        )}
       </div>
     </>
   );

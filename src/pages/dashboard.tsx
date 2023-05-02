@@ -54,13 +54,12 @@ const Dashboard: NextPage = () => {
         </>
       )}
       {!session && (
-        <main className="grid grid-cols-1 bg-blue1 dark:bg-darkBlue1 md:grid-cols-6">
-          <div className="col-span-5 min-w-max bg-blue1 dark:bg-darkBlue1">
-            <div className=" grid min-h-95vh grid-cols-1 place-items-center bg-blue1 dark:bg-darkBlue1">
-              <LoginForm />
-            </div>
-          </div>
-        </main>
+        <div className="flex min-h-screen flex-col items-center justify-center">
+          <h1 className="py-10 text-center font-robotoSlab text-3xl font-bold">
+            Login to your Account
+          </h1>
+          <LoginForm />
+        </div>
       )}
     </>
   );

@@ -231,7 +231,12 @@ const New: NextPage = () => {
         )}
         {!session && (
           <>
-            <LoginForm />
+            <div className="flex min-h-screen flex-col items-center justify-center">
+              <h1 className="py-10 text-center font-robotoSlab text-3xl font-bold">
+                Login to your Account
+              </h1>
+              <LoginForm />
+            </div>
           </>
         )}
       </div>
