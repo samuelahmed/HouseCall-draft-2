@@ -169,9 +169,9 @@ const Header = () => {
                 Register
               </div>
             </Link>
-            <Link href={"/help"} className="px-1 py-1">
+            <Link href={"/about"} className="px-1 py-1">
               <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
-                Help
+                About
               </div>
             </Link>
           </div>
