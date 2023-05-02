@@ -202,15 +202,19 @@ const Messages: NextPage = () => {
                   />
                 </div>
                 <div className="mr-2 ml-2 flex justify-end">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      publish();
-                    }}
-                    className=" mt-2 cursor-pointer bg-blue10 px-5 py-1 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
-                  >
-                    Send
-                  </button>
+                  <div className="my-4 flex justify-center">
+                    <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          publish();
+                        }}
+                        className="cursor-pointer bg-blue10 px-5 py-1 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
+                      >
+                        Send
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

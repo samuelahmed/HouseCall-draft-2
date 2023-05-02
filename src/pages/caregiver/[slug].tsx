@@ -157,9 +157,9 @@ const Slug: NextPage = () => {
 
               <div className="col-span-2 justify-self-center">
                 <div className="mt-2 mb-2 flex space-x-2">
-                  <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                  <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
                     <button
-                      className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                      className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                       onClick={() => {
                         // NEED TO FIGURE OUT HOW TO CHECK IF THERE IS A PUSHER CHANNEL AND IF THERE IS DO NOT CREATE A NEW ONE
                         triggerCreatePusherChannel();
@@ -174,9 +174,9 @@ const Slug: NextPage = () => {
                          However for testing at the moment is fine. */}
                   {(potentialCareSession?.status === "Applied" ||
                     potentialCareSession?.status === "Closed") && (
-                    <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                    <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
                       <button
-                        className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                        className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                         onClick={() => {
                           setInputs({
                             careSessionId: currentSession?.id || "",
@@ -194,9 +194,9 @@ const Slug: NextPage = () => {
                     </div>
                   )}
                   {currentSession?.careSessionStatus === "Scheduled" && (
-                    <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue2">
+                    <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
                       <button
-                        className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue2"
+                        className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                         onClick={() => {
                           setInputs({
                             careSessionId: currentSession?.id || "",
