@@ -56,14 +56,14 @@ const AccountEditModal = () => {
       </div>
       {showModal ? (
         <>
-          <div className="fixed inset-0 z-50 grid h-screen place-items-center text-olive12 backdrop-brightness-50 dark:text-darkOlive12">
-            <div className="w-max justify-items-center border border-blue6 outline-none focus:outline-none dark:border-darkBlue6 ">
+          <div className="fixed inset-0 z-50 grid h-screen place-items-center backdrop-brightness-50 ">
+            <div className="w-max justify-items-center border outline-none focus:outline-none ">
               <div className="relative mx-auto">
-                <div className="relative flex flex-col bg-blue1 shadow-lg outline-none focus:outline-none dark:bg-darkBlue1">
-                  <div className="rounded-t py-4 ">
+                <div className="relative flex flex-col bg-white shadow-lg outline-none focus:outline-none dark:bg-darkBg">
+                  <div className="rounded-t py-4">
                     <div className="mx-4 mt-4 flex w-max flex-col ">
                       {/* NAME */}
-                      <div className="mt-2 flex flex-row items-center px-2 text-olive12 dark:text-darkOlive12">
+                      <div className="mt-2 flex flex-row items-center px-2">
                         <p className="mr-2 w-28 text-lg"> Name </p>
                         <input
                           value={inputs.username}
@@ -75,7 +75,7 @@ const AccountEditModal = () => {
                           }
                           type="text"
                           name="text"
-                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
+                          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                           placeholder=""
                         />
                       </div>
@@ -92,7 +92,7 @@ const AccountEditModal = () => {
                           }
                           type="text"
                           name="text"
-                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
+                          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                           placeholder=""
                         />
                       </div>
@@ -109,7 +109,7 @@ const AccountEditModal = () => {
                           }
                           type="text"
                           name="text"
-                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
+                          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                           placeholder=""
                         />
                       </div>
@@ -126,7 +126,7 @@ const AccountEditModal = () => {
                           }
                           type="text"
                           name="text"
-                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
+                          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                           placeholder=""
                         />
                       </div>
@@ -143,7 +143,7 @@ const AccountEditModal = () => {
                           }
                           type="text"
                           name="text"
-                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
+                          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                           placeholder=""
                         />
                       </div>
@@ -151,7 +151,7 @@ const AccountEditModal = () => {
                       <div className="mt-2 flex flex-row items-center px-2">
                         <p className="mr-2 w-28 text-lg"> Role </p>
                         <select
-                          className="block w-full appearance-none rounded border border-blue6 bg-blue1 py-3 px-4 text-sm leading-tight focus:border-blue7 focus:outline-none dark:border-darkBlue6 dark:bg-darkBlue1"
+                          className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                           value={inputs.role || selectedRole}
                           onChange={(e) => {
                             setSelectedRole(e.target.value);
@@ -170,28 +170,26 @@ const AccountEditModal = () => {
                       </div>
                       <div className="grid grid-flow-col grid-rows-1 gap-4 pt-4">
                         <div className="flex justify-start">
-                        <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-
-                          <button
-                            onClick={() => {
-                              publish();
-                              setShowModal(false);
-                            }}
-                            className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
+                          <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
+                            <button
+                              onClick={() => setShowModal(false)}
+                              className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                             >
-                            Update Account
-                          </button>
+                              Cancel
+                            </button>
                           </div>
                         </div>
                         <div className="flex justify-end">
-                        <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-
-                          <button
-                            onClick={() => setShowModal(false)}
-                            className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
+                          <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
+                            <button
+                              onClick={() => {
+                                publish();
+                                setShowModal(false);
+                              }}
+                              className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
                             >
-                            Close
-                          </button>
+                              Save
+                            </button>
                           </div>
                         </div>
                       </div>
