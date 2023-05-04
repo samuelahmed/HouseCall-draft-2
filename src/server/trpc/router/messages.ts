@@ -5,17 +5,6 @@ import { env } from "../../../env/server.mjs";
 
 
 
-//!IMPORTANT!
-//Move this to env variables before deployment with new keys
-// const pusher = new Pusher({
-//   appId: "1571069",
-//   key: "c13caf6d2e7e0e3addce",
-//   secret: "a157128c244e8950e7d3",
-//   cluster: "us3",
-//   useTLS: true,
-// });
-//!IMPORTANT!
-
 
 const pusher = new Pusher({
   appId: env.APP_ID,
@@ -46,6 +35,12 @@ export const messageRouter = router({
       });
       return newPusherChannel;
     }),
+
+
+
+
+
+
 
   createMessage: publicProcedure
     .input(
@@ -120,6 +115,11 @@ export const messageRouter = router({
       );
       return channelsWithNames;
     }),
+
+
+
+
+
 
   readMessagesByChannel: publicProcedure
     .input(
