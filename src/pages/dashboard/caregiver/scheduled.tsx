@@ -48,13 +48,22 @@ const Scheduled: NextPage = () => {
                       <ul>
                         {data
                           ?.filter((data) => {
-                            const { sessionMonth, sessionDay, sessionYear } = data;
+                            const { sessionMonth, sessionDay, sessionYear } =
+                              data;
+                            //year
                             if (sessionYear && sessionYear < currentYear) {
                               return false;
                             }
-                            if (sessionMonth && sessionMonth < currentMonth) {
+                            //month
+                            if (
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth < currentMonth
+                            ) {
                               return false;
                             }
+                            //day
                             if (
                               sessionYear &&
                               sessionYear === currentYear &&
