@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import Pusher from "pusher-js";
 import Header from "@/components/layout/header";
 import LoginForm from "@/components/forms/loginForm";
+import NoMessages from "@/components/layout/noMessages";
 // import { channel } from "diagnostics_channel";
 
 const Messages: NextPage = () => {
@@ -161,16 +162,19 @@ const Messages: NextPage = () => {
                     readAllPusherChannels?.length === 0 && (
                       <div>
                         {userData?.role === "Patient" && (
-                          <div>
-                            You currently have no contacts: Create a session and when a caregiver applies you
-                            will be able to add them to your contact list and
-                            message them
+                          <div className="flex flex-col items-center justify-center ">
+                            <NoMessages />
+                            When caregivers apply to your sessions you will be
+                            able to add them to your contact list and message
+                            them.
                           </div>
                         )}
                         {userData?.role === "Caregiver" && (
                           <div>
-                            You currently have no contacts: Apply to a session and interested patients will be
-                            able to message you
+                            <NoMessages />
+                            Apply to a session and interested patients will be
+                            able to add you to their contact list and message
+                            you.
                           </div>
                         )}
                       </div>
