@@ -19,6 +19,8 @@ export const serverSchema = z.object({
     // VERCEL_URL doesnt include `https` so it cant be validated as a URL
     process.env.VERCEL ? z.string() : z.string().url()
   ),
+
+
   APP_ID: z.string(),
   APP_KEY: z.string(),
   APP_SECRET: z.string(),
@@ -41,5 +43,6 @@ export const clientSchema = z.object({
  * @type {{ [k in keyof z.infer<typeof clientSchema>]: z.infer<typeof clientSchema>[k] | undefined }}
  */
 export const clientEnv = {
+
   // NEXT_PUBLIC_BAR: process.env.NEXT_PUBLIC_BAR,
 };

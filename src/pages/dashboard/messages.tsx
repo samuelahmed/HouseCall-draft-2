@@ -7,6 +7,9 @@ import { useState, useEffect } from "react";
 import Pusher from "pusher-js";
 import Header from "@/components/layout/header";
 import LoginForm from "@/components/forms/loginForm";
+import { env } from "../../env/client.mjs";
+import { clientEnv } from "env/schema.mjs";
+
 
 const Messages: NextPage = () => {
   // TODO: Make sure there are no duplicate connections from same user
@@ -39,10 +42,13 @@ const Messages: NextPage = () => {
   const [state, setState] = useState(-1);
   const [contactName, setContactName] = useState("");
 
+  //Do I need to hide the key here or is it ok to be public with the secret hidden?
   const subscribeToChannel = (channelName: string) => {
-    const pusher = new Pusher("c13caf6d2e7e0e3addce", {
+    const pusher = new Pusher("bef6b00c5dba0c2525c4" , {
       cluster: "us3",
     });
+
+
     const channel = pusher.subscribe(selectedChannel.channelName);
     channel.bind("my-event", function (data: any) {
       setMessages((prev) => {
