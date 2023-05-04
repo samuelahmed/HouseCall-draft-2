@@ -21,6 +21,7 @@ const { data: readAllCanceledSessionsByUser } =
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
   const currentDay = new Date().getDate();
+  
 
   return (
     <>
@@ -53,27 +54,22 @@ const { data: readAllCanceledSessionsByUser } =
                       <ul>
                         {readAllScheduledSessionsByUser
                           ?.filter((data) => {
-                            const { sessionMonth, sessionDay, sessionYear } =
-                              data;
+                            const { sessionMonth, sessionDay, sessionYear } = data;
+                            if (sessionYear && sessionYear < currentYear) {
+                              return false;
+                            }
+                            if (sessionMonth && sessionMonth < currentMonth) {
+                              return false;
+                            }
                             if (
-                              sessionYear !== null &&
-                              sessionMonth !== null &&
-                              sessionDay !== null
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth === currentMonth &&
+                              sessionDay &&
+                              sessionDay < currentDay
                             ) {
-                              if (
-                                sessionYear < currentYear &&
-                                sessionMonth < currentMonth &&
-                                sessionDay < currentDay
-                              ) {
-                                return false;
-                              }
-                              if (
-                                sessionYear === currentYear &&
-                                sessionMonth === currentMonth &&
-                                sessionDay < currentDay
-                              ) {
-                                return false;
-                              }
+                              return false;
                             }
                             return true;
                           })
