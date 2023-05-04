@@ -3,9 +3,6 @@ import { z } from "zod";
 import Pusher from "pusher";
 import { env } from "../../../env/server.mjs";
 
-
-
-
 const pusher = new Pusher({
   appId: env.APP_ID,
   key: env.APP_KEY,
@@ -13,8 +10,6 @@ const pusher = new Pusher({
   cluster: env.APP_CLUSTER,
   useTLS: true,
 });
-
-
 
 export const messageRouter = router({
   createPusherChannel: privateProcedure
@@ -24,7 +19,16 @@ export const messageRouter = router({
         caregiverId: z.string(),
       })
     )
-    .mutation(({ input, ctx }) => {
+    .mutation(async ({ input, ctx }) => {
+      const existingChannel = await ctx.prisma.pusherChannel.findFirst({
+        where: {
+          channelName: `${input.patientId}-${input.caregiverId}`,
+        },
+      });
+      if (existingChannel) {
+        throw new Error("Channel already exists");
+      }
+
       const { patientId, caregiverId } = input;
       const newPusherChannel = ctx.prisma.pusherChannel.create({
         data: {
@@ -35,12 +39,6 @@ export const messageRouter = router({
       });
       return newPusherChannel;
     }),
-
-
-
-
-
-
 
   createMessage: publicProcedure
     .input(
@@ -115,11 +113,6 @@ export const messageRouter = router({
       );
       return channelsWithNames;
     }),
-
-
-
-
-
 
   readMessagesByChannel: publicProcedure
     .input(
