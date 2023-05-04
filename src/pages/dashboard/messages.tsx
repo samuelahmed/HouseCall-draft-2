@@ -7,9 +7,6 @@ import { useState, useEffect } from "react";
 import Pusher from "pusher-js";
 import Header from "@/components/layout/header";
 import LoginForm from "@/components/forms/loginForm";
-import { env } from "../../env/client.mjs";
-import { clientEnv } from "env/schema.mjs";
-
 
 const Messages: NextPage = () => {
   // TODO: Make sure there are no duplicate connections from same user
@@ -47,8 +44,7 @@ const Messages: NextPage = () => {
     const pusher = new Pusher("bcf89bc8d5be9acb07da" , {
       cluster: "us3",
     });
-
-
+    
     const channel = pusher.subscribe(selectedChannel.channelName);
     channel.bind("my-event", function (data: any) {
       setMessages((prev) => {
