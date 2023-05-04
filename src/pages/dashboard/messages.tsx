@@ -19,7 +19,7 @@ const Messages: NextPage = () => {
     });
 
   const [selectedChannel, setSelectedChannel] = useState<any>(null);
-  // const [unsubscribeChannel, setUnsubscribeChannel] = useState<any>(null);
+  // const [currentChannel, setCurrentChannel] = useState<any>(null);
 
   const { data: readMessages } =
     trpc.messageAPIs.readMessagesByChannel.useQuery({
@@ -46,8 +46,6 @@ const Messages: NextPage = () => {
 
     const channel = pusher.subscribe(selectedChannel.channelName);
 
-    // channel.unbind();
-
     channel.bind("my-event", function (data: any) {
       setMessages((prev) => {
         return [data, ...prev];
@@ -55,7 +53,10 @@ const Messages: NextPage = () => {
     });
   };
 
-  // const unSubscribeToChannel = (channelName: string) => {
+
+
+
+  // const unSubscribeToChannel = (unsubscribeChannel: any) => {
 
   //   const channel = pusher.unsubscribe(unsubscribeChannel.channelName);
   //   channel.unbind("my-event", function (data: any) {
@@ -134,7 +135,10 @@ const Messages: NextPage = () => {
                       //   setUnsubscribeChannel(selectedChannel);
                       // }
 
+                      if (channel.channelName !== selectedChannel?.channelName) {
                       setSelectedChannel(channel);
+                      // setCurrentChannel(channel);
+                      }
                       setContactName(
                         channel.caregiverName || channel.patientName || ""
                       );
