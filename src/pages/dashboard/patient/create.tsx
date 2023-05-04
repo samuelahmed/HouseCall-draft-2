@@ -21,16 +21,6 @@ const Create: NextPage = () => {
   const router = useRouter();
   const { data, isLoading } = trpc.userAPIs.readCurrentUser.useQuery();
 
-  const { mutate } = trpc.careSessionAPIs.createOneCareSession.useMutation({
-    onSuccess() {
-      alert("Session successfully created!");
-      // router.push("/dashboard/patient/new");
-    },
-    onError() {
-      alert("Error, there was an error.");
-    },
-  });
-
   type StartTime = {
     hour: number;
     minute: number;
@@ -60,7 +50,7 @@ const Create: NextPage = () => {
     address: data?.address || "",
     medicalNotes: "",
     overview: "",
-    title: "",
+    title: "Select Session Type",
     hourlyRate: 20,
     totalHours: Math.ceil(endTime.hour - startTime.hour),
     totalCompensation: 20,
@@ -76,6 +66,16 @@ const Create: NextPage = () => {
     city: "",
     postalCode: "",
     location: "",
+    slug: Math.random().toString(36).substring(2, 8),
+  });
+
+  const { mutate } = trpc.careSessionAPIs.createOneCareSession.useMutation({
+    onSuccess() {
+      alert("Session successfully created!");
+    },
+    onError() {
+      alert("Error, there was an error.");
+    },
   });
 
   useEffect(() => {
@@ -132,7 +132,12 @@ const Create: NextPage = () => {
   }, [data?.username, data?.address]);
 
   const publish = () => {
-    mutate(inputs);
+    if (inputs.title === "Select Session Type") {
+      alert("Please select a session type");
+    } else {
+      mutate(inputs);
+      router.push(`/careSession/${inputs.slug}`);
+    }
   };
 
   return (
@@ -181,6 +186,7 @@ const Create: NextPage = () => {
                           }
                           className="block w-full border px-1 py-1 focus:outline-none focus:ring-1 focus:ring-blue11 dark:bg-darkBg"
                         >
+                          <option>Select Session Type</option>
                           <option>Mobility Support </option>
                           <option>Personal Care</option>
                           <option>Home Care</option>

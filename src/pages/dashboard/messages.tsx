@@ -7,11 +7,9 @@ import { useState, useEffect } from "react";
 import Pusher from "pusher-js";
 import Header from "@/components/layout/header";
 import LoginForm from "@/components/forms/loginForm";
+// import { channel } from "diagnostics_channel";
 
 const Messages: NextPage = () => {
-  // TODO: Make sure there are no duplicate connections from same user
-  // TODO: review readCurrentUser API to make sure it's not returning sensitive data
-
   const { data: session } = useSession();
   const { data: userData, isLoading } =
     trpc.userAPIs.readCurrentUser.useQuery();
@@ -21,6 +19,7 @@ const Messages: NextPage = () => {
     });
 
   const [selectedChannel, setSelectedChannel] = useState<any>(null);
+  // const [currentChannel, setCurrentChannel] = useState<any>(null);
 
   const { data: readMessages } =
     trpc.messageAPIs.readMessagesByChannel.useQuery({
@@ -41,11 +40,12 @@ const Messages: NextPage = () => {
 
   //Do I need to hide the key here or is it ok to be public with the secret hidden?
   const subscribeToChannel = (channelName: string) => {
-    const pusher = new Pusher("bcf89bc8d5be9acb07da" , {
+    const pusher = new Pusher("bcf89bc8d5be9acb07da", {
       cluster: "us3",
     });
-    
+
     const channel = pusher.subscribe(selectedChannel.channelName);
+
     channel.bind("my-event", function (data: any) {
       setMessages((prev) => {
         return [data, ...prev];
@@ -53,11 +53,34 @@ const Messages: NextPage = () => {
     });
   };
 
+  // const unSubscribeToChannel = (unsubscribeChannel: any) => {
+
+  //   const channel = pusher.unsubscribe(unsubscribeChannel.channelName);
+  //   channel.unbind("my-event", function (data: any) {
+  //     setMessages((prev) => {
+  //       return [data, ...prev];
+  //     });
+  //   }
+  //   );
+  // };
+
+  //  const unSubscribe = pusher.unsubscribe(channelName);
+
+  // console.log("selectedChannel", selectedChannel)
+
+  // pusher.unsubscribe(channelName);
+
   useEffect(() => {
     if (selectedChannel) {
-      subscribeToChannel(selectedChannel.channelName);
+      subscribeToChannel(selectedChannel);
     }
   }, [selectedChannel]);
+
+  // useEffect(() => {
+  //   if (unsubscribeChannel) {
+  //     unSubscribeToChannel(unsubscribeChannel);
+  //   }
+  // }, [unsubscribeChannel]);
 
   useEffect(() => {
     if (readMessages) {
@@ -105,12 +128,19 @@ const Messages: NextPage = () => {
                     }
                     onClick={() => {
                       setState(index);
-                      if (!selectedChannel) {
+                      // if (channel !== selectedChannel) {
+                      //   setUnsubscribeChannel(selectedChannel);
+                      // }
+
+                      if (
+                        channel.channelName !== selectedChannel?.channelName
+                      ) {
                         setSelectedChannel(channel);
-                        setContactName(
-                          channel.caregiverName || channel.patientName || ""
-                        );
+                        // setCurrentChannel(channel);
                       }
+                      setContactName(
+                        channel.caregiverName || channel.patientName || ""
+                      );
                     }}
                     key={channel.channelName}
                   >
@@ -127,6 +157,24 @@ const Messages: NextPage = () => {
               <div className="col-span-4">
                 <div className="py-2 text-center text-xl">{contactName}</div>
                 <div className="mx-2 max-h-60vh min-h-60vh overflow-scroll">
+                  {messages.length === 0 &&
+                    readAllPusherChannels?.length === 0 && (
+                      <div>
+                        {userData?.role === "Patient" && (
+                          <div>
+                            You currently have no contacts: Create a session and when a caregiver applies you
+                            will be able to add them to your contact list and
+                            message them
+                          </div>
+                        )}
+                        {userData?.role === "Caregiver" && (
+                          <div>
+                            You currently have no contacts: Apply to a session and interested patients will be
+                            able to message you
+                          </div>
+                        )}
+                      </div>
+                    )}
                   {messages
                     ?.sort(
                       (a, b) =>
