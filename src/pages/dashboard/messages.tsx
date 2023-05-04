@@ -53,9 +53,6 @@ const Messages: NextPage = () => {
     });
   };
 
-
-
-
   // const unSubscribeToChannel = (unsubscribeChannel: any) => {
 
   //   const channel = pusher.unsubscribe(unsubscribeChannel.channelName);
@@ -135,9 +132,11 @@ const Messages: NextPage = () => {
                       //   setUnsubscribeChannel(selectedChannel);
                       // }
 
-                      if (channel.channelName !== selectedChannel?.channelName) {
-                      setSelectedChannel(channel);
-                      // setCurrentChannel(channel);
+                      if (
+                        channel.channelName !== selectedChannel?.channelName
+                      ) {
+                        setSelectedChannel(channel);
+                        // setCurrentChannel(channel);
                       }
                       setContactName(
                         channel.caregiverName || channel.patientName || ""
@@ -160,7 +159,21 @@ const Messages: NextPage = () => {
                 <div className="mx-2 max-h-60vh min-h-60vh overflow-scroll">
                   {messages.length === 0 &&
                     readAllPusherChannels?.length === 0 && (
-                      <div>NO Messages</div>
+                      <div>
+                        {userData?.role === "Patient" && (
+                          <div>
+                            You currently have no contacts: Create a session and when a caregiver applies you
+                            will be able to add them to your contact list and
+                            message them
+                          </div>
+                        )}
+                        {userData?.role === "Caregiver" && (
+                          <div>
+                            You currently have no contacts: Apply to a session and interested patients will be
+                            able to message you
+                          </div>
+                        )}
+                      </div>
                     )}
                   {messages
                     ?.sort(
