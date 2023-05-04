@@ -26,10 +26,11 @@ export const careSessionRouter = router({
         sessionStartMinute: z.number(),
         sessionEndHour: z.number(),
         sessionEndMinute: z.number(),
-
+        
         city: z.string(),
         postalCode: z.string(),
         location: z.string(),
+        slug: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -54,11 +55,9 @@ export const careSessionRouter = router({
         city,
         postalCode,
         location,
+        slug
       } = input;
-      //Instead of generating random string here it would be better to do something else
-      //This will probably collide  ~50k times before it does
-      //Math.random() can also generate a 0
-      const sessionId = Math.random().toString(36).substring(7);
+
       const user = await ctx.prisma.user.findUnique({
         where: {
           id: ctx.session.user.id,
@@ -87,7 +86,7 @@ export const careSessionRouter = router({
           sessionStartMinute,
           sessionEndHour,
           sessionEndMinute,
-          slug: slug(sessionId),
+          slug: slug,
           userId: currentUserId,
           city,
           postalCode,
