@@ -5,21 +5,6 @@ import { env } from "../../../env/server.mjs";
 
 
 
-//!IMPORTANT!
-//Move this to env variables before deployment with new keys
-// const pusher = new Pusher({
-//   appId: "1571069",
-//   key: "bef6b00c5dba0c2525c4",
-//   secret: "344924d0809b507c0546",
-//   cluster: "us3",
-//   useTLS: true,
-// });
-//!IMPORTANT!
-// APP_ID=1571069
-// APP_KEY=bef6b00c5dba0c2525c4
-// APP_SECRET=344924d0809b507c0546
-// APP_CLUSTER=us3
-
 
 const pusher = new Pusher({
   appId: env.APP_ID,

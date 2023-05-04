@@ -44,7 +44,7 @@ const Messages: NextPage = () => {
 
   //Do I need to hide the key here or is it ok to be public with the secret hidden?
   const subscribeToChannel = (channelName: string) => {
-    const pusher = new Pusher("bef6b00c5dba0c2525c4" , {
+    const pusher = new Pusher("bcf89bc8d5be9acb07da" , {
       cluster: "us3",
     });
 
