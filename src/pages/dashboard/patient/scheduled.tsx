@@ -53,16 +53,28 @@ const PatientScheduled: NextPage = () => {
                           ?.filter((data) => {
                             const { sessionMonth, sessionDay, sessionYear } =
                               data;
-                            if (sessionYear && sessionYear !== currentYear) {
+                            //year
+                            if (sessionYear && sessionYear < currentYear) {
                               return false;
                             }
-                            if (sessionMonth && sessionMonth !== currentMonth) {
+                            //month
+                            if (
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth < currentMonth
+                            ) {
                               return false;
                             }
-                            if (sessionDay && sessionDay <= currentDay - 7) {
-                              return false;
-                            }
-                            if (sessionDay && sessionDay < currentDay) {
+                            //day
+                            if (
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth === currentMonth &&
+                              sessionDay &&
+                              sessionDay < currentDay
+                            ) {
                               return false;
                             }
                             return true;

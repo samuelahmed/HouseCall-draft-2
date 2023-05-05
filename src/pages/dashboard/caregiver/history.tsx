@@ -21,6 +21,7 @@ const { data: readAllCanceledSessionsByUser } =
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth() + 1;
   const currentDay = new Date().getDate();
+  
 
   return (
     <>
@@ -55,25 +56,29 @@ const { data: readAllCanceledSessionsByUser } =
                           ?.filter((data) => {
                             const { sessionMonth, sessionDay, sessionYear } =
                               data;
+                            //year
+                            if (sessionYear && sessionYear < currentYear) {
+                              return false;
+                            }
+                            //month
                             if (
-                              sessionYear !== null &&
-                              sessionMonth !== null &&
-                              sessionDay !== null
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth < currentMonth
                             ) {
-                              if (
-                                sessionYear < currentYear &&
-                                sessionMonth < currentMonth &&
-                                sessionDay < currentDay
-                              ) {
-                                return false;
-                              }
-                              if (
-                                sessionYear === currentYear &&
-                                sessionMonth === currentMonth &&
-                                sessionDay < currentDay
-                              ) {
-                                return false;
-                              }
+                              return false;
+                            }
+                            //day
+                            if (
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth === currentMonth &&
+                              sessionDay &&
+                              sessionDay < currentDay
+                            ) {
+                              return false;
                             }
                             return true;
                           })

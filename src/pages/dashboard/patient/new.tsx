@@ -48,23 +48,33 @@ const New: NextPage = () => {
                   <ul>
                     {readAllNewSessionsByUser
                       ?.filter((data) => {
-                        const { sessionMonth, sessionDay, sessionYear } = data;
-                        if (sessionYear && sessionYear < currentYear) {
-                          return false;
-                        }
-                        if (sessionYear && sessionYear > currentYear) {
-                          return true;
-                        }
-                        if (sessionMonth && sessionMonth < currentMonth) {
-                          return false;
-                        }
-                        if (sessionMonth && sessionMonth > currentMonth) {
-                          return true;
-                        }
-                        if (sessionDay && sessionDay < currentDay) {
-                          return false;
-                        }
-                        return true;
+                        const { sessionMonth, sessionDay, sessionYear } =
+                        data;
+                      //year
+                      if (sessionYear && sessionYear < currentYear) {
+                        return false;
+                      }
+                      //month
+                      if (
+                        sessionYear &&
+                        sessionYear === currentYear &&
+                        sessionMonth &&
+                        sessionMonth < currentMonth
+                      ) {
+                        return false;
+                      }
+                      //day
+                      if (
+                        sessionYear &&
+                        sessionYear === currentYear &&
+                        sessionMonth &&
+                        sessionMonth === currentMonth &&
+                        sessionDay &&
+                        sessionDay < currentDay
+                      ) {
+                        return false;
+                      }
+                      return true;
                       })
                       ?.sort((a, b) => {
                         const aDate = new Date(

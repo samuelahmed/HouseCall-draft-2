@@ -57,28 +57,32 @@ const PatientHistory: NextPage = () => {
                           {readAllScheduledSessionsByUser
                             ?.filter((data) => {
                               const { sessionMonth, sessionDay, sessionYear } =
-                                data;
-                              if (
-                                sessionYear !== null &&
-                                sessionMonth !== null &&
-                                sessionDay !== null
-                              ) {
-                                if (
-                                  sessionYear < currentYear &&
-                                  sessionMonth < currentMonth &&
-                                  sessionDay < currentDay
-                                ) {
-                                  return false;
-                                }
-                                if (
-                                  sessionYear === currentYear &&
-                                  sessionMonth === currentMonth &&
-                                  sessionDay < currentDay
-                                ) {
-                                  return false;
-                                }
-                              }
-                              return true;
+                              data;
+                            //year
+                            if (sessionYear && sessionYear < currentYear) {
+                              return false;
+                            }
+                            //month
+                            if (
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth < currentMonth
+                            ) {
+                              return false;
+                            }
+                            //day
+                            if (
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth === currentMonth &&
+                              sessionDay &&
+                              sessionDay < currentDay
+                            ) {
+                              return false;
+                            }
+                            return true;
                             })
                             ?.sort((a, b) => {
                               const aDate = new Date(

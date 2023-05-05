@@ -51,19 +51,28 @@ const Applied: NextPage = () => {
                           ?.filter((data) => {
                             const { sessionMonth, sessionDay, sessionYear } =
                               data;
+                            //year
                             if (sessionYear && sessionYear < currentYear) {
                               return false;
                             }
-                            if (sessionYear && sessionYear > currentYear) {
-                              return true;
-                            }
-                            if (sessionMonth && sessionMonth < currentMonth) {
+                            //month
+                            if (
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth < currentMonth
+                            ) {
                               return false;
                             }
-                            if (sessionMonth && sessionMonth > currentMonth) {
-                              return true;
-                            }
-                            if (sessionDay && sessionDay < currentDay) {
+                            //day
+                            if (
+                              sessionYear &&
+                              sessionYear === currentYear &&
+                              sessionMonth &&
+                              sessionMonth === currentMonth &&
+                              sessionDay &&
+                              sessionDay < currentDay
+                            ) {
                               return false;
                             }
                             return true;

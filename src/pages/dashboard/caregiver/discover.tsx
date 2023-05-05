@@ -43,6 +43,10 @@ const Discover: NextPage = () => {
       id: inputs?.id || (data?.[data?.length - 1]?.id ?? "0"),
     });
 
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth() + 1;
+  const currentDay = new Date().getDate();
+
   return (
     <>
       <Head>
@@ -71,6 +75,48 @@ const Discover: NextPage = () => {
                 >
                   <ul>
                     {data
+                      ?.filter((data) => {
+                        const { sessionMonth, sessionDay, sessionYear } =
+                        data;
+                      //year
+                      if (sessionYear && sessionYear < currentYear) {
+                        return false;
+                      }
+                      //month
+                      if (
+                        sessionYear &&
+                        sessionYear === currentYear &&
+                        sessionMonth &&
+                        sessionMonth < currentMonth
+                      ) {
+                        return false;
+                      }
+                      //day
+                      if (
+                        sessionYear &&
+                        sessionYear === currentYear &&
+                        sessionMonth &&
+                        sessionMonth === currentMonth &&
+                        sessionDay &&
+                        sessionDay < currentDay
+                      ) {
+                        return false;
+                      }
+                      return true;
+                      })
+                      ?.sort((a, b) => {
+                        const aDate = new Date(
+                          a.sessionYear || 0,
+                          a.sessionMonth || 0,
+                          a.sessionDay || 0
+                        );
+                        const bDate = new Date(
+                          b.sessionYear || 0,
+                          b.sessionMonth || 0,
+                          b.sessionDay || 0
+                        );
+                        return bDate.getTime() - aDate.getTime();
+                      })
                       ?.map((data, clickedSessionTriggered) => {
                         const {
                           id,
@@ -156,7 +202,8 @@ const Discover: NextPage = () => {
                                     <span className="">
                                       Session Date:&nbsp;
                                     </span>
-                                    {sessionMonth} / {sessionDay} / {sessionYear}
+                                    {sessionMonth} / {sessionDay} /{" "}
+                                    {sessionYear}
                                   </p>
                                   <p className="">
                                     <span className="">
@@ -249,10 +296,9 @@ const Discover: NextPage = () => {
                         {/* DATE */}
                         <p className="">
                           <span className="">Date:&nbsp;</span>
-                          {selectedSession?.data?.sessionMonth || isLoading} /{" "}
-
-                          {selectedSession?.data?.sessionDay ||
+                          {selectedSession?.data?.sessionMonth ||
                             isLoading} /{" "}
+                          {selectedSession?.data?.sessionDay || isLoading} /{" "}
                           {selectedSession?.data?.sessionYear || isLoading}
                         </p>
                       </div>
