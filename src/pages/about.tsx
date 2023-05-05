@@ -119,8 +119,8 @@ const About: NextPage = () => {
               and caregivers
             </h1>
             <div className="grid min-h-screen grid-cols-1 grid-rows-1 md:grid-cols-2 md:grid-rows-2  ">
-              <div className="cols-span-1 flex-center justify-top flex flex-col px-10 md:px-20 md:text-2xl">
-                <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
+              <div className="cols-span-1 flex-center justify-top flex flex-col px-10 md:px-20 ">
+                <h1 className="mt-16 py-2 text-center font-robotoSlab text-3xl font-bold">
                   Find the perfect caregiver
                 </h1>
                 <p className=" py-2 ">
@@ -151,7 +151,7 @@ const About: NextPage = () => {
               <div className="cols-span-1">
                 <div className="grid grid-cols-1">
                   <Image
-                    src="/aboutPage2.png"
+                    src="/aboutSquare2.png"
                     alt="background image"
                     width={0}
                     height={0}
@@ -163,7 +163,7 @@ const About: NextPage = () => {
               <div className="cols-span-1 hidden md:block">
                 <div className="col-span-1">
                   <Image
-                    src="/aboutPage1.png"
+                    src="/aboutSquare1.png"
                     alt="background image"
                     width={0}
                     height={0}
@@ -172,8 +172,8 @@ const About: NextPage = () => {
                   />
                 </div>
               </div>
-              <div className="cols-span-1 flex-center justify-top flex flex-col px-10 md:px-20 md:text-xl">
-                <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
+              <div className="cols-span-1 flex-center justify-top flex flex-col px-10 md:px-20">
+                <h1 className="mt-16 py-2 text-center font-robotoSlab text-3xl font-bold">
                   Meet in the comfort of home
                 </h1>
                 <p className="py-2">
@@ -196,7 +196,7 @@ const About: NextPage = () => {
               <div className="cols-span-1 block md:hidden">
                 <div className="col-span-1">
                   <Image
-                    src="/aboutPage1.png"
+                    src="/aboutSquare1.png"
                     alt="background image"
                     width={0}
                     height={0}
