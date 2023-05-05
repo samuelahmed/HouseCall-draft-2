@@ -123,11 +123,6 @@ const Header = () => {
                 Account
               </div>
             </Link>
-            <Link href={"/about"} className="px-1 py-1">
-              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
-                About
-              </div>
-            </Link>
           </div>
         )}
         {session && data?.role === "Patient" && (
@@ -148,11 +143,6 @@ const Header = () => {
             <Link href={"/dashboard/account"} className="px-1 py-1">
               <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
                 Account
-              </div>
-            </Link>
-            <Link href={"/about"} className="px-1 py-1">
-              <div className="px-2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2">
-                About
               </div>
             </Link>
           </div>
