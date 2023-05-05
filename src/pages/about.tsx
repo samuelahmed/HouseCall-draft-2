@@ -2,9 +2,11 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Header from "@/components/layout/header";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 const About: NextPage = () => {
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -14,12 +16,12 @@ const About: NextPage = () => {
       <div>
         <div className="px-4 py-4 font-roboto">
           <h1 className="my-16 py-2 text-center font-robotoSlab text-4xl font-bold">
-            House <span className="text-blue11">Call </span> connects patients
-            and caregivers
+            Connecting <span className="text-blue11">patients </span>
+            with <span className="text-blue11">caregivers</span>.
           </h1>
           <div className="grid min-h-screen grid-cols-1 grid-rows-1 md:grid-cols-2 md:grid-rows-2  ">
             <div className="cols-span-1 flex-center justify-top flex flex-col px-10 md:px-20 ">
-              <h1 className="mt-16 py-2 text-center font-robotoSlab text-3xl font-bold">
+              <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
                 Find the perfect caregiver
               </h1>
               <p className=" py-2 ">
@@ -33,16 +35,23 @@ const About: NextPage = () => {
                 with the many daily needs, small and big, to help achieve a
                 better quality of life.
               </p>
-              <h1 className="mt-16 py-2 text-center font-robotoSlab text-3xl font-bold">
+              <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
                 Discover patients who need your help
               </h1>
               <p className="py-2">
                 We strongly believe that patients know their needs and that many
                 people are wonderful caregivers. We help connect you by allowing
                 patients to create care sessions which describe their needs, and
-                caregivers can apply to these sessions. It is best practice to
-                chat with your potential patient or caregiver before accepting
-                to make sure that you are a good fit for each other.
+                caregivers can apply to these sessions. We also allow caregivers
+              </p>
+              <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
+                Build lifelong relationships
+              </h1>
+              <p className="py-2">
+                There are many people in need of care, and many people who are
+                willing to provide care. We help connect you to build lifelong
+                relationships that can help improve the quality of life for
+                everyone involved.
               </p>
             </div>
             <div className="cols-span-1">
@@ -70,7 +79,16 @@ const About: NextPage = () => {
               </div>
             </div>
             <div className="cols-span-1 flex-center justify-top flex flex-col px-10 md:px-20">
-              <h1 className="mt-16 py-2 text-center font-robotoSlab text-3xl font-bold">
+              <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
+                Control your sessions
+              </h1>
+              <p className="py-2">
+                Patients create sessions that describe their needs and
+                caregivers discover sessions that make sense for them. Patients
+                can then message the caregiver and make sure they are a good fit
+                before confirmation.
+              </p>
+              <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
                 Meet in the comfort of home
               </h1>
               <p className="py-2">
@@ -79,16 +97,31 @@ const About: NextPage = () => {
                 and the needs of the patient to decide how the session will be
                 conducted.
               </p>
-              <h1 className="mt-16 py-2 text-center font-robotoSlab text-3xl font-bold">
-                Get started today
+              <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
+                Easily get started right now
               </h1>
               <p className="py-2">
-                To get started simply{" "}
-                <Link href={"/register"} className="text-blue9">
-                  register your account
-                </Link>
-                , and begin creating or applying to sessions.
+                We make sure to provide an easy to use platform and you can get
+                started right now with three easy steps:
               </p>
+              <ul>
+                <li>1. Register your account</li>
+                <li>2. Select your role</li>
+                <li>3. Create or apply to sessions</li>
+              </ul>
+              <div className="my-4 flex items-center justify-center">
+                <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      router.push("/register");
+                    }}
+                    className="cursor-pointer bg-blue10 px-2 py-1 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
+                  >
+                    Get Started
+                  </button>
+                </div>
+              </div>
             </div>
             <div className="cols-span-1 block md:hidden">
               <div className="col-span-1">
