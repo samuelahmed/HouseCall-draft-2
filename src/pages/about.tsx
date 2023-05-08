@@ -25,33 +25,24 @@ const About: NextPage = () => {
                 Find the perfect caregiver
               </h1>
               <p className=" py-2 ">
-                Human care and connections are key to a healthy life. It is our
-                mission to help all those in need access loving caregivers that
-                can help improve their lives. We are not a medical platform,{" "}
-                <span className="underline">
-                  we do not provide vetted medical professionals
-                </span>
-                , we fill the gaps that they cannot fulfill, helping patients
-                with the many daily needs, small and big, to help achieve a
-                better quality of life.
+                Connect with compassionate caregivers who can assist you with
+                your daily needs.
               </p>
+
               <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
                 Discover patients who need your help
               </h1>
               <p className="py-2">
-                We strongly believe that patients know their needs and that many
-                people are wonderful caregivers. We help connect you by allowing
-                patients to create care sessions which describe their needs, and
-                caregivers can apply to these sessions. We also allow caregivers
+                Satisfy your passion by helping patients and earn while
+                improving their quality of life.
               </p>
               <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
                 Build lifelong relationships
               </h1>
               <p className="py-2">
-                There are many people in need of care, and many people who are
-                willing to provide care. We help connect you to build lifelong
-                relationships that can help improve the quality of life for
-                everyone involved.
+                We constantly strive to provide a space to foster lifelong
+                relationships that can improve the quality of life for all
+                parties involved.
               </p>
             </div>
             <div className="cols-span-1">
@@ -83,26 +74,23 @@ const About: NextPage = () => {
                 Control your sessions
               </h1>
               <p className="py-2">
-                Patients create sessions that describe their needs and
-                caregivers discover sessions that make sense for them. Patients
-                can then message the caregiver and make sure they are a good fit
-                before confirmation.
+                Patients have full control of their sessions and caregivers can
+                discover and apply to sessions that fit their skills and
+                schedule.
               </p>
               <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
                 Meet in the comfort of home
               </h1>
               <p className="py-2">
-                All session locations are decided by the patient, with their
-                home being the default. Ultimately it is up to your creativity
-                and the needs of the patient to decide how the session will be
-                conducted.
+                By default all sessions are in the comfort of the patients home.
+                However it is ultimately up to the patient and caregiver to
+                decide how to best hold their sessions.
               </p>
               <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
                 Easily get started right now
               </h1>
               <p className="py-2">
-                We make sure to provide an easy to use platform and you can get
-                started right now with three easy steps:
+                You can get started right now with three easy steps:
               </p>
               <ul>
                 <li>1. Register your account</li>
