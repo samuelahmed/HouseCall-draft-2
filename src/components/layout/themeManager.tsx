@@ -6,12 +6,15 @@ import { useTheme } from "next-themes";
   //Feb 7 2023 - still have not looked into hydration error. Nor encountered it.
   //feb 23 2023 - still have not looked into hydration error. Nor encountered it.
   //Mar 24 2023 - still have not looked into hydration error. Nor encountered it.
+  //May 9 2023 - still have not looked into hydration error. Nor encountered it.
 
 const ThemeManager = () => {
   const { theme, setTheme } = useTheme();
   return (
     <button
       className="rounded-md bg-blue12 dark:bg-darkBlue1 py-1 px-2 font-semibold text-olive2 dark:text-olive2"
+      role="Toggle Dark and Light Mode"
+      aria-label="Toggle Dark and Light Mode"
       onClick={() => {
         setTheme(theme === "light" ? "dark" : "light");
       }}
