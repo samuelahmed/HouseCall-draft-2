@@ -45,8 +45,7 @@ const About: NextPage = () => {
                 Build lifelong relationships
               </h1>
               <p className="py-2">
-                We constantly strive to provide a space for you to meet people
-                to foster lifelong relationships with.
+                We provide a space for you to meet people and develop important connections that improve your life.
               </p>
             </div>
             <div className="cols-span-1">
