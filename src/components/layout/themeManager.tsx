@@ -13,7 +13,6 @@ const ThemeManager = () => {
   return (
     <button
       className="rounded-md bg-blue12 dark:bg-darkBlue1 py-1 px-2 font-semibold text-olive2 dark:text-olive2"
-      role="Toggle Dark and Light Mode"
       aria-label="Toggle Dark and Light Mode"
       onClick={() => {
         setTheme(theme === "light" ? "dark" : "light");
