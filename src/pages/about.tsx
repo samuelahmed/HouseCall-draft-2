@@ -11,14 +11,14 @@ const About: NextPage = () => {
   return (
     <>
       <Head>
-        <meta 
-        name="description" 
-        content="House Call connects patients and caregivers. Find the perfect caregiver or discover patients who need your help. Build lifelong relationships. Control your sessions. Meet in the comfort of home. Easily get started today!" />
+        <meta
+          name="description"
+          content="House Call connects patients and caregivers. Find the perfect caregiver or discover patients who need your help. Build lifelong relationships. Control your sessions. Meet in the comfort of home. Easily get started today!"
+        />
         <title>About</title>
       </Head>
       <Header />
       <div>
-
         <div className="px-4 py-4 font-roboto">
           <h1 className="my-16 py-2 text-center font-robotoSlab text-4xl font-bold">
             Connecting <span className="text-blue11">patients </span>
@@ -45,9 +45,7 @@ const About: NextPage = () => {
                 Build lifelong relationships
               </h1>
               <p className="py-2">
-                We constantly strive to provide a space to foster lifelong
-                relationships that can improve the quality of life for all
-                parties involved.
+                We provide a space for you to meet people and develop important connections that improve your life.
               </p>
             </div>
             <div className="cols-span-1">
@@ -112,20 +110,6 @@ const About: NextPage = () => {
                 >
                   Get Started
                 </Button>
-
-                {/* <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-
- 
-                  <button
-                    type="button"
-                    onClick={() => {
-                      router.push("/register");
-                    }}
-                    className="cursor-pointer bg-blue10 px-2 py-1 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
-                  >
-                    Get Started
-                  </button>
-                </div> */}
               </div>
             </div>
             <div className="cols-span-1 block md:hidden">
