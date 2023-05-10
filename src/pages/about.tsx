@@ -3,8 +3,7 @@ import Head from "next/head";
 import Header from "@/components/layout/header";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Button } from "@/components/ui/button"
-
+import { Button } from "@/components/ui/button";
 
 const About: NextPage = () => {
   const router = useRouter();
@@ -100,13 +99,17 @@ const About: NextPage = () => {
                 <li>3. Create or apply to sessions</li>
               </ul>
               <div className="my-4 flex items-center justify-center">
-              <Button 
-                variant="default"
-                size="default"
-              
-              >Button</Button>
+                <Button
+                  variant="default"
+                  size="default"
+                  onClick={() => {
+                    router.push("/register");
+                  }}
+                >
+                  Get Started
+                </Button>
 
-                <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
+                {/* <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
 
  
                   <button
@@ -118,7 +121,7 @@ const About: NextPage = () => {
                   >
                     Get Started
                   </button>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="cols-span-1 block md:hidden">
