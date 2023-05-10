@@ -86,7 +86,7 @@ const About: NextPage = () => {
               </h1>
               <p className="py-2">
                 By default all sessions are in the comfort of the patients home.
-                However it is ultimately up to the patient and caregiver to
+                Ultimately up to the patient and caregiver to
                 decide how to best hold their sessions.
               </p>
               <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
@@ -110,6 +110,15 @@ const About: NextPage = () => {
                 >
                   Get Started
                 </Button>
+
+                <div>
+                  sapce
+                </div>
+
+                <Button
+                  variant="default"
+                  size="sm"
+                > meow lots of words </Button>
               </div>
             </div>
             <div className="cols-span-1 block md:hidden">
