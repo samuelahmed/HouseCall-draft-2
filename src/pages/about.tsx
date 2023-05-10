@@ -11,10 +11,14 @@ const About: NextPage = () => {
   return (
     <>
       <Head>
+        <meta 
+        name="description" 
+        content="House Call connects patients and caregivers. Find the perfect caregiver or discover patients who need your help. Build lifelong relationships. Control your sessions. Meet in the comfort of home. Easily get started today!" />
         <title>About</title>
       </Head>
       <Header />
       <div>
+
         <div className="px-4 py-4 font-roboto">
           <h1 className="my-16 py-2 text-center font-robotoSlab text-4xl font-bold">
             Connecting <span className="text-blue11">patients </span>
