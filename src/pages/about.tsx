@@ -45,7 +45,8 @@ const About: NextPage = () => {
                 Build lifelong relationships
               </h1>
               <p className="py-2">
-                We provide a space for you to meet people and develop important connections that improve your life.
+                We provide a space for you to meet people and develop important
+                connections that improve your life.
               </p>
             </div>
             <div className="cols-span-1">
@@ -86,8 +87,8 @@ const About: NextPage = () => {
               </h1>
               <p className="py-2">
                 By default all sessions are in the comfort of the patients home.
-                Ultimately up to the patient and caregiver to
-                decide how to best hold their sessions.
+                Ultimately up to the patient and caregiver to decide how to best
+                hold their sessions.
               </p>
               <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
                 Easily get started right now
@@ -103,22 +104,13 @@ const About: NextPage = () => {
               <div className="my-4 flex items-center justify-center">
                 <Button
                   variant="default"
-                  size="default"
+                  size="lg"
                   onClick={() => {
                     router.push("/register");
                   }}
                 >
                   Get Started
                 </Button>
-
-                <div>
-                  sapce
-                </div>
-
-                <Button
-                  variant="default"
-                  size="sm"
-                > meow lots of words </Button>
               </div>
             </div>
             <div className="cols-span-1 block md:hidden">
