@@ -44,7 +44,10 @@ module.exports = {
       // Yellow - Sun
       yellow9: "#f5d90a",
       // Red - error 
+      red5: "#fdd8d8",
+
       red11: "#c30007d4",
+
 
       //White / Black - overlay
       white: "#ffffff",
