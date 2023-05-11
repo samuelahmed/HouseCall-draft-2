@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Header from "@/components/layout/header";
+import { Button } from "@/components/ui/button";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -295,21 +296,20 @@ const Slug: NextPage = () => {
               {potentialCaregiver?.caregiverId !== user.id && (
                 <>
                   {potentialCaregiver?.caregiverId !== user.id && (
-                    <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-                      <button
-                        className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
-                        onClick={() => {
-                          setInputs({
-                            currentUserId: user?.id,
-                            id: currentSession?.id || "",
-                          });
-                          publish();
-                          updateCareSessionStatusToApplied();
-                        }}
-                      >
-                        Apply
-                      </button>
-                    </div>
+                    <Button
+                      variant="default"
+                      size="lg"
+                      onClick={() => {
+                        setInputs({
+                          currentUserId: user?.id,
+                          id: currentSession?.id || "",
+                        });
+                        publish();
+                        updateCareSessionStatusToApplied();
+                      }}
+                    >
+                      Apply
+                    </Button>
                   )}
                   {potentialCaregiver?.caregiverId === user.id &&
                     potentialCaregiver?.status !== "Closed" && (
@@ -330,33 +330,34 @@ const Slug: NextPage = () => {
                     )}
                   <div>
                     {errorMessage && (
-                      <p className="text-red11 text-center">
+                      <p className="text-center text-red11">
                         You already applied to this session.
                       </p>
                     )}
                   </div>
                 </>
               )}
+
               {potentialCaregiver?.caregiverId === user.id && (
-                <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-                  <button
-                    className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
-                    onClick={() => {
-                      setInputs({
-                        currentUserId: user?.id || "",
-                        id: currentSession?.id || "",
-                      });
-                      removeCaregiver();
-                    }}
-                  >
-                    Cancel Application
-                  </button>
-                </div>
+                <Button
+                  variant="default"
+                  size="lg"
+                  onClick={() => {
+                    setInputs({
+                      currentUserId: user?.id || "",
+                      id: currentSession?.id || "",
+                    });
+                    removeCaregiver();
+                  }}
+                >
+                  Cancel Application
+                </Button>
               )}
             </div>
+
             <div>
               {errorMessage && (
-                <p className="text-red11 text-center">
+                <p className="text-center text-red11">
                   You already applied to this session.
                 </p>
               )}
@@ -563,10 +564,11 @@ const Slug: NextPage = () => {
                             {potentialCaregiver?.status}
                           </p>
                         </div>
+
                         <div className="mt-2 mb-2 flex justify-around ">
-                          <button
-                            className="cursor-pointer border  border-solid border-blue7 bg-blue3 px-3 text-olive12 hover:border-blue8 hover:bg-blue4
-                          dark:border-darkBlue7 dark:bg-darkBlue3 dark:text-darkOlive12 dark:hover:border-darkBlue8 dark:hover:bg-darkBlue4"
+                          <Button
+                            variant="default"
+                            size="default"
                             onClick={() =>
                               router.push(
                                 `/caregiver/${potentialCaregiver?.slug}`
@@ -574,7 +576,7 @@ const Slug: NextPage = () => {
                             }
                           >
                             See Profile
-                          </button>
+                          </Button>
                         </div>
                       </li>
                     );
