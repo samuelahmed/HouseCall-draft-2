@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { trpc } from "../../utils/trpc";
+import { Button } from "../ui/button";
 
 const AccountEditModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -46,14 +47,13 @@ const AccountEditModal = () => {
 
   return (
     <>
-      <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-        <button
-          className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
-          onClick={() => setShowModal(true)}
-        >
-          Edit Account
-        </button>
-      </div>
+      <Button
+        variant="default"
+        size="default"
+        onClick={() => setShowModal(true)}
+      >
+        Edit Account
+      </Button>
       {showModal ? (
         <>
           <div className="fixed inset-0 z-50 grid h-screen place-items-center backdrop-brightness-50 ">
@@ -170,27 +170,25 @@ const AccountEditModal = () => {
                       </div>
                       <div className="grid grid-flow-col grid-rows-1 gap-4 pt-4">
                         <div className="flex justify-start">
-                          <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-                            <button
-                              onClick={() => setShowModal(false)}
-                              className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
-                            >
-                              Cancel
-                            </button>
-                          </div>
+                          <Button
+                            variant="default"
+                            size="default"
+                            onClick={() => setShowModal(false)}
+                          >
+                            Cancel
+                          </Button>
                         </div>
                         <div className="flex justify-end">
-                          <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-                            <button
-                              onClick={() => {
-                                publish();
-                                setShowModal(false);
-                              }}
-                              className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
-                            >
-                              Save
-                            </button>
-                          </div>
+                          <Button
+                            variant="default"
+                            size="default"
+                            onClick={() => {
+                              publish();
+                              setShowModal(false);
+                            }}
+                          >
+                            Save
+                          </Button>
                         </div>
                       </div>
                     </div>
