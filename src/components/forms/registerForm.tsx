@@ -4,6 +4,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useState } from "react";
 import { trpc } from "@/utils/trpc";
 import type { IRegister } from "@/validation/auth";
+import { Button } from "../ui/button";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -59,12 +60,9 @@ const RegisterForm = () => {
           <p className="text-red11 text-center">Error! This field is required</p>
         )}
         <div className="my-4 flex justify-center">
-          <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-            <input
-              type="submit"
-              className="cursor-pointer bg-blue10 px-2 py-1 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
-            />
-          </div>
+          <Button type="submit" variant="default" size="default">
+            Register
+          </Button>
         </div>
       </form>
     </div>
