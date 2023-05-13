@@ -24,13 +24,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Router, { useRouter } from "next/router";
+
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends { slug: string }, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -62,7 +66,7 @@ export function DataTable<TData, TValue>({
   });
 
   const [showModal, setShowModal] = useState(false);
-
+const router = useRouter();
   //close modal if clicked outside of it
 
   return (
@@ -93,7 +97,7 @@ export function DataTable<TData, TValue>({
         className="block w-full border  bg-blue2 p-1.5 pl-4 text-sm text-olive12 focus:outline-none focus:ring-1 focus:ring-blue11 "
         placeholder="Search Sessions"
         required
-        onClick={() => (showModal ? setShowModal(false) : setShowModal(true))}
+        // onClick={() => (showModal ? setShowModal(false) : setShowModal(true))}
         value={table.getColumn("overview")?.getFilterValue() as string}
         onChange={(event) => {
           if (event.target.value !== "") {
@@ -119,7 +123,7 @@ export function DataTable<TData, TValue>({
 
       {showModal ? (
         <>
-          <div className="absolute z-50 flex h-96 w-1/2 place-items-center overflow-hidden  border bg-yellow9 text-black md:w-1/3 ">
+          <div className="absolute z-50 flex h-96 w-1/2 place-items-center overflow-hidden  border text-black md:w-1/3 ">
             <div className="border">
               <Table>
                 {/* <TableHeader>
@@ -146,6 +150,11 @@ export function DataTable<TData, TValue>({
                       <TableRow
                         key={row.id}
                         data-state={row.getIsSelected() && "selected"}
+                        onClick={() =>
+                          //router using slug
+                          router.push(`/careSession/${row.original.slug}`)
+            
+                        }
                       >
                         {row.getVisibleCells().map((cell) => (
                           <TableCell key={cell.id}>
@@ -170,7 +179,7 @@ export function DataTable<TData, TValue>({
                 </TableBody>
               </Table>
             </div>
-            <div className="flex items- center justify-end space-x-2" >
+            <div className="items- center flex justify-end space-x-2">
               <div className="text-muted-foreground flex-1 text-sm">
                 {table.getFilteredSelectedRowModel().rows.length} of{" "}
                 {table.getFilteredRowModel().rows.length} row(s) selected.
