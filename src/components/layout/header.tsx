@@ -6,7 +6,7 @@ import AuthShowcase from "./authShowcase";
 import Link from "next/link";
 import SideNav from "./sideNav";
 import { useState } from "react";
-import SearchModal from "./searchModal";
+import DataTable from '../search/demo'
 
 const Header = () => {
   const [showNav, setShowNav] = useState(false);
@@ -62,7 +62,7 @@ const Header = () => {
 
         {session && (
           <div className=" px-1 text-xl capitalize text-darkOlive12 md:justify-center">
-            <SearchModal />
+            < DataTable />
           </div>
         )}
         {!session && (
