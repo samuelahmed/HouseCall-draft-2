@@ -6,6 +6,7 @@ import AuthShowcase from "./authShowcase";
 import Link from "next/link";
 import SideNav from "./sideNav";
 import { useState } from "react";
+import SearchModal from "./searchModal";
 
 const Header = () => {
   const [showNav, setShowNav] = useState(false);
@@ -62,11 +63,15 @@ const Header = () => {
         {session && (
           <div className="flex px-1 text-xl capitalize text-darkOlive12 md:justify-center">
             <form className="min-w-full">
+              <SearchModal />
+              {/* 
               <div className="relative ">
+
                 <div
                   className="absolute right-2 bottom-2"
                   onClick={() => console.log("search")}
                 >
+
                   <svg
                     aria-hidden="true"
                     className="h-5 w-5 text-olive12"
@@ -88,7 +93,7 @@ const Header = () => {
                   placeholder="Search Sessions"
                   required
                 />
-              </div>
+              </div> */}
             </form>
           </div>
         )}
