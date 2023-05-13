@@ -21,7 +21,8 @@
       "@/pages/*": ["pages/*"],
       "@/server/*": ["server/*"],
       "@/utils/*": ["utils/*"],
-      "@/validation/*": ["validation/*"]
+      "@/validation/*": ["validation/*"],
+      "@/*": ["./*"]
     } 
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs", "src/components/dateSelect/dateEngine.js", "src/components/dateSelect/dateSegment.js", "src/components/dateSelect/popover.js", "src/components/dateSelect/datePicker.js", "src/components/dateSelect/dateField.js", "src/components/dateSelect/calendarGrid.js", "src/components/dateSelect/calendarCell.js", "src/components/dateSelect/calendar.js", "src/components/dateSelect/button.js",  
