@@ -61,10 +61,8 @@ const Header = () => {
         </div>
 
         {session && (
-          <div className="flex px-1 text-xl capitalize text-darkOlive12 md:justify-center">
-            <form className="min-w-full">
-              <SearchModal />
-            </form>
+          <div className=" px-1 text-xl capitalize text-darkOlive12 md:justify-center">
+            <SearchModal />
           </div>
         )}
         {!session && (
