@@ -26,12 +26,9 @@ import {
 } from "@/components/ui/table";
 import Router, { useRouter } from "next/router";
 
-
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-
 }
 
 export function DataTable<TData extends { slug: string }, TValue>({
@@ -66,7 +63,7 @@ export function DataTable<TData extends { slug: string }, TValue>({
   });
 
   const [showModal, setShowModal] = useState(false);
-const router = useRouter();
+  const router = useRouter();
   //close modal if clicked outside of it
 
   return (
@@ -98,33 +95,23 @@ const router = useRouter();
         placeholder="Search Sessions"
         required
         // onClick={() => (showModal ? setShowModal(false) : setShowModal(true))}
-        value={table.getColumn("overview")?.getFilterValue() as string}
+        //add new columns to search here
+        value={table.getColumn("overivew")?.getFilterValue() as string}
         onChange={(event) => {
           if (event.target.value !== "") {
             setShowModal(true);
           } else {
             setShowModal(false);
           }
-
           table.getColumn("overview")?.setFilterValue(event.target.value);
         }}
       />
-      {/* <input
-        placeholder="Filter overview..."
-        value={table.getColumn("overview")?.getFilterValue() as string}
-        onChange={(event) =>
-          table.getColumn("overview")?.setFilterValue(event.target.value)
-        }
-        onClick={() => (showModal ? setShowModal(false) : setShowModal(true))}
 
-        className="max-w-sm"
-      /> */}
-      {/* </div> */}
 
       {showModal ? (
         <>
-          <div className="absolute z-50 flex min-h-20vh max-h-96  max-w-40vw place-items-center bg-white border text-black overflow-auto">
-            <div className="border mb-6">
+          <div className="absolute z-50 flex max-h-96 min-h-20vh  max-w-40vw place-items-center overflow-auto border bg-white text-black">
+            <div className="mb-6 border">
               <Table>
                 {/* <TableHeader>
                   {table.getHeaderGroups().map((headerGroup) => (
@@ -153,7 +140,6 @@ const router = useRouter();
                         onClick={() =>
                           //router using slug
                           router.push(`/careSession/${row.original.slug}`)
-            
                         }
                       >
                         {row.getVisibleCells().map((cell) => (
@@ -180,11 +166,11 @@ const router = useRouter();
               </Table>
             </div>
             {/* <div className="items- center flex justify-end space-x-2"> */}
-              {/* <div className="text-muted-foreground flex-1 text-sm">
+            {/* <div className="text-muted-foreground flex-1 text-sm">
                 {table.getFilteredSelectedRowModel().rows.length} of{" "}
                 {table.getFilteredRowModel().rows.length} row(s) selected.
               </div> */}
-              {/* <div className="space-x-2">
+            {/* <div className="space-x-2">
                 <Button
                   // variant="outline"
                   size="default"
