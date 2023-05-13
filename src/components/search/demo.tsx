@@ -10,7 +10,7 @@ function DataTableComponent() {
   if (!sessionData.data) return <div>Loading...</div>;
 
   return (
-    <div className="py-10 px-10">
+    <div className="    ">
       {<DataTable columns={columns} data={sessionData.data} />}
     </div>
   );
