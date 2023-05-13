@@ -94,7 +94,7 @@ const router = useRouter();
       </div>
       <input
         id="default-search"
-        className="block w-full border  bg-blue2 p-1.5 pl-4 text-sm text-olive12 focus:outline-none focus:ring-1 focus:ring-blue11 "
+        className="block w-full border bg-blue2 p-1.5 pl-4 text-sm text-olive12 focus:outline-none focus:ring-1 focus:ring-blue11 "
         placeholder="Search Sessions"
         required
         // onClick={() => (showModal ? setShowModal(false) : setShowModal(true))}
@@ -123,8 +123,8 @@ const router = useRouter();
 
       {showModal ? (
         <>
-          <div className="absolute z-50 flex h-96 w-1/2 place-items-center overflow-hidden  border text-black md:w-1/3 ">
-            <div className="border">
+          <div className="absolute z-50 flex min-h-20vh max-h-96  max-w-40vw place-items-center bg-white border text-black overflow-auto">
+            <div className="border mb-6">
               <Table>
                 {/* <TableHeader>
                   {table.getHeaderGroups().map((headerGroup) => (
@@ -170,7 +170,7 @@ const router = useRouter();
                     <TableRow>
                       <TableCell
                         colSpan={columns.length}
-                        className="h-24 text-center"
+                        className="min-h-20vh min-w-40vw text-center"
                       >
                         No results.
                       </TableCell>
@@ -179,12 +179,12 @@ const router = useRouter();
                 </TableBody>
               </Table>
             </div>
-            <div className="items- center flex justify-end space-x-2">
-              <div className="text-muted-foreground flex-1 text-sm">
+            {/* <div className="items- center flex justify-end space-x-2"> */}
+              {/* <div className="text-muted-foreground flex-1 text-sm">
                 {table.getFilteredSelectedRowModel().rows.length} of{" "}
                 {table.getFilteredRowModel().rows.length} row(s) selected.
-              </div>
-              <div className="space-x-2">
+              </div> */}
+              {/* <div className="space-x-2">
                 <Button
                   // variant="outline"
                   size="default"
@@ -201,13 +201,13 @@ const router = useRouter();
                 >
                   Next
                 </Button>
-              </div>
-            </div>
+              </div> */}
+            {/* </div> */}
 
             <Button
               variant="default"
               size="default"
-              className="absolute inset-x-0 bottom-0 "
+              className="absolute inset-x-0 bottom-0"
               onClick={() => setShowModal(false)}
             >
               close Search
