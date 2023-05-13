@@ -10,7 +10,6 @@ const SearchModal = () => {
 
   return (
     <>
-      {/* <div className="relative"> */}
       <div
         className="absolute right-2 bottom-2"
         onClick={() => (showModal ? setShowModal(false) : setShowModal(true))}
@@ -37,8 +36,6 @@ const SearchModal = () => {
         required
         onClick={() => (showModal ? setShowModal(false) : setShowModal(true))}
       />
-      {/* </div> */}
-
       {showModal ? (
         <>
           <div className="absolute z-50 flex h-96 w-1/2 place-items-center  border bg-yellow9 md:w-1/3  ">
@@ -47,7 +44,7 @@ const SearchModal = () => {
               variant="default"
               size="default"
               className="absolute inset-x-0 bottom-0 "
-                onClick={() => setShowModal(false)} 
+              onClick={() => setShowModal(false)}
             >
               close Search
             </Button>
