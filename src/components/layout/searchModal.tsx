@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import { trpc } from "../../utils/trpc";
 import { Button } from "../ui/button";
 import * as React from "react";
-import type {
+
+import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
-  VisibilityState} from "@tanstack/react-table";
-import {
+  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -16,8 +16,6 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
-
 
 import {
   Table,
