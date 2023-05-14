@@ -3,7 +3,6 @@ import { cn } from "../../lib/utils"
 import * as React from "react";
 
 
-
 const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
@@ -39,7 +38,7 @@ const TableBody = React.forwardRef<
 ))
 TableBody.displayName = "TableBody"
 
-//currently not footer.
+//currently no footer.
 const TableFooter = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
@@ -70,8 +69,6 @@ const TableRow = React.forwardRef<
 ))
 TableRow.displayName = "TableRow"
 
-
-//header - can add bg color if wanted
 const TableHead = React.forwardRef<
   HTMLTableCellElement,
   React.ThHTMLAttributes<HTMLTableCellElement>
@@ -87,7 +84,7 @@ const TableHead = React.forwardRef<
 ))
 TableHead.displayName = "TableHead"
 
-//cells are rows can update color. Doing so will impact all
+//cells are rows can change their bg color here, doing so will impact all.
 const TableCell = React.forwardRef<
   HTMLTableCellElement,
   React.TdHTMLAttributes<HTMLTableCellElement>
@@ -101,7 +98,6 @@ const TableCell = React.forwardRef<
 TableCell.displayName = "TableCell"
 
 
-//currently not used- that I know of added dark blue bg to notice if it is used.
 const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,
   React.HTMLAttributes<HTMLTableCaptionElement>
