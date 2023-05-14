@@ -116,7 +116,6 @@ export function DataTable<TData extends { slug: string }, TValue>({
                         key={row.id}
                         data-state={row.getIsSelected() && "selected"}
                         onClick={() =>
-                          //router using slug
                           router.push(`/careSession/${row.original.slug}`)
                         }
                       >
