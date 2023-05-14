@@ -155,17 +155,6 @@ export function DataTable<TData extends { slug: string }, TValue>({
               </Button>{" "}
             </div>
           </div>
-
-          {/* <div className=" inset-x-0 bottom-0 overflow-hidden">
-            <Button
-              variant="default"
-              size="default"
-              className=""
-              onClick={() => setShowModal(false)}
-            >
-              close Search
-            </Button>
-          </div> */}
         </>
       ) : null}
     </>
