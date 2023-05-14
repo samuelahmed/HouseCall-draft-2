@@ -6,7 +6,7 @@ import AuthShowcase from "./authShowcase";
 import Link from "next/link";
 import SideNav from "./sideNav";
 import { useState } from "react";
-import DataTable from '../search/searchDataTable'
+import DataTable from "../search/searchDataTable";
 
 const Header = () => {
   const [showNav, setShowNav] = useState(false);
@@ -60,8 +60,12 @@ const Header = () => {
         </div>
 
         {session && (
-          <div className=" px-1 text-xl capitalize text-darkOlive12 md:justify-center">
-            < DataTable />
+          <div className="px-1 text-xl capitalize text-darkOlive12 md:justify-center">
+            <form className="min-w-full">
+              <div className="relative ">
+                <DataTable />
+              </div>
+            </form>
           </div>
         )}
         {!session && (
