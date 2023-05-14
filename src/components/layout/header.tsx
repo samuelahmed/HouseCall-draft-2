@@ -6,6 +6,7 @@ import AuthShowcase from "./authShowcase";
 import Link from "next/link";
 import SideNav from "./sideNav";
 import { useState } from "react";
+import DataTable from '../search/searchDataTable'
 
 const Header = () => {
   const [showNav, setShowNav] = useState(false);
@@ -28,7 +29,6 @@ const Header = () => {
 
   return (
     <>
-      {/* TODO: Fix the mobile so that it reaches across entire screen not only 2/3rds */}
       <div className="flex-cols-3 flex items-center justify-between bg-blue12 py-1 dark:bg-darkBlue1 md:grid md:grid-cols-3">
         <div className="flex justify-start">
           <div className="ml-4 flex items-center pr-4 text-darkOlive12">
@@ -60,36 +60,8 @@ const Header = () => {
         </div>
 
         {session && (
-          <div className="flex px-1 text-xl capitalize text-darkOlive12 md:justify-center">
-            <form className="min-w-full">
-              <div className="relative ">
-                <div
-                  className="absolute right-2 bottom-2"
-                  onClick={() => console.log("search")}
-                >
-                  <svg
-                    aria-hidden="true"
-                    className="h-5 w-5 text-olive12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  id="default-search"
-                  className="block w-full border  bg-blue2 p-1.5 pl-4 text-sm text-olive12 focus:outline-none focus:ring-1 focus:ring-blue11 "
-                  placeholder="Search Sessions"
-                  required
-                />
-              </div>
-            </form>
+          <div className=" px-1 text-xl capitalize text-darkOlive12 md:justify-center">
+            < DataTable />
           </div>
         )}
         {!session && (

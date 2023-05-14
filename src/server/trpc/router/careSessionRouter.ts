@@ -231,6 +231,29 @@ export const careSessionRouter = router({
     return careSessions;
   }),
 
+  readAllSessionsForTable: privateProcedure.query(({ ctx }) => {
+    if (!ctx.session || !ctx.session.user) {
+      return null;
+    }
+    const careSessions = ctx.prisma.careSession.findMany({
+      where: {
+        careSessionStatus: {
+          in: ["New", "Active"],
+        },
+      },
+      // include: {
+      //   user: {
+      //     select: {
+      //       id: true,
+      //       username: true,
+      //       role: true,
+      //     },
+      //   },
+      // },
+    });
+    return careSessions;
+  }),
+  
   readAllNewSessionsByUser: privateProcedure.query(({ ctx }) => {
     if (!ctx.session || !ctx.session.user) {
       return null;
