@@ -8,7 +8,7 @@ function DataTableComponent() {
   if (!sessionData.data) return <div>Loading...</div>;
 
   return (
-    <div className="    ">
+    <div className="">
       {<DataTable columns={columns} data={sessionData.data} />}
     </div>
   );
