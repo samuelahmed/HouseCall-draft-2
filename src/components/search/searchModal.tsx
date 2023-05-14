@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { useEffect } from "react";
-import { trpc } from "../../utils/trpc";
 import { Button } from "../ui/button";
 import * as React from "react";
 
-import {
+import type {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
+} from "@tanstack/react-table";
+import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -25,6 +25,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import { useRouter } from "next/router";
 
 interface DataTableProps<TData, TValue> {
@@ -65,12 +66,10 @@ export function DataTable<TData extends { slug: string }, TValue>({
 
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
-  //close modal if clicked outside of it
+  //TODO: close modal if clicked outside of it
 
   return (
     <>
-      {/* <div className="relative"> */}
-
       <div
         className="absolute right-2 bottom-2"
         onClick={() => (showModal ? setShowModal(false) : setShowModal(true))}
@@ -95,8 +94,6 @@ export function DataTable<TData extends { slug: string }, TValue>({
         className="block w-full border bg-blue2 p-1.5 pl-4 text-sm text-olive12 focus:outline-none focus:ring-1 focus:ring-blue11 "
         placeholder="Search Sessions"
         required
-        // onClick={() => (showModal ? setShowModal(false) : setShowModal(true))}
-        //add new columns to search here
         value={table.getColumn("overivew")?.getFilterValue() as string}
         onChange={(event) => {
           if (event.target.value !== "") {
@@ -107,31 +104,11 @@ export function DataTable<TData extends { slug: string }, TValue>({
           table.getColumn("overview")?.setFilterValue(event.target.value);
         }}
       />
-
-
       {showModal ? (
         <>
           <div className="absolute z-50 flex max-h-96 min-h-20vh  max-w-40vw place-items-center overflow-auto border bg-white text-black">
             <div className="mb-6 border">
               <Table>
-                {/* <TableHeader>
-                  {table.getHeaderGroups().map((headerGroup) => (
-                    <TableRow key={headerGroup.id}>
-                      {headerGroup.headers.map((header) => {
-                        return (
-                          <TableHead key={header.id}>
-                            {header.isPlaceholder
-                              ? null
-                              : flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext()
-                                )}
-                          </TableHead>
-                        );
-                      })}
-                    </TableRow>
-                  ))}
-                </TableHeader> */}
                 <TableBody>
                   {table.getRowModel().rows?.length ? (
                     table.getRowModel().rows.map((row) => (
@@ -166,31 +143,6 @@ export function DataTable<TData extends { slug: string }, TValue>({
                 </TableBody>
               </Table>
             </div>
-            {/* <div className="items- center flex justify-end space-x-2"> */}
-            {/* <div className="text-muted-foreground flex-1 text-sm">
-                {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                {table.getFilteredRowModel().rows.length} row(s) selected.
-              </div> */}
-            {/* <div className="space-x-2">
-                <Button
-                  // variant="outline"
-                  size="default"
-                  onClick={() => table.previousPage()}
-                  disabled={!table.getCanPreviousPage()}
-                >
-                  Previous
-                </Button>
-                <Button
-                  // variant="outline"
-                  size="default"
-                  onClick={() => table.nextPage()}
-                  disabled={!table.getCanNextPage()}
-                >
-                  Next
-                </Button>
-              </div> */}
-            {/* </div> */}
-
             <Button
               variant="default"
               size="default"
@@ -205,6 +157,3 @@ export function DataTable<TData extends { slug: string }, TValue>({
     </>
   );
 }
-//
-// export default DataTable;
-// export default SearchModal;

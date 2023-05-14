@@ -6,7 +6,7 @@ import AuthShowcase from "./authShowcase";
 import Link from "next/link";
 import SideNav from "./sideNav";
 import { useState } from "react";
-import DataTable from '../search/demo'
+import DataTable from '../search/searchDataTable'
 
 const Header = () => {
   const [showNav, setShowNav] = useState(false);
@@ -29,7 +29,6 @@ const Header = () => {
 
   return (
     <>
-      {/* TODO: Fix the mobile so that it reaches across entire screen not only 2/3rds */}
       <div className="flex-cols-3 flex items-center justify-between bg-blue12 py-1 dark:bg-darkBlue1 md:grid md:grid-cols-3">
         <div className="flex justify-start">
           <div className="ml-4 flex items-center pr-4 text-darkOlive12">
