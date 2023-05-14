@@ -106,8 +106,8 @@ export function DataTable<TData extends { slug: string }, TValue>({
       />
       {showModal ? (
         <>
-          <div className="absolute z-50 flex max-h-96 min-h-20vh  max-w-40vw place-items-center overflow-auto border bg-white text-black">
-            <div className="mb-6 border">
+          <div className="absolute z-50 flex max-h-96 min-h-20vh w-full flex-col place-items-center border bg-white text-black">
+            <div className="w-full overflow-auto bg-white">
               <Table>
                 <TableBody>
                   {table.getRowModel().rows?.length ? (
@@ -142,15 +142,28 @@ export function DataTable<TData extends { slug: string }, TValue>({
                 </TableBody>
               </Table>
             </div>
+            <div className="flex w-full items-center justify-center text-sm md:text-base ">
+              <Button
+                variant="default"
+                size="default"
+                className=""
+                onClick={() => setShowModal(false)}
+              >
+                close Search
+              </Button>{" "}
+            </div>
+          </div>
+
+          {/* <div className=" inset-x-0 bottom-0 overflow-hidden">
             <Button
               variant="default"
               size="default"
-              className="absolute inset-x-0 bottom-0"
+              className=""
               onClick={() => setShowModal(false)}
             >
               close Search
             </Button>
-          </div>
+          </div> */}
         </>
       ) : null}
     </>
