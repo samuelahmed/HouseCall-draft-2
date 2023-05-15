@@ -35,7 +35,7 @@ const Header = () => {
             {session && data?.role === "Caregiver" && (
               <div
                 onClick={() => router.push("/dashboard")}
-                className="hidden cursor-pointer text-sm md:block md:text-xl"
+                className="cursor-pointer text-sm md:block md:text-xl"
               >
                 House Call
               </div>
@@ -48,6 +48,7 @@ const Header = () => {
                 House Call
               </div>
             )}
+
             {!session && (
               <div
                 onClick={() => router.push("/")}
@@ -62,7 +63,7 @@ const Header = () => {
         {session && (
           <div className="px-1 text-xl capitalize text-darkOlive12 md:justify-center">
             <form className="min-w-full">
-              <div className="relative ">
+              <div className="relative">
                 <DataTable />
               </div>
             </form>
