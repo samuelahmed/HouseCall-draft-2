@@ -291,6 +291,7 @@ const Slug: NextPage = () => {
               <span className="">Session Created:&nbsp;</span>
               {currentSession?.createdAt.toDateString()}
             </p>
+ 
 
             <div className="flex flex-col items-center justify-center py-4">
               {potentialCaregiver?.caregiverId !== user.id && (
@@ -536,6 +537,9 @@ const Slug: NextPage = () => {
                 <span className="">Session Created:&nbsp;</span>
                 {currentSession?.createdAt.toDateString()}
               </p>
+              <div>
+              TEST TEST ADD DELETE SESSION
+            </div>
             </div>
             <div className="col-span-1 px-2">
               <p className="text-center text-xl">Caregivers</p>
