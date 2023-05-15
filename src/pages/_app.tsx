@@ -5,6 +5,8 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { trpc } from "@/utils/trpc";
 import "../styles/globals.css";
+import { Analytics } from '@vercel/analytics/react';
+
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -15,6 +17,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <SessionProvider session={session}>
         <main className="font-robotoSlab">
           <Component {...pageProps} />
+          <Analytics />
+
         </main>
       </SessionProvider>
     </ThemeProvider>
