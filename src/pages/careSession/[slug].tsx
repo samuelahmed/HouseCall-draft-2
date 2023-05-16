@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { use, useState } from "react";
 import { useSession } from "next-auth/react";
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
@@ -76,6 +76,50 @@ const Slug: NextPage = () => {
         // router.reload();
       },
     });
+
+  const { mutate: cancelCareSession } =
+    trpc.careSessionAPIs.cancelOneCareSession.useMutation({
+      onError: (error) => {
+        setErrorMessage(error.message);
+      },
+      onSuccess: () => {
+        alert("You have successfully cancelled this care session.");
+        // router.reload();
+      },
+    });
+
+  const cancelThisCareSession = () => {
+    if (currentSession) {
+      cancelCareSession({
+        patientId: user?.id || "",
+        careSessionId: currentSession.id,
+      });
+    }
+  };
+
+  const { mutate: reactivateCareSession } =
+    trpc.careSessionAPIs.reActivateOneCareSession.useMutation({
+      onError: (error) => {
+        setErrorMessage(error.message);
+      },
+      onSuccess: () => {
+        alert("You have successfully reactivated this care session.");
+        // router.reload();
+      },
+    });
+
+  const reactivateThisCareSession = () => {
+    if (currentSession) {
+      reactivateCareSession({
+        patientId: user?.id || "",
+        careSessionId: currentSession.id,
+        potentialCaregiverId: potentialCaregiver?.id || "",
+      });
+    }
+  };
+
+  // console.log(currentSession?.userId )
+  // console.log(user?.id)
 
   const { mutate: mutateTwo } =
     trpc.careSessionAPIs.deleteOnePotentialCaregiver.useMutation({
@@ -291,7 +335,6 @@ const Slug: NextPage = () => {
               <span className="">Session Created:&nbsp;</span>
               {currentSession?.createdAt.toDateString()}
             </p>
- 
 
             <div className="flex flex-col items-center justify-center py-4">
               {potentialCaregiver?.caregiverId !== user.id && (
@@ -538,8 +581,34 @@ const Slug: NextPage = () => {
                 {currentSession?.createdAt.toDateString()}
               </p>
               <div>
-              TEST TEST ADD DELETE SESSION
-            </div>
+                {currentSession?.userId === user.id && (
+                  <>
+                    {(currentSession?.careSessionStatus === "Active" ||
+                      currentSession?.careSessionStatus === "New") && (
+                      <Button
+                        variant="redButton"
+                        size="default"
+                        onClick={() => {
+                          cancelThisCareSession();
+                        }}
+                      >
+                        Cancel Session
+                      </Button>
+                    )}
+                    {currentSession?.careSessionStatus === "Canceled" && (
+                      <Button
+                        variant="default"
+                        size="default"
+                        onClick={() => {
+                          reactivateThisCareSession();
+                        }}
+                      >
+                        Reactive Session
+                      </Button>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
             <div className="col-span-1 px-2">
               <p className="text-center text-xl">Caregivers</p>
