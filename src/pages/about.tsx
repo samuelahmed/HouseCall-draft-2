@@ -12,8 +12,8 @@ const About: NextPage = () => {
     <>
       <Head>
         <meta
-          // name="description"
-          // content="House Call connects patients and caregivers. Find the perfect caregiver or discover patients who need your help. Build lifelong relationships. Control your sessions. Meet in the comfort of home. Easily get started today!"
+          name="description"
+          content="House Call connects patients and caregivers. Find the perfect caregiver or discover patients who need your help. Build lifelong relationships. Control your sessions. Meet in the comfort of home. Easily get started today!"
         />
         <title>About</title>
       </Head>
