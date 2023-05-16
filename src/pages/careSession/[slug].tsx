@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { use, useState } from "react";
 import { useSession } from "next-auth/react";
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
@@ -581,28 +581,32 @@ const Slug: NextPage = () => {
                 {currentSession?.createdAt.toDateString()}
               </p>
               <div>
-                {(currentSession?.careSessionStatus === "Active" ||
-                  currentSession?.careSessionStatus === "New") && (
-                  <Button
-                    variant="redButton"
-                    size="default"
-                    onClick={() => {
-                      cancelThisCareSession();
-                    }}
-                  >
-                    Cancel Session
-                  </Button>
-                )}
-                {currentSession?.careSessionStatus === "Canceled" && (
-                  <Button
-                    variant="default"
-                    size="default"
-                    onClick={() => {
-                      reactivateThisCareSession();
-                    }}
-                  >
-                    Reactive Session
-                  </Button>
+                {currentSession?.userId === user.id && (
+                  <>
+                    {(currentSession?.careSessionStatus === "Active" ||
+                      currentSession?.careSessionStatus === "New") && (
+                      <Button
+                        variant="redButton"
+                        size="default"
+                        onClick={() => {
+                          cancelThisCareSession();
+                        }}
+                      >
+                        Cancel Session
+                      </Button>
+                    )}
+                    {currentSession?.careSessionStatus === "Canceled" && (
+                      <Button
+                        variant="default"
+                        size="default"
+                        onClick={() => {
+                          reactivateThisCareSession();
+                        }}
+                      >
+                        Reactive Session
+                      </Button>
+                    )}
+                  </>
                 )}
               </div>
             </div>
