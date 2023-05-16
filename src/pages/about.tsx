@@ -35,18 +35,17 @@ const About: NextPage = () => {
               </p>
 
               <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
-                Discover patients who need your help
+                Discover patients who need your help.
               </h1>
               <p className="py-2">
-                Satisfy your passion by helping patients and earn while
-                improving their quality of life.
+                Satisfy your passion by helping patients and earn while doing so.
+                
               </p>
               <h1 className="mt-8 py-2 text-center font-robotoSlab text-3xl font-bold">
                 Build lifelong relationships
               </h1>
               <p className="py-2">
-                We provide a space for you to meet people and develop important
-                connections that improve your life.
+                Meet locals who need your services and caregivers to improve your quality of life.
               </p>
             </div>
             <div className="cols-span-1">
