@@ -653,10 +653,11 @@ export const careSessionRouter = router({
       z.object({
         patientId: z.string(),
         careSessionId: z.string(),
+        potentialCaregiverId: z.string(),
       })
     )
     .mutation(async ({ input, ctx }) => {
-      const { patientId, careSessionId } = input;
+      const { potentialCaregiverId, patientId, careSessionId } = input;
       const careSession = await ctx.prisma.careSession.findFirst({
         where: {
           id: careSessionId,
@@ -668,15 +669,28 @@ export const careSessionRouter = router({
       if (careSession.userId !== patientId) {
         throw new Error("You do not own this session");
       }
-      const updatedCareSession = await ctx.prisma.careSession.update({
-        where: {
-          id: careSession.id,
-        },
-        data: {
-          careSessionStatus: "Active",
-        },
-      });
-      return updatedCareSession;
+      //set accurate status based on whether or not there is an applied caregiver
+      if (potentialCaregiverId) {
+        const updatedCareSession = await ctx.prisma.careSession.update({
+          where: {
+            id: careSession.id,
+          },
+          data: {
+            careSessionStatus: "Active",
+          },
+        });
+        return updatedCareSession;
+      } else {
+        const updatedCareSession = await ctx.prisma.careSession.update({
+          where: {
+            id: careSession.id,
+          },
+          data: {
+            careSessionStatus: "New",
+          },
+        });
+        return updatedCareSession;
+      }
     }),
 
   updateAllOtherPotentialCareSessionsToClosed: privateProcedure

@@ -91,7 +91,7 @@ const Slug: NextPage = () => {
   const cancelThisCareSession = () => {
     if (currentSession) {
       cancelCareSession({
-        patientId: currentSession.userId,
+        patientId: user?.id || "",
         careSessionId: currentSession.id,
       });
     }
@@ -111,11 +111,15 @@ const Slug: NextPage = () => {
   const reactivateThisCareSession = () => {
     if (currentSession) {
       reactivateCareSession({
-        patientId: currentSession.userId,
+        patientId: user?.id || "",
         careSessionId: currentSession.id,
+        potentialCaregiverId: potentialCaregiver?.id || "",
       });
     }
   };
+
+  // console.log(currentSession?.userId )
+  // console.log(user?.id)
 
   const { mutate: mutateTwo } =
     trpc.careSessionAPIs.deleteOnePotentialCaregiver.useMutation({
@@ -577,12 +581,12 @@ const Slug: NextPage = () => {
                 {currentSession?.createdAt.toDateString()}
               </p>
               <div>
-                {currentSession?.careSessionStatus === "Active" && (
+                {(currentSession?.careSessionStatus === "Active" ||
+                  currentSession?.careSessionStatus === "New") && (
                   <Button
                     variant="redButton"
                     size="default"
                     onClick={() => {
-                      console.log("meow");
                       cancelThisCareSession();
                     }}
                   >
@@ -594,7 +598,6 @@ const Slug: NextPage = () => {
                     variant="default"
                     size="default"
                     onClick={() => {
-                      console.log("meow");
                       reactivateThisCareSession();
                     }}
                   >
