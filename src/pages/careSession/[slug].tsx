@@ -649,7 +649,7 @@ const Slug: NextPage = () => {
                       currentSession?.careSessionStatus === "New") && (
                       <AlertDialog>
                         <AlertDialogTrigger>
-                          <Button variant="default" size="default">
+                          <Button variant="redButton" size="default">
                             Cancel Session
                           </Button>
                         </AlertDialogTrigger>

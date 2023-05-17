@@ -203,7 +203,7 @@ const Slug: NextPage = () => {
                          However for testing at the moment is fine. */}
                   {(potentialCareSession?.status === "Applied" ||
                     potentialCareSession?.status === "Closed") && (
-                    <AlertDialog>
+                    <AlertDialog> 
                       <AlertDialogTrigger>
                         <Button variant="default" size="default">
                           Accept Caregiver
@@ -238,7 +238,9 @@ const Slug: NextPage = () => {
                       </AlertDialogContent>
                     </AlertDialog>
                   )}
-                  {currentSession?.careSessionStatus === "Scheduled" && (
+                  {currentSession?.careSessionStatus === "Scheduled" && 
+                    potentialCareSession?.status === "Accepted" &&
+                  (
                     <AlertDialog>
                       <AlertDialogTrigger>
                         <Button variant="redButton" size="default">
