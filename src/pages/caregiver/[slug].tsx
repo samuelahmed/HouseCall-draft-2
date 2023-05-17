@@ -264,7 +264,7 @@ const Slug: NextPage = () => {
                                 acceptedCaregiverId: "",
                                 careSessionStatus: "Canceled",
                               });
-                              cancelSession();
+                              cancelSession();  
                               closeThisPotentialCareSession();
                             }}
                           >
