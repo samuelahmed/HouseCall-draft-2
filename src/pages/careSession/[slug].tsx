@@ -352,65 +352,115 @@ const Slug: NextPage = () => {
               {potentialCaregiver?.caregiverId !== user.id && (
                 <>
                   {potentialCaregiver?.caregiverId !== user.id && (
-                    <Button
-                      variant="default"
-                      size="lg"
-                      onClick={() => {
-                        setInputs({
-                          currentUserId: user?.id,
-                          id: currentSession?.id || "",
-                        });
-                        publish();
-                        updateCareSessionStatusToApplied();
-                      }}
-                    >
-                      Apply
-                    </Button>
+                    <AlertDialog>
+                      <AlertDialogTrigger>
+                        <Button variant="default" size="lg">
+                          Apply
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you certain?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            If you select apply, you will apply to this session.
+                            The patient will be able to message and accept you
+                            as their caregiver.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => {
+                              setInputs({
+                                currentUserId: user?.id,
+                                id: currentSession?.id || "",
+                              });
+                              publish();
+                              updateCareSessionStatusToApplied();
+                            }}
+                          >
+                            Apply
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   )}
+                  {/* Why did I add this one? */}
                   {potentialCaregiver?.caregiverId === user.id &&
                     potentialCaregiver?.status !== "Closed" && (
-                      <div className="bg-blue10 py-1 px-1 dark:bg-darkBlue7">
-                        <button
-                          className="cursor-pointer bg-blue10 px-2 text-lg text-olive2 hover:outline hover:outline-2 hover:outline-blue4 active:bg-blue5 active:text-darkOlive2 dark:bg-darkBlue7"
-                          onClick={() => {
-                            setInputs({
-                              currentUserId: user?.id || "",
-                              id: currentSession?.id || "",
-                            });
-                            removeCaregiver();
-                          }}
-                        >
-                          Cancel Application
-                        </button>
-                      </div>
+                      <AlertDialog>
+                        <AlertDialogTrigger>
+                          <Button variant="default" size="lg">
+                            Remove Application
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              Are you certain?
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                              If you select removed application, you will
+                              removed from this session.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => {
+                                setInputs({
+                                  currentUserId: user?.id || "",
+                                  id: currentSession?.id || "",
+                                });
+                                removeCaregiver();
+                              }}
+                            >
+                              Remove Application
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     )}
-                  <div>
-                    {errorMessage && (
-                      <p className="text-center text-red11">
-                        You already applied to this session.
-                      </p>
-                    )}
-                  </div>
+                  {errorMessage && (
+                    <p className="text-center text-red11">
+                      You already applied to this session.
+                    </p>
+                  )}
                 </>
               )}
-
               {potentialCaregiver?.caregiverId === user.id && (
-                <Button
-                  variant="default"
-                  size="lg"
-                  onClick={() => {
-                    setInputs({
-                      currentUserId: user?.id || "",
-                      id: currentSession?.id || "",
-                    });
-                    removeCaregiver();
-                  }}
-                >
-                  Cancel Application
-                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger>
+                    <Button variant="redButton" size="lg">
+                      Remove Application
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Are you certain?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        If you select remove application, you will removed from
+                        this session.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={() => {
+                          setInputs({
+                            currentUserId: user?.id || "",
+                            id: currentSession?.id || "",
+                          });
+                          removeCaregiver();
+                        }}
+                      >
+                        Remove Application
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               )}
             </div>
-
             <div>
               {errorMessage && (
                 <p className="text-center text-red11">
