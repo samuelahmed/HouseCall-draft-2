@@ -7,6 +7,18 @@ import { useSession } from "next-auth/react";
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 const Slug: NextPage = () => {
   const router = useRouter();
   const { slug } = router.query as { slug: string };
@@ -585,26 +597,64 @@ const Slug: NextPage = () => {
                   <>
                     {(currentSession?.careSessionStatus === "Active" ||
                       currentSession?.careSessionStatus === "New") && (
-                      <Button
-                        variant="redButton"
-                        size="default"
-                        onClick={() => {
-                          cancelThisCareSession();
-                        }}
-                      >
-                        Cancel Session
-                      </Button>
+                      <AlertDialog>
+                        <AlertDialogTrigger>
+                          <Button variant="default" size="default">
+                            Cancel Session
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              Are you certain?
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                              If you select continue, this session will be
+                              canceled.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => {
+                                cancelThisCareSession();
+                              }}
+                            >
+                              Continue
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     )}
                     {currentSession?.careSessionStatus === "Canceled" && (
-                      <Button
-                        variant="default"
-                        size="default"
-                        onClick={() => {
-                          reactivateThisCareSession();
-                        }}
-                      >
-                        Reactive Session
-                      </Button>
+                      <AlertDialog>
+                        <AlertDialogTrigger>
+                          <Button variant="default" size="default">
+                            Reactive Session
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              Are you certain?
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                              If you select continue, this session will be
+                              reactivated.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => {
+                                reactivateThisCareSession();
+                              }}
+                            >
+                              Continue
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     )}
                   </>
                 )}
