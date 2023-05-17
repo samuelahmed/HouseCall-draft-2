@@ -13,6 +13,17 @@ import { DatePicker } from "@/components/dateSelect/datePicker";
 import * as Label from "@radix-ui/react-label";
 import { TimeField } from "@/components/dateSelect/timeField";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const Create: NextPage = () => {
   const { data: session } = useSession();
@@ -134,7 +145,7 @@ const Create: NextPage = () => {
 
   const publish = () => {
     if (inputs.title === "Select Session Type") {
-      alert("Please select a session type");
+      alert("Error: To create a session, you must select a session type");
     } else {
       mutate(inputs);
       router.push(`/careSession/${inputs.slug}`);
@@ -460,15 +471,32 @@ const Create: NextPage = () => {
                     </div>
                   </div>
                   <div className="my-16 flex items-center justify-center">
-                    <Button
-                      variant="default"
-                      size="lg"
-                      onClick={() => {
-                        publish();
-                      }}
-                    >
-                      Submit
-                    </Button>
+                    <AlertDialog>
+                      <AlertDialogTrigger>
+                        <Button variant="default" size="lg">
+                          Submit
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you certain?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            If you select submit your session will be created
+                            and caregivers will be able to apply.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => {
+                              publish();
+                            }}
+                          >
+                            Submit
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </div>
                 </div>
               </div>
