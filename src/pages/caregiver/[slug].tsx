@@ -7,6 +7,17 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const Slug: NextPage = () => {
   const router = useRouter();
@@ -158,57 +169,108 @@ const Slug: NextPage = () => {
 
               <div className="col-span-2 justify-self-center">
                 <div className="mt-2 mb-2 flex space-x-2">
-                  <Button
-                    variant="default"
-                    size="default"
-                    onClick={() => {
-                      // NEED TO FIGURE OUT HOW TO CHECK IF THERE IS A PUSHER CHANNEL AND IF THERE IS DO NOT CREATE A NEW ONE
-                      triggerCreatePusherChannel();
-                      // router.push("/dashboard/messages");
-                    }}
-                  >
-                    Message Caregiver
-                  </Button>
+                  <AlertDialog>
+                    <AlertDialogTrigger>
+                      <Button variant="default" size="default">
+                        Message Caregiver
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Are you certain?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          If you select message, the caregiver will be added to
+                          your contact list and you will be able to message
+                          them.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={() => {
+                            // NEED TO FIGURE OUT HOW TO CHECK IF THERE IS A PUSHER CHANNEL AND IF THERE IS DO NOT CREATE A NEW ONE
+                            triggerCreatePusherChannel();
+                            // router.push("/dashboard/messages");
+                          }}
+                        >
+                          Message
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
 
                   {/* In the future make sure that once a session is called it cannot just be reopened.
                          However for testing at the moment is fine. */}
                   {(potentialCareSession?.status === "Applied" ||
                     potentialCareSession?.status === "Closed") && (
-                    <Button
-                      variant="default"
-                      size="default"
-                      onClick={() => {
-                        setInputs({
-                          careSessionId: currentSession?.id || "",
-                          acceptedCaregiverId:
-                            potentialCareSession?.caregiverId || "",
-                          careSessionStatus: "Active",
-                        });
-                        acceptedSession();
-                        updateThisPotentialCareSession();
-                        updateAllOtherPotentialCareSessions();
-                      }}
-                    >
-                      Accept Caregiver
-                    </Button>
+                    <AlertDialog>
+                      <AlertDialogTrigger>
+                        <Button variant="default" size="default">
+                          Accept Caregiver
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you certain?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            If you select accept, this caregiver will be
+                            assigned to your session.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => {
+                              setInputs({
+                                careSessionId: currentSession?.id || "",
+                                acceptedCaregiverId:
+                                  potentialCareSession?.caregiverId || "",
+                                careSessionStatus: "Active",
+                              });
+                              acceptedSession();
+                              updateThisPotentialCareSession();
+                              updateAllOtherPotentialCareSessions();
+                            }}
+                          >
+                            Accept
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   )}
-                  {/* This should probably be on the session page not caregiver slug page */}
                   {currentSession?.careSessionStatus === "Scheduled" && (
-                    <Button
-                      variant="redButton"
-                      size="default"
-                      onClick={() => {
-                        setInputs({
-                          careSessionId: currentSession?.id || "",
-                          acceptedCaregiverId: "",
-                          careSessionStatus: "Canceled",
-                        });
-                        cancelSession();
-                        closeThisPotentialCareSession();
-                      }}
-                    >
-                      Cancel Session
-                    </Button>
+                    <AlertDialog>
+                      <AlertDialogTrigger>
+                        <Button variant="redButton" size="default">
+                          Remove
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you certain?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            If you select remove, the caregiver will be removed
+                            and your session will be canceled.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => {
+                              setInputs({
+                                careSessionId: currentSession?.id || "",
+                                acceptedCaregiverId: "",
+                                careSessionStatus: "Canceled",
+                              });
+                              cancelSession();
+                              closeThisPotentialCareSession();
+                            }}
+                          >
+                            Remove Caregiver
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   )}
                 </div>
               </div>
