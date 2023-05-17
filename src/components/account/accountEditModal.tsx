@@ -2,6 +2,17 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { trpc } from "../../utils/trpc";
 import { Button } from "../ui/button";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const AccountEditModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -179,16 +190,35 @@ const AccountEditModal = () => {
                           </Button>
                         </div>
                         <div className="flex justify-end">
-                          <Button
-                            variant="default"
-                            size="default"
-                            onClick={() => {
-                              publish();
-                              setShowModal(false);
-                            }}
-                          >
-                            Save
-                          </Button>
+                          <AlertDialog>
+                            <AlertDialogTrigger>
+                              <Button variant="default" size="default">
+                                Save
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>
+                                  Are you certain?
+                                </AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  Click Accept to update your account. Your old
+                                  information will be lost.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction
+                                  onClick={() => {
+                                    publish();
+                                    setShowModal(false);
+                                  }}
+                                >
+                                  Accept
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
                         </div>
                       </div>
                     </div>
