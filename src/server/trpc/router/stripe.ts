@@ -18,6 +18,8 @@ export const stripeRouter = router({
     .input(
         z.object({
             type: z.string(),
+            // clientId: z.string(),
+            
         })
     )
     .mutation(async ({ input }) => {
@@ -29,14 +31,8 @@ export const stripeRouter = router({
     }),
 
 
-
-
-
-
-
-  //connect to stripe express account
-  //UNTESTED
-   accountLink: privateProcedure
+    //link express account to user
+    accountLink: privateProcedure
     .input(
         z.object({
             account: z.string(),
@@ -45,7 +41,7 @@ export const stripeRouter = router({
             type: z.string(),
         })
     )
-    .query(async ({ input }) => {
+    .mutation(async ({ input }) => {
         const { account, refresh_url, return_url, type } = input;
         const accountLink = await stripe.accountLinks.create({
             account: account,
@@ -55,6 +51,38 @@ export const stripeRouter = router({
         });
         return accountLink;
     }),
+
+
+
+
+//push account name to user table which clicked the button
+    // if the user already has a stripe account it should NOT let them create another one
+
+
+
+
+
+  //connect to stripe express account
+  //UNTESTED
+//    accountLink: privateProcedure
+//     .input(
+//         z.object({
+//             account: z.string(),
+//             refresh_url: z.string(),
+//             return_url: z.string(),
+//             type: z.string(),
+//         })
+//     )
+//     .mutation(async ({ input }) => {
+//         const { account, refresh_url, return_url, type } = input;
+//         const accountLink = await stripe.accountLinks.create({
+//             account: account,
+//             refresh_url: refresh_url,
+//             return_url: return_url,
+//             type: type,
+//         });
+//         return accountLink;
+//     }),
    
 
 

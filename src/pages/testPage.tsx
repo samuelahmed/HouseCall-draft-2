@@ -14,7 +14,9 @@ import { useState } from "react";
 const TestPage: NextPage = () => {
 
 
+
   //Create stripe account (restricted atm) with mutation
+      //ADD: On submit add the expressID to DB
   const { mutate } = trpc.stripeAPIs.createExpressAccount.useMutation({
   });
   const publish =  () => {
@@ -25,7 +27,26 @@ const TestPage: NextPage = () => {
   });
 
 
+  //Link stripe account to user
+      //ADD: On submit add data.url to DB & redirect user to data.url
+  const { mutate: link } = trpc.stripeAPIs.accountLink.useMutation({
+  });
+  const linkAccount =  () => {
+    link(linkInputs);
+  };
+
+  const [linkInputs, setLinkInputs] = useState({
+    account: "acct_1N9E03QPvpijwJG1",
+    refresh_url: 'https://example.com/reauth',
+    return_url: 'https://example.com/return',
+    type: 'account_onboarding',  
+});
+
+
+
+
   
+
 
   return (
     <>
@@ -40,12 +61,14 @@ const TestPage: NextPage = () => {
 
         onClick={publish}
         >
-          Smol button
+         CREATE ACC
         </Button>
         <div className="py-10"></div>
 
-        <Button variant="redButton" size="sm">
-          Smol button
+        <Button variant="redButton" size="sm"
+        onClick={linkAccount}
+        >
+          LINK ACC
         </Button>
         <div className="py-10"></div>
 
