@@ -6,9 +6,26 @@ import LoginForm from "@/components/forms/loginForm";
 
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
+import { trpc } from "@/utils/trpc";
+import { useState } from "react";
+
+
 
 const TestPage: NextPage = () => {
-  //   const { data: session } = useSession();
+
+
+  //Create stripe account (restricted atm) with mutation
+  const { mutate } = trpc.stripeAPIs.createExpressAccount.useMutation({
+  });
+  const publish =  () => {
+    mutate(inputs);
+  };
+  const [inputs, setInputs] = useState({
+    type: "express",
+  });
+
+
+  
 
   return (
     <>
@@ -19,7 +36,10 @@ const TestPage: NextPage = () => {
 
       {/* BUTTONS sm, default, lg */}
       <div className="py-10 px-10">
-        <Button variant="default" size="sm">
+        <Button variant="default" size="sm"
+
+        onClick={publish}
+        >
           Smol button
         </Button>
         <div className="py-10"></div>

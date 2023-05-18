@@ -96,7 +96,7 @@ export function DataTable<TData extends { slug: string }, TValue>({
         className="block w-full border bg-blue2 p-1.5 pl-4 text-sm text-olive12 focus:outline-none focus:ring-1 focus:ring-blue11 "
         placeholder="Search Sessions"
         required
-        value={table.getColumn("overivew")?.getFilterValue() as string}
+        value={table.getColumn("overview")?.getFilterValue() as string}
         onChange={(event) => {
           if (event.target.value !== "") {
             setShowModal(true);
