@@ -152,7 +152,7 @@ const Scheduled: NextPage = () => {
                                       {startTimeMinute < 10
                                         ? "0" + startTimeMinute
                                         : startTimeMinute}{" "}
-                                      {startTimeMinute > 12 ? "PM" : "AM"}
+                                      {startTimeHour > 12 ? "PM" : "AM"}
                                     </p>
                                     <p className="">
                                       <span className="">
@@ -332,7 +332,7 @@ const Scheduled: NextPage = () => {
                                       {startTimeMinute < 10
                                         ? "0" + startTimeMinute
                                         : startTimeMinute}{" "}
-                                      {startTimeMinute > 12 ? "PM" : "AM"}
+                                      {startTimeHour > 12 ? "PM" : "AM"}
                                     </p>
                                     <p className="">
                                       <span className="">
