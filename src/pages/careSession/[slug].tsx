@@ -228,7 +228,7 @@ const Slug: NextPage = () => {
                       {currentSession?.sessionStartMinute < 10
                         ? "0" + currentSession?.sessionStartMinute
                         : currentSession?.sessionStartMinute}{" "}
-                      {currentSession?.sessionStartMinute > 12 ? "PM" : "AM"}
+                      {currentSession?.sessionStartHour > 12 ? "PM" : "AM"}
                     </p>
                   )}
                 {/* SESSION END  */}
@@ -523,7 +523,7 @@ const Slug: NextPage = () => {
                         {currentSession?.sessionStartMinute < 10
                           ? "0" + currentSession?.sessionStartMinute
                           : currentSession?.sessionStartMinute}{" "}
-                        {currentSession?.sessionStartMinute > 12 ? "PM" : "AM"}
+                        {currentSession?.sessionStartHour > 12 ? "PM" : "AM"}
                       </p>
                     )}
                   {/* SESSION END  */}
