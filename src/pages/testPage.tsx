@@ -8,18 +8,15 @@ import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/utils/trpc";
 import { useState } from "react";
-
-
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const TestPage: NextPage = () => {
-
-
-
+  const router = useRouter();
   //Create stripe account (restricted atm) with mutation
-      //ADD: On submit add the expressID to DB
-  const { mutate } = trpc.stripeAPIs.createExpressAccount.useMutation({
-  });
-  const publish =  () => {
+  //ADD: On submit add the expressID to DB
+  const { mutate } = trpc.stripeAPIs.createExpressAccount.useMutation({});
+  const publish = () => {
     mutate(inputs);
   };
   const [inputs, setInputs] = useState({
@@ -27,25 +24,43 @@ const TestPage: NextPage = () => {
   });
 
 
-  //Link stripe account to user
-      //ADD: On submit add data.url to DB & redirect user to data.url
+
+
+
+
+
+
+
   const { mutate: link } = trpc.stripeAPIs.accountLink.useMutation({
-  });
-  const linkAccount =  () => {
+    onSuccess: (data) => {
+      console.log(data);
+      router.push(data.url);
+    }
+  })
+
+
+  const linkAccount = () => {
     link(linkInputs);
   };
 
+
   const [linkInputs, setLinkInputs] = useState({
     account: "acct_1N9E03QPvpijwJG1",
-    refresh_url: 'https://example.com/reauth',
-    return_url: 'https://example.com/return',
-    type: 'account_onboarding',  
-});
+    refresh_url: "https://example.com/reauth",
+    return_url: "http://localhost:3000/testPage",
+    type: "account_onboarding",
+  });
+
+
+
 
 
 
 
   
+
+
+
 
 
   return (
@@ -57,20 +72,29 @@ const TestPage: NextPage = () => {
 
       {/* BUTTONS sm, default, lg */}
       <div className="py-10 px-10">
-        <Button variant="default" size="sm"
-
-        onClick={publish}
-        >
-         CREATE ACC
+        <Button variant="default" size="sm" onClick={publish}>
+          CREATE ACC
         </Button>
         <div className="py-10"></div>
 
-        <Button variant="redButton" size="sm"
-        onClick={linkAccount}
+        <Button
+          variant="redButton"
+          size="sm"
+          onClick={() => {
+            linkAccount();
+            // linkAccountMeow()
+          }}
         >
           LINK ACC
         </Button>
-        <div className="py-10"></div>
+
+        {/* <div className="py-10"></div> */}
+
+        {/* <div> */}
+          {/* //get result url from linkAccount */}
+          {/* {linkAccount.?.url} */}
+
+        {/* </div>
 
         <Button variant="redButton" size="default">
           Button
@@ -90,9 +114,9 @@ const TestPage: NextPage = () => {
 
         <Button variant="redButton" size="lg">
           Large Red button
-        </Button>
+        </Button> */}
 
-        <div className="py-10"></div>
+        {/* <div className="py-10"></div> */}
       </div>
     </>
   );
