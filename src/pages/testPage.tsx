@@ -130,7 +130,7 @@ const TestPage: NextPage = () => {
               triggerUserLogin();
             }}
           >
-            Connect to your stripe account
+            Login to your stripe account
           </Button>
         )}
       </div>

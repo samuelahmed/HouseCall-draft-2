@@ -36,11 +36,11 @@ export const userRouter = router({
         city: z.string(),
         postalCode: z.string(),
         role: z.string(),
-        stripeUserId: z.string(),
+        // stripeUserId: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { username, email, city, postalCode, password, address, role, stripeUserId } = input;
+      const { username, email, city, postalCode, password, address, role, } = input;
       const updatedUser = await ctx.prisma.user.upsert({
         create: {
           username,
@@ -50,7 +50,7 @@ export const userRouter = router({
           city,
           postalCode,
           role,
-          stripeUserId,
+          // stripeUserId,
         },
         update: {
           username,
@@ -60,7 +60,7 @@ export const userRouter = router({
           city,
           postalCode,
           role,
-          stripeUserId,
+          // stripeUserId,
         },
         where: {
           id: ctx.session?.user?.id,
