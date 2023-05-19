@@ -22,7 +22,9 @@ const TestPage: NextPage = () => {
   //Create stripe account (restricted atm) with mutation
   const [linkInputs, setLinkInputs] = useState({
     account: "",
+    //make sure to change this to the actual url (which should be what?)
     refresh_url: "https://example.com/reauth",
+    //make sure to change this to the actual url
     return_url: "http://localhost:3000/testPage",
     type: "account_onboarding",
   });
