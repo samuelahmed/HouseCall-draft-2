@@ -49,5 +49,25 @@ export const stripeRouter = router({
       });
       return accountLink;
     }),
+
+
+    createLoginLink: privateProcedure
+    .input(
+      z.object({
+        stripeAccountId: z.string(),
+      })
+    )
+//     const loginLink = await stripe.accounts.createLoginLink(
+//   'acct_1032D82eZvKYlo2C'
+// );
+
+    .mutation(async ({ input }) => {
+      const { stripeAccountId } = input;
+      const loginLink = await stripe.accounts.createLoginLink(
+        stripeAccountId
+      );
+      return loginLink;
+    }
+    ),
     
 });

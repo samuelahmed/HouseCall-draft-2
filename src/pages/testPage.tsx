@@ -5,19 +5,16 @@ import { Button } from "@/components/ui/button";
 import { trpc } from "@/utils/trpc";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { create } from "domain";
 import { useEffect } from "react";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
 const TestPage: NextPage = () => {
   // TODO: Need to push the data to current user in db
 
   const router = useRouter();
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
   const { data: userData, isLoading } =
     trpc.userAPIs.readCurrentUser.useQuery();
-
-  console.log(userData);
 
   //flag to check if publish is called
   const [publishTriggered, setPublishTriggered] = useState(false);
@@ -73,12 +70,26 @@ const TestPage: NextPage = () => {
   useEffect(() => {
     if (publishTriggered) {
       linkAccount();
-      setPublishTriggered(false); // Reset the flag
+      setPublishTriggered(false);
     }
   }, [publishTriggered]);
 
   //update user
   const { mutate: updateUser } = trpc.userAPIs.updateUserStripeId.useMutation();
+
+  //USER LOGGING INTO STRIPE CONNECT ACCOUNT TO SEE THEIR BALANCE, ETC
+  const { mutate: loginLink } = trpc.stripeAPIs.createLoginLink.useMutation({
+    onSuccess: (data) => {
+      console.log(data);
+      router.push(data.url);
+    },
+  });
+
+  const triggerUserLogin = () => {
+    if (userData?.stripeUserId) {
+      loginLink({ stripeAccountId: userData.stripeUserId });
+    }
+  };
 
   return (
     <>
@@ -107,21 +118,21 @@ const TestPage: NextPage = () => {
           </Button>
         )}
 
-
+        {/*
+          1) Checks if current user has a stripe account
+          2) If yes, then show button to login to stripe account
+        */}
         {userData?.stripeUserId !== null && (
           <Button
             variant="default"
             size="default"
             onClick={() => {
-              // publish();
+              triggerUserLogin();
             }}
           >
             Connect to your stripe account
           </Button>
         )}
-
-
-
       </div>
     </>
   );
