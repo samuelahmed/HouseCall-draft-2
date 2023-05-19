@@ -1,4 +1,4 @@
-import { router, publicProcedure } from "../trpc";
+import { router, publicProcedure, privateProcedure } from "../trpc";
 import { z } from "zod";
 
 //This router is for the following schemas:
@@ -36,10 +36,11 @@ export const userRouter = router({
         city: z.string(),
         postalCode: z.string(),
         role: z.string(),
+        stripeUserId: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { username, email, city, postalCode, password, address, role } = input;
+      const { username, email, city, postalCode, password, address, role, stripeUserId } = input;
       const updatedUser = await ctx.prisma.user.upsert({
         create: {
           username,
@@ -49,6 +50,7 @@ export const userRouter = router({
           city,
           postalCode,
           role,
+          stripeUserId,
         },
         update: {
           username,
@@ -58,6 +60,7 @@ export const userRouter = router({
           city,
           postalCode,
           role,
+          stripeUserId,
         },
         where: {
           id: ctx.session?.user?.id,
@@ -65,6 +68,27 @@ export const userRouter = router({
       });
       return updatedUser;
     }),
+
+    //update user stripe id only 
+    updateUserStripeId: privateProcedure
+    .input(
+      z.object({
+        stripeUserId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { stripeUserId } = input;
+      const updatedUser = await ctx.prisma.user.update({
+        data: {
+          stripeUserId,
+        },
+        where: {
+          id: ctx.session?.user?.id,
+        },
+      });
+      return updatedUser;
+    }),
+
 
   // ************************
   // *       DELETE         *
