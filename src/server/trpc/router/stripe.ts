@@ -26,6 +26,9 @@ export const stripeRouter = router({
       return account;
     }),
 
+
+
+
   //link express account to user
   accountLink: privateProcedure
     .input(

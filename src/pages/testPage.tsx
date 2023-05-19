@@ -1,122 +1,87 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-// import NavLayout from "../components/layout/navLayout";
-import { useSession } from "next-auth/react";
-import LoginForm from "@/components/forms/loginForm";
-
 import Header from "@/components/layout/header";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/utils/trpc";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { create } from "domain";
 import { useEffect } from "react";
 
 const TestPage: NextPage = () => {
+  
   const router = useRouter();
+
+  //flag to check if publish is called
+  const [publishTriggered, setPublishTriggered] = useState(false);
+
   //Create stripe account (restricted atm) with mutation
-  //ADD: On submit add the expressID to DB
-  const { mutate } = trpc.stripeAPIs.createExpressAccount.useMutation({});
-  const publish = () => {
-    mutate(inputs);
-  };
-  const [inputs, setInputs] = useState({
-    type: "express",
-  });
-
-
-
-
-
-
-
-
-
-  const { mutate: link } = trpc.stripeAPIs.accountLink.useMutation({
-    onSuccess: (data) => {
-      console.log(data);
-      router.push(data.url);
-    }
-  })
-
-
-  const linkAccount = () => {
-    link(linkInputs);
-  };
-
-
   const [linkInputs, setLinkInputs] = useState({
-    account: "acct_1N9E03QPvpijwJG1",
+    account: "",
     refresh_url: "https://example.com/reauth",
     return_url: "http://localhost:3000/testPage",
     type: "account_onboarding",
   });
 
+  //create stripe account
+  const { mutate } = trpc.stripeAPIs.createExpressAccount.useMutation({
+    onSuccess: (accData) => {
+      setLinkInputs((prevInputs) => ({
+        ...prevInputs,
+        account: accData.id,
+      }));
+      setPublishTriggered(true); // Set the flag
+    },
+  });
 
+  //publish on  click of the button
+  const publish = () => {
+    mutate(inputs);
+  };
 
+  //set the type of stripe account
+  const [inputs, setInputs] = useState({
+    type: "express",
+  });
 
+  //Link stripe account with mutation
+  const { mutate: link } = trpc.stripeAPIs.accountLink.useMutation({
+    onSuccess: (data) => {
+      console.log(data);
+      router.push(data.url);
+    },
+  });
 
+  // link the acc
+  const linkAccount = () => {
+    link(linkInputs);
+  };
 
-
-  
-
-
-
-
+  //make sure linkAccount is called after publish is called
+  useEffect(() => {
+    if (publishTriggered) {
+      linkAccount();
+      setPublishTriggered(false); // Reset the flag
+    }
+  }, [publishTriggered]);
 
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Test Page</title>
       </Head>
       <Header />
 
-      {/* BUTTONS sm, default, lg */}
       <div className="py-10 px-10">
-        <Button variant="default" size="sm" onClick={publish}>
-          CREATE ACC
-        </Button>
-        <div className="py-10"></div>
-
         <Button
-          variant="redButton"
-          size="sm"
+          variant="default"
+          size="default"
           onClick={() => {
-            linkAccount();
-            // linkAccountMeow()
+            publish();
           }}
         >
-          LINK ACC
+          Create Stripe Account
         </Button>
-
-        {/* <div className="py-10"></div> */}
-
-        {/* <div> */}
-          {/* //get result url from linkAccount */}
-          {/* {linkAccount.?.url} */}
-
-        {/* </div>
-
-        <Button variant="redButton" size="default">
-          Button
-        </Button>
-
-        <div className="py-10"></div>
-        <Button variant="default" size="default">
-          Button
-        </Button>
-
-        <div className="py-10"></div>
-
-        <Button variant="default" size="lg">
-          Large button
-        </Button>
-        <div className="py-10"></div>
-
-        <Button variant="redButton" size="lg">
-          Large Red button
-        </Button> */}
-
-        {/* <div className="py-10"></div> */}
       </div>
     </>
   );
