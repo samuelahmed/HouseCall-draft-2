@@ -216,7 +216,7 @@ const Discover: NextPage = () => {
                                     {startTimeMinute < 10
                                       ? "0" + startTimeMinute
                                       : startTimeMinute}{" "}
-                                    {startTimeMinute > 12 ? "PM" : "AM"}
+                                    {startTimeHour > 12 ? "PM" : "AM"}
                                   </p>
                                   <p className="">
                                     <span className="">Session End:&nbsp;</span>
@@ -323,7 +323,7 @@ const Discover: NextPage = () => {
                                   selectedSession?.data?.sessionStartMinute
                                 : selectedSession?.data
                                     ?.sessionStartMinute}{" "}
-                              {selectedSession?.data?.sessionStartMinute > 12
+                              {selectedSession?.data?.sessionStartHour > 12
                                 ? "PM"
                                 : "AM"}
                             </p>
