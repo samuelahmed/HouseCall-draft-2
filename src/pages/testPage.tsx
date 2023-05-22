@@ -6,56 +6,38 @@ import { trpc } from "@/utils/trpc";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-// import { useSession } from "next-auth/react";
 
 const TestPage: NextPage = () => {
-  // TODO: Need to push the data to current user in db
-
   const router = useRouter();
-  // const { data: session } = useSession();
   const { data: userData, isLoading } =
     trpc.userAPIs.readCurrentUser.useQuery();
 
-  //flag to check if publish is called
-  const [publishTriggered, setPublishTriggered] = useState(false);
-
-  //Create stripe account (restricted atm) with mutation
-  const [linkInputs, setLinkInputs] = useState({
-    account: "",
-    //make sure to change this to the actual url (which should be what?)
-    refresh_url: "https://example.com/reauth",
-    //make sure to change this to the actual url
-    return_url: "http://localhost:3000/testPage",
-    type: "account_onboarding",
-  });
-
-  //create stripe account
+  //Create stripe account
   const { mutate } = trpc.stripeAPIs.createExpressAccount.useMutation({
     onSuccess: (accData: { id: string }) => {
       setLinkInputs((prevInputs) => ({
         ...prevInputs,
         account: accData.id,
       }));
-      // push the data to current user in db
       updateUser({
         stripeUserId: accData.id,
       });
-
-      setPublishTriggered(true); // Set the flag
+      setPublishTriggered(true);
     },
   });
 
-  //publish on  click of the button
   const triggerCreateStripeAccount = () => {
     mutate(inputs);
   };
 
-  //set the type of stripe account
   const [inputs, setInputs] = useState({
     type: "express",
   });
 
-  //Link stripe account with mutation
+  //update user
+  const { mutate: updateUser } = trpc.userAPIs.updateUserStripeId.useMutation();
+
+  //Link stripe account
   const { mutate: link } = trpc.stripeAPIs.accountLink.useMutation({
     onSuccess: (data) => {
       console.log(data);
@@ -63,12 +45,19 @@ const TestPage: NextPage = () => {
     },
   });
 
-  // link the acc
+  const [publishTriggered, setPublishTriggered] = useState(false);
+
+  const [linkInputs, setLinkInputs] = useState({
+    account: "",
+    refresh_url: "https://example.com/reauth",
+    return_url: "http://localhost:3000/testPage",
+    type: "account_onboarding",
+  });
+
   const linkAccount = () => {
     link(linkInputs);
   };
 
-  //make sure linkAccount is called after publish is called
   useEffect(() => {
     if (publishTriggered) {
       linkAccount();
@@ -76,10 +65,7 @@ const TestPage: NextPage = () => {
     }
   }, [publishTriggered]);
 
-  //update user
-  const { mutate: updateUser } = trpc.userAPIs.updateUserStripeId.useMutation();
-
-  //USER LOGGING INTO STRIPE CONNECT ACCOUNT TO SEE THEIR BALANCE, ETC
+  //Login to stripe account (for caregivers only)
   const { mutate: loginLink } = trpc.stripeAPIs.createLoginLink.useMutation({
     onSuccess: (data) => {
       console.log(data);
@@ -93,29 +79,60 @@ const TestPage: NextPage = () => {
     }
   };
 
-  //payment intent
-  const { mutate: paymentIntent } =
-    trpc.stripeAPIs.createPaymentIntent.useMutation({
+  //Update Product Price
+  const { mutate: updateProductPrice } =
+    trpc.stripeAPIs.updateProductPrice.useMutation({
       onSuccess: (data) => {
         console.log(data);
-        router.push(data.url);
       },
     });
 
+  const triggerUpdateProductPrice = () => {
+    updateProductPrice(updateProductPriceInputs);
+  };
+
+  const [updateProductPriceInputs, setUpdateProductPriceInputs] = useState({
+    unit_amount: 2000,
+    currency: "usd",
+    product: "prod_NwLJA1YUagYdy9",
+  });
+
+  //Create Product
+  const { mutate: createProduct } = trpc.stripeAPIs.createProduct.useMutation({
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+
+  const triggerCreateProduct = () => {
+    createProduct(createProductInputs);
+  };
+
+  const [createProductInputs, setCreateProductInputs] = useState({
+    name: "test product",
+  });
+
+  //Payment Intent
+  const { mutate: paymentIntent } =
+    trpc.stripeAPIs.createPaymentIntent.useMutation({
+      onSuccess: (data) => {
+        // console.log(data);
+        router.push(data.url);
+      },
+    });
   const triggerPaymentIntent = () => {
-    // paymentIntent({ amount: 1000 });
     paymentIntent(paymentIntentInputs);
   };
 
   const [paymentIntentInputs, setPaymentIntentInputs] = useState({
     line_items: [
       {
-        price: "30",
+        price: "price_1NAStBKJn0hb6qaz3QXVzQtK",
         quantity: 1,
       },
     ],
     payment_intent_data: {
-      application_fee_amount: 123,
+      application_fee_amount: 1000,
       transfer_data: {
         destination: "acct_1N9b8h4IaJzIzRlU",
       },
@@ -132,7 +149,7 @@ const TestPage: NextPage = () => {
       <Header />
 
       {}
-      <div className="py-10 px-10">
+      <div className="space-x-5 space-y-5 py-10 px-10">
         {/*
           1) Creates a new stripe account
           2) Links account to the user
@@ -153,29 +170,49 @@ const TestPage: NextPage = () => {
 
         {/*
           1) Checks if current user has a stripe account
-          2) If yes, then show button to login to stripe account
+          2) If yes, then show buttons to login (caregiver only), set product price (caregiver - hidden), create product (caregiver - hidden), and test payment (patient)
         */}
         {userData?.stripeUserId !== null && (
-          <Button
-            variant="default"
-            size="default"
-            onClick={() => {
-              triggerUserLogin();
-            }}
-          >
-            Login to your stripe account
-          </Button>
+          <>
+            <Button
+              variant="default"
+              size="default"
+              onClick={() => {
+                triggerUserLogin();
+              }}
+            >
+              Login to your stripe account
+            </Button>
+            <Button
+              variant="default"
+              size="default"
+              onClick={() => {
+                triggerCreateProduct();
+              }}
+            >
+              Create Product
+            </Button>
+            <Button
+              variant="default"
+              size="default"
+              onClick={() => {
+                triggerUpdateProductPrice();
+              }}
+            >
+              Set Product Price
+            </Button>
+            <Button
+              variant="default"
+              size="default"
+              onClick={() => {
+                triggerPaymentIntent();
+              }}
+            >
+              Test Payment
+            </Button>
+          </>
+          // TODO: check if patients have a sort of spending dashboard, if not create something
         )}
-
-        <Button
-          variant="default"
-          size="default"
-          onClick={() => {
-            triggerPaymentIntent();
-          }}
-        >
-          Trigger Test Payment
-        </Button>
       </div>
     </>
   );
