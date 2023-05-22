@@ -4,10 +4,14 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import LoginForm from "@/components/forms/loginForm";
 import Header from "@/components/layout/header";
+import { useRouter } from "next/router";
 
 const Login: NextPage = () => {
   const { data: session } = useSession();
-
+  const router = useRouter();
+  if (session) {
+    router.push("/dashboard/")
+  }
   return (
     <>
       <Head>
