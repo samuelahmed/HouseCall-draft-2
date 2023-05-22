@@ -68,6 +68,18 @@ export const stripeRouter = router({
     
 
 
+    //Need to create a product 
+//     const price = await stripe.prices.create({
+//   unit_amount: 2000,
+//   currency: 'usd',
+//   recurring: {interval: 'month'},
+//   product: 'prod_NwFeA6iYEHwZgq',
+// });
+
+
+
+
+
   //create a payment intent
   createPaymentIntent: privateProcedure
     

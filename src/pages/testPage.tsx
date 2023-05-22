@@ -93,6 +93,37 @@ const TestPage: NextPage = () => {
     }
   };
 
+  //payment intent
+  const { mutate: paymentIntent } =
+    trpc.stripeAPIs.createPaymentIntent.useMutation({
+      onSuccess: (data) => {
+        console.log(data);
+        router.push(data.url);
+      },
+    });
+
+  const triggerPaymentIntent = () => {
+    // paymentIntent({ amount: 1000 });
+    paymentIntent(paymentIntentInputs);
+  };
+
+  const [paymentIntentInputs, setPaymentIntentInputs] = useState({
+    line_items: [
+      {
+        price: "30",
+        quantity: 1,
+      },
+    ],
+    payment_intent_data: {
+      application_fee_amount: 123,
+      transfer_data: {
+        destination: "acct_1N9b8h4IaJzIzRlU",
+      },
+    },
+    success_url: "https://example.com/success",
+    cancel_url: "https://example.com/cancel",
+  });
+
   return (
     <>
       <Head>
@@ -135,6 +166,16 @@ const TestPage: NextPage = () => {
             Login to your stripe account
           </Button>
         )}
+
+        <Button
+          variant="default"
+          size="default"
+          onClick={() => {
+            triggerPaymentIntent();
+          }}
+        >
+          Trigger Test Payment
+        </Button>
       </div>
     </>
   );
